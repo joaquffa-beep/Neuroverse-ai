@@ -1,0 +1,5 @@
+# Solo se publican index.html y apple-touch-icon.png.
+# neuroverse-ai.html es el original de trabajo (publicar.ps1 lo copia como index.html).
+neuroverse-ai.html
+supabase-setup.sql
+publicar.ps1
