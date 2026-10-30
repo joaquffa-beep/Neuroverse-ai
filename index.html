@@ -842,6 +842,21 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .cp{gap:.9rem}.cp-stage{width:100%;max-width:420px;height:200px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);display:grid;place-items:center;user-select:none}
 .cp-ch{font:800 5rem var(--display);color:#F2F6FF;line-height:1}.cp-ch.cue{color:#FFC24B}.cp-ch.probe{color:#35E6DF}.cp-ch.fix{color:#9CC2FF;font-size:2.4rem}.cp-ch.fb{color:#9CC2FF;opacity:.45}
 .cp-btns{display:flex;gap:1rem;justify-content:center;width:100%}.cp-b{flex:1;max-width:230px;min-height:64px;font-weight:700;position:relative}.cp-b .kbd{margin-right:.5rem}
+.rf{gap:.9rem}.rf-hist{display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;min-height:46px;align-items:center}
+.rf-mini{width:44px;height:44px;border-radius:9px;background:var(--stim);border:3px solid var(--line-2);display:grid;place-items:center}.rf-mini svg{width:32px;height:32px}.rf-mini.yes{border-color:#3DDC84}.rf-mini.no{border-color:#FF5470}
+.rf-card{position:relative;width:156px;height:156px;border-radius:22px;background:var(--stim);border:4px solid var(--line-2);display:grid;place-items:center;transition:border-color var(--d2)}.rf-card svg{width:82%;height:82%}.rf-card.yes{border-color:#3DDC84}.rf-card.no{border-color:#FF5470}
+.rf-prev{position:absolute;left:6px;top:6px;width:44px;height:44px;border-radius:9px;background:rgba(255,255,255,.07);border:1px dashed #6E7FAE;display:grid;place-items:center}.rf-prev svg{width:34px;height:34px}
+.rf-btns{display:flex;gap:1rem;justify-content:center;width:100%}.rf-btns .btn{flex:1;max-width:230px;min-height:60px;font-weight:700}
+.rv{gap:.9rem}.rv-score{text-align:center;font:800 2rem var(--display);min-height:2.6rem;font-variant-numeric:tabular-nums}.rv-score.up{color:var(--ok)}.rv-score.down{color:var(--bad)}
+.rv-cards{display:grid;grid-template-columns:repeat(var(--k,2),minmax(0,1fr));gap:.9rem;max-width:520px;width:100%}
+.rv-card{position:relative;aspect-ratio:1;border-radius:22px;background:var(--stim);border:3px solid var(--line-2);cursor:pointer;display:grid;place-items:center;color:#F2F6FF;padding:.9rem;transition:transform var(--d1),border-color var(--d2)}
+.rv-card svg{width:72%;height:72%}.rv-card:hover:not(:disabled){transform:translateY(-3px)}.rv-card:focus-visible{outline:2px solid #35E6DF;outline-offset:3px}
+.rv-card .kbd{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.35)}.rv-card.win{border-color:#3DDC84}.rv-card.lose{border-color:#FF5470}
+.rv-out{position:absolute;bottom:8px;left:0;right:0;text-align:center;font:800 1.2rem var(--display)}.rv-card.win .rv-out{color:#3DDC84}.rv-card.lose .rv-out{color:#FF5470}
+.ag{gap:.9rem}.ag-word{min-height:120px;width:100%;max-width:520px;border-radius:22px;background:var(--stim);border:3px solid var(--line-2);display:grid;place-items:center;padding:1rem;transition:border-color var(--d2)}
+.ag-word.ok{border-color:#3DDC84}.ag-word.bad{border-color:#FF5470}.ag-syls{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.ag-s{font:800 1.9rem var(--display);color:#F2F6FF;padding:.2rem .6rem;border-radius:12px;background:rgba(255,255,255,.09)}
+.ag-bar{width:100%;max-width:520px;height:8px;border-radius:6px;background:rgba(var(--ov),.12);overflow:hidden}.ag-bar i{display:block;height:100%;background:var(--teal);transform-origin:left}
 /* Recuerdo diferido */
 .dl{max-width:640px}
 .dl-top{text-align:center;color:var(--muted);font-weight:700;letter-spacing:.06em}
@@ -1419,6 +1434,9 @@ vsearch:'<circle cx="6" cy="6" r="1.8"/><circle cx="12" cy="6" r="1.8"/><circle 
 mot:'<circle cx="6" cy="8" r="2.4" fill="currentColor"/><circle cx="16" cy="6" r="2.4"/><circle cx="10" cy="17" r="2.4"/><circle cx="19" cy="15" r="2.4" fill="currentColor"/><path d="M8.5 9l3 1.5M16 8.5l-1.5 3" stroke-dasharray="2 2"/>',
 blink:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z',
 cpt:'M3 12h3l2-6 3 12 3-9 2 3h5',
+rulefind:'M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z',
+reversal:'M7 17V5M3.5 8.5L7 5l3.5 3.5M17 7v12M13.5 15.5L17 19l3.5-3.5',
+agl:'M4 5h16v11H11l-4 4v-4H4zM8 9h8M8 12h5',
 cloud:'M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 10a4 4 0 010 8z',
 calendar:'<rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
 medal:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/>',
@@ -1472,7 +1490,7 @@ const SKILLS=[
  {id:'math',name:'Agilidad matemática',short:'Cálculo',world:'MATH SPEED',color:'#FFB547',c2:'#FF65C7',icon:'math',desc:'Cálculo mental y memoria de trabajo numérica.',blurb:'Números en movimiento: calcula con velocidad y cabeza fría.',games:['flash','countdown','truefalse']},
  {id:'language',name:'Lenguaje y fluidez verbal',short:'Lenguaje',world:'WORD POWER',color:'#FF65C7',c2:'#9B6DFF',icon:'language',desc:'Vocabulario, acceso léxico y fluidez verbal.',blurb:'Partículas de letras: encuentra, encadena y reordena palabras.',games:['categories','chain','anagram']},
  {id:'motor',name:'Coordinación visomotora',short:'Coordinación',world:'MOTOR SYNC',color:'#5CFF8F',c2:'#35E6DF',icon:'motor',desc:'Coordinación ojo-mano, precisión y reacción.',blurb:'Circuitos y trayectorias: traza con exactitud y reacciona a tiempo.',games:['mirror','path','reflex']},
- {id:'learning',name:'Aprendizaje y flexibilidad cognitiva',short:'Flexibilidad',world:'NEUROPLASTICITY QUEST',color:'#C58BFF',c2:'#5E7BFF',icon:'learning',desc:'Aprender cosas nuevas y adaptarse a reglas cambiantes.',blurb:'Conexiones emergentes: aprende algo nuevo y cambia de regla con soltura.',games:['lang','rhythm','switch']}
+ {id:'learning',name:'Aprendizaje y flexibilidad cognitiva',short:'Flexibilidad',world:'NEUROPLASTICITY QUEST',color:'#C58BFF',c2:'#5E7BFF',icon:'learning',desc:'Aprender cosas nuevas y adaptarse a reglas cambiantes.',blurb:'Conexiones emergentes: aprende algo nuevo y cambia de regla con soltura.',games:['lang','rhythm','switch','rulefind','reversal','agl']}
 ];
 const SK=Object.fromEntries(SKILLS.map(s=>[s.id,s]));
 const GAMES={};
@@ -5358,6 +5376,220 @@ reg({id:'cpt',skill:'attention',name:'Atención sostenida AX',icon:'cpt',tagline
    const metrics=[{label:'Aciertos',value:`${okN}/${n}`},{label:'A→X acertadas',value:ax.length?`${ax.filter(x=>x.ok).length}/${ax.length}`:'—'},{label:'Error en B→X (contexto)',value:bx.length?pct(err('BX')):'—'},{label:'Error en A→Y (anticipación)',value:by('AY').length?pct(err('AY')):'—'},{label:'Error en B→Y',value:by('BY').length?pct(err('BY')):'—'},{label:'Índice d′-contexto',value:dctx!=null?dctx.toFixed(2):'—'},{label:'Tiempo mediano en A→X',value:rts.length?Math.round(median(rts))+' ms':'—'},{label:'Respuestas antes de la sonda',value:early}];
    const details=`<h4>¿Qué mide el AX-CPT?</h4><p>Es una tarea de atención sostenida con control del contexto: la letra-señal determina cómo hay que responder a la sonda. Fallar en B→X indica que la señal no se mantuvo en mente cuando llegó la X; fallar en A→Y indica que la señal A empujó a decir «Sí» por anticipación. El índice d′-contexto compara tus aciertos en A→X con tus «Sí» erróneos en B→X (0 = no distingue; más alto = distingue mejor). Con pocos ensayos B→X es muy poco fiable.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
    return {correct:okN,wrong:n-okN,total:n,acc:okN/n,score:okN,rt:rts.length?avg(rts):null,metrics,details,extra:{mode,dctx,early,faRate:nonT.length?fa/nonT.length:0,omRate:omN/n,errBX:err('BX'),errAY:err('AY')}}}}
+ }});
+/* ---------- DESCUBRE LA REGLA (inducción de reglas a partir de aciertos y fallos) ----------
+   Hay una regla oculta sobre las cartas (forma, color, cantidad o relación con la carta anterior). Se responde «Sí» o «No» a cada carta
+   y se recibe el resultado. Cuando se acierta una racha, hay que declarar la regla entre varias opciones (cada una con una tabla de verdad distinta). */
+const RF_SH=['circle','square','triangle','star'],RF_COL=['#FF4D5E','#538CFF','#3DDC84','#FFD23F'],RF_CN=['rojo','azul','verde','amarillo'],RF_SN=['círculo','cuadrado','triángulo','estrella'];
+const RF_CARDS=[];for(let s=0;s<4;s++)for(let c=0;c<4;c++)for(let n=1;n<=3;n++)RF_CARDS.push({s,c,n});
+const rfAT={s:v=>`tiene forma de ${RF_SN[v]}`,c:v=>`es de color ${RF_CN[v]}`,n:v=>`tiene ${v} figura${v>1?'s':''}`};
+const rfVals={s:[0,1,2,3],c:[0,1,2,3],n:[1,2,3]};
+/* una regla = {spec, fn(card,prev), txt, rel}. La tabla de verdad (clave) decide si dos reglas son la misma */
+function rfMk(spec){
+ const f=sp=>{switch(sp.k){
+  case 'eq':return {fn:(x)=>x[sp.a]===sp.v,txt:rfAT[sp.a](sp.v),rel:false};
+  case 'not':{const q=f(sp.p);return {fn:(x,p)=>!q.fn(x,p),txt:'NO '+q.txt,rel:q.rel}}
+  case 'and':{const A=f(sp.p),B=f(sp.q);return {fn:(x,p)=>A.fn(x,p)&&B.fn(x,p),txt:A.txt+' y '+B.txt,rel:A.rel||B.rel}}
+  case 'or':{const A=f(sp.p),B=f(sp.q);return {fn:(x,p)=>A.fn(x,p)||B.fn(x,p),txt:A.txt+' o '+B.txt,rel:A.rel||B.rel}}
+  case 'ge2':return {fn:(x)=>x.n>=2,txt:'tiene 2 o más figuras',rel:false};
+  case 'same':return {fn:(x,p)=>x[sp.a]===p[sp.a],txt:{s:'tiene la misma forma',c:'tiene el mismo color',n:'tiene la misma cantidad de figuras'}[sp.a]+' que la carta anterior',rel:true};
+  case 'diff':return {fn:(x,p)=>x[sp.a]!==p[sp.a],txt:{s:'tiene distinta forma',c:'tiene distinto color',n:'tiene distinta cantidad de figuras'}[sp.a]+' que la carta anterior',rel:true}}};
+ const r=f(spec);return {spec,...r}}
+const rfKey=r=>r.rel?RF_CARDS.map(p=>RF_CARDS.map(x=>r.fn(x,p)?1:0).join('')).join(''):RF_CARDS.map(x=>r.fn(x)?1:0).join('');
+const rfEq=(a)=>({k:'eq',a,v:pick(rfVals[a])});
+function rfRandSpec(L){
+ const A=['s','c','n'],pr=sample(A,2);
+ if(L<=3)return rfEq(pick(A));
+ if(L<=7)return pick([()=>({k:'and',p:rfEq(pr[0]),q:rfEq(pr[1])}),()=>({k:'not',p:rfEq(pick(['s','c']))}),()=>({k:'and',p:rfEq(pr[0]),q:rfEq(pr[1])})])();
+ if(L<=11)return pick([()=>({k:'or',p:rfEq(pr[0]),q:rfEq(pr[1])}),()=>({k:'and',p:rfEq(pr[0]),q:{k:'not',p:rfEq(pr[1])}}),()=>({k:'ge2'}),()=>({k:'or',p:rfEq(pr[0]),q:rfEq(pr[1])})])();
+ return pick([()=>({k:'same',a:pick(A)}),()=>({k:'diff',a:pick(A)}),()=>({k:'and',p:{k:'same',a:pr[0]},q:{k:'diff',a:pr[1]}}),()=>({k:'same',a:pick(A)})])()}
+function rfRule(L){for(let t=0;t<200;t++){const r=rfMk(rfRandSpec(L)),k=rfKey(r),ones=k.split('').filter(c=>c==='1').length/k.length;if(ones>=.06&&ones<=.94)return r}return rfMk({k:'eq',a:'c',v:0})}
+/* opciones de declaración: la correcta + 3 «casi» (misma familia, tabla de verdad distinta) */
+function rfOptions(rule,L,hist=[]){
+ /* cada opción falsa debe contradecir al menos uno de los ejemplos que el jugador ha visto: así la regla verdadera siempre se puede distinguir con la información disponible */
+ const key=rfKey(rule),pool=[],seen=new Set([key]),contradicts=r=>hist.some(h=>!!r.fn(h.card,h.prev)!==h.label);
+ for(let pass=0;pass<2&&pool.length<3;pass++)for(let t=0;t<400&&pool.length<14;t++){const r=rfMk(rfRandSpec(L)),k=rfKey(r);if(seen.has(k)||r.txt===rule.txt||(pass===0&&!contradicts(r)))continue;seen.add(k);const ag=k.split('').filter((c,i)=>c===key[i]).length/k.length;pool.push({r,ag,strict:pass===0})}
+ pool.sort((a,b)=>Math.abs(a.ag-.75)-Math.abs(b.ag-.75));
+ const opts=shuffle([{r:rule,ok:true},...pool.slice(0,3).map(x=>({r:x.r,ok:false}))]);return opts}
+const rfCardSVG=c=>{const n=c.n,pos=n===1?[[50,50]]:n===2?[[30,50],[70,50]]:[[50,28],[28,72],[72,72]],sz=n===1?64:n===2?42:38;
+ return `<svg viewBox="0 0 100 100" aria-hidden="true">${pos.map(([x,y])=>`<g transform="translate(${x-sz/2} ${y-sz/2}) scale(${sz/100})" fill="${RF_COL[c.c]}">${shapePath(RF_SH[c.s])}</g>`).join('')}</svg>`};
+reg({id:'rulefind',skill:'learning',name:'Descubre la regla',icon:'rulefind',tagline:'Aprende una regla oculta a partir de aciertos y fallos.',
+ howTo:['Hay una regla oculta sobre las cartas (por forma, color, cantidad o relación con la carta anterior). Responde <b>Sí</b> si crees que la carta la cumple y <b>No</b> si no.','Después de cada respuesta verás si acertaste. Al principio es normal fallar: usa los ejemplos recientes para deducir la regla.','Cuando aciertes varias seguidas, tendrás que elegir cuál era la regla. Teclas S y N.'],
+ example:()=>`<div class="ex-stim" data-stim style="gap:.6rem">${[{s:0,c:0,n:1},{s:1,c:0,n:2},{s:2,c:1,n:1}].map((c,i)=>`<span style="width:52px;height:52px;border-radius:10px;background:#16213F;border:2px solid ${i<2?'#3DDC84':'#FF5470'};display:grid;place-items:center">${rfCardSVG(c).replace('<svg ','<svg style="width:40px;height:40px" ')}</span>`).join('')}</div><p class="small" style="margin-top:.5rem">Las cartas con borde verde cumplen la regla (aquí: «es de color rojo»).</p>`,
+ maxLevel:15,metric:{label:'Reglas descubiertas',better:'high'},daily:{min:100,max:220},
+ levelInfo:L=>`${L<=3?'Reglas de una propiedad':L<=7?'Reglas con «y» / «no»':L<=11?'Reglas con «o» y combinaciones':'Reglas que comparan con la carta anterior'} · racha de ${L<=7?8:10} aciertos`,
+ start(ctx){
+  const L=ctx.level,crit=L<=7?8:10,cap=40,N=ctx.budget?Infinity:3,R=[];
+  let rule=null,prev=null,cur=null,streak=0,trials=0,hist=[],phase='idle',timeUp=false,done=false,label=true,lastLabels=[],rd=null,opts=null,lim=null;
+  ctx.stage.innerHTML=`<div class="g-wrap rf"><div class="g-prompt" id="rfp" aria-live="polite"></div><div class="rf-hist" id="rfh" aria-label="Ejemplos recientes"></div><div class="rf-card" data-stim id="rfc"></div><div class="rf-btns" id="rfb"><button class="btn btn-primary" data-y="1"><span class="kbd">S</span>Sí, cumple</button><button class="btn" data-y="0"><span class="kbd">N</span>No cumple</button></div><div id="rfq" style="width:100%;max-width:600px"></div><div id="rfe" style="width:100%;max-width:640px"></div></div>`;
+  const miniCard=(c,lb)=>`<span class="rf-mini ${lb?'yes':'no'}" data-stim data-label="${lb?1:0}" data-s="${c.s}" data-c="${c.c}" data-n="${c.n}" title="${lb?'cumplía':'no cumplía'}">${rfCardSVG(c)}</span>`;
+  const drawHist=()=>{$('#rfh').innerHTML=hist.slice(-7).map(h=>miniCard(h.card,h.label)).join('')||'<span class="dim small">Aquí verás las últimas cartas con su resultado.</span>'};
+  function newRound(){if(done)return;if(R.length>=N||timeUp){done=true;return ctx.end()}rule=rfRule(L);prev=null;streak=0;trials=0;hist=[];lastLabels=[];rd={rule:rule.txt,trials:0,ok:0,first8:[0,0]};phase='idle';$('#rfq').innerHTML='';$('#rfe').innerHTML='';$('#rfb').hidden=false;
+   if(rule.rel){prev=pick(RF_CARDS);$('#rfp').innerHTML=`Regla ${R.length+1}${N<Infinity?' de '+N:''} · <b>Carta inicial</b>`;$('#rfc').innerHTML=rfCardSVG(prev);$('#rfc').classList.remove('yes','no');$('#rfb').hidden=true;drawHist();ctx.clock.after(1400,nextCard)}
+   else nextCard()}
+  function nextCard(){if(done)return;$('#rfb').hidden=false;
+   do{label=Math.random()<.5}while(lastLabels.length>=3&&lastLabels.slice(-3).every(x=>x===label));
+   let c=null;for(let t=0;t<300;t++){const x=pick(RF_CARDS);if(rule.fn(x,prev)===label&&!(prev&&x.s===prev.s&&x.c===prev.c&&x.n===prev.n)){c=x;break}}if(!c){c=pick(RF_CARDS);label=!!rule.fn(c,prev)}
+   cur=c;lastLabels.push(label);phase='in';$('#rfb').querySelectorAll('button').forEach(b=>b.disabled=false);
+   $('#rfp').innerHTML=`Regla ${R.length+1}${N<Infinity?' de '+N:''} · <b>¿La carta cumple la regla?</b> <span class="dim">(racha ${streak}/${crit})</span>`;
+   $('#rfc').className='rf-card';$('#rfc').dataset.s=c.s;$('#rfc').dataset.c=c.c;$('#rfc').dataset.n=c.n;$('#rfc').innerHTML=rfCardSVG(c)+(prev&&rule.rel?`<span class="rf-prev" title="carta anterior">${rfCardSVG(prev)}</span>`:'');drawHist()}
+  function answer(y){if(phase!=='in'||done||ctx.clock.paused)return;phase='fb';const ok=y===label;trials++;rd.trials=trials;if(trials<=8){rd.first8[1]++;if(ok)rd.first8[0]++}
+   if(ok){streak++;rd.ok++}else streak=0;hist.push({card:cur,label,prev});
+   $('#rfc').classList.add(label?'yes':'no');ctx.feedback(ok,{msg:ok?undefined:label?'Sí cumplía la regla':'No cumplía la regla'});
+   $('#rfb').querySelectorAll('button').forEach(b=>b.disabled=true);drawHist();prev=cur;
+   ctx.clock.after(ok?450:900,()=>{if(done)return;if(streak>=crit)ask();else if(trials>=cap)endRound(false,false);else nextCard()})}
+  function ask(){phase='ask';opts=rfOptions(rule,L,hist);$('#rfb').hidden=true;$('#rfc').className='rf-card';
+   $('#rfp').innerHTML=`Regla ${R.length+1}${N<Infinity?' de '+N:''} · <b>¡${crit} seguidas! ¿Cuál era la regla?</b>`;
+   $('#rfq').innerHTML=`<div class="opts opts-1col" id="rfo" style="max-width:600px">${opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="kbd">${i+1}</span>La carta ${esc(o.r.txt)}</button>`).join('')}</div>`;
+   $('#rfo').onclick=e=>{const b=e.target.closest('.opt');if(b&&!ctx.clock.paused)pickOpt(+b.dataset.i)}}
+  function pickOpt(i){if(phase!=='ask'||done)return;phase='fb';const ok=opts[i].ok;$$('#rfo .opt').forEach((b,k)=>{b.disabled=true;if(opts[k].ok)b.classList.add('right');else if(k===i)b.classList.add('wrong')});endRound(true,ok)}
+  function endRound(reached,ruleOk){phase='fb';const solved=reached&&ruleOk;R.push({solved,reached,ruleOk,trials,first8:rd.first8});ctx.feedback(solved);ctx.score(R.filter(x=>x.solved).length,'Reglas');ctx.hits(R.filter(x=>x.solved).length);
+   $('#rfb').hidden=true;$('#rfe').innerHTML=`<div class="explain-box ${solved?'':'bad'}"><b>${solved?'¡Regla descubierta!':reached?'Acertaste la racha, pero no la regla.':'No llegaste a la racha.'}</b> La regla era: <b>la carta ${esc(rule.txt)}</b>. ${reached?`Racha lograda en ${trials} cartas.`:`Se agotaron las ${cap} cartas.`}</div><div style="text-align:center;margin-top:12px"><button class="btn btn-primary" id="rfn">${(timeUp||R.length>=N)?'Terminar':'Siguiente regla'} ${ic('arrowR')}</button></div>`;
+   $('#rfn').onclick=newRound;$('#rfn').focus({preventScroll:true});if(timeUp)ctx.clock.after(3500,()=>ctx.end())}
+  $('#rfb').onclick=e=>{const b=e.target.closest('button');if(b)answer(b.dataset.y==='1')};
+  ctx.key(e=>{if(phase==='in'){if(/^[sS]$/.test(e.key)){e.preventDefault();answer(true)}else if(/^[nN]$/.test(e.key)){e.preventDefault();answer(false)}}
+   else if(phase==='ask'&&/^[1-4]$/.test(e.key)){e.preventDefault();pickOpt(+e.key-1)}else if(e.key==='Enter'&&$('#rfn')&&phase==='fb'){e.preventDefault();newRound()}});
+  newRound();
+  return {peek:()=>({rule,cur,prev,label,streak,trials,phase,opts,crit,hist}),onTimeUp(){timeUp=true;/* la regla en curso termina; margen de 25 s si está a medias */if(phase==='in'||phase==='ask'||phase==='idle')lim=ctx.clock.after(25000,()=>{if(!done){done=true;ctx.end()}})},summary(){
+   const n=R.length;if(!n)return null;const sol=R.filter(x=>x.solved).length,reached=R.filter(x=>x.reached),avgT=reached.length?avg(reached.map(x=>x.trials)):null,f8=sum(R.map(x=>x.first8[0])),t8=sum(R.map(x=>x.first8[1]));
+   const metrics=[{label:'Reglas descubiertas',value:`${sol}/${n}`},{label:'Cartas hasta la racha (media)',value:avgT!=null?avgT.toFixed(1):'—'},{label:'Aciertos en las primeras 8 cartas',value:t8?pct(f8/t8):'—'},{label:'Regla declarada correctamente',value:`${R.filter(x=>x.ruleOk).length}/${R.filter(x=>x.reached).length||0}`}];
+   const details=`<h4>¿Qué mide esta tarea?</h4><p>Es aprendizaje de reglas por inducción: se formulan y se descartan hipótesis a partir del resultado de cada carta. Menos cartas hasta la racha indica una inducción más eficiente. Las opciones finales distinguen entre reglas parecidas, de modo que acertar la racha con una regla equivocada no cuenta como descubrirla.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:sol,wrong:n-sol,total:n,acc:sol/n,score:sol,rt:null,metrics,details,extra:{avgTrials:avgT,omRate:0,faRate:0}}}}
+ }});
+/* ---------- APRENDIZAJE INVERSO (reversal learning probabilístico) ----------
+   Un símbolo da recompensa con probabilidad p y los demás con 1−p. Cuando se elige bien 8 de las últimas 10 veces, las recompensas se
+   invierten sin aviso. Métricas: ensayos hasta recuperar el criterio, errores perseverativos tras la inversión, repetir tras ganar
+   (win-stay) y cambiar tras perder (lose-shift). Las posiciones se barajan cada ensayo: hay que seguir el símbolo, no el lado. */
+const RV_SYM=[['circle','#FF4D5E','círculo rojo'],['square','#538CFF','cuadrado azul'],['triangle','#3DDC84','triángulo verde'],['star','#FFD23F','estrella amarilla'],['diamond','#B36DFF','rombo morado'],['hex','#46D8CC','hexágono turquesa']];
+const rvP=L=>[1,1,.95,.9,.9,.85,.85,.8,.8,.8,.75,.75,.7,.7,.7][clamp(L,1,15)-1],rvK=L=>L<=8?2:3;
+/* ¿se cumple el criterio? ≥ 8 elecciones del símbolo bueno en las últimas 10 del bloque actual (mín. 8 ensayos en el bloque) */
+const rvCrit=ch=>ch.length>=8&&ch.slice(-10).filter(x=>x).length>=8;
+reg({id:'reversal',skill:'learning',name:'Aprendizaje inverso',icon:'reversal',tagline:'Las recompensas cambian sin avisar: readáptate.',
+ howTo:['Elige uno de los símbolos en cada ensayo. Unos dan más recompensas que otros, pero no siempre (a veces el bueno falla y el malo premia).','Descubre cuál conviene elegir. Cuando lo tengas claro… las recompensas se <b>invierten sin aviso</b>: lo que era bueno pasa a ser malo.','Se mide cuánto tardas en readaptarte y cuántas veces insistes en el símbolo anterior. Las posiciones cambian en cada ensayo: fíjate en el símbolo, no en el lado. Teclas 1–3.'],
+ example:()=>`<div class="ex-stim" data-stim style="gap:1.2rem"><span style="width:44px;height:44px">${shapeSVG('circle','#FF4D5E')}</span><span style="color:#3DDC84;font-weight:700">+1</span><span style="color:#9CC2FF">⇄</span><span style="width:44px;height:44px">${shapeSVG('square','#538CFF')}</span><span style="color:#FF5470;font-weight:700">−1</span></div><p class="small" style="margin-top:.5rem">Si de pronto el círculo deja de premiar y el cuadrado empieza a hacerlo, toca cambiar.</p>`,
+ maxLevel:15,metric:{label:'Elecciones óptimas',better:'high'},daily:{min:90,max:200},
+ levelInfo:L=>`${rvK(L)} símbolos · recompensa al elegir el mejor: ${Math.round(rvP(L)*100)} %${rvP(L)<1?' (con ruido)':' (sin ruido)'}`,
+ start(ctx){
+  const L=ctx.level,p=rvP(L),K=rvK(L),maxRev=ctx.budget?Infinity:3,cap=40,T=[],blocks=[];
+  const syms=sample([0,1,2,3,4,5],K);let good=syms[0],blk=0,bch=[],cur=null,phase='idle',timeUp=false,done=false,t0=0,score=0,pendingRev=false;
+  ctx.stage.innerHTML=`<div class="g-wrap rv"><div class="g-prompt" id="rvp" aria-live="polite"></div><div class="rv-score" id="rvs">0</div><div class="rv-cards" id="rvc" style="--k:${K}"></div><div class="small dim" id="rvh" style="text-align:center;min-height:1.4em" aria-live="polite"></div></div>`;
+  blocks.push({n:0,toCrit:null,persev:0,prevGood:null});
+  function trial(){if(done)return;if(timeUp||(blk>=maxRev&&blocks[blk].done)){done=true;return ctx.end()}
+   if(pendingRev){pendingRev=false;const old=good;good=pick(syms.filter(s=>s!==old));blk++;bch=[];blocks.push({n:0,toCrit:null,persev:0,prevGood:old,persevOpen:true,done:false})}
+   const order=shuffle(syms);cur={order,t:null};phase='in';
+   $('#rvp').innerHTML=`<b>Elige un símbolo</b> <span class="dim">· ensayo ${T.length+1}</span>`;
+   $('#rvc').innerHTML=order.map((s,i)=>`<button class="rv-card" data-stim data-s="${s}" data-i="${i}" aria-label="${RV_SYM[s][2]}"><span class="kbd">${i+1}</span>${shapeSVG(RV_SYM[s][0],RV_SYM[s][1])}</button>`).join('');
+   $('#rvh').textContent='';t0=ctx.clock.now()}
+  function choose(s){if(phase!=='in'||done||ctx.clock.paused)return;phase='fb';const rt=ctx.clock.now()-t0,isGood=s===good,rew=Math.random()<(isGood?p:1-p),B=blocks[blk];
+   T.push({sym:s,good,rew,blk,isGood,rt,order:cur.order.slice()});bch.push(isGood);B.n++;
+   if(B.persevOpen){if(s===B.prevGood)B.persev++;else B.persevOpen=false}
+   score+=rew?1:-1;$('#rvs').textContent=(score>0?'+':'')+score;$('#rvs').className='rv-score '+(rew?'up':'down');
+   $$('#rvc .rv-card').forEach(b=>{b.disabled=true;if(+b.dataset.s===s){b.classList.add(rew?'win':'lose');b.insertAdjacentHTML('beforeend',`<span class="rv-out">${rew?'+1':'−1'}</span>`)}});
+   ctx.feedback(rew,{msg:rew?'+1':'−1'});ctx.score(T.filter(x=>x.isGood).length,'Óptimas');ctx.hits(T.filter(x=>x.isGood).length);
+   // criterio y posible inversión (al empezar el siguiente ensayo)
+   if(!B.done&&rvCrit(bch)){B.done=true;B.toCrit=B.n;$('#rvh').textContent='';if(blk<maxRev||maxRev===Infinity)pendingRev=true;else{}}
+   else if(B.n>=cap&&!B.done){B.done=true;B.toCrit=null;if(blk<maxRev||maxRev===Infinity)pendingRev=true}
+   ctx.clock.after(rew?560:760,()=>{if(done)return;if(timeUp){done=true;return ctx.end()}
+    if(blocks[blk].done&&!pendingRev){done=true;return ctx.end()} trial()})}
+  $('#rvc').onclick=e=>{const b=e.target.closest('.rv-card');if(b)choose(+b.dataset.s)};
+  ctx.key(e=>{if(/^[1-3]$/.test(e.key)&&phase==='in'&&+e.key<=K){e.preventDefault();choose(cur.order[+e.key-1])}});
+  ctx.clock.after(500,trial);
+  return {peek:()=>({T,good,blk,blocks,p,K,phase,cur,bch,pendingRev}),onTimeUp(){timeUp=true;if(phase==='idle'||phase==='in'){done=true;ctx.end()}},summary(){
+   const n=T.length;if(!n)return null;const opt=T.filter(x=>x.isGood).length;
+   let ws=0,wsN=0,ls=0,lsN=0;for(let i=1;i<T.length;i++){if(T[i].blk!==T[i-1].blk)continue;const same=T[i].sym===T[i-1].sym;if(T[i-1].rew){wsN++;if(same)ws++}else{lsN++;if(!same)ls++}}
+   const rev=blocks.slice(1).filter(b=>b.n>0),toC=rev.filter(b=>b.toCrit!=null).map(b=>b.toCrit),persev=sum(rev.map(b=>b.persev));
+   const metrics=[{label:'Elecciones del símbolo mejor',value:`${opt}/${n} (${pct(opt/n)})`},{label:'Inversiones superadas',value:`${rev.filter(b=>b.toCrit!=null).length}/${rev.length}`},{label:'Ensayos para readaptarse (media)',value:toC.length?avg(toC).toFixed(1):'—'},{label:'Errores perseverativos tras invertir',value:rev.length?String(persev):'—'},{label:'Repetir tras ganar (win-stay)',value:wsN?pct(ws/wsN):'—'},{label:'Cambiar tras perder (lose-shift)',value:lsN?pct(ls/lsN):'—'},{label:'Puntos',value:(score>0?'+':'')+score}];
+   const details=`<h4>¿Qué mide el aprendizaje inverso?</h4><p>Muestra cómo ajustas tu conducta cuando las reglas de recompensa cambian: «errores perseverativos» son las veces seguidas que insistes en el símbolo que antes era el bueno tras una inversión. «Repetir tras ganar» y «cambiar tras perder» describen tu estrategia ensayo a ensayo; con recompensas ruidosas (p. < 100 %) es normal que a veces el símbolo bueno falle y no convenga cambiar. Con pocas inversiones la medida es aproximada.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:opt,wrong:n-opt,total:n,acc:opt/n,score:opt,rt:avg(T.map(x=>x.rt)),metrics,details,extra:{persev,avgToCrit:toC.length?avg(toC):null,winStay:wsN?ws/wsN:null,loseShift:lsN?ls/lsN:null,omRate:0,faRate:0}}}}
+ }});
+/* ---------- LENGUAJE ALIENÍGENA (aprendizaje de gramáticas artificiales) ----------
+   Una gramática oculta (autómata finito) genera cadenas de sílabas. Modo «Estudia y juzga»: se estudian cadenas válidas y después hay que
+   decidir si cadenas NUEVAS siguen la misma gramática, sin feedback. Modo «Con feedback»: se aprende de los aciertos y errores.
+   A partir del nivel 7 las cadenas inválidas usan pares de sílabas que existen en la gramática (≈90-95 % con la definición estricta: pares presentes en cadenas válidas). */
+const AG_SYL=['ba','ki','lo','mu','ne','ra'];
+const agCfg=L=>L<=4?{ns:5,na:4,lo:3,hi:6,study:12,test:20}:L<=9?{ns:6,na:5,lo:4,hi:7,study:14,test:20}:{ns:7,na:6,lo:5,hi:8,study:16,test:20};
+function agAccepts(g,s){let q=0;for(const a of s){const t=g.t[q][a];if(t==null)return false;q=t}return g.fin.includes(q)}
+function agMake(L){
+ const c=agCfg(L);
+ for(let tries=0;tries<400;tries++){
+  const t=Array.from({length:c.ns},()=>({}));
+  // esqueleto conectado: cada estado i>0 recibe una transición desde algún j<i
+  for(let i=1;i<c.ns;i++){const j=ri(0,i-1);const a=pick(Array.from({length:c.na},(_,k)=>k).filter(k=>t[j][k]==null));if(a!=null)t[j][a]=i;else{i--}}
+  // transiciones extra (bucles y retornos)
+  for(let k=0;k<c.ns+2;k++){const j=ri(0,c.ns-1),a=ri(0,c.na-1);if(t[j][a]==null&&Object.keys(t[j]).length<3)t[j][a]=ri(0,c.ns-1)}
+  const fin=sample(Array.from({length:c.ns-1},(_,i)=>i+1),2);const g={t,fin,na:c.na,ns:c.ns};
+  // contar cadenas válidas por longitud (DP) y exigir suficientes
+  let cnt=[Array.from({length:c.ns},(_,q)=>q===0?1:0)];for(let l=1;l<=c.hi;l++){const nx=Array(c.ns).fill(0);cnt[l-1].forEach((n,q)=>{if(!n)return;for(const a in t[q])nx[t[q][a]]+=n});cnt.push(nx)}
+  let total=0;for(let l=c.lo;l<=c.hi;l++)total+=fin.reduce((s,q)=>s+cnt[l][q],0);
+  if(total>=c.study+c.test+6&&total<=4000)return g}
+ return null}
+function agSample(g,lo,hi,avoid){
+ for(let t=0;t<600;t++){let q=0;const s=[];while(s.length<hi){const ks=Object.keys(g.t[q]);if(!ks.length)break;const a=+pick(ks);s.push(a);q=g.t[q][a];if(s.length>=lo&&g.fin.includes(q)&&Math.random()<.4)break}
+  if(s.length>=lo&&s.length<=hi&&g.fin.includes(q)&&!avoid.has(s.join(','))){return s}}
+ return null}
+const agBigrams=g=>{const set=new Set();/* pares de sílabas posibles en la gramática */for(let q=0;q<g.ns;q++)for(const a in g.t[q]){const q2=g.t[q][a];for(const b in g.t[q2])set.add(a+','+b)}return set};
+function agViolate(g,s,L,bg,avoid){
+ for(let t=0;t<200;t++){const u=s.slice(),i=ri(1,u.length-1);
+  if(Math.random()<.35&&u.length>=3){const j=ri(0,u.length-2);[u[j],u[j+1]]=[u[j+1],u[j]]}else u[i]=(u[i]+ri(1,g.na-1))%g.na;
+  if(agAccepts(g,u)||avoid.has(u.join(',')))continue;
+  if(L>=7){let ok=true;for(let k=0;k+1<u.length;k++)if(!bg.has(u[k]+','+u[k+1])){ok=false;break}if(!ok)continue}
+  return u}
+ if(L>=7)return agViolate(g,s,6,bg,avoid);return null}
+function agBuild(L){
+ const c=agCfg(L);for(let t=0;t<40;t++){const g=agMake(L);if(!g)continue;const used=new Set(),study=[];
+  while(study.length<c.study){const s=agSample(g,c.lo,c.hi,used);if(!s)break;used.add(s.join(','));study.push(s)}
+  if(study.length<c.study)continue;const half=c.test/2,gram=[];
+  while(gram.length<half){const s=agSample(g,c.lo,c.hi,used);if(!s)break;used.add(s.join(','));gram.push(s)}
+  if(gram.length<half)continue;const bg=agBigrams(g),bad=[],seenBad=new Set();
+  for(const s of gram.concat(study)){if(bad.length>=half)break;const u=agViolate(g,s,L,bg,new Set([...used,...seenBad]));if(u){seenBad.add(u.join(','));bad.push(u)}}
+  if(bad.length<half)continue;
+  const legal=bad.filter(u=>{for(let k=0;k+1<u.length;k++)if(!bg.has(u[k]+','+u[k+1]))return false;return true}).length;
+  return {g,study,test:shuffle([...gram.map(s=>({s,gram:true})),...bad.map(s=>({s,gram:false}))]),legalBad:legal/bad.length}}
+ return null}
+const agTxt=s=>s.map(a=>AG_SYL[a]).join('·');
+reg({id:'agl',skill:'learning',name:'Lenguaje alienígena',icon:'agl',tagline:'Descubre la gramática oculta de una lengua inventada.',
+ howTo:m=>({
+  study:['Primero verás varias «palabras» de una lengua alienígena, una a una. Todas siguen las mismas reglas ocultas.','Después aparecerán palabras nuevas: decide si siguen la <b>misma gramática</b> (válida) o rompen alguna regla (no válida). No hay respuesta correcta al momento: confía en tu intuición.','Al final verás tu resultado. Con la gramática oculta, acertar por azar da un 50 %. Teclas S (válida) y N (no válida).'],
+  feedback:['Verás palabras de una lengua alienígena. Decide si siguen la gramática oculta (válida) o la rompen (no válida).','Aquí sí hay feedback tras cada respuesta: úsalo para ir deduciendo las reglas.','Se compara tu acierto al principio y al final. Teclas S (válida) y N (no válida).']
+ }[m]||[]),
+ example:()=>`<div class="ex-stim" data-stim style="flex-direction:column;gap:.5rem;font-family:var(--display);font-weight:700;color:#F2F6FF"><div>ba·lo·mu <span style="color:#3DDC84;font-size:.8rem">válida</span></div><div>ba·mu·lo <span style="color:#FF5470;font-size:.8rem">no válida</span></div></div><p class="small" style="margin-top:.5rem">Las mismas sílabas pueden ser válidas o no según el orden en que aparezcan.</p>`,
+ modes:[{id:'study',name:'Estudia y juzga',desc:'Sin feedback al juzgar'},{id:'feedback',name:'Con feedback',desc:'Aprende de los errores'}],
+ maxLevel:15,metric:{label:'Palabras bien juzgadas',better:'high'},daily:{mode:'study',min:100,max:200},
+ levelInfo:(L,m)=>`${agCfg(L).na} sílabas · palabras de ${agCfg(L).lo} a ${agCfg(L).hi} sílabas${L>=7?' · inválidas casi sin pares ilegales':''}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode||'study',fb=mode==='feedback',c=agCfg(L);
+  const T=[];let G=null,phase='idle',idx=0,timeUp=false,done=false,t0=0,items=null;
+  ctx.stage.innerHTML=`<div class="g-wrap ag"><div class="g-prompt" id="agp" aria-live="polite"></div><div class="ag-word" data-stim id="agw"></div><div class="ag-bar" id="agb" hidden><i id="agbi"></i></div><div class="rf-btns" id="agbt" hidden><button class="btn btn-primary" data-y="1"><span class="kbd">S</span>Válida</button><button class="btn" data-y="0"><span class="kbd">N</span>No válida</button></div><div class="cb-act"><button class="btn btn-ghost" id="agsk" hidden>Siguiente palabra</button></div><div id="age" style="width:100%;max-width:640px"></div></div>`;
+  const word=s=>`<span class="ag-syls">${s.map(a=>`<span class="ag-s">${AG_SYL[a]}</span>`).join('')}</span>`;
+  function begin(){G=agBuild(L);if(!G){done=true;return ctx.end()}items=G.test;idx=0;
+   if(fb){/* feedback: 14 válidas y 14 no válidas (se generan inválidas extra para equilibrar) */
+    const used=new Set([...G.study,...G.test.map(x=>x.s)].map(s=>s.join(','))),bg=agBigrams(G.g),grams=G.study.concat(G.test.filter(x=>x.gram).map(x=>x.s)),bad=G.test.filter(x=>!x.gram).map(x=>x.s);
+    for(let t=0;t<200&&bad.length<14;t++){const u=agViolate(G.g,pick(grams),L,bg,used);if(u){used.add(u.join(','));bad.push(u)}}
+    items=shuffle([...sample(grams,Math.min(14,bad.length)).map(s=>({s,gram:true})),...bad.slice(0,14).map(s=>({s,gram:false}))]);phase='test';testNext()}else{phase='study';studyNext()}}
+  function studyNext(){if(done)return;if(idx>=G.study.length){phase='wait';idx=0;$('#agb').hidden=true;$('#agsk').hidden=true;
+    $('#agp').innerHTML=`<b>Ahora, palabras nuevas.</b> ¿Siguen la misma gramática?`;$('#agw').innerHTML='<span class="dim">…</span>';ctx.clock.after(1500,testNext);return}
+   const s=G.study[idx];$('#agp').innerHTML=`Estudia la lengua · palabra ${idx+1} de ${G.study.length}`;$('#agw').innerHTML=word(s);$('#agb').hidden=false;$('#agsk').hidden=false;$('#agbt').hidden=true;
+   const bi=$('#agbi');bi.style.transition='none';bi.style.transform='scaleX(1)';void bi.offsetWidth;bi.style.transition=`transform 3000ms linear`;bi.style.transform='scaleX(0)';
+   const my=++studyToken;ctx.clock.after(3000,()=>{if(my===studyToken&&phase==='study'){idx++;studyNext()}})}
+  let studyToken=0;
+  function testNext(){if(done)return;if(timeUp||idx>=items.length){return finish()}phase='test';const it=items[idx];$('#agb').hidden=true;$('#agsk').hidden=true;$('#agbt').hidden=false;$$('#agbt button').forEach(b=>b.disabled=false);
+   $('#agp').innerHTML=`${fb?'Aprende con feedback':'¿Válida o no válida?'} · palabra ${idx+1} de ${items.length}`;$('#agw').className='ag-word';$('#agw').innerHTML=word(it.s);$('#agw').dataset.s=it.s.join(',');t0=ctx.clock.now()}
+  function answer(y){if(phase!=='test'||done||ctx.clock.paused)return;const it=items[idx];phase='fb';const rt=ctx.clock.now()-t0,ok=y===it.gram;T.push({gram:it.gram,said:y,ok,rt,i:idx});
+   ctx.score(T.filter(x=>x.ok).length,'Bien');ctx.hits(T.filter(x=>x.ok).length);$$('#agbt button').forEach(b=>b.disabled=true);
+   if(fb){ctx.feedback(ok,{msg:ok?undefined:it.gram?'Era válida':'Era no válida'});$('#agw').classList.add(ok?'ok':'bad')}else{$('#age').innerHTML='<span class="small dim">Respuesta registrada</span>'}
+   ctx.clock.after(fb?(ok?600:1000):350,()=>{idx++;testNext()})}
+  function finish(){if(done)return;done=true;ctx.end()}
+  $('#agbt').onclick=e=>{const b=e.target.closest('button');if(b)answer(b.dataset.y==='1')};
+  $('#agsk').onclick=()=>{if(phase==='study'){studyToken++;idx++;studyNext()}};
+  ctx.key(e=>{if(phase==='test'){if(/^[sS]$/.test(e.key)){e.preventDefault();answer(true)}else if(/^[nN]$/.test(e.key)){e.preventDefault();answer(false)}}else if(phase==='study'&&e.key==='Enter'){e.preventDefault();$('#agsk').click()}});
+  ctx.clock.after(500,begin);
+  return {peek:()=>({G,phase,idx,items,T}),onTimeUp(){timeUp=true;if(phase==='idle'||phase==='study'||phase==='wait'){done=true;ctx.end()}/* en la fase de juicio se completa la palabra en curso */else if(phase==='test'&&!T.length){done=true;ctx.end()}},summary(){
+   const n=T.length;if(!n)return null;const okN=T.filter(x=>x.ok).length,gr=T.filter(x=>x.gram),ug=T.filter(x=>!x.gram),hit=gr.filter(x=>x.said).length,fa=ug.filter(x=>x.said).length;
+   let dp=null,cb=null;if(gr.length>=3&&ug.length>=3){const h=(hit+.5)/(gr.length+1),f=(fa+.5)/(ug.length+1);dp=cpZ(h)-cpZ(f);cb=-(cpZ(h)+cpZ(f))/2}
+   const half=Math.floor(n/2),a1=T.slice(0,half),a2=T.slice(half),r=a=>a.length?a.filter(x=>x.ok).length/a.length:null;
+   const metrics=[{label:'Palabras bien juzgadas',value:`${okN}/${n}`},{label:'Válidas reconocidas',value:gr.length?`${hit}/${gr.length}`:'—'},{label:'No válidas rechazadas',value:ug.length?`${ug.length-fa}/${ug.length}`:'—'},{label:'Sensibilidad d′',value:dp!=null?dp.toFixed(2):'—'},{label:'Tendencia a decir «válida»',value:cb!=null?(cb<-.15?'sí, a menudo':cb>.15?'no, a menudo «no válida»':'equilibrada'):'—'},...(fb&&a1.length>=4&&a2.length>=4?[{label:'Acierto: primera mitad → segunda',value:`${pct(r(a1))} → ${pct(r(a2))}`}]:[])];
+   const details=`<h4>¿Qué mide esta tarea?</h4><p>Es aprendizaje de gramáticas artificiales: ${fb?'se infiere una estructura a partir del feedback.':'se absorbe una estructura estudiando ejemplos y se aplica a palabras nuevas, a menudo sin poder explicarla.'} Acertar por azar da el 50 %; lo habitual es obtener resultados modestos por encima del azar. Las palabras no válidas rompen la gramática cambiando o intercambiando sílabas${L>=7?', usando casi siempre pares de sílabas que también existen en la gramática, así que rara vez se delatan por un par ilegal':''}. La gramática se crea al azar en cada partida.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:okN,wrong:n-okN,total:n,acc:okN/n,score:okN,rt:avg(T.map(x=>x.rt)),metrics,details,extra:{mode,dprime:dp,bias:cb,legalBad:G?G.legalBad:null,omRate:0,faRate:ug.length?fa/ug.length:0}}}}
  }});
 /* =====================================================================
    MUNDO 4 — MATH SPEED
