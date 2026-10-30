@@ -7,11 +7,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="description" content="NEUROVERSE AI — Tu gimnasio cerebral. 20 minijuegos en 7 mundos, entrenamiento diario, progresión, logros y un entrenador adaptativo local.">
+<meta name="description" content="NEUROVERSE AI — Tu gimnasio cerebral. 25 minijuegos en 7 mundos, entrenamiento diario, progresión, logros y un entrenador adaptativo local.">
 <meta name="apple-mobile-web-app-title" content="NEUROVERSE">
 <meta property="og:type" content="website">
 <meta property="og:title" content="NEUROVERSE AI — Tu gimnasio cerebral">
-<meta property="og:description" content="20 minijuegos en 7 mundos, misión diaria, progreso y logros. Crea tu cuenta gratis y entrena desde cualquier dispositivo.">
+<meta property="og:description" content="25 minijuegos en 7 mundos, misión diaria, progreso y logros. Crea tu cuenta gratis y entrena desde cualquier dispositivo.">
 <meta name="twitter:card" content="summary">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>NEUROVERSE AI — Tu gimnasio cerebral</title>
@@ -694,6 +694,79 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .ex-stim{display:grid;place-items:center;height:90px;border-radius:16px;background:var(--stim);border:1px solid var(--line-2);font-family:var(--display);font-weight:800;font-size:2.1rem;letter-spacing:.07em;color:#F2F6FF}
 .ex-box{padding:.8rem;border-radius:16px;border:1px dashed var(--line-2);background:rgba(var(--ov),.025)}
 .tbl-wrap{overflow:auto}
+/* Dual N-Back */
+.nb{max-width:560px}
+.nb-top{display:flex;align-items:baseline;gap:.8rem;justify-content:center;flex-wrap:wrap}.nb-top b{font-family:var(--display);font-size:1.7rem}.nb-top small{color:var(--muted)}
+.nb-grid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:min(100%,340px);aspect-ratio:1;padding:10px;border-radius:24px;background:var(--stim);border:1px solid var(--line-2)}
+.nb-grid.off .nbc{opacity:.12}
+.nbc{border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);transition:background .06s,box-shadow .06s}
+.nbc.on{background:linear-gradient(160deg,#6499FF,#46D8CC);box-shadow:0 0 26px rgba(100,153,255,.8)}
+.nb-grid .fix{display:grid;place-items:center;color:#8493AF;font-size:1.6rem}
+.nb-chip{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:3.4rem;font-weight:800;color:#F2F6FF;opacity:0;pointer-events:none;transition:opacity .08s}.nb-chip.on{opacity:1}
+.nb-btns{display:grid;gap:.7rem;width:100%}.nb-btns.n2{grid-template-columns:1fr 1fr}
+.nb-b{min-height:80px;font-weight:800;letter-spacing:.08em}
+.nb-b.pr{outline:2px solid var(--blue)}.nb-b.hit{background:rgba(61,220,132,.25);border-color:#3DDC84}.nb-b.fa{background:rgba(255,84,112,.25);border-color:#FF5470}.nb-b.miss{background:rgba(255,194,75,.25);border-color:#FFC24B}
+.ex-nb{display:flex;align-items:center;gap:1rem;justify-content:center;padding:.8rem;border-radius:16px;background:var(--stim);border:1px solid var(--line-2);color:#F2F6FF;font-family:var(--display);font-weight:800}
+.ex-nbg{display:grid;grid-template-columns:repeat(3,22px);gap:4px}.ex-nbg i{height:22px;border-radius:5px;background:rgba(255,255,255,.1)}.ex-nbg i.a{background:#6499FF}.ex-nbg i.b{background:#46D8CC}
+/* Memory Updater */
+.mu{max-width:640px}
+.mu-top{text-align:center;color:var(--muted);font-weight:600}
+.mu-stage{width:100%;min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1.1rem;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);color:#F2F6FF;text-align:center}
+.mu-msg{font-family:var(--display);font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:.9rem;color:#9DB4D6}.mu-msg.ok{color:#3DDC84}.mu-msg.bad{color:#FFC24B}
+.mu-op{font-family:var(--display);font-size:clamp(1.4rem,5vw,2rem);font-weight:700;line-height:1.3;color:#F2F6FF}.mu-op b{color:#46D8CC}
+.mu-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.mu-c{display:inline-grid;place-items:center;min-width:54px;height:60px;padding:0 .6rem;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);font-family:var(--display);font-weight:800;font-size:1.7rem;color:#F2F6FF}
+.mu-row.sm .mu-c{min-width:40px;height:44px;font-size:1.2rem}
+.mu-c.ok{border-color:#3DDC84;background:rgba(61,220,132,.18)}.mu-c.bad{border-color:#FF5470;background:rgba(255,84,112,.18)}
+.mu-ans{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;min-height:72px;align-items:center;width:100%;padding:.6rem;border-radius:18px;border:1px dashed var(--line-3);background:rgba(var(--ov),.03)}
+.mu-ans .mu-c{color:var(--text);background:rgba(var(--ov),.06);border-color:var(--line-2)}
+.mu-ph{color:var(--dim)}
+.mu-pad{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;width:100%}.mu-k{position:relative;min-height:56px;font-family:var(--display);font-weight:800;font-size:1.3rem}.mu-k .kbd{position:absolute;top:4px;left:6px}
+.mu-ctl{display:flex;gap:.6rem;justify-content:center;width:100%}
+.mu-cmp{display:flex;flex-direction:column;gap:.4rem;align-items:center}.mu-cmp small{color:#9DB4D6}
+.mu-help{display:flex;flex-direction:column;align-items:center;gap:.3rem;min-height:70px}.mu-help small{color:#9DB4D6}
+.ex-mu{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:.8rem;border-radius:16px;background:var(--stim);border:1px solid var(--line-2);color:#F2F6FF}.ex-op{font-size:.95rem}.ex-op b{color:#46D8CC}
+.mu-stage .hp-bar{background:rgba(255,255,255,.14)}
+/* Memoria inversa */
+.bk{max-width:560px}
+.bk-status{min-height:1.6rem;text-align:center;font-weight:600}
+.bk-stim{width:100%;min-height:150px;display:grid;place-items:center;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);color:#F2F6FF}
+.bk-stim svg{width:90px;height:90px}.bk-n{font-family:var(--display);font-size:5rem;font-weight:800}.bk-q{font-family:var(--display);font-size:3rem;color:#8493AF}.bk-r{font-family:var(--display);font-weight:700;font-size:1.3rem}.bk-r.ok{color:#3DDC84}.bk-r.bad{color:#FFC24B}
+.bk-dots{display:flex;gap:6px;justify-content:center;min-height:14px}.bk-dots i{width:12px;height:12px;border-radius:50%;background:rgba(var(--ov),.18)}.bk-dots i.on{background:var(--teal)}
+.bk-in{width:100%;display:flex;justify-content:center;transition:opacity .2s}.bk-in.locked{opacity:.55;pointer-events:none}
+.bk-pad{display:grid;grid-template-columns:repeat(var(--c,4),1fr);gap:.6rem;width:100%}
+.bk-k{position:relative;min-height:64px;font-family:var(--display);font-weight:800;font-size:1.5rem;border-color:color-mix(in srgb,var(--k,var(--line-2)) 60%,transparent)}
+.bk-k svg{width:34px;height:34px}.bk-k.on{box-shadow:0 0 24px var(--k,var(--blue));border-color:var(--k,var(--blue));background:color-mix(in srgb,var(--k,var(--blue)) 25%,transparent)}
+.bk-k.okc{border-color:var(--ok)}.bk-k.badc{border-color:var(--bad)}
+/* What Changed? */
+.wc{max-width:620px}
+.wc-q{min-height:1.8rem;text-align:center;font-family:var(--display);font-weight:700;font-size:1.15rem}
+.wc-grid{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);grid-template-rows:repeat(var(--rows,3),1fr);gap:8px;width:100%;aspect-ratio:4/3;padding:12px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);position:relative}
+.wc-o{display:grid;place-items:center;padding:6px;border:2px solid transparent;border-radius:14px;background:rgba(255,255,255,.04);cursor:pointer;transition:border-color .1s,background .1s}
+.wc-o svg{width:100%;height:100%;max-width:64px;max-height:64px}
+.wc-o.lock{pointer-events:none;cursor:default}.wc-grid.ro .wc-o{pointer-events:none}
+.wc-o.sel,.wc-op.sel{border-color:#6499FF;background:rgba(100,153,255,.22)}.wc-o.ok,.wc-op.ok{border-color:#3DDC84;background:rgba(61,220,132,.22)}.wc-o.no,.wc-op.no{border-color:#FF5470;background:rgba(255,84,112,.2)}
+.wc-ghost{display:grid;place-items:center;padding:6px;opacity:.55;border:2px dashed #3DDC84;border-radius:14px}.wc-ghost svg{width:100%;height:100%;max-width:64px;max-height:64px}
+.wc-opts{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%}.wc-op{width:58px;height:58px;padding:6px;border:2px solid var(--line-2);border-radius:14px;background:var(--stim);cursor:pointer}.wc-op svg{width:100%;height:100%}
+.wc-bar{width:100%;min-height:8px}.wc-bar .hp-bar{background:rgba(var(--ov),.12);max-width:none}
+/* Recuerdo diferido */
+.dl{max-width:640px}
+.dl-top{text-align:center;color:var(--muted);font-weight:700;letter-spacing:.06em}
+.dl-main{width:100%;display:flex;flex-direction:column;align-items:center;gap:.9rem;min-height:260px}
+.dl-words{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;padding:1.1rem;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);width:100%}
+.dl-words span{padding:.4rem .9rem;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#F2F6FF;font-family:var(--display);font-weight:700;font-size:1.15rem}
+.dl-pairs{display:grid;gap:.5rem;padding:1.1rem;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);width:100%;color:#F2F6FF;font-family:var(--display);font-weight:700;font-size:1.1rem;text-align:center}.dl-pairs i{color:#46D8CC;font-style:normal}
+.dl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:min(100%,340px);aspect-ratio:1;padding:10px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2)}
+.dl-cell{border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;padding:6px}.dl-cell svg{width:100%;height:100%}.dl-cell.f{background:rgba(255,255,255,.12)}
+.dl-grid.rc .dl-cell{cursor:pointer}.dl-grid.rc .dl-cell.sel{background:linear-gradient(160deg,#6499FF,#46D8CC);box-shadow:0 0 18px rgba(100,153,255,.7)}
+.dl-dist{display:flex;flex-direction:column;align-items:center;gap:.8rem;width:100%}.dl-dist>b{color:var(--teal);letter-spacing:.08em}
+.dl-q{font-family:var(--display);font-size:2.2rem;font-weight:800}.dl-opts{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;width:100%}.dl-o{min-width:96px}
+.dl-form{display:flex;gap:.6rem;width:100%}.dl-form .input{flex:1}
+.dl-got,.dl-res{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%}
+.dl-chip{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .75rem;border-radius:99px;border:1px solid var(--line-2);background:rgba(var(--ov),.05);font-weight:600}.dl-chip button{border:0;background:none;color:var(--muted);font-size:1.1rem;cursor:pointer}
+.dl-chip.ok{border-color:var(--ok);color:var(--t-ok)}.dl-chip.no{border-color:var(--bad);color:var(--t-bad)}
+.dl-ctl{display:flex;justify-content:center;width:100%}
+.dl .hp-bar{background:rgba(var(--ov),.12);max-width:340px;width:100%}
 /* Cambio de reglas 3.0 */
 .swl{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%;min-height:1.6rem}
 .swl-i{display:inline-flex;align-items:center;gap:.4rem;padding:.28rem .7rem;border-radius:99px;background:rgba(var(--ov),.05);border:1px solid var(--line-2);font-size:var(--t-sm)}
@@ -1237,6 +1310,11 @@ info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/>',
 chevR:'M9 6l6 6-6 6',chevL:'M15 6l-6 6 6 6',
 lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>',
 user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/>',
+nback:'<rect x="3" y="3" width="5" height="5" rx="1.2"/><rect x="16" y="3" width="5" height="5" rx="1.2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.2" fill="currentColor"/><rect x="3" y="16" width="5" height="5" rx="1.2"/><rect x="16" y="16" width="5" height="5" rx="1.2"/>',
+updater:'M4 6h10M4 12h7M4 18h10M18 6v12M15 15l3 3 3-3',
+backward:'M20 12H8M12 8l-4 4 4 4M4 5v14',
+changed:'<rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"/><path d="M15 6h4M17 4l2 2-2 2"/>',
+delayed:'M6 3h12M6 21h12M7 3v4l5 5-5 5v4M17 3v4l-5 5 5 5v4',
 cloud:'M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 10a4 4 0 010 8z',
 calendar:'<rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
 medal:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/>',
@@ -1285,7 +1363,7 @@ function animateIn(root=document){const go=()=>{$$('.rv[data-off]',root).forEach
 /* ---------- Habilidades y mundos ---------- */
 const SKILLS=[
  {id:'attention',name:'Atención y concentración',short:'Atención',world:'FOCUS LAB',color:'#538CFF',c2:'#35E6DF',icon:'focus',desc:'Atención selectiva, concentración y control inhibitorio.',blurb:'Laboratorio de luz y precisión: filtra lo irrelevante y mantén el foco.',games:['stroop','hunt']},
- {id:'memory',name:'Memoria',short:'Memoria',world:'MEMORY MATRIX',color:'#9B6DFF',c2:'#FF65C7',icon:'memory',desc:'Memoria visual, verbal y memoria de trabajo.',blurb:'Una red de recuerdos luminosos: palabras, secuencias y parejas.',games:['words','sequence','pairs']},
+ {id:'memory',name:'Memoria',short:'Memoria',world:'MEMORY MATRIX',color:'#9B6DFF',c2:'#FF65C7',icon:'memory',desc:'Memoria visual, verbal y memoria de trabajo.',blurb:'Una red de recuerdos luminosos: palabras, secuencias y parejas.',games:['words','sequence','pairs','nback','updater','backward','changed','delayed']},
  {id:'logic',name:'Razonamiento lógico',short:'Lógica',world:'LOGIC UNIVERSE',color:'#35E6DF',c2:'#538CFF',icon:'logic',desc:'Deducción, patrones y resolución de problemas.',blurb:'Geometría y estructuras: descubre la regla escondida en cada patrón.',games:['sudoku','pattern','logicrush']},
  {id:'math',name:'Agilidad matemática',short:'Cálculo',world:'MATH SPEED',color:'#FFB547',c2:'#FF65C7',icon:'math',desc:'Cálculo mental y memoria de trabajo numérica.',blurb:'Números en movimiento: calcula con velocidad y cabeza fría.',games:['flash','countdown','truefalse']},
  {id:'language',name:'Lenguaje y fluidez verbal',short:'Lenguaje',world:'WORD POWER',color:'#FF65C7',c2:'#9B6DFF',icon:'language',desc:'Vocabulario, acceso léxico y fluidez verbal.',blurb:'Partículas de letras: encuentra, encadena y reordena palabras.',games:['categories','chain','anagram']},
@@ -1677,7 +1755,7 @@ const ACH=[
  {id:'sudoku9',name:'Maestro de la lógica',desc:'Resuelve un sudoku avanzado 9×9.',icon:'sudoku',c:'#35E6DF',test:r=>!!(r&&r.game==='sudoku'&&r.mode==='9'&&r.extra.solved)},
  {id:'week',name:'Semana neuronal',desc:'Entrena 7 días distintos (no hace falta que sean seguidos).',icon:'calendar',c:'#FF65C7',test:()=>trainedDays()>=7,prog:()=>[trainedDays(),7]},
  {id:'streak7',name:'Racha imparable',desc:'Alcanza una racha de 7 días.',icon:'flame',c:'#FF5470',test:()=>streak().best>=7,prog:()=>[streak().best,7]},
- {id:'allgames',name:'Coleccionista de desafíos',desc:'Prueba los 20 juegos de Neuroverse.',icon:'gem',c:'#C58BFF',test:()=>gamesPlayed()>=20,prog:()=>[gamesPlayed(),20]},
+ {id:'allgames',name:'Coleccionista de desafíos',get desc(){return `Prueba los ${Object.keys(GAMES).length} juegos de Neuroverse.`},icon:'gem',c:'#C58BFF',test:()=>gamesPlayed()>=Object.keys(GAMES).length,prog:()=>[gamesPlayed(),Object.keys(GAMES).length]},
  {id:'lvl5',name:'Sinapsis en expansión',desc:'Alcanza el nivel general 5.',icon:'trend',c:'#538CFF',test:()=>globalLvl().level>=5,prog:()=>[globalLvl().level,5]},
  {id:'lvl10',name:'Arquitecto neural',desc:'Alcanza el nivel general 10.',icon:'crown',c:'#FFB547',test:()=>globalLvl().level>=10,prog:()=>[globalLvl().level,10]},
  {id:'skill5',name:'Especialista',desc:'Lleva cualquier habilidad al nivel 5.',icon:'medal',c:'#5CFF8F',test:()=>maxSkillLvl()>=5,prog:()=>[maxSkillLvl(),5]},
@@ -2757,14 +2835,14 @@ const Onboarding={step:0,d:null,
   const d=this.d,st=this.step,N=5;
   const steps=[
    ()=>`<div style="text-align:center"><div>${logo('onb').replace('class="logo"','class="logo" style="width:84px;height:84px"')}</div><div class="eyebrow" style="margin-top:.9rem;justify-content:center">Bienvenida</div><h1 class="hero-title" style="font-size:clamp(1.6rem,7vw,2.9rem);margin-top:.4rem;justify-content:center;animation:none" aria-label="NEUROVERSE AI">NEUROVERSE<span class="hero-ai" aria-hidden="true">AI</span></h1><p class="hero-sub" style="margin:.5rem auto 0">Tu gimnasio cerebral · Tu mente evoluciona con cada desafío</p></div>
-     <p>Entra a un laboratorio futurista con <b>20 juegos en 7 mundos</b>, una misión diaria, progresión, logros y un entrenador adaptativo que aprende de tus resultados.</p>
+     <p>Entra a un laboratorio futurista con <b>${Object.keys(GAMES).length} juegos en 7 mundos</b>, una misión diaria, progresión, logros y un entrenador adaptativo que aprende de tus resultados.</p>
      <p class="note">Es un juego de entrenamiento y estimulación cognitiva. No es una herramienta médica ni de diagnóstico.</p>
      <div class="row" style="justify-content:center">${Cloud.on()?`<p class="note">${ic('check')} Sesión iniciada como <b>${esc(Cloud.user())}</b></p>`:CLOUD.off?'':`<button class="btn" id="ob-signup0">${ic('cloud')} Crear cuenta</button><button class="btn" id="ob-login">${ic('user')} Ya tengo cuenta</button>`}</div>
      ${Cloud.on()||CLOUD.off?'':'<p class="note" style="text-align:center">Con una cuenta tu progreso te sigue en cualquier dispositivo. También puedes empezar sin cuenta con «Comenzar».</p>'}`,
    ()=>`<div class="eyebrow">Paso 1 · Tu identidad</div><h2>¿Cómo quieres que te llame?</h2><div class="field"><label for="ob-name">Nombre o apodo (opcional)</label><input class="input" id="ob-name" maxlength="24" value="${esc(d.name)}" placeholder="Neuronauta" autocomplete="off"></div><p class="note">${CLOUD.off?'Solo se guarda en este navegador.':'Se guarda en este navegador (y en tu cuenta, si creas una).'}</p>`,
    ()=>`<div class="eyebrow">Paso 2 · Tu objetivo</div><h2>¿Qué quieres entrenar sobre todo?</h2><div class="goal-grid">${Object.entries(GOALS).map(([k,g])=>`<button class="goal ${d.goal===k?'on':''}" data-g="${k}" style="--c:${g.c}">${ic(g.icon)}<b>${g.name}</b><small>${g.desc}</small></button>`).join('')}</div>`,
    ()=>`<div class="eyebrow">Paso 3 · Tu ritmo</div><h2>¿Cuánto tiempo al día?</h2><div class="seg" id="ob-min">${[[5,'Express','5 min'],[15,'Estándar','15 min'],[25,'Intensivo','25 min']].map(([m,n,t])=>`<button data-m="${m}" class="${d.minutes===m?'on':''}">${n}<small>${t}</small></button>`).join('')}</div><h3 style="margin-top:.4rem">Dificultad inicial</h3><div class="seg" id="ob-lvl">${[[1,'Inicial'],[3,'Intermedia'],[5,'Avanzada']].map(([l,n])=>`<button data-l="${l}" class="${d.level===l?'on':''}">${n}<small>Nivel ${l}</small></button>`).join('')}</div><p class="note">Puedes cambiarlo cuando quieras. Neuro AI ajustará cada juego según tus resultados.</p>`,
-   ()=>`<div class="eyebrow">Paso 4 · Cómo se juega</div><h2>Tu laboratorio en 30 segundos</h2><div class="how"><div><b>${ic('daily')} Misión de hoy</b>Una rutina automática que combina habilidades. Pausa o sal guardando cuando quieras.</div><div><b>${ic('worlds')} Siete mundos</b>Juega libremente cualquiera de los 20 juegos y elige su nivel.</div><div><b>${ic('brain')} Neuro AI</b>Sube la dificultad tras 3 rondas ≥ 85 % y la baja tras 2 rondas &lt; 55 %.</div><div><b>${ic('trophy')} Progreso real</b>XP, niveles, rachas, logros y estadísticas con tus datos, nunca inventados.</div></div>
+   ()=>`<div class="eyebrow">Paso 4 · Cómo se juega</div><h2>Tu laboratorio en 30 segundos</h2><div class="how"><div><b>${ic('daily')} Misión de hoy</b>Una rutina automática que combina habilidades. Pausa o sal guardando cuando quieras.</div><div><b>${ic('worlds')} Siete mundos</b>Juega libremente cualquiera de los ${Object.keys(GAMES).length} juegos y elige su nivel.</div><div><b>${ic('brain')} Neuro AI</b>Sube la dificultad tras 3 rondas ≥ 85 % y la baja tras 2 rondas &lt; 55 %.</div><div><b>${ic('trophy')} Progreso real</b>XP, niveles, rachas, logros y estadísticas con tus datos, nunca inventados.</div></div>
      <div class="card pad" style="margin-top:.2rem">${sw('ob-sound',d.sound,'Sonido activado','Puedes silenciarlo en cualquier momento.')}${sw('ob-rm',d.motion==='reduced','Movimiento reducido','Menos animaciones y efectos.')}</div>`,
    ()=>`<div style="text-align:center"><div class="eyebrow" style="justify-content:center">Todo listo</div><h2 style="margin-top:.4rem">¡Te damos la bienvenida al Neuroverse${d.name?', '+esc(d.name):''}!</h2><p style="margin-top:.5rem">Te propongo una <b>sesión de exploración</b> de unos 5 minutos con tres juegos de mundos distintos. Sirve para conocer el laboratorio y fijar tus primeras referencias; <b>no es una evaluación</b>.</p>${Cloud.on()||CLOUD.off?'':`<div style="margin-top:.9rem"><button class="btn" id="ob-signup">${ic('cloud')} Crear cuenta para guardar mi progreso</button><p class="note" style="margin-top:.4rem">Opcional: así podrás retomarlo desde cualquier dispositivo. También puedes hacerlo luego en Configuración.</p></div>`}</div>`
   ];
@@ -3755,6 +3833,357 @@ reg({id:'pairs',skill:'memory',name:'Parejas',icon:'pairs',tagline:'Encuentra to
     metrics:[{label:'Parejas',value:`${found}/${np}`},{label:'Intentos',value:att},{label:'Errores de memoria',value:memErr},{label:'Tiempo',value:fmtDur(el)}],
     details:`<h4>Eficiencia de memoria</h4><p>Con memoria perfecta, una partida de ${np} parejas necesita de media unos ${Math.round(np*1.61)} intentos; tú usaste ${att}. Un <b>error de memoria</b> es girar una carta que ya habías visto sin aprovechar ese recuerdo.${solved&&memErr===0?' <b>¡No cometiste ninguno!</b>':''}${solved?'':' La partida terminó antes de encontrar todas las parejas.'}</p>`}}};
  }});
+/* ---- DUAL N-BACK: memoria de trabajo y actualización ----
+   Dos flujos a la vez: la posición de una casilla y un sonido (una nota, con su letra). En cada ensayo se indica por separado si
+   la posición y/o el sonido coinciden con los de N pasos atrás. Si el sonido está desactivado, la letra se muestra en pantalla. */
+const NB_LET=['C','H','K','L','Q','R','S','T'],NB_F=[262,294,330,392,440,523,587,659];
+const nbN=L=>L<=3?1:L<=7?2:L<=10?3:L<=13?4:5;
+const nbPer=L=>Math.max(1800,3100-L*90);
+const nbLure=L=>L>=8?.15:0;
+reg({id:'nback',skill:'memory',name:'Dual N-Back',icon:'nback',tagline:'¿La posición y el sonido coinciden con los de N pasos atrás?',
+ howTo:m=>[
+  m==='audio'?'Cada pocos segundos suena una nota (con su letra). Compara con la que sonó <b>N pasos atrás</b>.':m==='visual'?'Cada pocos segundos se ilumina una casilla. Compara su posición con la de <b>N pasos atrás</b>.':'Cada pocos segundos se ilumina una casilla <b>y</b> suena una nota (con su letra). Hay dos tareas: posición y sonido.',
+  `Pulsa ${m==='audio'?'<b>SONIDO</b> (tecla L)':m==='visual'?'<b>POSICIÓN</b> (tecla A)':'<b>POSICIÓN</b> (tecla A) si la casilla coincide con la de N atrás, y <b>SONIDO</b> (tecla L) si la nota coincide. Pueden coincidir las dos a la vez.'}`,
+  'Los primeros N estímulos son de calentamiento y no puntúan. Si no coincide, no pulses nada.'],
+ example:m=>`<div class="ex-nb" data-stim><span>2-back</span><div class="ex-nbg">${[0,1,2,3,4,5,6,7,8].map(i=>`<i class="${i===1||i===5?'a':i===3?'b':''}"></i>`).join('')}</div></div><p class="small" style="margin-top:.5rem">Con 2-back: si la casilla de ahora es la misma que la de hace <b>dos</b> estímulos, pulsa POSICIÓN. Lo mismo con el sonido.</p>`,
+ modes:[{id:'dual',name:'Dual',desc:'Posición + sonido'},{id:'visual',name:'Solo posición',desc:'N-back visual'},{id:'audio',name:'Solo sonido',desc:'N-back auditivo'}],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{mode:'dual',min:90,max:180},
+ levelInfo:(L,m)=>`${nbN(L)}-back · un estímulo cada ${(nbPer(L)/1000).toFixed(1)} s · coincidencias en ~28 % de los ensayos de cada canal${nbLure(L)?' · con señuelos de N−1 y N+1':''}${m!=='visual'?' · el sonido tiene letra visible si lo silencias':''}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode,N=nbN(L),per=nbPer(L),vis=Math.min(900,Math.round(per*.3)),useV=mode!=='audio',useA=mode!=='visual',lure=nbLure(L),pm=.28;
+  const dur=ctx.budget||90000;
+  ctx.stage.innerHTML=`<div class="g-wrap nb" style="position:relative"><div class="nb-top"><b id="nbn">${N}-back</b><small id="nbs">calentamiento: los primeros ${N} no puntúan</small></div>
+   <div class="nb-grid${useV?'':' off'}" id="nbg" data-stim>${Array.from({length:9},(_,i)=>i===4?`<span class="fix" aria-hidden="true">${useA?'♪':'+'}</span>`:`<i class="nbc" data-i="${i}"></i>`).join('')}<div class="nb-chip" id="nbl" aria-hidden="true"></div></div>
+   <div class="nb-btns n${(useV?1:0)+(useA?1:0)}">${useV?`<button class="btn btn-lg nb-b" id="nbV" data-ch="v"><span class="kbd">A</span> POSICIÓN</button>`:''}${useA?`<button class="btn btn-lg nb-b" id="nbA" data-ch="a"><span class="kbd">L</span> SONIDO</button>`:''}</div>
+   <p class="hint" id="nbh" style="margin:0">${useA&&!Sound.on()?'El sonido está desactivado: verás la letra de cada nota (modo visual alternativo).':''}</p></div>`;
+  const cells=$$('.nbc',ctx.stage),chip=$('#nbl');
+  const seq=[],T=[];let t=0,cur=null,done=false,hits=0,fas=0;
+  /* ---- secuencia con coincidencias planificadas (y señuelos N±1 en niveles altos) ---- */
+  function gen(ch){const k=ch==='v'?'pos':'snd',max=ch==='v'?8:7;const pool=ch==='v'?[0,1,2,3,5,6,7,8]:[0,1,2,3,4,5,6,7];const back=seq[t-N]&&seq[t-N][k];
+   if(t<N||back==null)return pick(pool);
+   if(Math.random()<pm)return back;
+   if(lure&&Math.random()<lure){const alt=[seq[t-N+1],seq[t-N-1]].filter(x=>x&&x[k]!==back).map(x=>x[k]);if(alt.length)return pick(alt)}
+   let v,g=0;do v=pick(pool);while(v===back&&g++<30);return v}
+  function playSnd(i){if(Sound.on())Sound.tone(NB_F[i],Math.min(.5,per/2400),'sine',.3)}
+  /* ---- un ensayo ---- */
+  function openTrial(){if(done)return;const st={pos:useV?gen('v'):-1,snd:useA?gen('a'):-1};seq[t]=st;
+   const needs={v:useV&&t>=N&&st.pos===seq[t-N].pos,a:useA&&t>=N&&st.snd===seq[t-N].snd};
+   cur={t,st,needs,onset:ctx.clock.now(),pressed:{v:false,a:false},rt:{v:null,a:null},closed:false};const c=cur;
+   if(useV)cells[st.pos<4?st.pos:st.pos-1].classList.add('on');
+   if(useA){playSnd(st.snd);if(!Sound.on()){chip.textContent=NB_LET[st.snd];chip.classList.add('on')}}
+   $('#nbs').textContent=t<N?`calentamiento: ${t+1}/${N} (no puntúa)`:`ensayo ${t-N+1}`;
+   ctx.clock.after(vis,()=>{if(cur===c){cells.forEach(x=>x.classList.remove('on'));chip.classList.remove('on')}});
+   ctx.clock.after(per-20,()=>closeTrial(c))}
+  function closeTrial(c){if(cur!==c||c.closed)return;c.closed=true;
+   if(c.t>=N){for(const ch of ['v','a']){if(ch==='v'&&!useV||ch==='a'&&!useA)continue;const needs=c.needs[ch],pr=c.pressed[ch];
+     T.push({ch,needs,pressed:pr,rt:c.rt[ch],t:c.t});const b=$('#nb'+ch.toUpperCase());if(b){b.classList.remove('hit','fa','miss');const cls=needs&&pr?'hit':!needs&&pr?'fa':needs?'miss':'';if(cls)b.classList.add(cls);ctx.clock.after(420,()=>b.classList.remove('hit','fa','miss'))}}}
+   cur=null;t++;ctx.clock.after(20,openTrial)}
+  function press(ch){if(ctx.clock.paused||done||!cur||cur.closed)return;if(cur.t<N)return;if(cur.pressed[ch])return;cur.pressed[ch]=true;cur.rt[ch]=Math.round(ctx.clock.now()-cur.onset);
+   const needs=cur.needs[ch];if(needs){hits++;ctx.feedback(true,{msg:false,noFlash:true})}else{fas++;ctx.feedback(false,{msg:'No coincidía',noFlash:true})}
+   const b=$('#nb'+ch.toUpperCase());b&&b.classList.add('pr');ctx.score(hits,'Aciertos');ctx.hits(hits);ctx.extra('Falsas alarmas',fas)}
+  ctx.stage.querySelectorAll('.nb-b').forEach(b=>b.addEventListener('pointerdown',e=>{e.preventDefault();press(b.dataset.ch)}));
+  ctx.key(e=>{const k=e.key.toLowerCase();if(k==='a'||k==='arrowleft'){e.preventDefault();if(useV)press('v')}else if(k==='l'||k==='arrowright'){e.preventDefault();if(useA)press('a')}else if(k===' '&&(useV!==useA)){e.preventDefault();press(useV?'v':'a')}});
+  ctx.countdown(dur,()=>{done=true;ctx.end()});ctx.score(0,'Aciertos');
+  ctx.clock.after(700,openTrial);
+  /* ---- resumen ---- */
+  const stat=ch=>{const a=T.filter(x=>x.ch===ch),H=a.filter(x=>x.needs&&x.pressed),O=a.filter(x=>x.needs&&!x.pressed),F=a.filter(x=>!x.needs&&x.pressed),C=a.filter(x=>!x.needs&&!x.pressed),nT=H.length+O.length,nN=F.length+C.length,hr=nT?H.length/nT:null,fr=nN?F.length/nN:null;
+   return {H:H.length,O:O.length,F:F.length,C:C.length,nT,nN,hr,fr,bal:hr!=null&&fr!=null?(hr+1-fr)/2:(hr??(fr!=null?1-fr:null)),rt:median(H.map(x=>x.rt).filter(x=>x!=null))}};
+  return {peek:()=>({cur,seq,t,N,T}),summary(){
+   const sv=useV?stat('v'):null,sa=useA?stat('a'):null,act=[sv,sa].filter(Boolean),bals=act.map(x=>x.bal).filter(x=>x!=null);
+   const acc=bals.length?avg(bals):0,sum=k=>act.reduce((s,x)=>s+x[k],0),nT=sum('nT'),nN=sum('nN');
+   const metrics=[{label:'Nivel',value:`${N}-back`},{label:'Aciertos',value:`${sum('H')}/${nT}`},{label:'Omisiones',value:sum('O')},{label:'Falsas alarmas',value:sum('F')}];
+   const row=(n,x)=>x?`<tr><td>${n}</td><td>${x.H}/${x.nT}</td><td>${x.O}</td><td>${x.F}</td><td>${x.C}</td><td>${x.rt?Math.round(x.rt)+' ms':'—'}</td><td>${x.bal!=null?pct(x.bal):'—'}</td></tr>`:'';
+   if(sv)metrics.push({label:'Posición',value:`${sv.H}/${sv.nT} · FA ${sv.F}`});if(sa)metrics.push({label:'Sonido',value:`${sa.H}/${sa.nT} · FA ${sa.F}`});
+   const details=`<h4>Resultados por canal</h4><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Canal</th><th>Aciertos</th><th>Omisiones</th><th>Falsas alarmas</th><th>Rechazos</th><th>Mediana</th><th>Precisión equilibrada</th></tr></thead><tbody>${row('Posición',sv)}${row('Sonido',sa)}</tbody></table></div><p>Una <b>omisión</b> es no pulsar cuando sí coincidía; una <b>falsa alarma</b>, pulsar cuando no coincidía. La precisión es <b>equilibrada</b> (aciertos y rechazos correctos) para que no pulsar nunca no dé buena nota.${lure?' En este nivel hay señuelos: estímulos que coinciden con N−1 o N+1 pero no con N.':''}</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   if(!T.length)return null;
+   return {correct:sum('H')+sum('C'),wrong:sum('O')+sum('F'),total:T.length,acc,score:sum('H'),rt:median(act.map(x=>x.rt).filter(x=>x!=null)),metrics,details,
+    extra:{n:N,v:sv&&{H:sv.H,O:sv.O,F:sv.F,C:sv.C,nT:sv.nT},a:sa&&{H:sa.H,O:sa.O,F:sa.F,C:sa.C,nT:sa.nT},faRate:nN?sum('F')/nN:0,omRate:nT?sum('O')/nT:0}}}}}
+ });
+
+/* ---- MEMORY UPDATER: actualización mental de una lista ----
+   Se muestra una lista, se oculta, y se anuncian operaciones (reemplazar, intercambiar, eliminar, añadir). Al final hay que reconstruir
+   el estado de la lista. En los niveles 1-2 se ve la lista tras cada operación (con ayuda); después, solo en la cabeza. */
+const MU_NUM=['1','2','3','4','5','6','7','8','9'],MU_LET=['A','B','C','D','E','F','G','H','J'],MU_SYM=['♠','♥','♦','♣','★','●','■','▲','◆'];
+const MU_ORD=['primer','segundo','tercer','cuarto','quinto','sexto','séptimo'];
+const muLen=L=>L<=3?3:L<=7?4:L<=11?5:6;
+const muOps=L=>Math.min(9,2+Math.ceil(L/2));
+const muOpMs=L=>Math.max(1500,3000-L*100);
+const muShow=L=>muLen(L)*650+1000;
+const muHelp=L=>L<=2;
+const muOrd=i=>`el ${MU_ORD[i]} elemento`;
+function muGenOp(list,L,alpha){
+ const n=list.length,types=['rep'];if(L>=4)types.push('swap');if(L>=7){if(n>3)types.push('del');if(n<7)types.push('add')}
+ for(let k=0;k<60;k++){const t=pick(types);
+  if(t==='rep'){const i=ri(0,n-1),x=pick(alpha.filter(a=>a!==list[i]));return {type:t,desc:`Reemplaza ${muOrd(i)} por <b>${x}</b>`,apply:l=>{const c=l.slice();c[i]=x;return c}}}
+  if(t==='swap'){const i=ri(0,n-2),j=ri(i+1,n-1);if(list[i]===list[j])continue;return {type:t,desc:`Intercambia las posiciones <b>${i+1}</b> y <b>${j+1}</b>`,apply:l=>{const c=l.slice();[c[i],c[j]]=[c[j],c[i]];return c}}}
+  if(t==='del'){const v=L>=10?pick(['last','first','at']):pick(['last','first']),i=v==='last'?n-1:v==='first'?0:ri(1,n-2);return {type:t,desc:v==='last'?'Elimina el <b>último</b> elemento':v==='first'?'Elimina el <b>primero</b>':`Elimina ${muOrd(i)}`,apply:l=>l.filter((_,q)=>q!==i)}}
+  if(t==='add'){const x=pick(alpha),v=L>=10?pick(['front','back','at']):pick(['front','back']),i=v==='front'?0:v==='back'?n:ri(1,n-1);return {type:t,desc:v==='front'?`Añade <b>${x}</b> al principio`:v==='back'?`Añade <b>${x}</b> al final`:`Inserta <b>${x}</b> en la posición <b>${i+1}</b>`,apply:l=>{const c=l.slice();c.splice(i,0,x);return c}}}
+ }
+ const i=ri(0,n-1),x=pick(alpha.filter(a=>a!==list[i]));return {type:'rep',desc:`Reemplaza ${muOrd(i)} por <b>${x}</b>`,apply:l=>{const c=l.slice();c[i]=x;return c}}}
+const muCards=(arr,cls='')=>`<div class="mu-row ${cls}">${arr.map(x=>`<span class="mu-c">${x}</span>`).join('')}</div>`;
+reg({id:'updater',skill:'memory',name:'Memory Updater',icon:'updater',tagline:'Mantén una lista en la cabeza mientras cambia.',
+ howTo:m=>['Verás una lista de números, letras o símbolos durante unos segundos. Memorízala en orden.','Después se oculta y se anuncian <b>operaciones</b> una a una: reemplazar, intercambiar posiciones, eliminar o añadir elementos.','Al final reconstruye cómo quedó la lista: toca los elementos en orden y pulsa <b>Listo</b>. Las posiciones se cuentan desde 1.'],
+ example:m=>`<div class="ex-mu" data-stim>${muCards(['7','2','9'])}<div class="ex-op">Reemplaza el segundo elemento por <b>5</b></div>${muCards(['7','5','9'])}</div><p class="small" style="margin-top:.5rem">Lista inicial 7 · 2 · 9 → tras la operación queda 7 · 5 · 9. Con varias operaciones, aplícalas en orden sobre la lista que llevas en la cabeza.</p>`,
+ modes:[{id:'num',name:'Números',desc:'Dígitos 1-9'},{id:'let',name:'Letras',desc:'A-J'},{id:'sym',name:'Símbolos',desc:'♠ ♥ ★ ●…'}],
+ maxLevel:15,metric:{label:'Rondas perfectas',better:'high'},daily:{mode:'num',min:90,max:180},
+ levelInfo:L=>`Lista de ${muLen(L)} elementos · ${muOps(L)} operaciones${L<=2?'':''} · ${(muOpMs(L)/1000).toFixed(1)} s por operación · ${muHelp(L)?'con ayuda (ves la lista tras cada paso)':'sin ayuda'} · operaciones: ${L<4?'reemplazar':L<7?'reemplazar e intercambiar':L<10?'+ eliminar/añadir en los extremos':'+ en cualquier posición'}`,
+ start(ctx){
+  const L=ctx.level,alpha=({num:MU_NUM,let:MU_LET,sym:MU_SYM})[ctx.mode]||MU_NUM,rounds=ctx.budget?Infinity:4,help=muHelp(L);
+  const R=[];let round=0,done=false,cur=null,input=[],phase='idle',tAsk=0;
+  ctx.stage.innerHTML=`<div class="g-wrap mu"><div class="mu-top" id="mut"></div><div class="mu-stage" id="mus" aria-live="polite"></div><div class="mu-ans" id="mua" hidden></div><div class="mu-pad" id="mup" hidden>${alpha.map((a,i)=>`<button class="btn mu-k" data-t="${a}"><span class="kbd">${i+1}</span>${a}</button>`).join('')}</div><div class="mu-ctl" id="muc" hidden><button class="btn" id="mu-del">${ic('chevL')} Borrar</button><button class="btn btn-primary" id="mu-ok">${ic('check')} Listo</button></div></div>`;
+  const top=$('#mut'),stage=$('#mus'),ans=$('#mua'),pad=$('#mup'),ctl=$('#muc');
+  const bar=ms=>`<div class="hp-bar"><i style="transition:transform ${ms}ms linear"></i></div>`,kick=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{const i=$('.hp-bar i',stage);if(i&&!RM())i.style.transform='scaleX(0)'}));
+  const setTop=t=>{top.innerHTML=t};
+  function newRound(){if(done)return;if(round>=rounds){done=true;return ctx.end()}round++;
+   const n=muLen(L),start=shuffle(alpha).slice(0,n);let state=start.slice();const ops=[];for(let k=0;k<muOps(L);k++){const op=muGenOp(state,L,alpha);ops.push(op);state=op.apply(state)}
+   cur={start,ops,final:state};input=[];phase='show';ans.hidden=true;pad.hidden=true;ctl.hidden=true;
+   setTop(`Ronda ${round}${rounds<Infinity?` de ${rounds}`:''}`);
+   stage.innerHTML=`<div class="mu-msg">Memoriza la lista</div>${muCards(start)}${bar(muShow(L))}`;kick();Sound.alert();ctx.say('Memoriza la lista');
+   ctx.clock.after(muShow(L),()=>runOp(0))}
+  function runOp(i){if(done)return;if(i>=cur.ops.length)return ask();const op=cur.ops[i];phase='ops';
+   stage.innerHTML=`<div class="mu-msg">Operación ${i+1} de ${cur.ops.length}</div><div class="mu-op" aria-live="assertive">${op.desc}</div>${bar(muOpMs(L))}${help?'<div class="mu-help" id="muh"></div>':''}`;kick();
+   if(help)ctx.clock.after(Math.round(muOpMs(L)*.55),()=>{const h=$('#muh');if(h){let s=cur.start;for(let k=0;k<=i;k++)s=cur.ops[k].apply(s);h.innerHTML=`<small>Así queda</small>${muCards(s,'sm')}`}});
+   ctx.clock.after(muOpMs(L),()=>runOp(i+1))}
+  function ask(){phase='ask';setTop(`Ronda ${round}${rounds<Infinity?` de ${rounds}`:''} · ¿cómo quedó la lista?`);stage.innerHTML=`<div class="mu-msg">Reconstruye la lista en orden</div>`;ans.hidden=false;pad.hidden=false;ctl.hidden=false;drawAns();tAsk=ctx.clock.now()}
+  const drawAns=()=>{ans.innerHTML=input.length?input.map(x=>`<span class="mu-c">${x}</span>`).join(''):'<span class="mu-ph">toca los elementos en orden…</span>'};
+  function tap(t){if(phase!=='ask'||ctx.clock.paused||input.length>=9)return;input.push(t);drawAns();Sound.soft()}
+  function del(){if(phase!=='ask'||ctx.clock.paused)return;input.pop();drawAns()}
+  function submit(){if(phase!=='ask'||ctx.clock.paused||!input.length)return;phase='fb';const f=cur.final,den=Math.max(f.length,input.length);let m=0;for(let i=0;i<den;i++)if(input[i]===f[i])m++;
+   const perfect=input.length===f.length&&m===den;R.push({len:f.length,ans:input.slice(),final:f.slice(),m,den,perfect,ops:cur.ops.length,rt:Math.round(ctx.clock.now()-tAsk)});
+   ctx.feedback(perfect,{msg:perfect?'Lista perfecta':'No coincide del todo'});ctx.score(R.filter(x=>x.perfect).length,'Rondas perfectas');ctx.hits(R.filter(x=>x.perfect).length);
+   ans.hidden=true;pad.hidden=true;ctl.hidden=true;
+   stage.innerHTML=`<div class="mu-msg ${perfect?'ok':'bad'}">${perfect?'¡Perfecto!':`${m} de ${den} posiciones correctas`}</div><div class="mu-cmp"><small>Lista correcta</small>${muCards(f)}<small>Tu respuesta</small>${muCards(input.map((x,i)=>x),'')}</div><button class="btn btn-primary" id="mu-next">${round>=rounds?'Terminar':'Siguiente ronda'} ${ic('chevR')}</button>`;
+   $$('.mu-cmp .mu-row:last-of-type .mu-c').forEach((c,i)=>c.classList.add(input[i]===f[i]?'ok':'bad'));
+   $('#mu-next').onclick=()=>{if(ctx.clock.paused)return;newRound()};$('#mu-next').focus({preventScroll:true})}
+  pad.addEventListener('click',e=>{const b=e.target.closest('.mu-k');if(b)tap(b.dataset.t)});$('#mu-del').onclick=del;$('#mu-ok').onclick=submit;
+  ctx.key(e=>{if(phase==='ask'){const n=+e.key;if(n>=1&&n<=alpha.length){e.preventDefault();tap(alpha[n-1])}else if(e.key==='Backspace'){e.preventDefault();del()}else if(e.key==='Enter'){e.preventDefault();submit()}}else if(phase==='fb'&&e.key==='Enter'){e.preventDefault();$('#mu-next')?.click()}});
+  if(ctx.budget)ctx.countdown(ctx.budget,()=>{done=true;ctx.end()});ctx.score(0,'Rondas perfectas');
+  ctx.clock.after(500,newRound);
+  return {peek:()=>({cur,phase,input,round}),summary(){
+   if(!R.length)return null;const num=sum(R.map(x=>x.m)),den=sum(R.map(x=>x.den)),perfect=R.filter(x=>x.perfect).length;
+   const metrics=[{label:'Rondas perfectas',value:`${perfect}/${R.length}`},{label:'Posiciones correctas',value:`${num}/${den}`},{label:'Operaciones por ronda',value:muOps(L)},{label:'Longitud de la lista',value:`${muLen(L)} → ${Math.round(avg(R.map(x=>x.len))*10)/10}`},{label:'Tiempo de respuesta',value:Math.round(avg(R.map(x=>x.rt))/1000)+' s'}];
+   const details=`<h4>Actualización de la memoria de trabajo</h4><p>En cada ronda se aplicaron ${muOps(L)} operaciones sobre una lista de ${muLen(L)} elementos${help?' (con ayuda visual tras cada paso)':' sin ayuda visual'}. La precisión cuenta las <b>posiciones</b> de la lista final que acertaste.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:num,wrong:den-num,total:den,acc:den?num/den:0,score:perfect,rt:avg(R.map(x=>x.rt)),metrics,details,extra:{rounds:R.length,perfect,ops:muOps(L),len:muLen(L),help,omRate:0,faRate:0}}}}}
+ });
+
+/* ---- MEMORIA INVERSA: repetir una secuencia en orden contrario ----
+   Cuatro modalidades (números, posiciones, formas, sonidos). La longitud se ajusta tras cada intento: +1 si aciertas, −1 si fallas. */
+const BK_SH=['circle','square','triangle','star','diamond','cross'],BK_COL=['#FF4D5E','#538CFF','#3DDC84','#FFD23F','#B36DFF','#46D8CC'];
+const bkStart=L=>2+Math.ceil(L/3);
+const bkOn=L=>Math.max(420,900-L*30),bkGap=L=>Math.max(180,350-L*10);
+const bkK=(mode,L)=>mode==='num'?10:mode==='spatial'?(L<=5?9:L<=10?16:25):mode==='visual'?(L<=6?4:L<=10?5:6):(L<=6?4:L<=10?6:8);
+reg({id:'backward',skill:'memory',name:'Memoria inversa',icon:'backward',tagline:'Repite la secuencia… al revés.',
+ howTo:m=>({
+  num:['Verás una serie de dígitos, uno a uno.','Cuando aparezca «Ahora al revés», introdúcelos en el <b>orden contrario</b>: el último que viste va primero.','Si aciertas la secuencia es un elemento más larga; si fallas, una más corta.'],
+  spatial:['Se iluminarán casillas de una cuadrícula, una a una.','Después pulsa esas casillas en el <b>orden contrario</b>: la última que se iluminó es la primera que debes pulsar.','La longitud sube con cada acierto y baja con cada fallo.'],
+  visual:['Verás una serie de formas, una a una.','Luego tócalas en la paleta en <b>orden inverso</b>: la última que viste va primero.','La longitud se ajusta a tu rendimiento.'],
+  audio:['Sonará una serie de notas (cada pad se ilumina y suena).','Pulsa los pads en el <b>orden contrario</b> al que sonaron.','Si el sonido está desactivado verás la letra de cada nota en pantalla: modo visual alternativo.']
+ }[m]||[]),
+ example:m=>({
+  num:`<div class="ex-stim" data-stim>3 · 8 · 1</div><p class="small" style="margin-top:.5rem">Si ves 3, luego 8 y luego 1, debes introducir <b>1, 8, 3</b>.</p>`,
+  spatial:`<div class="ex-nb" data-stim><div class="ex-nbg">${[0,1,2,3,4,5,6,7,8].map(i=>`<i class="${i===0?'a':i===4?'b':i===8?'a':''}"></i>`).join('')}</div></div><p class="small" style="margin-top:.5rem">Si se iluminan primero la esquina superior izquierda, luego el centro y por último la esquina inferior derecha, pulsa: inferior derecha, centro, superior izquierda.</p>`,
+  visual:`<div class="ex-stim" data-stim style="gap:1rem">${shapeSVG('circle','#FF4D5E')}${shapeSVG('star','#FFD23F')}${shapeSVG('triangle','#3DDC84')}</div><p class="small" style="margin-top:.5rem">Si ves círculo, estrella, triángulo, tócalos en este orden: triángulo, estrella, círculo.</p>`,
+  audio:`<div class="ex-stim" data-stim>C · K · R</div><p class="small" style="margin-top:.5rem">Si suenan los pads C, luego K y luego R, pulsa R, K y C.</p>`
+ }[m]||''),
+ modes:[{id:'num',name:'Números',desc:'Dígitos'},{id:'spatial',name:'Espacial',desc:'Casillas'},{id:'visual',name:'Visual',desc:'Formas'},{id:'audio',name:'Auditiva',desc:'Notas'}],
+ maxLevel:15,metric:{label:'Span inverso máximo',better:'high'},daily:{mode:'num',min:75,max:150},
+ levelInfo:(L,m)=>`Empieza con ${bkStart(L)} elementos · cada elemento se muestra ${(bkOn(L)/1000).toFixed(2)} s · ${m==='spatial'?`cuadrícula de ${Math.sqrt(bkK(m,L))}×${Math.sqrt(bkK(m,L))}`:m==='num'?'dígitos 0-9':m==='visual'?`${bkK(m,L)} formas`:`${bkK(m,L)} notas`}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode,K=bkK(mode,L),on=bkOn(L),gap=bkGap(L),trials=ctx.budget?Infinity:6,rm=RM();
+  const T=[];let len=bkStart(L),seq=[],inp=[],phase='idle',done=false,timeUp=false,maxSpan=0,okRun=0;
+  const nsq=mode==='spatial'?Math.sqrt(K):0;
+  ctx.stage.innerHTML=`<div class="g-wrap bk"><div class="bk-status" id="bks" aria-live="polite"></div><div class="bk-stim" id="bkst" data-stim aria-hidden="true"></div><div class="bk-dots" id="bkd"></div><div class="bk-in" id="bki"></div></div>`;
+  const status=$('#bks'),stim=$('#bkst'),dots=$('#bkd'),inb=$('#bki');
+  /* ---- zona de respuesta según la modalidad ---- */
+  const padLabel=i=>mode==='num'?String(i):mode==='audio'?NB_LET[i]:'';
+  const html=()=>mode==='spatial'?`<div class="seq-grid" id="bkg" style="--n:${nsq}">${Array.from({length:K},(_,i)=>`<button class="seq-cell" data-i="${i}" aria-label="Casilla ${i+1}"></button>`).join('')}</div>`
+   :`<div class="bk-pad" style="--c:${mode==='num'?5:Math.min(K,mode==='visual'?3:4)}">${Array.from({length:K},(_,i)=>`<button class="btn bk-k" data-i="${i}" ${mode==='audio'?`style="--k:${PCOLS[i]}"`:''} aria-label="${mode==='visual'?['círculo','cuadrado','triángulo','estrella','rombo','cruz'][i]:mode==='audio'?'Pad '+NB_LET[i]:i}">${mode==='visual'?shapeSVG(BK_SH[i],BK_COL[i]):`<span>${padLabel(i)}</span>`}</button>`).join('')}</div>`;
+  inb.innerHTML=html();
+  const keys=$$('[data-i]',inb),lock=on=>{inb.classList.toggle('locked',!on)};
+  const light=(i,ms)=>{const k=keys[i];if(!k)return;k.classList.add('on');ctx.clock.after(ms,()=>k.classList.remove('on'))};
+  const snd=i=>{if(mode==='audio'&&Sound.on())Sound.tone(NB_F[i],Math.min(.45,on/1000),'sine',.3)};
+  /* ---- presentar la secuencia ---- */
+  function present(i){if(done)return;if(i>=seq.length){phase='in';inp=[];lock(true);status.innerHTML=`<b>Ahora al revés</b> <span class="dim">0/${seq.length}</span>`;ctx.say('Ahora al revés');drawDots();stim.innerHTML='<span class="bk-q">?</span>';return}
+   const v=seq[i];status.innerHTML=`Observa… <span class="dim">${i+1}/${seq.length}</span>`;
+   if(mode==='num')stim.innerHTML=`<span class="bk-n">${v}</span>`;
+   else if(mode==='visual')stim.innerHTML=shapeSVG(BK_SH[v],BK_COL[v]);
+   else if(mode==='audio'){light(v,on);snd(v);stim.innerHTML=Sound.on()?'<span class="bk-q">♪</span>':`<span class="bk-n">${NB_LET[v]}</span>`}
+   else{light(v,on);stim.innerHTML=''}
+   ctx.clock.after(on,()=>{if(mode==='num'||mode==='visual'||(mode==='audio'&&!Sound.on()))stim.innerHTML='';ctx.clock.after(gap,()=>present(i+1))})}
+  const drawDots=()=>{dots.innerHTML=Array.from({length:seq.length},(_,i)=>`<i class="${i<inp.length?'on':''}"></i>`).join('')};
+  function newTrial(){if(done)return;if(T.length>=trials){done=true;return ctx.end()}phase='show';lock(false);seq=[];for(let i=0;i<len;i++){let c,g=0;do c=ri(0,K-1);while(c===seq[i-1]&&g++<10);seq.push(c)}dots.innerHTML='';stim.innerHTML='';status.innerHTML=`Prepárate… <span class="dim">secuencia de ${len}</span>`;ctx.clock.after(800,()=>present(0))}
+  /* ---- respuesta ---- */
+  function tap(i){if(phase!=='in'||ctx.clock.paused||done)return;inp.push(i);const exp=seq.slice().reverse(),idx=inp.length-1,okNow=inp[idx]===exp[idx];light(i,160);snd(i);
+   if(mode!=='spatial'){keys[i].classList.add(okNow?'okc':'badc');ctx.clock.after(220,()=>keys[i].classList.remove('okc','badc'))}else{keys[i].classList.add(okNow?'okc':'badc');ctx.clock.after(260,()=>keys[i].classList.remove('okc','badc'))}
+   drawDots();status.innerHTML=`<b>Ahora al revés</b> <span class="dim">${inp.length}/${seq.length}</span>`;
+   if(inp.length===seq.length)judge()}
+  function judge(){phase='fb';lock(false);const exp=seq.slice().reverse();let m=0;for(let i=0;i<exp.length;i++)if(inp[i]===exp[i])m++;const ok=m===exp.length,fr=m/exp.length;
+   T.push({len:seq.length,ok,fr,m});if(ok){maxSpan=Math.max(maxSpan,seq.length);okRun++}else okRun=0;
+   ctx.feedback(ok,{msg:ok?'Secuencia inversa correcta':'No era esa'});ctx.score(maxSpan,'Span inverso');ctx.hits(T.filter(x=>x.ok).length);
+   const fmt=a=>mode==='num'?a.join(' '):mode==='audio'?a.map(x=>NB_LET[x]).join(' '):mode==='visual'?a.map(x=>['●','■','▲','★','◆','✚'][x]).join(' '):a.map(x=>x+1).join(' ');
+   stim.innerHTML=`<span class="bk-r ${ok?'ok':'bad'}">${ok?'¡Bien!':`Correcto: ${fmt(exp)}`}</span>`;
+   len=ok?Math.min(12,len+1):Math.max(2,len-1);ctx.clock.after(ok?900:1700,()=>{if(timeUp){done=true;return ctx.end()}stim.innerHTML='';newTrial()})}
+  inb.addEventListener('click',e=>{const b=e.target.closest('[data-i]');if(b&&!inb.classList.contains('locked'))tap(+b.dataset.i)});
+  ctx.key(e=>{if(phase!=='in')return;if(mode==='num'&&/^[0-9]$/.test(e.key)){e.preventDefault();tap(+e.key)}});
+  stim.hidden=mode==='spatial';ctx.score(0,'Span inverso');
+  ctx.clock.after(500,newTrial);
+  return {peek:()=>({seq,inp,phase,len,K}),onTimeUp(){timeUp=true;if(phase!=='in'&&phase!=='fb')ctx.end()},summary(){
+   const n=T.length;if(!n)return null;const okN=T.filter(x=>x.ok).length,acc=avg(T.map(x=>x.fr));
+   const metrics=[{label:'Secuencias correctas',value:`${okN}/${n}`},{label:'Span inverso máximo',value:maxSpan||'—'},{label:'Precisión media',value:pct(acc)},{label:'Longitud inicial',value:bkStart(L)}];
+   const details=`<h4>¿Qué es el span inverso?</h4><p>Es la secuencia más larga que repetiste correctamente al revés (${maxSpan||0}). La longitud sube tras un acierto y baja tras un fallo para mantenerte en tu zona de reto. La precisión de cada intento es la fracción de posiciones correctas.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:okN,wrong:n-okN,total:n,acc,score:maxSpan||null,metrics,details,extra:{maxSpan,perfect:n>=3&&okN===n,mode,omRate:0,faRate:0}}}}}
+ });
+
+/* ---- WHAT CHANGED?: memoria visual de escenas ----
+   Se muestra una escena con objetos, se oculta y reaparece con 1 o 2 cambios: algo desapareció, se movió, cambió de color o fue reemplazado. */
+const WC_SH=['circle','square','triangle','star','diamond','cross'],WC_COL=['#FF4D5E','#538CFF','#3DDC84','#FFD23F','#B36DFF','#FF8A2B'],WC_CN=['rojo','azul','verde','amarillo','morado','naranja'],WC_SN=['círculo','cuadrado','triángulo','estrella','rombo','cruz'];
+const WC_COLS=4,WC_ROWS=3,WC_CELLS=12;
+const wcN=L=>Math.min(11,3+Math.ceil(L/2));
+const wcEnc=L=>Math.max(1400,5400-L*260);
+const wcK=L=>L>=11?2:1;
+const wcAns=L=>Math.max(5000,12000-L*300);
+const WC_T=['gone','moved','color','replaced'];
+const WC_Q={gone:['¿Qué objeto desapareció?','¿Qué 2 objetos desaparecieron?'],moved:['¿Qué objeto cambió de lugar?','¿Qué 2 objetos cambiaron de lugar?'],color:['¿Qué objeto cambió de color?','¿Qué 2 objetos cambiaron de color?'],replaced:['¿Qué objeto fue reemplazado por otra forma?','¿Qué 2 objetos fueron reemplazados por otra forma?']};
+const wcObj=(o,cls='')=>`<button class="wc-o ${cls}" data-id="${o.id}" style="grid-column:${o.cell%WC_COLS+1};grid-row:${Math.floor(o.cell/WC_COLS)+1}" aria-label="${WC_SN[o.s]} ${WC_CN[o.c]}">${shapeSVG(WC_SH[o.s],WC_COL[o.c])}</button>`;
+reg({id:'changed',skill:'memory',name:'What Changed?',icon:'changed',tagline:'Memoriza la escena y descubre qué cambió.',
+ howTo:m=>['Verás una escena con varios objetos durante unos segundos. Memoriza qué hay y dónde.','La escena se oculta y reaparece con uno (o dos) cambios: algo <b>desapareció</b>, <b>cambió de lugar</b>, <b>de color</b> o fue <b>reemplazado</b> por otra forma.','Responde la pregunta que aparece: toca el objeto cambiado en la escena (o, si desapareció, elígelo en la barra inferior).'],
+ example:m=>`<div class="ex-row" data-stim><span class="ex-it" style="width:46px;height:46px">${shapeSVG('circle','#FF4D5E')}</span><span class="ex-it" style="width:46px;height:46px">${shapeSVG('star','#FFD23F')}</span><span class="ex-it" style="width:46px;height:46px">${shapeSVG('triangle','#3DDC84')}</span><b style="color:#F2F6FF">→</b><span class="ex-it" style="width:46px;height:46px">${shapeSVG('circle','#FF4D5E')}</span><span class="ex-it" style="width:46px;height:46px">${shapeSVG('triangle','#3DDC84')}</span></div><p class="small" style="margin-top:.5rem">Si desaparece la estrella amarilla, la respuesta es «estrella amarilla»: ábrela en la barra de opciones.</p>`,
+ modes:[{id:'mix',name:'Mixto',desc:'Cualquier tipo de cambio'},{id:'gone',name:'Desapareció',desc:'¿Qué falta?'},{id:'moved',name:'Cambió de lugar',desc:'¿Qué se movió?'},{id:'color',name:'Cambió de color',desc:'¿Qué cambió de color?'},{id:'replaced',name:'Reemplazado',desc:'¿Qué forma es nueva?'}],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{mode:'mix',min:75,max:150},
+ levelInfo:L=>`${wcN(L)} objetos · la escena se muestra ${(wcEnc(L)/1000).toFixed(1)} s · ${wcK(L)===1?'un cambio':'dos cambios a la vez'} · ${(wcAns(L)/1000).toFixed(0)} s para responder`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode,n=wcN(L),k=wcK(L),enc=wcEnc(L),ansMs=wcAns(L),trials=ctx.budget?Infinity:8;
+  const T=[];let done=false,timeUp=false,phase='idle',cur=null,sel=new Set(),tm=null,t0=0;
+  ctx.stage.innerHTML=`<div class="g-wrap wc"><div class="wc-q" id="wcq" aria-live="polite"></div><div class="wc-grid" id="wcg" data-stim style="--cols:${WC_COLS};--rows:${WC_ROWS}"></div><div class="wc-opts" id="wco" hidden></div><div class="wc-bar" id="wcb"></div><p class="hint" id="wch" style="margin:0"></p></div>`;
+  const q=$('#wcq'),grid=$('#wcg'),opts=$('#wco'),bar=$('#wcb'),hint=$('#wch');
+  /* ---- escenas ---- */
+  function makeScene(){const cells=shuffle([...Array(WC_CELLS).keys()]).slice(0,n),used=new Set();return cells.map((cell,i)=>{let s,c,g=0;do{s=ri(0,5);c=ri(0,5)}while(used.has(s+'_'+c)&&g++<60);used.add(s+'_'+c);return {id:i,cell,s,c}})}
+  function makeChange(s1,type){const s2=s1.map(o=>({...o})),ids=shuffle(s1.map(o=>o.id)).slice(0,k),occ=new Set(s1.map(o=>o.cell)),pairs=new Set(s1.map(o=>o.s+'_'+o.c));
+   if(type==='gone')return {s2:s2.filter(o=>!ids.includes(o.id)),ids};
+   for(const id of ids){const o=s2.find(x=>x.id===id);
+    if(type==='moved'){const free=[...Array(WC_CELLS).keys()].filter(c=>!occ.has(c));const nc=pick(free);occ.delete(o.cell);occ.add(nc);o.cell=nc}
+    else if(type==='color'){let c,g=0;do c=ri(0,5);while((c===o.c||pairs.has(o.s+'_'+c))&&g++<60);pairs.delete(o.s+'_'+o.c);pairs.add(o.s+'_'+c);o.c=c}
+    else{let s,g=0;do s=ri(0,5);while((s===o.s||pairs.has(s+'_'+o.c))&&g++<60);pairs.delete(o.s+'_'+o.c);pairs.add(s+'_'+o.c);o.s=s}}
+   return {s2,ids}}
+  /* ---- flujo de un ensayo ---- */
+  function newTrial(){if(done)return;if(T.length>=trials){done=true;return ctx.end()}
+   const type=mode==='mix'?pick(WC_T):mode,s1=makeScene(),ch=makeChange(s1,type);cur={type,s1,s2:ch.s2,ids:ch.ids};sel=new Set();phase='enc';
+   q.textContent='Memoriza la escena';opts.hidden=true;hint.textContent='';
+   grid.innerHTML=s1.map(o=>wcObj(o,'lock')).join('');bar.innerHTML=`<div class="hp-bar"><i style="transition:transform ${enc}ms linear"></i></div>`;
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{const i=$('.hp-bar i',bar);if(i&&!RM())i.style.transform='scaleX(0)'}));
+   ctx.clock.after(enc,()=>{if(done)return;phase='mask';grid.innerHTML='';bar.innerHTML='';q.textContent='…';ctx.clock.after(700,ask)})}
+  function ask(){if(done)return;phase='ask';q.textContent=WC_Q[cur.type][k-1];
+   grid.innerHTML=cur.s2.map(o=>wcObj(o)).join('');
+   if(cur.type==='gone'){opts.hidden=false;opts.innerHTML=shuffle(cur.s1).map(o=>`<button class="wc-op" data-id="${o.id}" aria-label="${WC_SN[o.s]} ${WC_CN[o.c]}">${shapeSVG(WC_SH[o.s],WC_COL[o.c])}</button>`).join('');grid.classList.add('ro')}
+   else{opts.hidden=true;grid.classList.remove('ro')}
+   hint.textContent=k>1?`Elige ${k} objetos`:'';t0=ctx.clock.now();tm=ctx.clock.after(ansMs,()=>judge(true))}
+  function pickObj(id){if(phase!=='ask'||ctx.clock.paused)return;if(sel.has(id))sel.delete(id);else sel.add(id);
+   $$('.wc-o,.wc-op',ctx.stage).forEach(b=>b.classList.toggle('sel',sel.has(+b.dataset.id)&&(cur.type==='gone'?b.classList.contains('wc-op'):b.classList.contains('wc-o'))));
+   if(sel.size>=k)judge(false)}
+  function judge(timeout){if(phase!=='ask')return;phase='fb';ctx.clock.cancel(tm);const rt=Math.round(ctx.clock.now()-t0),truth=new Set(cur.ids),hit=[...sel].filter(x=>truth.has(x)).length,ok=!timeout&&hit===k&&sel.size===k,fr=timeout?0:hit/k;
+   T.push({type:cur.type,ok,fr,rt,k,to:timeout});ctx.feedback(ok,{msg:timeout?'Tiempo agotado':ok?'Correcto':'No era eso'});ctx.score(T.filter(x=>x.ok).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length);
+   /* revelar: lo correcto en verde y lo elegido por error en rojo */
+   $$('.wc-o,.wc-op',ctx.stage).forEach(b=>{const id=+b.dataset.id,isOp=b.classList.contains('wc-op'),rel=(cur.type==='gone')===isOp;if(!rel)return;if(truth.has(id))b.classList.add('ok');else if(sel.has(id))b.classList.add('no')});
+   if(cur.type==='gone'){const holes=cur.s1.filter(o=>truth.has(o.id));grid.insertAdjacentHTML('beforeend',holes.map(o=>`<span class="wc-ghost" style="grid-column:${o.cell%WC_COLS+1};grid-row:${Math.floor(o.cell/WC_COLS)+1}">${shapeSVG(WC_SH[o.s],WC_COL[o.c])}</span>`).join(''))}
+   q.textContent=timeout?'Se acabó el tiempo':ok?'¡Bien!':'Mira la solución';
+   ctx.clock.after(1400,()=>{if(timeUp){done=true;return ctx.end()}newTrial()})}
+  ctx.stage.addEventListener('click',e=>{const b=e.target.closest('.wc-o:not(.lock),.wc-op');if(!b)return;if(cur&&cur.type==='gone'&&b.classList.contains('wc-o'))return;if(cur&&cur.type!=='gone'&&b.classList.contains('wc-op'))return;pickObj(+b.dataset.id)});
+  ctx.score(0,'Aciertos');ctx.clock.after(600,newTrial);
+  return {peek:()=>({cur,phase,sel:[...sel]}),onTimeUp(){timeUp=true;if(phase!=='ask'&&phase!=='fb')ctx.end()},summary(){
+   const nT=T.length;if(!nT)return null;const okN=T.filter(x=>x.ok).length,acc=avg(T.map(x=>x.fr));
+   const by=t=>{const a=T.filter(x=>x.type===t);return {n:a.length,ok:a.filter(x=>x.ok).length}};
+   const rows=WC_T.map(t=>[t,by(t)]).filter(r=>r[1].n);const nm={gone:'Desapareció',moved:'Cambió de lugar',color:'Cambió de color',replaced:'Reemplazado'};
+   const metrics=[{label:'Aciertos',value:`${okN}/${nT}`},{label:'Objetos por escena',value:n},{label:'Tiempo de memorización',value:(enc/1000).toFixed(1)+' s'},{label:'Tiempo medio',value:Math.round(avg(T.map(x=>x.rt))/1000*10)/10+' s'}];
+   const details=rows.length>1?`<h4>Por tipo de cambio</h4><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Tipo</th><th>Aciertos</th><th>Precisión</th></tr></thead><tbody>${rows.map(([t,x])=>`<tr><td>${nm[t]}</td><td>${x.ok}/${x.n}</td><td>${pct(x.ok/x.n)}</td></tr>`).join('')}</tbody></table></div><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`:`<p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:okN,wrong:nT-okN,total:nT,acc,score:okN,rt:avg(T.map(x=>x.rt)),metrics,details,extra:{n,k,by:Object.fromEntries(rows),omRate:T.filter(x=>x.to).length/nT,faRate:0}}}}}
+ });
+
+/* ---- RECUERDO DIFERIDO: estudio → minijuegos distractores → recuperación ----
+   Tres materiales (palabras, asociaciones y posiciones). Durante la fase intermedia NO se muestra nada del material.
+   Se guarda el intervalo real transcurrido entre el final del estudio y el inicio de la recuperación. */
+const DL_WORDS=['mesa','libro','piano','ventana','puerta','camino','playa','nube','reloj','ciudad','perro','gato','silla','luna','tren','casa','agua','fuego','tierra','bosque','río','montaña','isla','puente','torre','jardín','flor','árbol','hoja','piedra','arena','barco','avión','coche','bicicleta','moneda','llave','espejo','cuchara','plato','vaso','botella','cuaderno','lápiz','pluma','tijera','paraguas','sombrero','zapato','guante','bufanda','abrigo','camisa','falda','collar','anillo','corona','castillo','escudo','espada','flecha','tambor','guitarra','violín','trompeta','campana','cohete','planeta','cometa','volcán','desierto','cascada','cueva','faro','muelle','granja','molino','caballo','vaca','oveja','cerdo','gallina','conejo','tortuga','delfín','ballena','águila','búho','mariposa','abeja','hormiga','araña','serpiente','lagarto','zorro','lobo','oso','tigre','jirafa','elefante','mono','loro','pingüino','manzana','pera','limón','uva','fresa','cereza','pan','queso','sopa','tarta','helado','café','miel'];
+const dlN=(L,m)=>m==='words'?Math.min(13,5+Math.ceil(L/2)):m==='pairs'?Math.min(8,3+Math.ceil(L/3)):Math.min(9,3+Math.floor(L/2.5));
+const dlStudy=(L,m)=>{const n=dlN(L,m);return Math.round(n*Math.max(1300,3200-L*110))};
+const dlDelay=L=>(20+L*5)*1000;
+const dlNorm=s=>norm(s).replace(/[^a-zñ ]/g,'').trim();
+reg({id:'delayed',skill:'memory',name:'Recuerdo diferido',icon:'delayed',tagline:'Memoriza, distráete un rato y recupera lo aprendido.',
+ howTo:m=>({
+  words:['Estudia una lista de palabras durante unos segundos.','Después harás dos minijuegos distractores (cálculo y comparación de números): nada de la lista aparece en ellos.','Por último escribe todas las palabras que recuerdes, en cualquier orden, y pulsa Terminar.'],
+  pairs:['Estudia varios pares de palabras (por ejemplo «llave → torre»).','Tras los minijuegos distractores te mostraré la primera palabra de cada par y tendrás que elegir su pareja entre varias.','Solo se usan palabras que viste en el estudio.'],
+  places:['Estudia en qué casillas de una cuadrícula aparecen unas figuras.','Tras los minijuegos distractores verás la cuadrícula vacía: toca las casillas donde estaban las figuras.','Debes tocar exactamente tantas casillas como figuras viste.']
+ }[m]||[]),
+ example:m=>({words:`<div class="ex-stim" data-stim style="font-size:1.1rem">luna · reloj · puente</div><p class="small" style="margin-top:.5rem">Estudias la lista, haces unas cuentas y después escribes: luna, reloj, puente (en cualquier orden).</p>`,pairs:`<div class="ex-stim" data-stim style="font-size:1.1rem">llave → torre</div><p class="small" style="margin-top:.5rem">Más tarde verás «llave → ?» y elegirás «torre» entre varias opciones.</p>`,places:`<div class="ex-nb" data-stim><div class="ex-nbg">${[0,1,2,3,4,5,6,7,8].map(i=>`<i class="${i===1||i===5||i===6?'a':''}"></i>`).join('')}</div></div><p class="small" style="margin-top:.5rem">Memoriza las casillas iluminadas; luego tócalas en la cuadrícula vacía.</p>`}[m]||''),
+ modes:[{id:'words',name:'Palabras',desc:'Lista y recuerdo libre'},{id:'pairs',name:'Asociaciones',desc:'Pares de palabras'},{id:'places',name:'Posiciones',desc:'Figuras en una cuadrícula'}],
+ maxLevel:15,metric:{label:'Recordados',better:'high'},daily:{mode:'words',min:100,max:200},
+ levelInfo:(L,m)=>`${dlN(L,m)} ${m==='words'?'palabras':m==='pairs'?'pares':'posiciones'} · ${(dlStudy(L,m)/1000).toFixed(0)} s de estudio · ${Math.round(dlDelay(L)/1000)} s de distracción con 2 minijuegos`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode,n=dlN(L,mode);
+  const study=ctx.budget?Math.min(dlStudy(L,mode),Math.round(ctx.budget*.35)):dlStudy(L,mode),delay=ctx.budget?Math.min(dlDelay(L),Math.max(12000,Math.round(ctx.budget*.3))):dlDelay(L),recallMax=ctx.budget?Math.max(30000,Math.round(ctx.budget*.25)):120000; /* ctx.budget está en milisegundos */
+  let phase='idle',done=false,timeUp=false,tEndStudy=0,tEndStudyClock=0,interval=null,intervalActive=null,res=null,mat=null,dist={a:{n:0,ok:0},b:{n:0,ok:0}},tRecall=0;
+  ctx.stage.innerHTML=`<div class="g-wrap dl"><div class="dl-top" id="dlt"></div><div class="dl-main" id="dlm"></div><div class="dl-ctl" id="dlc"></div></div>`;
+  const top=$('#dlt'),main=$('#dlm'),ctl=$('#dlc');
+  const bar=ms=>`<div class="hp-bar"><i style="transition:transform ${ms}ms linear"></i></div>`,kick=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{const i=$('.hp-bar i',ctx.stage);if(i&&!RM())i.style.transform='scaleX(0)'}));
+  /* ---- material ---- */
+  function makeMaterial(){
+   if(mode==='words')return {words:shuffle(DL_WORDS).slice(0,n)};
+   if(mode==='pairs'){const w=shuffle(DL_WORDS).slice(0,n*2),p=[];for(let i=0;i<n;i++)p.push([w[2*i],w[2*i+1]]);return {pairs:p}}
+   const cells=shuffle([...Array(16).keys()]).slice(0,n),sh=cells.map(()=>[ri(0,5),ri(0,5)]);return {cells,sh}}
+  /* ---- 1) estudio ---- */
+  function startStudy(){phase='study';mat=makeMaterial();top.textContent='Fase 1 de 3 · Estudio';ctl.innerHTML='';
+   if(mode==='words')main.innerHTML=`<div class="dl-words" data-stim>${mat.words.map(w=>`<span>${w}</span>`).join('')}</div>${bar(study)}<p class="hint">Memoriza las palabras</p>`;
+   else if(mode==='pairs')main.innerHTML=`<div class="dl-pairs" data-stim>${mat.pairs.map(([a,b])=>`<span>${a} <i>→</i> ${b}</span>`).join('')}</div>${bar(study)}<p class="hint">Memoriza los pares</p>`;
+   else main.innerHTML=`<div class="dl-grid" data-stim>${Array.from({length:16},(_,c)=>{const k=mat.cells.indexOf(c);return `<span class="dl-cell${k>=0?' f':''}">${k>=0?shapeSVG(WC_SH[mat.sh[k][0]],WC_COL[mat.sh[k][1]]):''}</span>`}).join('')}</div>${bar(study)}<p class="hint">Memoriza dónde están las figuras</p>`;
+   kick();Sound.alert();ctx.say('Memoriza el material');
+   ctx.clock.after(study,()=>{if(done)return;tEndStudy=performance.now();tEndStudyClock=ctx.clock.now();startDelay()})}
+  /* ---- 2) fase intermedia: dos minijuegos distractores (sin nada del material) ---- */
+  function startDelay(){phase='delay';top.textContent='Fase 2 de 3 · Distracción';main.innerHTML='';ctl.innerHTML='';const half=Math.round(delay/2);
+   runDist('a',half,()=>runDist('b',half,startRecall))}
+  function runDist(kind,ms,after){const end=ctx.clock.now()+ms;let cur=null,over=false;
+   const title=kind==='a'?'Minijuego 1 · Cálculo':'Minijuego 2 · ¿Cuál es mayor?';
+   /* el minijuego termina por tiempo aunque no se responda: la fase intermedia dura lo previsto */
+   ctx.clock.after(ms,()=>{if(done||over)return;over=true;cur=null;after()});
+   const draw=()=>{if(done||over)return;if(ctx.clock.now()>=end)return;
+    if(kind==='a'){const a=ri(6,39),b=ri(3,19),op=pick(['+','−']),ans=op==='+'?a+b:a-b,wrong=new Set();while(wrong.size<2){const w=ans+pick([-3,-2,-1,1,2,3,10,-10]);if(w!==ans)wrong.add(w)}cur={ans,opts:shuffle([ans,...wrong]),txt:`${a} ${op} ${b} = ?`}}
+    else{let x=ri(10,99),y=ri(10,99);while(x===y)y=ri(10,99);cur={ans:Math.max(x,y),opts:[x,y],txt:'¿Cuál es mayor?'}}
+    main.innerHTML=`<div class="dl-dist"><b>${title}</b><div class="dl-q">${cur.txt}</div><div class="dl-opts">${cur.opts.map(o=>`<button class="btn btn-lg dl-o" data-v="${o}">${o}</button>`).join('')}</div></div>${bar(Math.max(500,end-ctx.clock.now()))}`;kick()};
+   main.onclick=e=>{const b=e.target.closest('.dl-o');if(!b||ctx.clock.paused||phase!=='delay'||!cur)return;const ok=+b.dataset.v===cur.ans;dist[kind].n++;if(ok)dist[kind].ok++;ctx.feedback(ok,{msg:false,noFlash:true,quiet:true});cur=null;ctx.clock.after(ok?120:350,draw)};
+   draw()}
+  /* ---- 3) recuperación ---- */
+  function startRecall(){if(done)return;phase='recall';interval=Math.round((performance.now()-tEndStudy)/1000);intervalActive=Math.round((ctx.clock.now()-tEndStudyClock)/1000);tRecall=ctx.clock.now();top.textContent='Fase 3 de 3 · Recuperación';ctl.innerHTML='';
+   if(mode==='words')recallWords();else if(mode==='pairs')recallPairs();else recallPlaces();
+   ctx.clock.after(recallMax,()=>{if(phase==='recall')finish()})}
+  /* palabras: recuerdo libre */
+  function recallWords(){const got=[];main.innerHTML=`<p class="small">Escribe las palabras que recuerdes (Enter para añadir). No hay orden.</p><div class="dl-form"><input class="input" id="dl-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="una palabra…" aria-label="Palabra recordada"><button class="btn btn-primary" id="dl-add">Añadir</button></div><div class="dl-got" id="dl-got"></div>`;ctl.innerHTML=`<button class="btn btn-primary btn-lg" id="dl-end">${ic('check')} Terminar</button>`;
+   const draw=()=>{$('#dl-got').innerHTML=got.map((w,i)=>`<span class="dl-chip">${esc(w)}<button data-i="${i}" aria-label="Quitar ${esc(w)}">×</button></span>`).join('')};
+   const add=()=>{const v=$('#dl-in').value.trim();if(!v)return;const k=dlNorm(v);if(got.some(g=>dlNorm(g)===k)){$('#dl-in').value='';return}got.push(v);$('#dl-in').value='';draw();Sound.soft()};
+   $('#dl-add').onclick=add;$('#dl-in').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();add()}};$('#dl-got').onclick=e=>{const b=e.target.closest('button');if(b){got.splice(+b.dataset.i,1);draw()}};
+   $('#dl-end').onclick=()=>{if(ctx.clock.paused)return;add();finish(got)};$('#dl-in').focus({preventScroll:true});mat.got=got}
+  /* asociaciones: reconocimiento con opciones */
+  function recallPairs(){let i=0;const order=shuffle(mat.pairs.map((_,k)=>k)),answers=[];const all=mat.pairs.map(p=>p[1]);
+   const q=()=>{if(i>=order.length)return finish(answers);const [a,b]=mat.pairs[order[i]];const others=shuffle(all.filter(x=>x!==b)).slice(0,3),opts=shuffle([b,...others]);
+    main.innerHTML=`<div class="dl-dist"><b>Pregunta ${i+1} de ${order.length}</b><div class="dl-q">${a} <i>→</i> ?</div><div class="dl-opts">${opts.map(o=>`<button class="btn btn-lg dl-o" data-v="${o}">${o}</button>`).join('')}</div></div>`;
+    main.onclick=e=>{const bt=e.target.closest('.dl-o');if(!bt||ctx.clock.paused)return;answers.push({a,b,pick:bt.dataset.v,ok:bt.dataset.v===b});ctx.feedback(bt.dataset.v===b,{msg:false,noFlash:true,quiet:true});i++;q()}};q()}
+  /* posiciones: marcar casillas */
+  function recallPlaces(){const sel=new Set();main.innerHTML=`<p class="small">Toca las <b>${n}</b> casillas donde estaban las figuras.</p><div class="dl-grid rc" data-stim>${Array.from({length:16},(_,c)=>`<button class="dl-cell" data-c="${c}" aria-label="Casilla ${c+1}"></button>`).join('')}</div><p class="hint" id="dl-cnt">0/${n}</p>`;ctl.innerHTML=`<button class="btn btn-primary btn-lg" id="dl-end">${ic('check')} Terminar</button>`;
+   main.onclick=e=>{const b=e.target.closest('.dl-cell');if(!b||ctx.clock.paused)return;const c=+b.dataset.c;if(sel.has(c))sel.delete(c);else if(sel.size<n)sel.add(c);b.classList.toggle('sel',sel.has(c));$('#dl-cnt').textContent=`${sel.size}/${n}`};
+   $('#dl-end').onclick=()=>{if(ctx.clock.paused)return;finish([...sel])};mat.sel=sel}
+  /* ---- evaluación ---- */
+  function finish(ans){if(done)return;done=true;phase='fb';const rt=Math.round((ctx.clock.now()-tRecall)/1000);
+   if(mode==='words'){const got=ans||mat.got||[],used=new Set(),hits=[],intr=[];for(const g of got){const k=dlNorm(g);let m=mat.words.findIndex((w,i)=>!used.has(i)&&(dlNorm(w)===k||(k.length>=5&&lev(dlNorm(w),k)<=1)));if(m>=0){used.add(m);hits.push(mat.words[m])}else intr.push(g)}
+    res={hits:hits.length,intr:intr.length,total:n,list:mat.words.map((w,i)=>({w,ok:used.has(i)})),intrusions:intr,rt}}
+   else if(mode==='pairs'){const a=ans||[];res={hits:a.filter(x=>x.ok).length,intr:0,total:n,list:a.map(x=>({w:`${x.a} → ${x.b}`,ok:x.ok})),intrusions:[],rt}}
+   else{const sel=new Set(ans||mat.sel||[]),truth=new Set(mat.cells),hits=[...sel].filter(c=>truth.has(c)).length,intr=[...sel].filter(c=>!truth.has(c)).length;res={hits,intr,total:n,list:[...truth].map(c=>({w:`casilla ${c+1}`,ok:sel.has(c)})),intrusions:[...sel].filter(c=>!truth.has(c)).map(c=>`casilla ${c+1}`),rt}}
+   ctx.feedback(res.hits===n&&!res.intr,{msg:`Recordaste ${res.hits} de ${n}`});ctx.score(res.hits,'Recordados');ctx.hits(res.hits);
+   main.onclick=null;ctl.innerHTML='';main.innerHTML=`<div class="mu-msg ${res.hits===n?'ok':''}">Recordaste ${res.hits} de ${n}${res.intr?` · ${res.intr} intrusión${res.intr>1?'es':''}`:''}</div><div class="dl-res">${res.list.map(x=>`<span class="dl-chip ${x.ok?'ok':'no'}">${x.ok?'✓':'✗'} ${x.w}</span>`).join('')}</div>${res.intrusions.length?`<p class="small">No estaban en el material: ${res.intrusions.join(', ')}</p>`:''}<p class="note">Intervalo real entre el estudio y la recuperación: ${interval} s</p>`;
+   ctx.clock.after(1800,()=>ctx.end())}
+  ctx.score(0,'Recordados');ctx.clock.after(600,startStudy);
+  return {peek:()=>({phase,mat,res,interval,mode}),onTimeUp(){timeUp=true;if(phase==='recall')finish(mode==='words'?mat.got:mode==='pairs'?[]:[...(mat.sel||[])]);else if(phase==='study'||phase==='delay'){done=true;ctx.end()}},summary(){
+   if(!res)return null;const acc=Math.max(0,res.hits/res.total-(res.intr?0.05*res.intr:0));
+   const metrics=[{label:'Recordados',value:`${res.hits}/${res.total}`},{label:'Intrusiones',value:res.intr},{label:'Intervalo real',value:interval+' s'},{label:'Tiempo de recuperación',value:res.rt+' s'},{label:'Minijuego de cálculo',value:`${dist.a.ok}/${dist.a.n}`},{label:'Minijuego de comparación',value:`${dist.b.ok}/${dist.b.n}`}];
+   const details=`<h4>Recuerdo tras una demora</h4><p>Entre el estudio y la recuperación pasaron <b>${interval} s</b> reales (${intervalActive} s de tiempo activo) con dos minijuegos distractores. Las <b>intrusiones</b> son respuestas que no estaban en el material.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no son una evaluación clínica de la memoria.</p>`;
+   return {correct:res.hits,wrong:(res.total-res.hits)+res.intr,total:res.total,acc,score:res.hits,rt:null,metrics,details,extra:{mode,n:res.total,hits:res.hits,intr:res.intr,interval,intervalActive,dist,omRate:res.total?(res.total-res.hits)/res.total:0,faRate:0}}}}}
+ });
+
 
 /* =====================================================================
    MUNDO 3 — LOGIC UNIVERSE
