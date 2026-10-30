@@ -528,6 +528,13 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .hud-item.warn{border-color:rgba(255,194,75,.5)}.hud-item.warn b{color:var(--warn)}
 .hud-item.ghost b{color:var(--cosmic);font-size:.9rem}
 .hud-item.ghost.beat{border-color:var(--ok);box-shadow:0 0 16px rgba(61,220,132,.4)}
+@media (max-width:480px){
+  .play-top{flex-wrap:wrap;row-gap:.35rem;gap:.5rem}
+  .pl-title{flex:1 1 0;min-width:0}
+  .pl-title .pl-ic{display:none}
+  .pl-hud{order:3;flex:1 0 100%;justify-content:center;gap:.4rem}
+  .pl-hud .hud-item{min-width:0;flex:1 1 0;padding:.2rem .4rem}
+}
 .hud-item.ghost.beat b{color:var(--ok)}
 @media (max-width:640px){.pl-title small{display:none}.hud-item{min-width:52px;padding:.2rem .45rem}.hud-item b{font-size:.95rem}.hud-item.ghost{display:none}.play-top{gap:.45rem}}
 .daily-strip{position:relative;padding:.6rem clamp(.8rem,2.5vw,1.5rem);border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(83,140,255,.08),rgba(155,109,255,.05))}
@@ -668,6 +675,57 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .trial-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--teal),var(--blue));transform-origin:left}
 .stroop-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;width:100%}
 @media (min-width:720px){.stroop-btns{grid-template-columns:repeat(4,1fr)}}
+/* Stroop 3.0 */
+.stroop-btns.n5,.stroop-btns.n6{grid-template-columns:repeat(3,1fr)}
+@media (min-width:720px){.stroop-btns.n4{grid-template-columns:repeat(4,1fr)}.stroop-btns.n5{grid-template-columns:repeat(5,1fr)}.stroop-btns.n6{grid-template-columns:repeat(6,1fr)}}
+.stroop-btns.yn{grid-template-columns:repeat(2,1fr)}
+.stroop-btns.off{opacity:.5;pointer-events:none}
+.cbtn.neutral{letter-spacing:.06em}
+.cbtn.yn{min-height:84px;font-size:1.15rem}
+.srule{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:3;padding:.28rem .85rem;border-radius:99px;font-family:var(--display);font-weight:800;letter-spacing:.12em;font-size:.78rem;white-space:nowrap;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);color:#F2F6FF}
+.srule[data-r=ink]{border-color:#6499FF;color:#BFD3FF}.srule[data-r=word]{border-color:#FF65C7;color:#FFC2E8}
+.sdist{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.sdist .dist{position:absolute;background:var(--dc);opacity:.85;animation:distDrift 4s ease-in-out infinite alternate}
+.sdist .dc{border-radius:50%}.sdist .ds{border-radius:4px}.sdist .dt{clip-path:polygon(50% 0,100% 100%,0 100%)}
+@keyframes distDrift{from{transform:translate(0,0)}to{transform:translate(10px,-8px)}}
+.sbrief{position:absolute;inset:0;z-index:6;display:grid;place-items:center;background:rgba(5,8,19,.97);padding:1rem;text-align:center;overflow:auto}
+.sbrief .sb-in{display:flex;flex-direction:column;gap:.6rem;align-items:center;max-width:460px;color:#F2F6FF}
+.sbrief h3{color:#F2F6FF}.sbrief p{color:#A8B6CE}.sbrief .eyebrow{color:#46D8CC}
+.ex-stim{display:grid;place-items:center;height:90px;border-radius:16px;background:var(--stim);border:1px solid var(--line-2);font-family:var(--display);font-weight:800;font-size:2.1rem;letter-spacing:.07em;color:#F2F6FF}
+.ex-box{padding:.8rem;border-radius:16px;border:1px dashed var(--line-2);background:rgba(var(--ov),.025)}
+.tbl-wrap{overflow:auto}
+/* Cambio de reglas 3.0 */
+.swl{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%;min-height:1.6rem}
+.swl-i{display:inline-flex;align-items:center;gap:.4rem;padding:.28rem .7rem;border-radius:99px;background:rgba(var(--ov),.05);border:1px solid var(--line-2);font-size:var(--t-sm)}
+.swl-i b{font-family:var(--display);letter-spacing:.06em}
+.sw-phase{border-color:var(--pink);color:var(--pink)}
+.fr-sw{display:inline-block;width:26px;height:18px;border-radius:5px;flex:none;--fc:#538CFF;outline:3px solid var(--fc);outline-offset:1px}
+.fr-sw[data-fr=m],.sw-card[data-fr=m]{--fc:#B36DFF;outline-style:dashed}.fr-sw[data-fr=d],.sw-card[data-fr=d]{--fc:#FFB547;outline-style:dotted}
+.sw-card[data-fr]{outline-width:6px;outline-offset:3px;outline-color:var(--fc)}.sw-card[data-fr=a]{--fc:#538CFF;outline-style:solid}
+.sq-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:rgba(var(--ov),.2)}.sq-dot.d{background:var(--ok)}.sq-dot.on{background:var(--pink);box-shadow:0 0 8px var(--pink)}
+.sq-chip{display:inline-block;margin:.25rem .3rem;padding:.3rem .8rem;border-radius:99px;border:1px solid #6499FF;color:#F2F6FF;font-family:var(--display);font-weight:800;letter-spacing:.08em}
+.sw-nogo{position:absolute;inset:0;display:grid;place-items:center;font-size:5rem;font-weight:900;color:#FF5470;background:rgba(255,255,255,.4);border-radius:inherit;text-shadow:0 0 10px rgba(255,255,255,.7)}
+.ex-sw{display:flex;justify-content:center;padding:1rem;border-radius:16px;background:var(--stim);border:1px solid var(--line-2)}
+.sw-card{position:relative}
+@media (max-width:480px){.swl{gap:.3rem}.swl-i{font-size:.72rem;padding:.18rem .55rem;gap:.3rem}.fr-sw{width:20px;height:14px;outline-width:2px}.sw-card[data-fr]{outline-width:5px}}
+/* Caza de estímulos 2.0 */
+.hstream{display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:720px;margin:auto}
+.hs-row{display:grid;gap:.8rem;width:100%;grid-template-columns:1fr}.hs-row.d2{grid-template-columns:1fr 1fr}
+.hs-box{position:relative;border-radius:22px;background:var(--stim);border:2px solid var(--line-2);height:clamp(170px,30svh,250px);display:grid;place-items:center;overflow:hidden;transition:box-shadow .15s,border-color .15s;touch-action:manipulation;color:var(--stim-text)}
+.hs-box .hs-shape{width:clamp(90px,20vw,130px);aspect-ratio:1;opacity:0;transition:opacity .08s}
+.hs-box .hs-shape svg{width:100%;height:100%;display:block}
+.hs-box.hit{border-color:#3DDC84;box-shadow:0 0 28px rgba(61,220,132,.45)}.hs-box.fa{border-color:#FF5470;box-shadow:0 0 28px rgba(255,84,112,.45)}.hs-box.miss{border-color:#FFC24B}
+.hs-cap{position:absolute;top:8px;left:12px;font-size:.7rem;letter-spacing:.14em;color:#A8B6CE;text-transform:uppercase}
+.hs-go{min-height:78px;width:100%}
+.hs-row.d2 .hs-go{min-height:84px}
+.ex-row{display:flex;gap:1rem;justify-content:center;align-items:center;padding:.9rem;border-radius:16px;background:var(--stim);border:1px solid var(--line-2);flex-wrap:wrap}
+.ex-it{position:relative;display:inline-block}.ex-it svg{width:100%;height:100%;display:block}
+.ex-it i{position:absolute;right:-8px;top:-8px;font-style:normal;font-weight:800;font-size:.78rem;border-radius:50%;width:18px;height:18px;display:grid;place-items:center}
+.ex-it.ok i{background:#3DDC84;color:#04210f}.ex-it.no i{background:#FF5470;color:#fff}
+.ex-stim svg{width:64px;height:64px}.ex-stim{gap:1rem}
+.hp-banner .hp-card{display:flex;justify-content:center;margin:.6rem 0}.hp-it svg{width:100%;height:100%;display:block}
+.arena-banner.hp-banner .hp-txt{font-size:1.05rem;color:#F2F6FF;line-height:1.5}.arena-banner.hp-banner .hp-txt b{display:inline;font-family:var(--font);font-size:inherit;letter-spacing:.02em;margin:0;color:#F2F6FF}
+.hp-bar{height:5px;border-radius:5px;background:rgba(255,255,255,.14);overflow:hidden;margin:.8rem auto 0;max-width:260px}.hp-bar i{display:block;height:100%;background:linear-gradient(90deg,#46D8CC,#6499FF);transform-origin:left}
 .cbtn{position:relative;overflow:hidden;min-height:78px;border-radius:20px;border:0;background:linear-gradient(165deg,color-mix(in srgb,var(--k) 88%,#fff),color-mix(in srgb,var(--k) 70%,#000));color:#060913;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:.1em;cursor:pointer;box-shadow:0 10px 26px -10px var(--k),0 4px 0 color-mix(in srgb,var(--k) 45%,#000),inset 0 1px 0 rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;gap:.5rem;transition:transform .08s,box-shadow .08s}
 .cbtn .kbd{position:absolute;top:7px;left:9px;color:#060913;border-color:rgba(var(--vd),.4);background:rgba(255,255,255,.35)}
 .cbtn .csym{font-size:1.2rem}
@@ -684,6 +742,7 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .hitem.gone{transition:opacity .25s;opacity:0;pointer-events:none}
 .arena-banner{position:absolute;inset:0;display:grid;place-items:center;color:var(--stim-text);background:rgba(5,8,19,.78);z-index:3;text-align:center;padding:1.2rem;font-size:1.25rem;animation:popIn .3s}
 .arena-banner b{display:block;font-family:var(--display);font-size:clamp(1.3rem,4vw,1.9rem);color:var(--pink);letter-spacing:.1em;margin-bottom:.4rem}
+.arena-banner b:not(:first-child){display:inline;font-family:var(--font);font-size:inherit;letter-spacing:.02em;margin:0;color:inherit}
 .memo-grid{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;max-width:780px}
 .memo-w{padding:.7rem 1.1rem;border-radius:16px;font-size:clamp(1.05rem,2.6vw,1.3rem);font-weight:700;background:linear-gradient(160deg,rgba(155,109,255,.22),rgba(155,109,255,.05));border:1px solid rgba(155,109,255,.42);box-shadow:0 0 22px -8px var(--violet);animation:popIn .4s var(--spring) both;letter-spacing:.02em}
 .memo-w small{color:var(--cosmic);margin-right:.4rem;font-family:var(--display);font-size:.75rem}
@@ -1236,6 +1295,9 @@ const SKILLS=[
 const SK=Object.fromEntries(SKILLS.map(s=>[s.id,s]));
 const GAMES={};
 const reg=d=>{GAMES[d.id]=d};
+/* howTo y example pueden ser listas/HTML fijos o funciones del modo elegido */
+const howToOf=(d,m)=>{const h=typeof d.howTo==='function'?d.howTo(m):d.howTo;return Array.isArray(h)?h:[]};
+const exampleOf=(d,m)=>typeof d.example==='function'?(d.example(m)||''):(d.example||'');
 const GOALS={focus:{name:'Concentración',icon:'focus',c:'#538CFF',skills:['attention','learning'],desc:'Atención sostenida y control de distracciones.'},memory:{name:'Memoria',icon:'memory',c:'#9B6DFF',skills:['memory','language'],desc:'Recordar más y mejor.'},agility:{name:'Agilidad mental',icon:'bolt',c:'#FFB547',skills:['math','logic'],desc:'Cálculo y razonamiento más ágiles.'},balanced:{name:'Entrenamiento equilibrado',icon:'brain',c:'#35E6DF',skills:[],desc:'Un poco de todo, cada día.'}};
 const RANKS=[[1,'Neurona Novata'],[3,'Sinapsis Activa'],[5,'Red en Expansión'],[8,'Arquitecto Neural'],[12,'Mente Cuántica'],[16,'Maestro Neuroverse'],[20,'Leyenda Sináptica']];
 const rankOf=L=>RANKS.filter(r=>L>=r[0]).at(-1)[1];
@@ -2801,7 +2863,7 @@ const Play={cur:null,hudT:null,
   st.innerHTML=`<div class="card intro hud glass" style="--c:${s.color}"><span class="hud-c"></span>
    ${c.o.anomaly?`<div class="banner-warn" style="margin:0">${ic('spark')} <b>Anomalía neuronal:</b> desafío sorpresa en el nivel ${c.level} (uno por encima del recomendado) con XP ×2. No modifica tu nivel recomendado.</div>`:''}
    <div class="intro-head"><div class="intro-ic">${ic(d.icon)}</div><div><div class="eyebrow" style="color:${s.color}">${s.world} · ${s.short}</div><h2>${esc(d.name)}</h2><p>${d.tagline}</p></div></div>
-   <div><div class="lbl" style="margin-bottom:.5rem">Cómo se juega</div><ol class="howto">${d.howTo.map(h=>`<li><span>${h}</span></li>`).join('')}</ol></div>
+   <div><div class="lbl" style="margin-bottom:.5rem">Cómo se juega</div><ol class="howto">${howToOf(d,c.mode).map(h=>`<li><span>${h}</span></li>`).join('')}</ol>${exampleOf(d,c.mode)?`<div class="ex-box"><div class="lbl" style="margin-bottom:.4rem">Ejemplo resuelto</div>${exampleOf(d,c.mode)}</div>`:''}</div>
    ${modeUI}${optUI}
    ${c.o.anomaly?'':`<div><div class="lbl" style="margin-bottom:6px">Nivel <span class="dim">· recomendado por Neuro AI: ${c.rec}</span></div><div class="lvl-pick"><button class="icon-btn" id="lv-m" aria-label="Bajar nivel">${ic('minus')}</button><div class="lp-n" aria-live="polite" id="lv-n">${c.level}</div><button class="icon-btn" id="lv-p" aria-label="Subir nivel">${ic('plus')}</button><div class="lp-info"><b>${tierName(c.level,d.maxLevel)}</b> · nivel ${c.level} de ${d.maxLevel}${c.level!==c.rec?' <span class="pill-warn">(elegido manualmente)</span>':''}<br>${d.levelInfo?d.levelInfo(c.level,c.mode):''}</div></div><div class="pips" aria-hidden="true">${Array.from({length:d.maxLevel},(_,i)=>`<i class="${i<c.level?'on':''} ${i+1===c.rec?'rec':''}"></i>`).join('')}</div>
     <div class="seg" id="in-tiers" role="group" aria-label="Categoría de dificultad" style="margin-top:.7rem">${TIERS.map((n,t)=>{const[a,b]=tierRange(t,d.maxLevel),on=tierIdx(c.level,d.maxLevel)===t;return `<button type="button" data-t="${t}" class="${on?'on':''}" aria-pressed="${on}">${n}<small>${a===b?'Nivel '+a:'Niveles '+a+'–'+b}${c.rec>=a&&c.rec<=b?' · recomendado':''}</small></button>`}).join('')}</div>
@@ -3002,7 +3064,7 @@ function keypad(box,{onSubmit,allowNeg=false,maxLen=7}){
   box.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b)api.press(b.dataset.k)});
   return api;
 }
-const HSH=['circle','square','triangle','star','diamond'];
+const HSH=['circle','square','triangle','star','diamond','cross'];
 function starPts(cx,cy,R,r,n){const s=[];for(let i=0;i<n*2;i++){const a=-Math.PI/2+i*Math.PI/n,rad=i%2?r:R;s.push((cx+rad*Math.cos(a)).toFixed(1)+','+(cy+rad*Math.sin(a)).toFixed(1))}return s.join(' ')}
 function shapePath(sh){return {circle:'<circle cx="50" cy="50" r="42"/>',square:'<rect x="11" y="11" width="78" height="78" rx="10"/>',triangle:'<polygon points="50,8 93,88 7,88"/>',star:`<polygon points="${starPts(50,53,47,20,5)}"/>`,diamond:'<polygon points="50,4 95,50 50,96 5,50"/>',cross:'<path d="M37 8h26v29h29v26H63v29H37V63H8V37h29z"/>',arrow:'<path d="M50 6L86 46H62V94H38V46H14z"/>',flag:'<path d="M24 92V8h6v6l50 14-50 18v46z"/>',hex:'<polygon points="50,5 89,27 89,73 50,95 11,73 11,27"/>'}[sh]||''}
 function shapeSVG(sh,fill,{rot=0,extra='',stroke=null,sw=0}={}){return `<svg viewBox="0 0 100 100" aria-hidden="true"><g transform="rotate(${rot} 50 50)" fill="${fill}" ${stroke?`stroke="${stroke}" stroke-width="${sw}"`:''}>${shapePath(sh)}</g>${extra}</svg>`}
@@ -3065,7 +3127,7 @@ Daily.showStep=function(prev){
    ${prev?`<div class="xp-trans"><div class="chk"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5L20 7"/></svg></div><div style="flex:1;min-width:0"><b>${esc(GAMES[prev.res.game].name)} completada</b><div class="small muted">${pct(prev.res.acc)} de precisión · +${prev.xp} XP${prev.pbs.length?' · ¡récord personal!':''}</div></div><b class="num" style="color:var(--teal);font-size:1.4rem">+${prev.xp}</b></div>`:`<div class="eyebrow nol">Operación ${esc(r.name)}</div>`}
    <div class="row between"><div class="eyebrow">Actividad ${r.idx+1} de ${total}${it.why?' · '+esc(it.why):''}</div><span class="tag" style="--c:#35E6DF">${xpSoFar} XP acumulados</span></div>
    <div class="intro-head"><div class="intro-ic">${ic(g.icon)}</div><div><h2>${esc(g.name)}</h2><p>${s.world} · ${s.short} · ${fmtClock(it.budget*1000)} de actividad</p></div></div>
-   <ol class="howto">${g.howTo.map(h=>`<li><span>${h}</span></li>`).join('')}</ol>
+   <ol class="howto">${howToOf(g,it.mode??(typeof g.daily?.mode==='function'?g.daily.mode():g.daily?.mode)??g.modes?.[0]?.id).map(h=>`<li><span>${h}</span></li>`).join('')}</ol>
    <div class="small muted">Nivel ${gs(it.game).level} recomendado por Neuro AI${it.mode?` · modo ${esc(modeName(it.game,it.mode))}`:''}</div>
    <div class="row intro-cta"><button class="btn btn-primary btn-lg" id="ds-go">${ic('play')} Comenzar</button><button class="btn btn-ghost" id="ds-skip">${ic('skip')} Saltar actividad</button></div></div>`;
   $('#ds-go').onclick=()=>Play.open(it.game,{daily:{budget:it.budget,sessionId:r.id},mode:it.mode,autostart:true});
@@ -3128,97 +3190,474 @@ Daily.summary=function(sess,r,ex){
 /* =====================================================================
    MUNDO 1 — FOCUS LAB
    ===================================================================== */
-const INK=[{name:'ROJO',hex:'#FF4D5E',sym:'●'},{name:'AZUL',hex:'#538CFF',sym:'■'},{name:'VERDE',hex:'#3DDC84',sym:'▲'},{name:'AMARILLO',hex:'#FFD23F',sym:'★'}];
-const stLim=L=>3200-(L-1)*230,stInc=L=>.5+(L-1)*.045;
-reg({id:'stroop',skill:'attention',name:'Stroop Challenge',icon:'stroop',tagline:'Nombra el color de la tinta, no la palabra.',
- howTo:['Verás un nombre de color (ROJO, AZUL…) escrito con una tinta que puede no coincidir.','Pulsa el botón del <b>color de la tinta</b> e ignora lo que dice la palabra.','Atajos de teclado: 1, 2, 3 y 4.'],
- modes:[{id:'time',name:'Contrarreloj',desc:'60 s · todas las que puedas'},{id:'prec',name:'Precisión',desc:'30 palabras · límite por palabra'}],
- maxLevel:10,metric:{label:'Aciertos',better:'high'},speed:true,daily:{mode:'time',min:60,max:150,slowMode:'prec'},
- levelInfo:L=>`${Math.round(stInc(L)*100)} % de palabras incongruentes · límite de ${(stLim(L)/1000).toFixed(1)} s por palabra en modo precisión${L>=5?' · posición variable':''}`,
+/* ---- STROOP 3.0: laboratorio de control inhibitorio y atención selectiva ----
+   Ocho condiciones (clásico, inverso, cambio de reglas, interferencias, memoria, dual y Master).
+   Cada ensayo tiene una única respuesta objetivamente correcta. Los colores son siempre los mismos en cualquier tema. */
+const median=a=>{if(!a||!a.length)return null;const s=[...a].sort((x,y)=>x-y),m=s.length>>1;return s.length%2?s[m]:(s[m-1]+s[m])/2};
+const INK=[{name:'ROJO',hex:'#FF4D5E',sym:'●'},{name:'AZUL',hex:'#538CFF',sym:'■'},{name:'VERDE',hex:'#3DDC84',sym:'▲'},{name:'AMARILLO',hex:'#FFD23F',sym:'★'},{name:'NARANJA',hex:'#FF8A2B',sym:'◆'},{name:'MORADO',hex:'#B36DFF',sym:'✚'}];
+const SNEUTRAL=['MESA','CASA','TREN','LIBRO','SILLA','RELOJ','PUERTA','CAMINO','PLAYA','VENTANA'];
+const SMEM=['☾','♠','♣','♥','♦','✦','☀','☂'];
+const STMODES=[
+ {id:'time',name:'Clásico · contrarreloj',desc:'Color de la tinta · 60 s'},
+ {id:'prec',name:'Clásico · precisión',desc:'30 palabras con límite'},
+ {id:'inverse',name:'Inverso',desc:'Lee la palabra, ignora el color'},
+ {id:'switch',name:'Cambio de reglas',desc:'COLOR o PALABRA según la señal'},
+ {id:'interf',name:'Con interferencias',desc:'Distractores en la periferia'},
+ {id:'memory',name:'Con memoria',desc:'Recuerda tras una demora'},
+ {id:'dual',name:'Dual',desc:'Stroop + recordar símbolos'},
+ {id:'master',name:'Stroop Master',desc:'Bloques que combinan todo'}
+];
+/* escalera de dificultad (15 niveles): colores, proporción de incongruentes, límite, señal, distractores, memoria */
+const stNC=L=>L<=6?4:L<=10?5:6;
+const stMix=L=>L<=3?[.45,.35,.2]:L<=6?[.3,.5,.2]:L<=9?[.2,.65,.15]:L<=12?[.15,.75,.1]:[.1,.8,.1];
+const stLim=L=>L<=10?3200-(L-1)*230:1130-(L-10)*60;
+const stCSI=L=>L<=3?900:L<=6?700:L<=9?500:L<=12?350:250;
+const stDist=L=>L<=3?2:L<=6?4:L<=9?6:L<=12?8:10;
+const stMemN=L=>L<=4?1:L<=9?2:3;
+const stMemShow=L=>Math.max(650,1300-L*40);
+const stMemDelay=L=>Math.min(4200,900+L*220);
+const stHold=L=>L<=4?1:L<=9?2:3;
+const stProbeEvery=L=>L<=6?8:L<=10?6:5;
+const stBlocks=L=>L<=5?3:L<=10?5:6;
+const ST_KINDS=['ink','word','switch','switch+interf','dual','memory'];
+const stExample=(w,hex,txt,sub)=>`<div class="ex-stim" data-stim><span style="color:${hex}">${w}</span></div><p class="small" style="margin-top:.5rem">${txt}</p>${sub?`<p class="note">${sub}</p>`:''}`;
+reg({id:'stroop',skill:'attention',name:'Stroop Challenge',icon:'stroop',tagline:'Laboratorio de control inhibitorio: tinta, palabra, cambios de regla, memoria e interferencias.',
+ howTo:m=>({
+  time:['Verás el nombre de un color escrito con una tinta que puede no coincidir (o una palabra neutra).','Pulsa el botón del <b>color de la tinta</b> e ignora lo que dice la palabra.','Atajos de teclado: 1 a 6 según los botones.'],
+  prec:['Igual que el modo clásico, pero con 30 palabras y un límite de tiempo por palabra.','Pulsa el botón del <b>color de la tinta</b>; si no respondes a tiempo cuenta como omisión.','Atajos de teclado: 1 a 6 según los botones.'],
+  inverse:['Ahora la tarea se invierte: debes responder al <b>significado de la palabra</b> e ignorar el color de la tinta.','Pulsa el botón que <b>dice</b> lo mismo que la palabra. Los botones aparecen en gris porque su color no importa.','Atajos de teclado: 1 a 6.'],
+  switch:['Antes de cada palabra aparece una señal: <b>COLOR</b> o <b>PALABRA</b>.','Con COLOR responde al color de la tinta; con PALABRA, a lo que dice la palabra. La señal puede cambiar de un ensayo a otro.','Medimos cuánto cuesta cambiar de regla frente a repetirla.'],
+  interf:['La tarea es la del Stroop clásico: responde al <b>color de la tinta</b>.','En los bordes de la pantalla aparecerán figuras de colores que debes ignorar. Nunca tapan la palabra.','Atajos de teclado: 1 a 6.'],
+  memory:['Primero se indica qué debes recordar: la <b>TINTA</b> o la <b>PALABRA</b>.','Verás 1 a 3 palabras seguidas, habrá una pausa y te preguntaré por la tinta o la palabra de una de ellas (primera, segunda o última).','Mientras se muestran no puedes responder: solo mira y recuerda.'],
+  dual:['Haces dos tareas a la vez: el Stroop clásico (color de la tinta) y recordar unos <b>símbolos</b>.','Al empezar cada ciclo verás 1 a 3 símbolos para memorizar. Después vendrán varias palabras de Stroop.','Al final del ciclo te preguntaré si un símbolo estaba entre los memorizados (SÍ / NO). Cada tarea se puntúa por separado.'],
+  master:['Una sesión de varios bloques con reglas distintas: tinta, palabra, señal COLOR/PALABRA, interferencias, símbolos y memoria.','Antes de cada bloque verás una tarjeta con su regla y un ejemplo resuelto. La regla vigente siempre queda visible arriba.','Entre bloques hay un descanso sin penalización; continúas cuando quieras.']
+ }[m]||[]),
+ example:m=>({
+  time:stExample('AZUL','#FF4D5E','La palabra dice AZUL pero la tinta es <b>roja</b>: pulsa <b>ROJO</b>.'),
+  prec:stExample('VERDE','#FFD23F','La palabra dice VERDE pero la tinta es <b>amarilla</b>: pulsa <b>AMARILLO</b>.'),
+  inverse:stExample('AZUL','#FF4D5E','La palabra dice <b>AZUL</b> (aunque la tinta sea roja): pulsa <b>AZUL</b>.','Los botones son grises: solo importa lo que dice la palabra.'),
+  switch:stExample('ROJO','#538CFF','Si la señal es <b>COLOR</b>, la tinta es azul: pulsa AZUL. Si fuera <b>PALABRA</b>, pulsarías ROJO.','Cada ensayo tiene una sola respuesta correcta según su señal.'),
+  interf:stExample('AMARILLO','#3DDC84','La tinta es <b>verde</b>: pulsa <b>VERDE</b>, aunque en los bordes aparezcan figuras de otros colores.'),
+  memory:stExample('ROJO','#538CFF','Si te piden recordar la <b>TINTA</b>, tras la pausa responderás <b>AZUL</b>; si te piden la <b>PALABRA</b>, responderás <b>ROJO</b>.'),
+  dual:stExample('♠ ♥','#F2F6FF','Memorizas ♠ y ♥, haces varias palabras de Stroop y luego te pregunto: «¿Estaba ♣?» → NO.'),
+  master:stExample('BLOQUE 2','#B36DFF','Cada bloque anuncia su regla y su ejemplo antes de empezar. Respira entre bloques.')
+ }[m]||''),
+ modes:STMODES,
+ options:[],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},speed:true,daily:{mode:'time',min:60,max:150,slowMode:'prec'},
+ levelInfo:(L,mode)=>{const m=stMix(L),b=`${stNC(L)} colores · ${Math.round(m[1]*100)} % incongruentes · límite de ${(stLim(L)/1000).toFixed(1)} s`;
+  if(mode==='switch')return `${b} · señal ${stCSI(L)} ms antes${L>=9?' y después se oculta':''}${L<=3?' · alternancia predecible':L<=6?' · cambios ocasionales':' · cambios imprevisibles'}`;
+  if(mode==='interf')return `${b} · ${stDist(L)} distractores en la periferia${L>=7&&!RM()?' en movimiento':''}`;
+  if(mode==='memory')return `${stNC(L)} colores · ${stMemN(L)} palabra${stMemN(L)>1?'s':''} a recordar · se muestran ${(stMemShow(L)/1000).toFixed(1)} s cada una · demora de ${(stMemDelay(L)/1000).toFixed(1)} s`;
+  if(mode==='dual')return `${b} · recordar ${stHold(L)} símbolo${stHold(L)>1?'s':''} · comprobación cada ${stProbeEvery(L)} palabras`;
+  if(mode==='master')return `${stBlocks(L)} bloques · ${stNC(L)} colores · ${Math.round(m[1]*100)} % incongruentes`;
+  return `${b}${L>=5?' · posición variable':''}`},
  start(ctx){
-  const L=ctx.level,timed=ctx.mode==='time',lim=stLim(L),inc=stInc(L),assist=S.settings.colorAssist,N=timed?Infinity:30;
-  const st={c:0,w:0,to:0,n:0,rt:[],rtI:[],rtC:[],combo:0,best:0};
-  ctx.stage.innerHTML=`<div class="stroop"><div class="stroop-box frame" style="--c:var(--blue)"><div class="stroop-word" id="sw" aria-live="polite"></div><div class="stroop-sym" id="ss" aria-hidden="true"></div>${timed?'':'<div class="trial-bar"><i id="stb"></i></div>'}</div>
-   <div class="stroop-btns" role="group" aria-label="Color de la tinta">${INK.map((c,i)=>`<button class="cbtn" data-i="${i}" style="--k:${c.hex}"><span class="kbd">${i+1}</span>${c.name}${assist?`<span class="csym">${c.sym}</span>`:''}</button>`).join('')}</div>
-   <p class="hint" style="margin:0">${timed?'Contrarreloj':'Modo precisión · '+N+' palabras'} · combo actual <b id="scb">0</b></p></div>`;
-  const sw=$('#sw'),ss=$('#ss'),btns=$$('.cbtn',ctx.stage);let cur=null,t0=0,tm=null,prev=null;
-  if(!timed)ctx.clock.loop(()=>{const b=$('#stb');if(cur&&b)b.style.transform=`scaleX(${clamp(1-(ctx.clock.now()-t0)/lim,0,1)})`});
+  const L=ctx.level,mode=ctx.mode,assist=S.settings.colorAssist,NC=stNC(L),lim=stLim(L),rm=RM();
+  const T=[];                                   /* registro de ensayos: {k,cond,ok,to,rt,sw,ph} */
+  const st={combo:0,best:0,okN:0,n:0};
+  const dur=ctx.budget||(mode==='time'?60000:75000),isMaster=mode==='master',precMode=mode==='prec',N=precMode?30:Infinity;
+  ctx.stage.innerHTML=`<div class="stroop"><div class="stroop-box" id="sbox" style="--c:var(--blue)"><div class="sdist" id="sdist" aria-hidden="true"></div><div class="srule" id="srule" aria-live="polite"></div><div class="stroop-word" id="sw" aria-live="polite"></div><div class="stroop-sym" id="ss" aria-hidden="true"></div><div class="trial-bar" id="stbw"><i id="stb"></i></div></div>
+   <div class="stroop-btns n${NC}" id="sbtns" role="group" aria-label="Respuestas"></div><p class="hint" id="shint" style="margin:0"></p></div>`;
+  const box=$('#sbox'),sw=$('#sw'),ss=$('#ss'),sr=$('#srule'),sd=$('#sdist'),btns=$('#sbtns'),hint=$('#shint');
+  let wdx=0,wdy=0,cur=null,t0=0,tm=null,prevKey=null,queue=[],jitIdx=0,held=[],sinceProbe=0,lastCue=null,sameRun=0,swPlan=0,blockIdx=0,blockLeft=0,blockKind=null,done=false;
+  const colors=INK.slice(0,NC);
+  /* ---------- botones ---------- */
+  function setButtons(kind){ /* 'ink' (colores), 'word' (grises con el nombre), 'yn' (sí/no) */
+   btns.className='stroop-btns '+(kind==='yn'?'yn':'n'+NC);
+   btns.innerHTML=kind==='yn'?`<button class="cbtn yn" data-a="y" style="--k:#46D8CC"><span class="kbd">S</span>SÍ</button><button class="cbtn yn" data-a="n" style="--k:#FF65C7"><span class="kbd">N</span>NO</button>`
+    :colors.map((c,i)=>`<button class="cbtn${kind==='word'?' neutral':''}" data-a="${i}" style="--k:${kind==='word'?'#8FA0BC':c.hex}"><span class="kbd">${i+1}</span>${c.name}${assist&&kind==='ink'?`<span class="csym">${c.sym}</span>`:''}</button>`).join('');
+   btns.dataset.kind=kind}
+  const enable=on=>{btns.classList.toggle('off',!on)};
+  /* ---------- condiciones por bloque ---------- */
+  function mixFor(kinds){let[c,i,n]=stMix(L);const j=[0,-1,1][jitIdx++%3];if(j){const d=.18*j;i=clamp(i+d,.1,.9);c=clamp(c-d*.6,.05,.8);n=Math.max(0,1-c-i)}
+   if(!kinds.neutral){c+=n/2;i+=n/2;n=0}return [c,i,n]}
+  function newBlock(neutral=true,n=12){const[c,i,nn]=mixFor({neutral});let ci=Math.round(n*c),ii=Math.round(n*i),ni=Math.max(0,n-ci-ii);if(!neutral){ni=0;ii=n-ci}
+   const a=[...Array(ci).fill('c'),...Array(ii).fill('i'),...Array(ni).fill('n')];return shuffle(a)}
+  const nextCond=(neutral=true)=>{if(!queue.length)queue=newBlock(neutral);return queue.pop()};
+  /* ---------- estímulo ---------- */
+  function makeStim(cond,rule){
+   for(let k=0;k<40;k++){const w=ri(0,NC-1);let ink,word,nword=null;
+    if(cond==='c'){ink=w;word=w}else if(cond==='i'){word=w;ink=(w+ri(1,NC-1))%NC}
+    else if(rule==='ink'){word=-1;ink=ri(0,NC-1);nword=pick(SNEUTRAL)}
+    else{word=ri(0,NC-1);ink=-1}
+    const key=`${word}|${ink}|${nword||''}`;if(key!==prevKey||k===39){prevKey=key;return {ink,word,nword}}}}
+  function showStim(s){const hex=s.ink>=0?INK[s.ink].hex:'#A8B6CE',txt=s.word>=0?INK[s.word].name:s.nword;
+   sw.textContent=txt;sw.style.color=hex;box.style.setProperty('--ink',hex);
+   sw.setAttribute('aria-label',`Palabra ${txt}${s.ink>=0?' escrita en tinta '+INK[s.ink].name.toLowerCase():' en gris'}`);
+   ss.textContent=assist&&s.ink>=0?INK[s.ink].sym:'';ss.style.color=hex;
+   const jit=L>=5&&!rm&&mode!=='memory';wdx=jit?ri(-34,34):0;wdy=jit?ri(-16,16):0;
+   sw.style.transform=jit?`translate(${wdx}px,${wdy}px) rotate(${ri(-6,6)}deg)`:'';
+   sw.classList.remove('in');void sw.offsetWidth;sw.classList.add('in');sw.style.visibility='visible'}
+  const hideStim=()=>{sw.textContent='';ss.textContent='';sw.style.visibility='hidden'};
+  const setRule=(txt,r)=>{sr.textContent=txt;sr.dataset.r=r||'';sr.style.visibility=txt?'visible':'hidden'};
+  /* ---------- distractores periféricos (nunca tapan la palabra) ---------- */
+  function clearDist(){sd.innerHTML=''}
+  function placeDist(){clearDist();const n=stDist(L),bw=box.clientWidth,bh=box.clientHeight;if(!bw||!bh)return;
+   /* la palabra se anima al entrar, así que su zona se calcula con su tamaño de maquetación y su desplazamiento final (más un margen por el giro) */
+   const b=box.getBoundingClientRect(),ww=sw.offsetWidth+24,wh=sw.offsetHeight+24,wcx=b.left+bw/2+wdx,wcy=b.top+bh/2+wdy;
+   const avoid=[{left:wcx-ww/2,right:wcx+ww/2,top:wcy-wh/2,bottom:wcy+wh/2},...[sr,ss].map(e=>e.getBoundingClientRect()).filter(r=>r.width&&r.height)],pad=26;
+   for(let k=0;k<n;k++){const size=ri(14,26);let x,y,ok=false;
+    for(let t=0;t<60&&!ok;t++){x=ri(6,Math.max(7,bw-size-6));y=ri(6,Math.max(7,bh-size-6));const R={l:b.left+x,t:b.top+y,r:b.left+x+size,b:b.top+y+size};ok=!avoid.some(a=>R.r>a.left-pad&&R.l<a.right+pad&&R.b>a.top-pad&&R.t<a.bottom+pad)}
+    if(!ok)continue;const col=pick(INK).hex,sh=pick(['dc','ds','dt']);
+    const i=document.createElement('i');i.className='dist '+sh;i.style.cssText=`left:${x}px;top:${y}px;width:${size}px;height:${size}px;--dc:${col};${L>=7&&!rm?`animation-duration:${(3+Math.random()*3).toFixed(1)}s;animation-delay:-${(Math.random()*3).toFixed(1)}s`:'animation:none'}`;sd.appendChild(i)}}
+  /* ---------- registro y marcador ---------- */
+  function rec(r){T.push(r);if(r.k!=='probe'&&r.ph!=='enc'){st.n++;if(r.ok){st.okN++;st.combo++;st.best=Math.max(st.best,st.combo)}else st.combo=0}
+   ctx.score(st.okN,'Aciertos');ctx.hits(st.okN);ctx.extra('Combo',st.combo)}
+  /* ---------- respuesta única (Stroop clásico, inverso, señal, interferencia, dual) ---------- */
+  function present(trial,limit){cur=trial;showStim(trial);if(trial.dist)placeDist();else clearDist();enable(true);t0=ctx.clock.now();tm=ctx.clock.after(limit,()=>answer(null))}
+  function answer(a){
+   if(!cur||ctx.clock.paused)return;const c=cur;cur=null;ctx.clock.cancel(tm);const rt=ctx.clock.now()-t0,to=a===null,ok=!to&&String(a)===String(c.correct);
+   rec({k:c.kind,cond:c.cond,ok,to,rt:Math.round(rt),sw:c.isSwitch,ph:c.ph});enable(false);
+   const bs=$$('.cbtn',btns),correctBtn=c.kind==='probe'?bs.find(b=>b.dataset.a===c.correct):bs[c.correct];
+   if(to){ctx.feedback(false,{msg:'Tiempo agotado'})}
+   else if(ok)ctx.feedback(true,{el:bs.find(b=>b.dataset.a===String(a)),msg:false});
+   else{ctx.feedback(false,{el:bs.find(b=>b.dataset.a===String(a)),msg:c.kind==='probe'?'Era '+(c.correct==='y'?'SÍ':'NO'):`Era ${INK[c.correctIdx??c.correct]?.name||''}`});correctBtn&&correctBtn.classList.add('reveal');ctx.clock.after(450,()=>correctBtn&&correctBtn.classList.remove('reveal'))}
+   const isb=ok?150:(to?500:520);c.after?c.after(ok):ctx.clock.after(isb,next)}
+  $('#sbtns').addEventListener('click',e=>{const b=e.target.closest('.cbtn');if(!b||ctx.clock.paused||btns.classList.contains('off'))return;answer(b.dataset.a)});
+  ctx.key(e=>{const k=e.key.toLowerCase();if(btns.classList.contains('off'))return;
+   if(btns.dataset.kind==='yn'){if(k==='s'||k==='y'||k==='arrowright'){e.preventDefault();answer('y')}else if(k==='n'||k==='arrowleft'){e.preventDefault();answer('n')}return}
+   const n=+e.key;if(n>=1&&n<=NC){e.preventDefault();answer(String(n-1))}});
+  /* ---------- constructores de ensayos ---------- */
+  function trialInk(kind){const cond=nextCond(true),s=makeStim(cond,'ink');return {kind,cond,...s,correct:s.ink,correctIdx:s.ink}}
+  function trialWord(){const cond=nextCond(true),s=makeStim(cond,'word');return {kind:'word',cond,...s,correct:s.word,correctIdx:s.word}}
+  function trialSwitch(interf){const cond=nextCond(false);let cue;
+   if(lastCue==null)cue=pick(['ink','word']);
+   else if(L<=3){sameRun++;if(sameRun>=4){cue=lastCue==='ink'?'word':'ink';sameRun=0}else cue=lastCue}
+   else{const p=L<=6?.35:L<=9?.5:.55;cue=Math.random()<p?(lastCue==='ink'?'word':'ink'):lastCue}
+   const isSwitch=lastCue==null?null:cue!==lastCue;lastCue=cue;const s=makeStim(cond,'ink');
+   return {kind:'switch',cond,...s,cue,isSwitch,dist:!!interf,correct:cue==='ink'?s.ink:s.word,correctIdx:cue==='ink'?s.ink:s.word}}
+  /* ---------- flujo de cada modo ---------- */
+  function runInk(kind,dist){const t=trialInk(kind);t.dist=dist;setButtons('ink');setRule('Color de la TINTA','ink');present(t,precMode||mode==='master'||mode!=='time'?lim:lim*1.5)}
+  function runWord(){const t=trialWord();setButtons('word');setRule('Lee la PALABRA','word');present(t,lim)}
+  function runSwitch(interf){const t=trialSwitch(interf);setButtons(t.cue==='word'?'word':'ink');
+   const csi=stCSI(L);hideStim();clearDist();enable(false);setRule(t.cue==='ink'?'COLOR':'PALABRA',t.cue);
+   ctx.clock.after(csi,()=>{if(done)return;const keepCue=L<=8;if(!keepCue)setRule('','');t.after=null;present(t,lim+0)})}
+  function runMem(){
+   const n=stMemN(L),ask=pick(['ink','word']),items=[];for(let k=0;k<n;k++){const cond=Math.random()<stMix(L)[1]/(stMix(L)[0]+stMix(L)[1])?'i':'c';items.push({cond,...makeStim(cond,'ink')})}
+   const qi=n===1?0:pick([0,n-1,...(n>2?[1]:[])]);const ord=['primera','segunda','tercera'];const which=n===1?'':qi===n-1?'la última':`la ${ord[qi]}`;
+   setButtons('ink');enable(false);hideStim();clearDist();setRule(`Recuerda la ${ask==='ink'?'TINTA':'PALABRA'}`,ask==='ink'?'ink':'word');
+   let k=0;const step=()=>{if(done)return;if(k<n){showStim(items[k]);setRule(`${k+1}/${n} · recuerda la ${ask==='ink'?'TINTA':'PALABRA'}`,ask==='ink'?'ink':'word');ctx.clock.after(stMemShow(L),()=>{hideStim();k++;ctx.clock.after(180,step)})}
+    else{setRule('…','');sw.textContent='+';sw.style.color='#8493AF';sw.style.visibility='visible';ctx.clock.after(stMemDelay(L),query)}};
+   const query=()=>{if(done)return;sw.style.visibility='hidden';sw.textContent='';
+    setButtons(ask==='ink'?'ink':'word');setRule(n===1?`¿Cuál era la ${ask==='ink'?'TINTA':'PALABRA'}?`:`¿Cuál era la ${ask==='ink'?'TINTA':'PALABRA'} de ${which}?`,ask==='ink'?'ink':'word');
+    const it=items[qi];cur={kind:'mem',cond:it.cond,ph:'q',correct:ask==='ink'?it.ink:it.word,correctIdx:ask==='ink'?it.ink:it.word};enable(true);t0=ctx.clock.now();tm=ctx.clock.after(lim+1500,()=>answer(null))};
+   ctx.clock.after(900,step)}
+  /* tarea dual: ciclos de [símbolos a recordar] + varias palabras de Stroop + comprobación */
+  function startHold(){const n=stHold(L);held=shuffle(SMEM).slice(0,n);hideStim();clearDist();enable(false);setButtons('ink');
+   setRule(`Memoriza ${n===1?'este símbolo':'estos símbolos'}`,'');sw.style.visibility='visible';sw.textContent=held.join('  ');sw.style.color='#F2F6FF';sw.style.transform='';
+   ctx.clock.after(1500+n*500,()=>{if(done)return;sw.style.visibility='hidden';sw.textContent='';sinceProbe=0;next()})}
+  let probeNext=null,probed=false;
+  function runProbe(){setButtons('yn');setRule('¿Estaba este símbolo?','');hideStim();clearDist();
+   const present_=Math.random()<.5,sym=present_?pick(held):pick(SMEM.filter(s=>!held.includes(s)));sw.style.visibility='visible';sw.textContent=sym;sw.style.color='#F2F6FF';sw.style.transform='';
+   cur={kind:'probe',cond:null,correct:present_?'y':'n',after:()=>ctx.clock.after(500,()=>{if(done)return;probeNext?probeNext():startHold()})};enable(true);t0=ctx.clock.now();tm=ctx.clock.after(5000,()=>answer(null))}
+  /* Master: bloques con reglas distintas, tarjeta previa y descanso */
+  function nextBlock(){
+   const kinds=ST_KINDS.slice(0,L<=5?3:L<=10?5:6);if(blockIdx>=stBlocks(L)){done=true;return ctx.end()}
+   blockKind=kinds[blockIdx%kinds.length];blockLeft=blockKind==='memory'?5:blockKind==='dual'?8:9;queue=[];lastCue=null;sameRun=0;probed=false;probeNext=null;
+   const info={ink:['Bloque de TINTA','Responde al color de la tinta.',stExample('AZUL','#FF4D5E','Tinta roja → pulsa ROJO.')],word:['Bloque de PALABRA','Responde a lo que dice la palabra (botones grises).',stExample('AZUL','#FF4D5E','Dice AZUL → pulsa AZUL.')],
+    switch:['Bloque con señal','Con COLOR responde a la tinta; con PALABRA, a lo que dice.',stExample('ROJO','#538CFF','Señal COLOR → AZUL. Señal PALABRA → ROJO.')],
+    'switch+interf':['Señal + interferencias','Igual que el bloque anterior, pero con figuras en los bordes que debes ignorar.',stExample('ROJO','#538CFF','Señal COLOR → AZUL. Ignora las figuras de los bordes.')],
+    dual:['Stroop + símbolos','Memoriza los símbolos, haz varias palabras (color de la tinta) y responde SÍ/NO a la pregunta final.',stExample('♠ ♥','#F2F6FF','¿Estaba ♣? → NO.')],
+    memory:['Stroop con memoria','Recuerda la tinta o la palabra que se te indique y respóndela tras la pausa.',stExample('ROJO','#538CFF','Recuerda la TINTA → AZUL.')]}[blockKind];
+   enable(false);hideStim();clearDist();setRule(`Bloque ${blockIdx+1} de ${stBlocks(L)}`,'');
+   $('#stbw').style.visibility='hidden';box.style.height='auto';box.style.minHeight='min(460px,66svh)';
+   const brief=document.createElement('div');brief.className='sbrief';brief.innerHTML=`<div class="sb-in"><div class="eyebrow">${blockIdx+1} / ${stBlocks(L)}</div><h3>${info[0]}</h3><p>${info[1]}</p>${info[2]}<button class="btn btn-primary" id="sb-go">Empezar bloque</button><p class="note">${blockIdx>0?"Descanso sin penalización: continúa cuando estés listo.":"Empieza cuando estés listo: no hay prisa en las tarjetas."}</p></div>`;box.appendChild(brief);
+   $('#sb-go',brief).onclick=()=>{if(ctx.clock.paused)return;brief.remove();box.style.height='';box.style.minHeight='';$('#stbw').style.visibility='';blockIdx++;if(blockKind==='dual'){startHold()}else next()};
+   $('#sb-go',brief).focus({preventScroll:true})}
+  /* ---------- siguiente ensayo ---------- */
+  function nextMaster(){
+   if(blockLeft<=0){if(blockKind==='dual'&&!probed){probed=true;probeNext=nextBlock;return runProbe()}return nextBlock()}
+   blockLeft--;
+   switch(blockKind){case 'ink':return runInk('ink',false);case 'word':return runWord();case 'switch':return runSwitch(false);case 'switch+interf':return runSwitch(true);case 'memory':return runMem();case 'dual':return runInk('ink',false)}}
   function next(){
-    if(st.n>=N)return ctx.end();
-    let ink,word,isI;do{ink=ri(0,3);isI=Math.random()<inc;word=isI?(ink+ri(1,3))%4:ink}while(prev&&prev.ink===ink&&prev.word===word);
-    cur={ink,word,isI};prev=cur;st.n++;
-    $('.stroop-box',ctx.stage).style.setProperty('--ink',INK[ink].hex);
-    sw.textContent=INK[word].name;sw.style.color=INK[ink].hex;sw.setAttribute('aria-label',`Palabra ${INK[word].name} escrita en tinta ${assist?INK[ink].name:''}`);
-    ss.textContent=assist?INK[ink].sym:'';ss.style.color=INK[ink].hex;
-    sw.style.transform=L>=5&&!RM()?`translate(${ri(-34,34)}px,${ri(-16,16)}px) rotate(${ri(-6,6)}deg)`:'';
-    sw.classList.remove('in');void sw.offsetWidth;sw.classList.add('in');
-    t0=ctx.clock.now();if(!timed)tm=ctx.clock.after(lim,()=>answer(-1));
-  }
-  function answer(i){
-    if(!cur)return;const c=cur;cur=null;ctx.clock.cancel(tm);const rt=ctx.clock.now()-t0,ok=i===c.ink;
-    if(i<0){st.to++;st.w++;st.combo=0;ctx.feedback(false,{msg:'Tiempo agotado'})}
-    else if(ok){st.c++;st.rt.push(rt);(c.isI?st.rtI:st.rtC).push(rt);st.combo++;st.best=Math.max(st.best,st.combo);ctx.feedback(true,{el:btns[i],msg:false})}
-    else{st.w++;st.combo=0;ctx.feedback(false,{el:btns[i],msg:`Era ${INK[c.ink].name}`});btns[c.ink].classList.add('reveal');ctx.clock.after(450,()=>btns[c.ink].classList.remove('reveal'))}
-    $('#scb').textContent=st.combo;ctx.score(st.c,'Aciertos');ctx.hits(st.c);ctx.extra('Combo',st.combo);
-    ctx.clock.after(ok?140:450,next);
-  }
-  ctx.stage.querySelector('.stroop-btns').addEventListener('click',e=>{const b=e.target.closest('.cbtn');if(b&&!ctx.clock.paused)answer(+b.dataset.i)});
-  ctx.key(e=>{const k=+e.key;if(k>=1&&k<=4){e.preventDefault();answer(k-1)}});
-  if(timed)ctx.countdown(ctx.budget||60000,()=>ctx.end());
-  ctx.score(0,'Aciertos');next();
-  return {summary(){const tot=st.c+st.w,ie=avg(st.rtI),ce=avg(st.rtC);return {correct:st.c,wrong:st.w,total:tot,acc:tot?st.c/tot:0,score:st.c,rt:avg(st.rt),
-   metrics:[{label:'Aciertos',value:st.c},{label:'Errores',value:st.w-st.to},{label:'Sin responder',value:st.to},{label:'Tiempo medio',value:st.rt.length?Math.round(avg(st.rt))+' ms':'—'},{label:'Mejor combo',value:st.best}],
-   extra:{interf:ie&&ce?Math.round(ie-ce):null},
-   details:ie&&ce?`<h4>Efecto de interferencia</h4><p>Respondiste en <b>${Math.round(ce)} ms</b> cuando palabra y tinta coincidían y en <b>${Math.round(ie)} ms</b> cuando no. Diferencia: <b>${Math.round(ie-ce)} ms</b>. Cuanto menor sea, mejor gestionas la interferencia dentro de este juego.</p>`:''}}};
+   if(done)return;
+   if(precMode&&st.n>=N){done=true;return ctx.end()}
+   if(isMaster)return nextMaster();
+   switch(mode){case 'inverse':return runWord();case 'switch':return runSwitch(false);case 'interf':return runInk('ink',true);case 'memory':return runMem();
+    case 'dual':if(sinceProbe>=stProbeEvery(L))return runProbe();sinceProbe++;return runInk('ink',false);
+    default:return runInk('ink',false)}}
+  /* barra de tiempo del ensayo */
+  ctx.clock.loop(()=>{const b=$('#stb');if(!b)return;if(cur&&btns.dataset.kind!=='yn'){const lm=cur.kind==='mem'?lim+1500:(mode==='time'?lim*1.5:lim);b.style.transform=`scaleX(${clamp(1-(ctx.clock.now()-t0)/lm,0,1)})`}else b.style.transform='scaleX(1)'});
+  hint.textContent=({time:'Contrarreloj',prec:`Modo precisión · ${N} palabras`,inverse:'Modo inverso: responde a la PALABRA',switch:'Cambio de reglas: mira la señal',interf:'Con interferencias: ignora los bordes',memory:'Con memoria: mira, espera y responde',dual:'Dual: Stroop + símbolos',master:'Stroop Master'})[mode]||'';
+  if(!precMode&&!isMaster)ctx.countdown(dur,()=>{done=true;ctx.end()});
+  ctx.score(0,'Aciertos');
+  if(isMaster)nextBlock();else if(mode==='dual')startHold();else next();
+  /* ---------- resumen ---------- */
+  const rtOf=a=>a.filter(x=>x.ok&&!x.to).map(x=>x.rt);
+  return {peek:()=>cur,summary(){
+   const S1=T.filter(x=>x.k!=='probe'),P=T.filter(x=>x.k==='probe'),okS=S1.filter(x=>x.ok).length,okP=P.filter(x=>x.ok).length,to=T.filter(x=>x.to).length;
+   const acc=T.length?(okS+okP)/T.length:0;
+   const by=c=>{const a=S1.filter(x=>x.cond===c);return {n:a.length,ok:a.filter(x=>x.ok).length,rt:Math.round(median(rtOf(a))||0)||null}};
+   const cC=by('c'),cI=by('i'),cN=by('n'),med=median(rtOf(S1)),effect=cC.rt&&cI.rt?cI.rt-cC.rt:null;
+   const swT=S1.filter(x=>x.k==='switch'&&x.sw!=null),swR=swT.filter(x=>x.sw),rpR=swT.filter(x=>!x.sw),swRt=median(rtOf(swR)),rpRt=median(rtOf(rpR)),swCost=swRt&&rpRt?Math.round(swRt-rpRt):null;
+   const mem=S1.filter(x=>x.k==='mem');
+   const pc=x=>x.n?pct(x.ok/x.n):'—',ms=v=>v==null?'—':Math.round(v)+' ms';
+   const metrics=[{label:'Aciertos',value:`${okS+okP}/${T.length}`},{label:'Omisiones',value:to},{label:'Mediana de respuesta',value:ms(med)}];
+   if(cC.n)metrics.push({label:'Congruentes',value:`${pc(cC)}${cC.rt?` · ${cC.rt} ms`:''}`});
+   if(cI.n)metrics.push({label:'Incongruentes',value:`${pc(cI)}${cI.rt?` · ${cI.rt} ms`:''}`});
+   if(cN.n)metrics.push({label:'Neutrales',value:`${pc(cN)}${cN.rt?` · ${cN.rt} ms`:''}`});
+   if(effect!=null)metrics.push({label:'Diferencia incongruente − congruente',value:(effect>=0?'+':'')+effect+' ms'});
+   if(swCost!=null)metrics.push({label:'Coste de cambio de regla',value:(swCost>=0?'+':'')+swCost+' ms'});
+   if(mem.length)metrics.push({label:'Recuerdo tras demora',value:`${mem.filter(x=>x.ok).length}/${mem.length}`});
+   if(P.length)metrics.push({label:'Tarea de símbolos',value:`${okP}/${P.length}`});
+   if(P.length)metrics.push({label:'Tarea de Stroop',value:`${okS}/${S1.length}`});
+   const rows=[['Congruentes',cC],['Incongruentes',cI],['Neutrales',cN]].filter(r=>r[1].n).map(([l,x])=>`<tr><td>${l}</td><td>${x.ok}/${x.n}</td><td>${pc(x)}</td><td>${x.rt?x.rt+' ms':'—'}</td></tr>`).join('');
+   const swTxt=swCost!=null?`<p>Cuando la regla <b>cambió</b> respondiste en ${swRt?Math.round(swRt):'—'} ms (mediana) y cuando se <b>repitió</b> en ${rpRt?Math.round(rpRt):'—'} ms: coste de cambio ${(swCost>=0?'+':'')}${swCost} ms. Precisión: ${pc({n:swR.length,ok:swR.filter(x=>x.ok).length})} al cambiar y ${pc({n:rpR.length,ok:rpR.filter(x=>x.ok).length})} al repetir.</p>`:'';
+   const details=`<h4>Resultados por condición</h4>${rows?`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Condición</th><th>Aciertos</th><th>Precisión</th><th>Mediana</th></tr></thead><tbody>${rows}</tbody></table></div>`:''}${effect!=null?`<p>Diferencia entre ensayos incongruentes y congruentes: <b>${effect>=0?'+':''}${effect} ms</b>. Es una medida de cuánto te cuesta ignorar el conflicto <i>dentro de este juego</i>; compárala solo con partidas del mismo modo y nivel.</p>`:''}${swTxt}<p class="note">Estas cifras describen tu rendimiento en esta tarea. No miden inteligencia ni dan ningún diagnóstico.</p>`;
+   return {correct:okS+okP,wrong:T.length-okS-okP,total:T.length,acc,score:okS+okP,rt:med,metrics,details,
+    extra:{med:med?Math.round(med):null,effect,swCost,omRate:T.length?to/T.length:0,cond:{c:cC,i:cI,n:cN},swAcc:swT.length?{sw:swR.length?swR.filter(x=>x.ok).length/swR.length:null,rep:rpR.length?rpR.filter(x=>x.ok).length/rpR.length:null}:null,mem:mem.length?{n:mem.length,ok:mem.filter(x=>x.ok).length}:null,probe:P.length?{n:P.length,ok:okP}:null,best:st.best}}}}
  }});
 
-const HCOL=[{hex:'#538CFF',m:'azul',mp:'azules',f:'azul',fp:'azules',L:'A'},{hex:'#FF65C7',m:'rosa',mp:'rosas',f:'rosa',fp:'rosas',L:'R'},{hex:'#FFD23F',m:'amarillo',mp:'amarillos',f:'amarilla',fp:'amarillas',L:'M'},{hex:'#3DDC84',m:'verde',mp:'verdes',f:'verde',fp:'verdes',L:'V'}];
-const HSN={circle:['círculo','círculos',0],square:['cuadrado','cuadrados',0],triangle:['triángulo','triángulos',0],star:['estrella','estrellas',1],diamond:['rombo','rombos',0]};
+/* ---- CAZA DE ESTÍMULOS 2.0: laboratorio de atención selectiva, sostenida y dividida ----
+   Ocho modos. Cada estímulo tiene una respuesta objetivamente correcta (toca / no toques / pulsa / no pulses).
+   Los colores y las formas son siempre los mismos en cualquier tema. */
+const HCOL=[{hex:'#538CFF',m:'azul',mp:'azules',f:'azul',fp:'azules',L:'A'},{hex:'#FF65C7',m:'rosa',mp:'rosas',f:'rosa',fp:'rosas',L:'R'},{hex:'#FFD23F',m:'amarillo',mp:'amarillos',f:'amarilla',fp:'amarillas',L:'M'},{hex:'#3DDC84',m:'verde',mp:'verdes',f:'verde',fp:'verdes',L:'V'},{hex:'#FF4D5E',m:'rojo',mp:'rojos',f:'roja',fp:'rojas',L:'J'},{hex:'#B36DFF',m:'morado',mp:'morados',f:'morada',fp:'moradas',L:'P'}];
+const HSN={circle:['círculo','círculos',0],square:['cuadrado','cuadrados',0],triangle:['triángulo','triángulos',0],star:['estrella','estrellas',1],diamond:['rombo','rombos',0],cross:['cruz','cruces',1]};
+const HMODES=[
+ {id:'std',name:'Clásico',desc:'Una regla de color y forma'},
+ {id:'multi',name:'Selección múltiple',desc:'Forma + color + tamaño'},
+ {id:'change',name:'Objetivo cambiante',desc:'La regla cambia en la ronda'},
+ {id:'sustained',name:'Atención sostenida',desc:'Flujo continuo, objetivos raros'},
+ {id:'gonogo',name:'Go / No-Go',desc:'Responde o inhibe'},
+ {id:'dual',name:'Doble atención',desc:'Dos flujos a la vez'},
+ {id:'memory',name:'Objetivo memorizado',desc:'La regla se oculta'},
+ {id:'overload',name:'Attention Overload',desc:'Todo combinado · élite'}
+];
+const H_STREAM=['sustained','gonogo','dual'];
+const hNC=L=>L<=4?4:L<=9?5:6;
+const hNS=L=>L<=3?4:L<=8?5:6;
+const hClose=L=>Math.min(.85,.2+L*.045);
+const hPeriod=L=>Math.max(560,1150-L*40);
+const hPT=L=>Math.max(.08,.22-L*.01);
+const hPNoGo=L=>Math.min(.45,.18+L*.02);
+const hMemShow=L=>Math.max(1500,5200-L*250);
+const hRoundMs=L=>Math.max(14000,24000-L*600);
+/* una regla es un conjunto de condiciones sobre color (c), forma (s), tamaño (z, 'S' o 'L'), una forma exceptuada (exs) o «no es de este color» (notc) */
+function hMatch(r,it){
+ if(r.notc)return it.c!==r.c;
+ if(r.c&&it.c!==r.c)return false;
+ if(r.s&&it.s!==r.s)return false;
+ if(r.z&&it.z!==r.z)return false;
+ if(r.exs&&it.s===r.exs)return false;
+ return true}
 function hRule(r){const up=s=>`<b>${s.toUpperCase()}</b>`;
- if(r.t==='color')return `todo lo de color ${up(r.c.m)}`;
- if(r.t==='shape')return `solo ${HSN[r.s][2]?'las':'los'} ${up(HSN[r.s][1])}`;
- if(r.t==='both'){const f=HSN[r.s][2];return `solo ${f?'las':'los'} ${up(HSN[r.s][1]+' '+(f?r.c.fp:r.c.mp))}`}
- return `todo lo que ${up('no')} sea de color ${up(r.c.m)}`}
-const hMatch=(r,it)=>r.t==='color'?it.c===r.c:r.t==='shape'?it.s===r.s:r.t==='both'?it.s===r.s&&it.c===r.c:it.c!==r.c;
-reg({id:'hunt',skill:'attention',name:'Caza de estímulos',icon:'hunt',tagline:'Atrapa solo lo que cumple la regla.',
- howTo:['Aparecerán figuras de colores moviéndose por la pantalla.','Toca únicamente las que cumplan la regla indicada arriba (por ejemplo, «solo los círculos azules»).','En niveles avanzados la regla cambia durante la partida: siempre se anuncia antes.'],
- maxLevel:10,metric:{label:'Aciertos',better:'high'},speed:true,daily:{min:45,max:120},
- levelInfo:L=>`Hasta ${3+Math.ceil(L/2)} figuras a la vez · ${L<=2?'reglas simples':L<=5?'reglas de forma y color':'reglas con negación'}${L>=4?' · la regla cambia durante la partida':''}`,
- start(ctx){
-  const L=ctx.level,dur=ctx.budget||45000,maxOn=3+Math.ceil(L/2),speed=32+L*11,life=3800-L*180,spawnEvery=950-L*45,size=Math.round(72-L*2.4),assist=S.settings.colorAssist;
-  const types=L<=2?['color','shape']:L<=5?['both','color','shape','both']:['both','not','shape','both'],changes=L>=4,changeEvery=L>=8?11000:L>=6?14000:17000;
-  ctx.stage.innerHTML=`<div class="hunt"><div class="rule-bar" id="hrule" aria-live="polite"></div><div class="arena" id="harena" aria-label="Zona de juego"></div><p class="hint" style="margin:0">Toca solo los objetivos. Los fallos y los objetivos que se escapan restan precisión.</p></div>`;
-  const arena=$('#harena'),ruleEl=$('#hrule');let W=0,H=0;const measure=()=>{const r=arena.getBoundingClientRect();W=r.width;H=r.height};measure();ctx.on(window,'resize',measure);
-  const st={hit:0,miss:0,fa:0,rules:0,rts:[]};let items=[],rule=null,frozen=0,lastSpawn=-1e9,lastChange=0;
-  const place=it=>{it.el.style.transform=`translate(${it.x.toFixed(1)}px,${it.y.toFixed(1)}px)`};
-  function newRule(){let r;do{r={t:pick(types),c:pick(HCOL),s:pick(HSH)}}while(rule&&rule.t===r.t&&rule.c===r.c&&rule.s===r.s);rule=r;st.rules++;
-    ruleEl.innerHTML=`${st.rules>1?'<span class="eyebrow" style="color:var(--pink)">Nueva regla · </span>':''}Toca ${hRule(r)}`;
-    if(st.rules>1){items.forEach(it=>it.el.remove());items=[];ruleEl.classList.remove('flash');void ruleEl.offsetWidth;ruleEl.classList.add('flash');Sound.alert();ctx.say('Cambio de regla');
-      const b=document.createElement('div');b.className='arena-banner';b.innerHTML=`<div><b>¡CAMBIO DE REGLA!</b>Ahora toca ${hRule(r)}</div>`;arena.appendChild(b);frozen=ctx.clock.now()+1900;ctx.clock.after(1900,()=>b.remove())}}
-  function make(target){for(let k=0;k<80;k++){let c=pick(HCOL),s=pick(HSH);
-    if(target){if(rule.t==='color')c=rule.c;else if(rule.t==='shape')s=rule.s;else if(rule.t==='both'){c=rule.c;s=rule.s}}
-    else if(rule.t==='both'&&L>=3&&Math.random()<.7){if(Math.random()<.5)s=rule.s;else c=rule.c}
-    const it={c,s};if(hMatch(rule,it)===target)return it}return {c:rule.c,s:rule.s}}
-  function spawn(now){const it=make(Math.random()<.42);it.target=hMatch(rule,it);const a=rnd(0,Math.PI*2);it.x=rnd(0,Math.max(1,W-size));it.y=rnd(0,Math.max(1,H-size));it.vx=Math.cos(a)*speed;it.vy=Math.sin(a)*speed;it.born=now;
-    const el=document.createElement('button');el.className='hitem';el.style.width=el.style.height=size+'px';el.setAttribute('aria-label',`${HSN[it.s][0]} ${HSN[it.s][2]?it.c.f:it.c.m}`);
-    el.innerHTML=shapeSVG(it.s,it.c.hex,{extra:assist?`<text x="50" y="63" text-anchor="middle" font-size="34" font-weight="800" fill="#0B1230" font-family="sans-serif">${it.c.L}</text>`:''});
-    it.el=el;place(it);arena.appendChild(el);items.push(it);
-    el.addEventListener('pointerdown',e=>{e.preventDefault();tap(it)});el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tap(it)}})}
-  function remove(it,filter){items=items.filter(x=>x!==it);if(filter)it.el.style.filter=filter;it.el.classList.add('gone');setTimeout(()=>it.el.remove(),260)}
-  function tap(it){if(ctx.clock.paused||!items.includes(it)||ctx.clock.now()<frozen)return;
-    if(it.target){st.hit++;st.rts.push(ctx.clock.now()-it.born);ctx.feedback(true,{msg:false,noFlash:true});remove(it,'drop-shadow(0 0 16px #3DDC84) brightness(1.4)')}
-    else{st.fa++;ctx.feedback(false,{msg:'No cumple la regla'});remove(it,'drop-shadow(0 0 16px #FF5470)')}
-    ctx.score(st.hit,'Aciertos');ctx.hits(st.hit)}
-  ctx.clock.loop((dt,now)=>{if(now<frozen)return;const s=dt/1000;
-    if(changes&&now-lastChange>changeEvery){lastChange=now;newRule();return}
-    if(now-lastSpawn>spawnEvery&&items.length<maxOn){lastSpawn=now;spawn(now)}
-    for(const it of items.slice()){it.x+=it.vx*s;it.y+=it.vy*s;if(it.x<0){it.x=0;it.vx=Math.abs(it.vx)}if(it.y<0){it.y=0;it.vy=Math.abs(it.vy)}if(it.x>W-size){it.x=W-size;it.vx=-Math.abs(it.vx)}if(it.y>H-size){it.y=H-size;it.vy=-Math.abs(it.vy)}place(it);
-      if(now-it.born>life){if(it.target)st.miss++;remove(it,it.target?'grayscale(1)':'')}}});
-  newRule();lastChange=ctx.clock.now();ctx.countdown(dur,()=>ctx.end());ctx.score(0,'Aciertos');
-  return {summary(){const tot=st.hit+st.miss+st.fa;return {correct:st.hit,wrong:st.miss+st.fa,total:tot,acc:tot?st.hit/tot:0,score:st.hit,rt:avg(st.rts),
-   metrics:[{label:'Aciertos',value:st.hit},{label:'Falsas alarmas',value:st.fa},{label:'Objetivos perdidos',value:st.miss},{label:'Reglas',value:st.rules},{label:'Tiempo medio',value:st.rts.length?Math.round(avg(st.rts))+' ms':'—'}],extra:{rules:st.rules},
-   details:`<h4>Atención selectiva y flexible</h4><p>Las falsas alarmas reflejan impulsividad (tocar lo que no cumple la regla) y los objetivos perdidos, lapsos de atención.${st.rules>1?` Tuviste ${st.rules-1} cambio(s) de regla, siempre anunciados.`:''}</p>`}}};
- }});
+ if(r.notc)return `todo lo que ${up('no')} sea de color ${up(r.c.m)}`;
+ const fem=r.s?HSN[r.s][2]:1,noun=r.s?HSN[r.s][1]:'figuras',col=r.c?(fem?r.c.fp:r.c.mp):'',sz=r.z?(r.z==='L'?'grandes':(fem?'pequeñas':'pequeños')):'';
+ if(!r.s&&r.c&&!r.z&&!r.exs)return `todo lo de color ${up(r.c.m)}`;
+ return `solo ${fem?'las':'los'} ${up([noun,col,sz].filter(Boolean).join(' '))}${r.exs?`, ${'<b>excepto</b>'} ${up(HSN[r.exs][1])}`:''}`}
+const hOne=(s,c)=>`${HSN[s][0]} ${HSN[s][2]?c.f:c.m}`;            /* «triángulo azul», «estrella amarilla» */
+const hExRow=(items)=>`<div class="ex-row" data-stim>${items.map(([s,ci,z,ok])=>`<span class="ex-it ${ok?'ok':'no'}" style="width:${z==='S'?34:52}px;height:${z==='S'?34:52}px">${shapeSVG(s,HCOL[ci].hex)}<i>${ok?'✓':'✕'}</i></span>`).join('')}</div>`;
+reg({id:'hunt',skill:'attention',name:'Caza de estímulos',icon:'hunt',tagline:'Laboratorio de atención: selecciona, sostén, divide y cambia de objetivo.',
+ howTo:m=>({
+  std:['Aparecerán figuras de colores moviéndose por la pantalla.','Toca únicamente las que cumplan la regla indicada arriba (por ejemplo, «solo los círculos azules»).','En niveles avanzados la regla cambia durante la partida: siempre se anuncia antes.'],
+  multi:['La regla combina <b>forma, color y tamaño</b> a la vez, por ejemplo «triángulos azules grandes».','Toca solo las figuras que cumplen las tres condiciones. Muchos distractores comparten una o dos características con el objetivo.','Las que fallan en una sola característica también cuentan como error.'],
+  change:['La regla cambia varias veces durante la ronda: color, forma, tamaño, «excepto…» o negaciones.','Cada cambio se anuncia con un aviso y las figuras se detienen un instante.','Medimos si cometes más errores justo después de un cambio.'],
+  sustained:['Verás una figura cada vez, en el centro, a un ritmo constante.','Pulsa <b>RESPONDER</b> (o Espacio) solo cuando aparezca la figura objetivo, que es poco frecuente. Con las demás, no pulses.','Hay pausas entre bloques. Medimos aciertos, omisiones y falsas alarmas.'],
+  gonogo:['Aparecen figuras una a una, a ritmo constante.','Pulsa <b>RESPONDER</b> (o Espacio) con todas <b>menos</b> con la figura prohibida (no-go): con ella debes frenarte y no pulsar.','Con el tiempo hay más figuras prohibidas y más parecidas a las permitidas.'],
+  dual:['Hay dos flujos: <b>izquierda</b> y <b>derecha</b>, cada uno con su propio objetivo.','Vigila los dos. Cuando aparezca el objetivo de un lado, pulsa el botón de ese lado (teclas A y L).','Registramos tu rendimiento en cada flujo por separado.'],
+  memory:['Al empezar cada ronda verás un <b>patrón objetivo</b> durante unos segundos.','Después se oculta: debes tocar las figuras en movimiento que coincidan con el patrón que recuerdas.','Al terminar la ronda aparece un patrón nuevo.'],
+  overload:['Es el modo más exigente: combina un objetivo <b>memorizado</b>, distractores muy parecidos, un <b>cambio de objetivo</b> a mitad de bloque y figuras <b>prohibidas</b> (marcadas con una ✕) que nunca debes tocar.','Hay pocos bloques, cortos, con descanso entre ellos sin penalización.','Si te saturas, reduce el nivel: la dificultad es del juego, no una medida tuya.']
+ }[m]||[]),
+ example:m=>({
+  std:`${hExRow([['circle',0,'L',true],['circle',1,'L',false],['square',0,'L',false]])}<p class="small" style="margin-top:.5rem">Regla «solo los círculos AZULES»: toca el círculo azul; no toques el círculo rosa ni el cuadrado azul.</p>`,
+  multi:`${hExRow([['triangle',0,'L',true],['triangle',0,'S',false],['triangle',1,'L',false],['square',0,'L',false]])}<p class="small" style="margin-top:.5rem">«Triángulos azules grandes»: solo el primero. El pequeño, el rosa y el cuadrado fallan en una característica.</p>`,
+  change:`${hExRow([['circle',4,'L',true],['square',4,'L',false],['circle',3,'L',true]])}<p class="small" style="margin-top:.5rem">Ejemplo de regla «figuras rojas, excepto cuadrados»: el círculo rojo sí; el cuadrado rojo, no.</p>`,
+  sustained:`<div class="ex-stim" data-stim>${shapeSVG('triangle','#538CFF')}</div><p class="small" style="margin-top:.5rem">Objetivo: «triángulo azul». Solo con esa figura pulsas RESPONDER; con las demás no.</p>`,
+  gonogo:`<div class="ex-stim" data-stim>${shapeSVG('star','#FF4D5E')}</div><p class="small" style="margin-top:.5rem">Figura prohibida: «estrella roja». Con cualquier otra pulsas; con la estrella roja no pulses.</p>`,
+  dual:`<div class="ex-stim" data-stim style="gap:1.2rem">${shapeSVG('circle','#3DDC84')}${shapeSVG('diamond','#FFD23F')}</div><p class="small" style="margin-top:.5rem">Izquierda: «círculo verde» · Derecha: «rombo amarillo». Cada objetivo se responde con su botón.</p>`,
+  memory:`${hExRow([['star',2,'L',true],['star',3,'L',false],['circle',2,'L',false]])}<p class="small" style="margin-top:.5rem">Si el patrón era «estrella amarilla», tocas la estrella amarilla aunque ya no veas la instrucción.</p>`,
+  overload:`${hExRow([['triangle',1,'L',true],['triangle',1,'L',false]])}<p class="small" style="margin-top:.5rem">Si el objetivo memorizado es «triángulo rosa grande», una figura que lo cumpla pero lleve una ✕ está <b>prohibida</b>: no la toques.</p>`
+ }[m]||''),
+ modes:HMODES,
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},speed:true,daily:{min:45,max:120},
+ levelInfo:(L,mode)=>{const e=`${hNC(L)} colores · ${hNS(L)} formas`;
+  if(mode==='sustained')return `${e} · una figura cada ${(hPeriod(L)/1000).toFixed(2)} s · objetivos en el ${Math.round(hPT(L)*100)} % de los ensayos · ${Math.round(hClose(L)*100)} % de distractores parecidos`;
+  if(mode==='gonogo')return `${e} · una figura cada ${(hPeriod(L)/1000).toFixed(2)} s · ${Math.round(hPNoGo(L)*100)} % prohibidas · ${Math.round(hClose(L)*100)} % de las permitidas se parecen a la prohibida`;
+  if(mode==='dual')return `${e} · dos flujos · una figura cada ${(hPeriod(L)/1000).toFixed(2)} s por flujo · objetivos en el ${Math.round(hPT(L)*100)} %`;
+  const base=`${e} · hasta ${Math.min(10,3+Math.ceil(L/2))} figuras a la vez`;
+  if(mode==='multi')return `${base} · ${L<=2?'dos':'tres'} condiciones (forma, color y tamaño) · ${Math.round(hClose(L)*100)} % de distractores parecidos`;
+  if(mode==='change')return `${base} · la regla cambia cada ${Math.round(Math.max(8,16-L*.5))} s`;
+  if(mode==='memory')return `${base} · el patrón se muestra ${(hMemShow(L)/1000).toFixed(1)} s y se oculta · ${L<=4?'dos':'tres'} características`;
+  if(mode==='overload')return `${base} · objetivo memorizado + figuras prohibidas + cambio a mitad de bloque · ${L<=7?2:L<=11?3:4} bloques`;
+  return `Hasta ${3+Math.ceil(L/2)} figuras a la vez · ${L<=2?'reglas simples':L<=5?'reglas de forma y color':'reglas con negación'}${L>=4?' · la regla cambia durante la partida':''}`},
+ start(ctx){return H_STREAM.includes(ctx.mode)?huntStream(ctx):huntArena(ctx)}});
+
+/* ---------- utilidades de estímulos ---------- */
+function huntPools(L){return {HC:HCOL.slice(0,hNC(L)),HS:HSH.slice(0,hNS(L))}}
+const hRand=(P,useSize)=>({c:pick(P.HC),s:pick(P.HS),z:useSize?pick(['S','L']):'L'});
+function hMatching(r,P,useSize){for(let k=0;k<80;k++){const it=hRand(P,useSize);if(r.c&&!r.notc)it.c=r.c;if(r.s)it.s=r.s;if(r.z&&useSize)it.z=r.z;if(r.notc){do it.c=pick(P.HC);while(it.c===r.c)}if(r.exs){let g=0;while(it.s===r.exs&&g++<30)it.s=pick(P.HS)}if(hMatch(r,it))return it}return {c:r.c||P.HC[0],s:r.s||P.HS[0],z:'L'}}
+/* distractor: cercano (rompe una o dos características de la regla) o lejano (aleatorio) */
+function hDistract(r,P,useSize,L){
+ if(Math.random()<hClose(L)){
+  const it=hMatching(r,P,useSize),opts=[];
+  if(r.c&&!r.notc)opts.push('c');if(r.s)opts.push('s');if(r.z&&useSize)opts.push('z');if(r.exs)opts.push('exs');if(r.notc)opts.push('notc');
+  const n=(opts.length>=3&&Math.random()<.4)?2:1;
+  for(const o of shuffle(opts).slice(0,n)){
+   if(o==='c'){let g=0;do it.c=pick(P.HC);while(it.c===r.c&&g++<30)}
+   else if(o==='s'){let g=0;do it.s=pick(P.HS);while(it.s===r.s&&g++<30)}
+   else if(o==='z')it.z=r.z==='S'?'L':'S';
+   else if(o==='exs')it.s=r.exs;
+   else if(o==='notc')it.c=r.c}
+  if(!hMatch(r,it))return it}
+ for(let k=0;k<80;k++){const it=hRand(P,useSize);if(!hMatch(r,it))return it}
+ return {c:P.HC[0],s:P.HS[0],z:'L'}}
+const hLabel=(it,useSize)=>`${HSN[it.s][0]} ${HSN[it.s][2]?it.c.f:it.c.m}${useSize?(it.z==='L'?' grande':' pequeño'):''}`;
+const hRuleSVGCard=(r,useSize)=>{const s=r.s||'circle',c=r.c||HCOL[0],z=r.z||'L';return `<span class="hp-it" style="width:${z==='S'?54:96}px;height:${z==='S'?54:96}px">${shapeSVG(s,c.hex)}</span>`};
+const hForbSVG='<g stroke="#FF5470" stroke-width="10" stroke-linecap="round"><line x1="18" y1="18" x2="82" y2="82"/><line x1="82" y1="18" x2="18" y2="82"/></g>';
+
+/* ======================= MODOS DE ARENA (figuras en movimiento) ======================= */
+function huntArena(ctx){
+ const L=ctx.level,mode=ctx.mode,assist=S.settings.colorAssist,rm=RM(),P=huntPools(L);
+ const std=mode==='std',useSize=!std,mem=mode==='memory'||mode==='overload',over=mode==='overload';
+ const dur=ctx.budget||(std?45000:60000);
+ const speed=32+L*11,life=Math.max(1400,3800-L*160),spawnEvery=Math.max(380,950-L*38),maxOn=Math.min(10,3+Math.ceil(L/2));
+ const size=std?Math.round(Math.max(40,72-L*2.4)):Math.max(66,Math.round(80-L*1.4)),small=Math.round(size*.6);
+ const types=L<=2?['color','shape']:L<=5?['both','color','shape','both']:['both','not','shape','both'];
+ const stdChanges=L>=4,stdEvery=L>=11?9000:L>=8?11000:L>=6?14000:17000;
+ const changeEvery=Math.max(8000,16000-L*500);
+ const roundMs=hRoundMs(L),memShow=hMemShow(L),nBlocks=over?(L<=7?2:L<=11?3:4):1;
+ ctx.stage.innerHTML=`<div class="hunt" style="position:relative"><div class="rule-bar" id="hrule" aria-live="polite"></div><div class="arena" id="harena" aria-label="Zona de juego"></div><p class="hint" style="margin:0">${over?'Nunca toques las figuras marcadas con una ✕.':'Toca solo los objetivos. Los fallos y los objetivos que se escapan restan precisión.'}</p></div>`;
+ const arena=$('#harena'),ruleEl=$('#hrule'),root=$('.hunt',ctx.stage);let W=0,H=0;const measure=()=>{const r=arena.getBoundingClientRect();W=r.width;H=r.height};measure();ctx.on(window,'resize',measure);
+ const st={hit:0,miss:0,fa:0,rules:0,rts:[],t:0,nt:0,forbTap:0,post:{ev:0,err:0},out:{ev:0,err:0},shows:0,blocks:0};
+ let items=[],rule=null,frozen=0,lastSpawn=-1e9,lastChange=0,lastRuleAt=0,done=false,block=0,hidden=false,resting=false;
+ const place=it=>{it.el.style.transform=`translate(${it.x.toFixed(1)}px,${it.y.toFixed(1)}px)`};
+ /* ---- reglas ---- */
+ function ruleFor(){
+  const base={c:pick(P.HC),s:pick(P.HS),z:pick(['S','L'])};
+  if(std){const t=pick(types);return t==='color'?{c:base.c}:t==='shape'?{s:base.s}:t==='both'?{s:base.s,c:base.c}:{c:base.c,notc:true}}
+  if(mode==='multi')return L<=2?pick([{s:base.s,z:base.z},{s:base.s,c:base.c},{c:base.c,z:base.z}]):{s:base.s,c:base.c,z:base.z};
+  if(mode==='change'){const pool=[{c:base.c},{s:base.s}];if(L>=4)pool.push({s:base.s,c:base.c},{z:base.z,c:base.c});if(L>=8)pool.push({c:base.c,exs:pick(P.HS.filter(x=>x!==base.s)),s:null},{c:base.c,notc:true});if(L>=12)pool.push({s:base.s,c:base.c,z:base.z});return pick(pool)}
+  return L<=4&&!over?{s:base.s,c:base.c}:{s:base.s,c:base.c,z:base.z}}
+ function newRule(first){
+  let r,g=0;do r=ruleFor();while(rule&&JSON.stringify([r.c&&r.c.m,r.s,r.z,r.exs,r.notc])===JSON.stringify([rule.c&&rule.c.m,rule.s,rule.z,rule.exs,rule.notc])&&g++<20);
+  rule=r;st.rules++;lastRuleAt=ctx.clock.now();
+  if(mem){ruleEl.innerHTML=`<span class="eyebrow" style="color:var(--pink)">Objetivo memorizado</span> Toca lo que coincide con el patrón que viste`;showPattern(first)}
+  else{ruleEl.innerHTML=`${st.rules>1?'<span class="eyebrow" style="color:var(--pink)">Nueva regla · </span>':''}Toca ${hRule(r)}`;
+   if(st.rules>1)announceChange(`¡CAMBIO DE REGLA!`,`Ahora toca ${hRule(r)}`)}}
+ function announceChange(title,body,ms=1900){items.forEach(it=>it.el.remove());items=[];ruleEl.classList.remove('flash');void ruleEl.offsetWidth;ruleEl.classList.add('flash');Sound.alert();ctx.say(title);
+  const b=document.createElement('div');b.className='arena-banner';b.innerHTML=`<div><b>${title}</b>${body}</div>`;arena.appendChild(b);frozen=ctx.clock.now()+ms;ctx.clock.after(ms,()=>b.remove())}
+  /* patrón objetivo que se muestra y luego se oculta */
+ function showPattern(first){st.shows++;items.forEach(it=>it.el.remove());items=[];
+  const card=hRuleSVGCard(rule,true),txt=hRule(rule),b=document.createElement('div');b.className='arena-banner hp-banner';
+  b.innerHTML=`<div><b>${first?'MEMORIZA EL OBJETIVO':'NUEVO OBJETIVO'}</b><div class="hp-card">${card}</div><div class="hp-txt">${txt}</div><div class="hp-bar"><i></i></div></div>`;arena.appendChild(b);
+  const i=b.querySelector('.hp-bar i');if(i&&!rm){i.style.transition=`transform ${memShow}ms linear`;requestAnimationFrame(()=>requestAnimationFrame(()=>{i.style.transform='scaleX(0)'}))}
+  Sound.alert();ctx.say('Memoriza el objetivo');frozen=ctx.clock.now()+memShow;ctx.clock.after(memShow,()=>{b.remove()})}
+ /* ---- figuras ---- */
+ function spawn(now){
+  const wantT=Math.random()<.4;let it=wantT?hMatching(rule,P,useSize):hDistract(rule,P,useSize,L);
+  it.forb=false;if(over&&wantT&&Math.random()<.2){it.forb=true}
+  it.target=hMatch(rule,it)&&!it.forb;if(it.target)st.t++;else st.nt++;
+  const sz=(useSize&&it.z==='S')?small:size,a=rnd(0,Math.PI*2);
+  it.sz=sz;it.x=rnd(0,Math.max(1,W-sz));it.y=rnd(0,Math.max(1,H-sz));it.vx=Math.cos(a)*speed;it.vy=Math.sin(a)*speed;it.born=now;
+  const el=document.createElement('button');el.className='hitem';el.style.width=el.style.height=sz+'px';el.setAttribute('aria-label',hLabel(it,useSize)+(it.forb?' · prohibida':''));
+  const letter=assist?`<text x="50" y="63" text-anchor="middle" font-size="34" font-weight="800" fill="#0B1230" font-family="sans-serif">${it.c.L}</text>`:'';
+  el.innerHTML=shapeSVG(it.s,it.c.hex,{extra:letter+(it.forb?hForbSVG:'')});
+  it.el=el;place(it);arena.appendChild(el);items.push(it);
+  el.addEventListener('pointerdown',e=>{e.preventDefault();tap(it)});el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tap(it)}})}
+ function remove(it,filter){items=items.filter(x=>x!==it);if(filter)it.el.style.filter=filter;it.el.classList.add('gone');setTimeout(()=>it.el.remove(),260)}
+ const sinceChange=()=>ctx.clock.now()-lastRuleAt;
+ function evt(err){const w=st.rules>1&&sinceChange()<4000?st.post:st.out;w.ev++;if(err)w.err++}
+ function tap(it){if(ctx.clock.paused||done||resting||!items.includes(it)||ctx.clock.now()<frozen)return;
+  if(it.target){st.hit++;st.rts.push(ctx.clock.now()-it.born);evt(false);ctx.feedback(true,{msg:false,noFlash:true});remove(it,'drop-shadow(0 0 16px #3DDC84) brightness(1.4)')}
+  else{st.fa++;if(it.forb)st.forbTap++;evt(true);ctx.feedback(false,{msg:it.forb?'Figura prohibida':'No cumple la regla'});remove(it,'drop-shadow(0 0 16px #FF5470)')}
+  ctx.score(st.hit,'Aciertos');ctx.hits(st.hit)}
+ /* ---- bucle ---- */
+ ctx.clock.loop((dt,now)=>{if(done||resting||now<frozen)return;const s=dt/1000;
+  if(mode==='std'&&stdChanges&&now-lastChange>stdEvery){lastChange=now;newRule();return}
+  if(mode==='change'&&now-lastChange>changeEvery){lastChange=now;newRule();return}
+  if(over&&!hidden&&now-lastChange>blockMsLeft()*.5&&!st.midDone){st.midDone=true;lastChange=now;st.rules--;newRule();return}
+  if(mem&&!over&&now-lastChange>roundMs){lastChange=now;newRule();return}
+  if(now-lastSpawn>spawnEvery&&items.length<maxOn){lastSpawn=now;spawn(now)}
+  for(const it of items.slice()){it.x+=it.vx*s;it.y+=it.vy*s;if(it.x<0){it.x=0;it.vx=Math.abs(it.vx)}if(it.y<0){it.y=0;it.vy=Math.abs(it.vy)}if(it.x>W-it.sz){it.x=W-it.sz;it.vx=-Math.abs(it.vx)}if(it.y>H-it.sz){it.y=H-it.sz;it.vy=-Math.abs(it.vy)}place(it);
+   if(now-it.born>life){if(it.target){st.miss++;evt(true)}remove(it,it.target?'grayscale(1)':'')}}});
+ /* ---- bloques (Overload) y final ---- */
+ const blockMs=over?(L<=10?35000:40000):dur;let blockStart=0;const blockMsLeft=()=>blockMs;
+ function startBlock(){block++;st.blocks=block;st.midDone=false;resting=false;items.forEach(it=>it.el.remove());items=[];blockStart=ctx.clock.now();lastChange=ctx.clock.now();rule=null;st.rules=0;newRule(true);ctx.countdown(blockMs,endBlock)}
+ function endBlock(){if(block>=nBlocks){done=true;return ctx.end()}
+  resting=true;items.forEach(it=>it.el.remove());items=[];ctx.clearCountdown();
+  const b=document.createElement('div');b.className='sbrief';b.style.borderRadius='24px';b.innerHTML=`<div class="sb-in"><div class="eyebrow">Bloque ${block} de ${nBlocks}</div><h3>Descanso</h3><p>Respira. Este descanso no penaliza. En el siguiente bloque habrá un objetivo nuevo.</p><button class="btn btn-primary" id="hb-go">Siguiente bloque</button></div>`;root.appendChild(b);
+  $('#hb-go',b).onclick=()=>{if(ctx.clock.paused)return;b.remove();startBlock()};$('#hb-go',b).focus({preventScroll:true})}
+ ctx.score(0,'Aciertos');
+ if(over){startBlock()}else{newRule(true);lastChange=ctx.clock.now();ctx.countdown(dur,()=>{done=true;ctx.end()})}
+ return {peek:()=>({rule,items,frozen,resting}),summary(){
+  const tot=st.hit+st.miss+st.fa,inW=st.post.ev?st.post.err/st.post.ev:null,outW=st.out.ev?st.out.err/st.out.ev:null;
+  const metrics=[{label:'Aciertos',value:st.hit},{label:'Falsas alarmas',value:st.fa},{label:'Objetivos perdidos',value:st.miss},{label:mem?'Objetivos mostrados':'Reglas',value:mem?st.shows:st.rules},{label:'Tiempo medio',value:st.rts.length?Math.round(avg(st.rts))+' ms':'—'}];
+  if(over)metrics.push({label:'Prohibidas tocadas',value:st.forbTap});
+  if(mode==='change'&&inW!=null)metrics.push({label:'Errores en los 4 s tras un cambio',value:`${st.post.err}/${st.post.ev} · ${pct(inW)}`});
+  const details=`<h4>Atención selectiva y flexible</h4><p>Las falsas alarmas reflejan tocar lo que no cumple la regla y los objetivos perdidos, lapsos o saturación.${st.rules>1&&!mem?` Tuviste ${st.rules-1} cambio(s) de regla, siempre anunciados.`:''}${mem?` Se te mostró el patrón ${st.shows} vez/veces y luego se ocultó.`:''}</p>${mode==='change'&&inW!=null?`<p>En los 4 segundos posteriores a un cambio tu tasa de error fue <b>${pct(inW)}</b>${outW!=null?` frente a <b>${pct(outW)}</b> el resto del tiempo`:''}. Esa diferencia describe cuánto te cuesta adaptarte <i>en este juego</i>.</p>`:''}${over?`<p>Las figuras con ✕ eran de inhibición: tocarlas cuenta como falsa alarma. Hubo ${st.blocks} bloque(s) con descanso entre ellos.</p>`:''}<p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+  return {correct:st.hit,wrong:st.miss+st.fa,total:tot,acc:tot?st.hit/tot:0,score:st.hit,rt:avg(st.rts),metrics,details,
+   extra:{rules:st.rules,faRate:st.nt?st.fa/st.nt:0,omRate:st.t?st.miss/st.t:0,post:st.post,out:st.out,forbTap:st.forbTap,shows:st.shows,blocks:st.blocks}}}}}
+
+/* ======================= MODOS DE FLUJO (sostenida, Go/No-Go, doble) ======================= */
+function huntStream(ctx){
+ const L=ctx.level,mode=ctx.mode,assist=S.settings.colorAssist,P=huntPools(L),dual=mode==='dual',gng=mode==='gonogo';
+ const period=hPeriod(L),visMs=Math.round(period*.66),pT=hPT(L),pNo=hPNoGo(L),close=hClose(L);
+ const nBlocks=ctx.budget?1:(mode==='sustained'?(L<=5?2:3):1),blockMs=ctx.budget||(mode==='sustained'?50000:70000);
+ /* objetivos / figuras prohibidas */
+ const pickST=(ex)=>{let s,c,g=0;do{s=pick(P.HS);c=pick(P.HC)}while(ex&&ex.s===s&&ex.c===c&&g++<30);return {s,c}};
+ const A=pickST(),B=dual?pickST(A):null;
+ const streams=dual?[{side:'Izquierda',key:'L',t:A},{side:'Derecha',key:'R',t:B}]:[{side:'',key:'C',t:A}];
+ const ruleTxt=dual?`<b>Izquierda:</b> pulsa con <b>${hOne(A.s,A.c).toUpperCase()}</b> · <b>Derecha:</b> pulsa con <b>${hOne(B.s,B.c).toUpperCase()}</b>`
+  :gng?`Pulsa con <b>todas</b> menos con <b>${hOne(A.s,A.c).toUpperCase()}</b>: con esa no pulses`:`Pulsa solo cuando aparezca <b>${hOne(A.s,A.c).toUpperCase()}</b>`;
+ const boxes=streams.map((s,i)=>`<div class="hs-box" id="hs${i}" data-stim>${dual?`<span class="hs-cap">${s.side}</span>`:''}<div class="hs-shape" id="hss${i}" aria-hidden="true"></div></div>`).join('');
+ const btns=dual?`<div class="hs-row d2"><button class="btn btn-lg hs-go" id="hgo0" data-i="0">${ic("chevL")} IZQUIERDA <span class="kbd">A</span></button><button class="btn btn-lg hs-go" id="hgo1" data-i="1">DERECHA ${ic("chevR")} <span class="kbd">L</span></button></div>`:`<button class="btn btn-primary btn-lg hs-go" id="hgo0" data-i="0">${ic('bolt')} RESPONDER <span class="kbd">Espacio</span></button>`;
+ ctx.stage.innerHTML=`<div class="hunt hstream" style="position:relative"><div class="rule-bar" id="hrule" aria-live="polite">${ruleTxt}</div><div class="hs-row${dual?' d2':''}">${boxes}</div>${btns}<p class="hint" id="hhint" style="margin:0">${gng?'Frena con la figura prohibida':dual?'Vigila los dos lados':'Los objetivos son poco frecuentes'}</p></div>`;
+ const root=$('.hunt',ctx.stage),hint=$('#hhint');
+ const T=[];let cur=streams.map(()=>null),done=false,resting=false,block=0,hits=0,fas=0,tickT=[];
+ /* ---- generación de figuras ---- */
+ const same=(a,b)=>a.s===b.s&&a.c===b.c;
+ function foilFor(tg){ /* cercana (comparte una característica) o cualquiera distinta */
+  if(Math.random()<close){const keepS=Math.random()<.5;for(let k=0;k<40;k++){const it={s:keepS?tg.s:pick(P.HS),c:keepS?pick(P.HC):tg.c};if(!same(it,tg))return it}}
+  for(let k=0;k<60;k++){const it={s:pick(P.HS),c:pick(P.HC)};if(!same(it,tg)&&it.s!==tg.s&&it.c!==tg.c)return it}
+  return {s:pick(P.HS.filter(x=>x!==tg.s)),c:pick(P.HC.filter(x=>x!==tg.c))}}
+ function nextStim(i){
+  const tg=streams[i].t;
+  if(gng){const nogo=Math.random()<pNo;if(nogo)return {it:{s:tg.s,c:tg.c},needs:false,kind:'nogo'};
+   /* permitida: parecida a la prohibida con probabilidad «close», o claramente distinta */
+   return {it:foilFor(tg),needs:true,kind:'go'}}
+  const target=Math.random()<pT;return target?{it:{s:tg.s,c:tg.c},needs:true,kind:'target'}:{it:foilFor(tg),needs:false,kind:'foil'}}
+ /* ---- ensayo ---- */
+ function openTrial(i){
+  if(done||resting)return;const sp=nextStim(i),el=$('#hss'+i),box=$('#hs'+i),now=ctx.clock.now();
+  const c={...sp,onset:now,pressed:false,rt:null,closed:false,i};cur[i]=c;
+  el.innerHTML=shapeSVG(sp.it.s,sp.it.c.hex,{extra:assist?`<text x="50" y="63" text-anchor="middle" font-size="34" font-weight="800" fill="#0B1230" font-family="sans-serif">${sp.it.c.L}</text>`:''});
+  el.setAttribute('aria-label',hOne(sp.it.s,sp.it.c));el.style.opacity=1;box.classList.remove('hit','fa','miss');
+  ctx.clock.after(visMs,()=>{if(cur[i]===c)el.style.opacity=0});ctx.clock.after(period-30,()=>closeTrial(i,c))}
+ /* cada temporizador queda ligado a SU ensayo: un cierre tardío nunca afecta al ensayo siguiente ni a otro bloque */
+ function closeTrial(i,c){if(!c||c.closed||cur[i]!==c)return;c.closed=true;const box=$('#hs'+i);
+  T.push({i,needs:c.needs,pressed:c.pressed,rt:c.rt,kind:c.kind});
+  if(c.needs&&!c.pressed)box.classList.add('miss');
+  cur[i]=null;if(!done&&!resting)ctx.clock.after(30,()=>openTrial(i))}
+ const dropTrials=()=>{cur=streams.map(()=>null)};
+ function press(i){if(ctx.clock.paused||done||resting)return;const c=cur[i];if(!c||c.closed||c.pressed)return;c.pressed=true;c.rt=Math.round(ctx.clock.now()-c.onset);const box=$('#hs'+i);
+  if(c.needs){hits++;box.classList.add('hit');ctx.feedback(true,{msg:false,noFlash:true})}else{fas++;box.classList.add('fa');ctx.feedback(false,{msg:gng?'Era la figura prohibida':'Esa no era el objetivo'})}
+  ctx.score(hits,'Aciertos');ctx.hits(hits);ctx.extra('Falsas alarmas',fas)}
+ streams.forEach((_,i)=>{const b=$('#hgo'+i);b.addEventListener('pointerdown',e=>{e.preventDefault();press(i)});b.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault()}});$('#hs'+i).addEventListener('pointerdown',e=>{e.preventDefault();press(i)})});
+ ctx.key(e=>{const k=e.key.toLowerCase();
+  if(dual){if(k==='a'||k==='arrowleft'){e.preventDefault();press(0)}else if(k==='l'||k==='arrowright'){e.preventDefault();press(1)}}
+  else if(k===' '||k==='enter'||k==='spacebar'){e.preventDefault();press(0)}});
+ /* ---- bloques con pausa ---- */
+ function startBlock(){block++;resting=false;cur=streams.map(()=>null);streams.forEach((_,i)=>ctx.clock.after(i*Math.round(period/2)+250,()=>openTrial(i)));ctx.countdown(blockMs,endBlock)}
+ function endBlock(){dropTrials();if(block>=nBlocks){done=true;return ctx.end()}
+  resting=true;ctx.clearCountdown();streams.forEach((_,i)=>{$('#hss'+i).style.opacity=0});
+  const b=document.createElement('div');b.className='sbrief';b.style.borderRadius='24px';b.innerHTML=`<div class="sb-in"><div class="eyebrow">Bloque ${block} de ${nBlocks}</div><h3>Pausa</h3><p>Descansa la vista unos segundos. La pausa no penaliza. Sigue el mismo objetivo.</p><button class="btn btn-primary" id="hb-go">Seguir</button></div>`;root.appendChild(b);
+  $('#hb-go',b).onclick=()=>{if(ctx.clock.paused)return;b.remove();startBlock()};$('#hb-go',b).focus({preventScroll:true})}
+ ctx.score(0,'Aciertos');startBlock();
+ /* ---- resumen ---- */
+ return {peek:()=>cur,summary(){
+  const stat=a=>{const H=a.filter(t=>t.needs&&t.pressed),O=a.filter(t=>t.needs&&!t.pressed),F=a.filter(t=>!t.needs&&t.pressed),C=a.filter(t=>!t.needs&&!t.pressed),nT=H.length+O.length,nN=F.length+C.length;
+   return {H:H.length,O:O.length,F:F.length,C:C.length,nT,nN,hr:nT?H.length/nT:null,fr:nN?F.length/nN:null,rt:median(H.map(t=>t.rt).filter(x=>x!=null))}};
+  const all=stat(T),bal=all.hr!=null&&all.fr!=null?(all.hr+(1-all.fr))/2:(all.hr??(all.fr!=null?1-all.fr:0));
+  const metrics=[{label:gng?'Aciertos (go)':'Aciertos',value:`${all.H}/${all.nT}`},{label:'Omisiones',value:all.O},{label:gng?'Falsas alarmas (no-go)':'Falsas alarmas',value:`${all.F}${all.nN?` · ${pct(all.fr)}`:''}`},{label:gng?'Inhibiciones correctas':'Rechazos correctos',value:all.C},{label:'Mediana de respuesta',value:all.rt?Math.round(all.rt)+' ms':'—'},{label:'Precisión equilibrada',value:pct(bal)}];
+  let per='';
+  if(dual){const s0=stat(T.filter(t=>t.i===0)),s1=stat(T.filter(t=>t.i===1));
+   per=`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Flujo</th><th>Aciertos</th><th>Omisiones</th><th>Falsas alarmas</th><th>Mediana</th></tr></thead><tbody>${[['Izquierda',s0],['Derecha',s1]].map(([n,x])=>`<tr><td>${n}</td><td>${x.H}/${x.nT}</td><td>${x.O}</td><td>${x.F}</td><td>${x.rt?Math.round(x.rt)+' ms':'—'}</td></tr>`).join('')}</tbody></table></div>`;
+   metrics.push({label:'Izquierda',value:`${s0.H}/${s0.nT}`},{label:'Derecha',value:`${s1.H}/${s1.nT}`})}
+  const details=`<h4>${gng?'Control inhibitorio':dual?'Atención dividida':'Atención sostenida'}</h4>${per}<p>${gng?'Una <b>falsa alarma</b> es pulsar con la figura prohibida; una <b>omisión</b>, no pulsar con una figura permitida.':'Una <b>omisión</b> es no pulsar con un objetivo; una <b>falsa alarma</b>, pulsar con una figura que no lo era.'} Como los objetivos ${gng?'prohibidos':'son'} poco frecuentes, la precisión se calcula de forma <b>equilibrada</b> (acierto en objetivos y rechazo de distractores) para que acertar «no pulsar» no la infle.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+  return {correct:all.H+all.C,wrong:all.O+all.F,total:T.length,acc:bal,score:all.H,rt:all.rt,metrics,details,
+   extra:{hitRate:all.hr,faRate:all.fr!=null?all.fr:0,omRate:all.nT?all.O/all.nT:0,counts:{H:all.H,O:all.O,F:all.F,C:all.C},streams:dual?[0,1].map(i=>{const x=stat(T.filter(t=>t.i===i));return {H:x.H,O:x.O,F:x.F,nT:x.nT,rt:x.rt?Math.round(x.rt):null}}):null}}}}}
+
 
 /* =====================================================================
    MUNDO 2 — MEMORY MATRIX
@@ -3890,30 +4329,168 @@ reg({id:'rhythm',skill:'learning',name:'Ritmo y secuencia',icon:'rhythm',tagline
 
 const SWS=['triangle','star','cross','circle'],SWC=[{n:'ROJO',h:'#FF4D5E'},{n:'VERDE',h:'#2FBF71'},{n:'AMARILLO',h:'#F2B705'},{n:'AZUL',h:'#3D7BFF'}],SWR=[{id:'color',n:'COLOR',c:'#FF65C7'},{id:'shape',n:'FORMA',c:'#35E6DF'},{id:'num',n:'NÚMERO',c:'#FFB547'}];
 const swCard=(s,c,n,assist)=>Array.from({length:n+1},()=>shapeSVG(SWS[s],SWC[c].h)).join('')+(assist?`<span class="sw-cn">${SWC[c].n}</span>`:'');
+/* ---- CAMBIO DE REGLAS 3.0: flexibilidad cognitiva ----
+   Cada carta tiene forma, color y número. Se clasifica en una de 4 pilas según la regla vigente.
+   Los marcos (sólido / discontinuo / punteado) funcionan como señales condicionales; no dependen del color. */
+const SWDIM={color:'COLOR',shape:'FORMA',num:'NÚMERO'},SWDIMS=['color','shape','num'];
+const SWFR=[{id:'a',n:'sólido',h:'#538CFF',cn:'azul'},{id:'m',n:'discontinuo',h:'#B36DFF',cn:'morado'},{id:'d',n:'punteado',h:'#FFB547',cn:'dorado'}];
+const SWMODES=[
+ {id:'std',name:'Color / figura / número',desc:'La regla cambia y se anuncia'},
+ {id:'unpred',name:'Cambios impredecibles',desc:'Cantidades variables, con aviso'},
+ {id:'cond',name:'Regla condicional',desc:'El marco decide la regla'},
+ {id:'reversal',name:'Cambio reversible',desc:'La señal cambia de significado'},
+ {id:'memory',name:'Switch + memoria',desc:'Recuerda una secuencia de reglas'},
+ {id:'double',name:'Doble cambio',desc:'Dimensión + pila directa o contraria'},
+ {id:'chaos',name:'Rule Shift Chaos',desc:'Todo combinado · élite'}
+];
+const swEvery=(L,mode)=>{if(mode==='unpred')return L<=4?ri(4,9):L<=9?ri(3,8):ri(2,6);return L<=2?10:L<=4?8:L<=6?6:L<=8?ri(4,7):L<=10?ri(3,6):L<=12?ri(3,5):ri(2,4)};
+const swFreeze=L=>Math.max(650,1400-L*60);
+const swFrames=(L,m)=>m==='double'?2:(L<=4?2:3);
+const swSeqLen=L=>L<=3?3:L<=6?4:L<=9?5:6;
+const swSeqShow=L=>Math.max(2200,swSeqLen(L)*900-L*60);
+const swRevEvery=L=>Math.max(6,13-Math.floor(L/2));
+const swMini=['std','cond','double','reversal','memory'];
+const swBlocks=L=>L<=8?3:L<=12?4:5;
+const swExample=(txt,card)=>`<div class="ex-sw" data-stim>${card}</div><p class="small" style="margin-top:.5rem">${txt}</p>`;
 reg({id:'switch',skill:'learning',name:'Cambio de reglas',icon:'switch',tagline:'Clasifica cartas según la regla activa… que irá cambiando.',
- howTo:['Cada carta tiene una forma, un color y un número de figuras.','Colócala en la pila que coincida según la regla activa: COLOR, FORMA o NÚMERO (teclas 1–4).','La regla cambia de vez en cuando, pero siempre se anuncia con un aviso claro.'],
- maxLevel:10,metric:{label:'Aciertos',better:'high'},daily:{min:60,max:150},
- levelInfo:L=>`La regla cambia ${L<=2?'cada 10 cartas':L<=4?'cada 8 cartas':L<=6?'cada 6 cartas':L<=8?'cada 4–7 cartas':'cada 3–6 cartas'} · aviso de ${(Math.max(800,1400-L*60)/1000).toFixed(1)} s`,
+ howTo:m=>({
+  std:['Cada carta tiene una forma, un color y un número de figuras.','Colócala en la pila que coincida según la regla activa: COLOR, FORMA o NÚMERO (teclas 1–4).','La regla cambia de vez en cuando, pero siempre se anuncia con un aviso claro.'],
+  unpred:['Igual que el modo básico, pero la regla cambia tras un número <b>variable</b> de cartas.','Antes de cada cambio puede aparecer un aviso breve y siempre se anuncia el cambio con una pausa.','Medimos cuánto cuesta cambiar de regla y si insistes en la anterior.'],
+  cond:['El <b>marco</b> de cada carta te dice qué regla aplicar. La tabla de arriba lo resume (por ejemplo: marco sólido → FORMA; marco discontinuo → NÚMERO).','Clasifica según la regla de ese marco. Las reglas por marco no cambian durante la partida.','Con más marcos hay más asociaciones que recordar.'],
+  reversal:['Funciona como el modo condicional, pero cada cierto tiempo <b>la tabla se actualiza</b>: la misma señal pasa a significar otra regla.','Cuando cambie, se te muestra la tabla nueva con una pausa. Abandona la asociación anterior y aplica la nueva.','Contamos los errores «perseverativos»: seguir con la regla antigua tras el cambio.'],
+  memory:['Verás una <b>secuencia de reglas</b> (por ejemplo COLOR → FORMA → NÚMERO). Memorízala.','Después se ocultará y se repartirán cartas: la 1.ª carta se clasifica con la 1.ª regla, la 2.ª con la 2.ª, y así hasta el final.','Un indicador te dice en qué carta de la secuencia vas, pero no qué regla toca.'],
+  double:['Cada carta se clasifica por la dimensión activa (COLOR, FORMA o NÚMERO), y además el <b>marco</b> decide si la pila es la <b>correcta</b> (marco sólido) o la <b>contraria</b> (marco discontinuo: 1↔4 y 2↔3).','La dimensión cambia de vez en cuando con un aviso; la tabla del marco siempre está visible arriba.','Puedes pulsar la pila o usar las teclas 1–4.'],
+  chaos:['Es el modo más exigente: se suceden bloques con reglas distintas (básica, condicional, reversible, doble, memoria).','Antes de cada bloque verás su regla con un ejemplo. Algunas cartas llevan una <b>✕</b>: no se clasifican, se pulsan <b>SALTAR</b> (tecla 0 o Espacio).','Hay descanso sin penalización entre bloques.']
+ }[m]||[]),
+ example:m=>({
+  std:swExample('Con la regla COLOR, esta carta (rojo, 1 triángulo) va en la pila 1 (la roja).',`<div class="sw-card" style="width:90px">${swCard(0,0,0,false)}</div>`),
+  unpred:swExample('Esta carta (roja, 1 estrella): con la regla COLOR va en la pila 1 (la roja); si la regla cambia a FORMA, va en la pila 2 (la de las estrellas). Mira siempre la regla actual.',`<div class="sw-card" style="width:90px">${swCard(1,0,0,false)}</div>`),
+  cond:swExample('Tabla: marco sólido → FORMA, marco discontinuo → NÚMERO. Una carta con marco sólido y una estrella va en la pila 2 (la de las estrellas).',`<div class="sw-card" data-fr="a" style="width:90px">${swCard(1,3,0,false)}</div>`),
+  reversal:swExample('Antes: marco sólido → FORMA. Tras el cambio: marco sólido → NÚMERO. Esta carta (triángulo rojo, 3 figuras) iba en la pila 1 (forma) y ahora va en la pila 3 (3 figuras).',`<div class="sw-card" data-fr="a" style="width:90px">${swCard(0,0,2,false)}</div>`),
+  memory:swExample('Secuencia: COLOR → NÚMERO → FORMA. La 1.ª carta se clasifica por color, la 2.ª por número y la 3.ª por forma.',`<div class="sw-card" style="width:90px">${swCard(3,1,0,false)}</div>`),
+  double:swExample('Regla COLOR con marco discontinuo: una carta roja iría en la pila 1, pero al ser «contraria» va en la <b>4</b>.',`<div class="sw-card" data-fr="m" style="width:90px">${swCard(0,0,0,false)}</div>`),
+  chaos:swExample('Una carta con ✕ no se clasifica: pulsa SALTAR. Las demás, según la regla del bloque.',`<div class="sw-card" style="width:90px">${swCard(0,2,1,false)}<div class="sw-nogo">✕</div></div>`)
+ }[m]||''),
+ modes:SWMODES,
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{min:60,max:150},
+ levelInfo:(L,mode)=>{const ch=mode==='unpred'?(L<=4?'cada 4–9 cartas':L<=9?'cada 3–8 cartas':'cada 2–6 cartas'):L<=2?'cada 10 cartas':L<=4?'cada 8 cartas':L<=6?'cada 6 cartas':L<=8?'cada 4–7 cartas':L<=10?'cada 3–6 cartas':L<=12?'cada 3–5 cartas':'cada 2–4 cartas',aviso=`aviso de ${(swFreeze(L)/1000).toFixed(1)} s`;
+  if(mode==='cond')return `${swFrames(L,mode)} marcos con regla propia · sin cambios`;
+  if(mode==='reversal')return `${swFrames(L,mode)} marcos · la tabla se actualiza cada ${swRevEvery(L)} cartas · ${aviso}`;
+  if(mode==='memory')return `secuencia de ${swSeqLen(L)} reglas · se muestra ${(swSeqShow(L)/1000).toFixed(1)} s y se oculta`;
+  if(mode==='double')return `la dimensión cambia ${ch} · marco sólido = pila correcta, discontinuo = pila contraria`;
+  if(mode==='chaos')return `${swBlocks(L)} bloques de reglas combinadas · cartas con ✕ (saltar) · descanso entre bloques`;
+  return `La regla cambia ${ch} · ${aviso}`},
  start(ctx){
-  const L=ctx.level,assist=S.settings.colorAssist,freeze=Math.max(800,1400-L*60),every=()=>L<=2?10:L<=4?8:L<=6?6:L<=8?ri(4,7):ri(3,6);
-  const st={c:0,w:0,rts:[],swRts:[],stayRts:[],switches:0};let rule=pick(SWR),left=every(),card=null,t0=0,frozen=false,afterSwitch=false;
-  ctx.stage.innerHTML=`<div class="g-wrap"><div class="sw-rule" id="swr" aria-live="assertive"></div><div style="min-height:clamp(175px,40vw,230px);display:grid;place-items:center" id="swc"></div><div class="sw-piles" id="swp">${[0,1,2,3].map(i=>`<button class="sw-pile" data-i="${i}" aria-label="Pila ${i+1}: ${i+1} ${SWC[i].n.toLowerCase()} ${['triángulo','estrella','cruz','círculo'][i]}"><span class="kbd">${i+1}</span>${swCard(i,i,i,assist)}</button>`).join('')}</div><div class="fb" id="swf"></div></div>`;
-  const piles=$$('.sw-pile',ctx.stage);
-  const showRule=flash=>{const r=$('#swr');r.style.setProperty('--rc',rule.c);r.innerHTML=`${ic('switch')} Regla: ${rule.n}`;if(flash){r.classList.remove('flash');void r.offsetWidth;r.classList.add('flash')}};
-  function deal(){let s,c,n;do{s=ri(0,3);c=ri(0,3);n=ri(0,3)}while(new Set([s,c,n]).size<2);card={s,c,n};$('#swc').innerHTML=`<div class="sw-card" aria-label="Carta: ${n+1} ${(n?['triángulos','estrellas','cruces','círculos']:['triángulo','estrella','cruz','círculo'])[s]} de color ${SWC[c].n.toLowerCase()}">${swCard(s,c,n,assist)}</div>`;t0=ctx.clock.now()}
-  function choose(i){if(!card||frozen||ctx.clock.paused)return;const want=rule.id==='color'?card.c:rule.id==='shape'?card.s:card.n,ok=i===want,rt=ctx.clock.now()-t0;
-    if(ok){st.c++;st.rts.push(rt);(afterSwitch?st.swRts:st.stayRts).push(rt)}else st.w++;afterSwitch=false;
-    piles[want].classList.add('right');if(!ok)piles[i].classList.add('wrong');ctx.feedback(ok,{msg:ok?'Correcto':`Incorrecto: por ${rule.n.toLowerCase()} iba en la pila ${want+1}`,noFlash:true});
-    $('#swf').className='fb '+(ok?'ok':'bad');$('#swf').textContent=ok?'¡Bien!':`Por ${rule.n.toLowerCase()}, iba en la pila ${want+1}`;ctx.score(st.c,'Aciertos');ctx.hits(st.c);card=null;
-    ctx.clock.after(ok?260:800,()=>{piles.forEach(p=>p.classList.remove('right','wrong'));$('#swf').textContent='';left--;
-      if(left<=0){let r;do r=pick(SWR);while(r===rule);rule=r;left=every();st.switches++;afterSwitch=true;frozen=true;showRule(true);Sound.alert();ctx.say(`Cambio de regla: ahora ${rule.n}`);
-        $('#swc').innerHTML=`<div class="arena-banner" style="position:relative;border-radius:18px;padding:26px"><div><b>¡CAMBIO DE REGLA!</b>Ahora clasifica por ${rule.n}</div></div>`;ctx.clock.after(freeze,()=>{frozen=false;deal()})}else deal()})}
-  $('#swp').addEventListener('click',e=>{const b=e.target.closest('.sw-pile');if(b)choose(+b.dataset.i)});
-  ctx.key(e=>{if(/^[1-4]$/.test(e.key)){e.preventDefault();choose(+e.key-1)}});
-  showRule(false);deal();ctx.countdown(ctx.budget||60000,()=>ctx.end());ctx.score(0,'Aciertos');
-  return {summary(){const n=st.c+st.w;if(!n)return null;const sw=avg(st.swRts),stay=avg(st.stayRts);return {correct:st.c,wrong:st.w,total:n,acc:st.c/n,score:st.c,rt:avg(st.rts),extra:{switches:st.switches,cost:sw&&stay?Math.round(sw-stay):null},
-   metrics:[{label:'Aciertos',value:`${st.c}/${n}`},{label:'Cambios de regla',value:st.switches},{label:'Tiempo medio',value:st.rts.length?Math.round(avg(st.rts))+' ms':'—'},{label:'Coste del cambio',value:sw&&stay?Math.round(sw-stay)+' ms':'—'}],
-   details:sw&&stay?`<h4>Flexibilidad cognitiva</h4><p>Tras un cambio de regla tardaste de media <b>${Math.round(sw)} ms</b> en la primera carta, frente a <b>${Math.round(stay)} ms</b> con la regla ya asentada. Esa diferencia es tu «coste de cambio» dentro del juego.</p>`:''}}};
+  const L=ctx.level,mode=ctx.mode,assist=S.settings.colorAssist,freeze=swFreeze(L),chaos=mode==='chaos';
+  const dur=ctx.budget||(mode==='std'||mode==='unpred'?60000:75000);
+  const T=[];                                        /* registro de cartas: {ok,rt,first,post,pers,nogo,skip,am} */
+  let am=chaos?null:mode,dim=null,map={},inv={},frames=[],seq=[],turn=0,left=0,card=null,t0=0,frozen=false,sinceChange=99,prev=null,changes=0,updates=0,done=false,blockIdx=0,blockLeft=0,blockPhases=[],resting=false,afterFirst=false;
+  ctx.stage.innerHTML=`<div class="g-wrap" style="position:relative"><div class="sw-rule" id="swr" aria-live="assertive"></div><div class="swl" id="swl"></div><div style="min-height:clamp(175px,40vw,230px);display:grid;place-items:center" id="swc"></div><div class="sw-piles" id="swp">${[0,1,2,3].map(i=>`<button class="sw-pile" data-i="${i}" aria-label="Pila ${i+1}: ${i+1} ${SWC[i].n.toLowerCase()} ${['triángulo','estrella','cruz','círculo'][i]}"><span class="kbd">${i+1}</span>${swCard(i,i,i,assist)}</button>`).join('')}</div>${chaos?`<button class="btn btn-lg" id="sw-skip" style="width:100%;margin-top:.2rem">SALTAR <span class="kbd">0</span></button>`:''}<div class="fb" id="swf"></div></div>`;
+  const piles=$$('.sw-pile',ctx.stage),root=$('.g-wrap',ctx.stage);
+  const want=(c,d,v)=>{const x=d==='color'?c.c:d==='shape'?c.s:c.n;return v?3-x:x};
+  const rule=()=>{if(am==='cond'||am==='reversal')return null;return dim};
+  const ansNow=c=>{switch(am){case 'cond':case 'reversal':return want(c,map[c.fr],false);case 'double':return want(c,dim,!!inv[c.fr]);case 'memory':return want(c,seq[turn],false);default:return want(c,dim,false)}};
+  const ansPrev=c=>{if(!prev)return null;switch(prev.am){case 'cond':case 'reversal':return c.fr?want(c,prev.map[c.fr],false):null;case 'double':return want(c,prev.dim,!!prev.inv[c.fr]);case 'memory':return null;default:return prev.dim?want(c,prev.dim,false):null}};
+  const snap=()=>({am,dim,map:{...map},inv:{...inv}});
+  /* ---- configuración de cada tipo de bloque ---- */
+  function setup(m){am=m;left=swEvery(L,m);sinceChange=99;prev=null;
+   if(m==='std'||m==='unpred'||m==='double')dim=pick(SWDIMS);
+   if(m==='cond'||m==='reversal'){const n=swFrames(L,m);frames=SWFR.slice(0,n);const ds=shuffle(SWDIMS);map={};frames.forEach((f,i)=>map[f.id]=ds[i%3]);left=m==='reversal'?swRevEvery(L):9999}
+   if(m==='double'){frames=SWFR.slice(0,2);inv={a:false,m:true}}
+   if(m==='memory'){newSeq(true);}
+   drawLegend()}
+  function newSeq(first){seq=[];for(let i=0;i<swSeqLen(L);i++){let d,g=0;do d=pick(SWDIMS);while(i&&d===seq[i-1]&&g++<10);seq.push(d)}turn=0}
+  /* ---- leyenda / regla visible ---- */
+  const swatch=f=>`<i class="fr-sw" data-fr="${f.id}" aria-hidden="true"></i>`;
+  function drawLegend(){const r=$('#swr'),l=$('#swl');l.innerHTML='';r.style.setProperty('--rc','#FF65C7');
+   if(am==='cond'||am==='reversal'){r.innerHTML=`${ic('switch')} Cada marco, su regla`;l.innerHTML=frames.map(f=>`<span class="swl-i">${swatch(f)} marco ${f.n} → <b>${SWDIM[map[f.id]]}</b></span>`).join('')}
+   else if(am==='double'){r.style.setProperty('--rc',SWR.find(x=>x.id===dim).c);r.innerHTML=`${ic('switch')} Regla: ${SWDIM[dim]}`;l.innerHTML=frames.map(f=>`<span class="swl-i">${swatch(f)} marco ${f.n} → <b>${inv[f.id]?'pila CONTRARIA (1↔4, 2↔3)':'pila CORRECTA'}</b></span>`).join('')}
+   else if(am==='memory'){r.innerHTML=`${ic('switch')} Carta ${turn+1} de ${seq.length}`;l.innerHTML=`<span class="swl-i">${seq.map((_,i)=>`<i class="sq-dot${i<turn?' d':i===turn?' on':''}"></i>`).join('')} aplica la regla que tocaba en tu secuencia</span>`}
+   else{const x=SWR.find(o=>o.id===dim);r.style.setProperty('--rc',x.c);r.innerHTML=`${ic('switch')} Regla: ${x.n}`}
+   if(chaos&&am)l.insertAdjacentHTML('afterbegin',`<span class="swl-i sw-phase">Bloque ${blockIdx} de ${swBlocks(L)} · ${SWMODES.find(m=>m.id===am).name}</span>`)}
+  /* ---- cartas ---- */
+  function newCard(){
+   for(let k=0;k<60;k++){const s=ri(0,3),c=ri(0,3),n=ri(0,3);if(new Set([s,c,n]).size<2)continue;
+    const cd={s,c,n,fr:(am==='cond'||am==='reversal'||am==='double')?pick(frames).id:null,nogo:chaos&&blockLeft<blockLen()-2&&Math.random()<.18};
+    if(!cd.nogo&&sinceChange<3&&prev){const o=ansPrev(cd),a=ansNow(cd);if(o!=null&&o===a)continue}
+    if(am==='double'&&!cd.nogo&&cd.fr==null)continue;
+    return cd}
+   return {s:0,c:1,n:2,fr:null,nogo:false}}
+  const blockLen=()=>({memory:swSeqLen(L)*2,cond:10,reversal:Math.max(12,swRevEvery(L)*2),double:10,std:10,unpred:10}[am]||10);
+  function deal(){card=newCard();const frame=card.fr?`data-fr="${card.fr}"`:'';const fl=card.fr?`, marco ${SWFR.find(f=>f.id===card.fr).n}`:'';
+   $('#swc').innerHTML=`<div class="sw-card" ${frame} aria-label="Carta: ${card.n+1} ${(card.n?['triángulos','estrellas','cruces','círculos']:['triángulo','estrella','cruz','círculo'])[card.s]} de color ${SWC[card.c].n.toLowerCase()}${fl}${card.nogo?' · marcada con una X: saltar':''}">${swCard(card.s,card.c,card.n,assist)}${card.nogo?'<div class="sw-nogo">✕</div>':''}</div>`;t0=ctx.clock.now();
+   $('#swf').textContent='';piles.forEach(p=>p.classList.remove('right','wrong'));
+   if(am==='memory'&&!card.nogo)drawLegend()}
+  /* ---- aviso de cambio con pausa ---- */
+  function banner(title,body,after){frozen=true;card=null;const r=$('#swr');r.classList.remove('flash');void r.offsetWidth;r.classList.add('flash');Sound.alert();ctx.say(title.replace(/[¡!]/g,''));
+   $('#swc').innerHTML=`<div class="arena-banner" style="position:relative;border-radius:18px;padding:26px"><div><b>${title}</b>${body}</div></div>`;
+   ctx.clock.after(freeze,()=>{if(done)return;frozen=false;after?after():deal()})}
+  /* ---- respuesta ---- */
+  function record(ok,rt,extra={}){T.push({ok,rt:Math.round(rt),first:sinceChange===0,post:sinceChange<3&&prev!=null,am,...extra});sinceChange++;ctx.score(T.filter(x=>x.ok).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length)}
+  function respond(i){ /* i = 0..3 pila, -1 saltar */
+   if(!card||frozen||resting||ctx.clock.paused)return;const c=card,rt=ctx.clock.now()-t0;card=null;let ok,msg,pers=false;
+   if(c.nogo){ok=i===-1;record(ok,rt,{nogo:true,skip:i===-1});msg=ok?'¡Bien frenado!':'Era una carta con ✕: había que saltarla';
+    ctx.feedback(ok,{msg,noFlash:true});$('#swf').className='fb '+(ok?'ok':'bad');$('#swf').textContent=ok?'¡Bien!':'Con ✕: saltar'}
+   else{const w=ansNow(c);ok=i===w;if(!ok&&i>=0&&sinceChange<3&&prev){const o=ansPrev(c);if(o!=null&&o===i&&o!==w)pers=true}
+    record(ok,rt,{pers,skipWrong:i===-1});piles[w].classList.add('right');if(!ok&&i>=0)piles[i].classList.add('wrong');
+    const ruleTxt=(am==='cond'||am==='reversal')?`marco ${SWFR.find(f=>f.id===c.fr).n} → ${SWDIM[map[c.fr]]}`:am==='memory'?SWDIM[seq[turn]]:am==='double'?`${SWDIM[dim]}${inv[c.fr]?' (contraria)':''}`:SWDIM[dim];
+    msg=ok?'Correcto':`Incorrecto: por ${ruleTxt.toLowerCase()} iba en la pila ${w+1}`;ctx.feedback(ok,{msg,noFlash:true});$('#swf').className='fb '+(ok?'ok':'bad');$('#swf').textContent=ok?'¡Bien!':(pers?`Seguías la regla anterior · iba en la pila ${w+1}`:`Iba en la pila ${w+1}`)}
+   ctx.clock.after(ok?260:850,()=>{if(done)return;piles.forEach(p=>p.classList.remove('right','wrong'));$('#swf').textContent='';afterCard(c)})}
+  /* ---- qué viene después de cada carta ---- */
+  function afterCard(c){
+   if(chaos){blockLeft--;if(blockLeft<=0)return nextBlock()}
+   if(c.nogo)return deal();                      /* las cartas con ✕ no hacen avanzar ni la regla ni la secuencia */
+   if(am==='memory'){turn++;if(turn>=seq.length){newSeq();return banner('NUEVA SECUENCIA','Memoriza la nueva secuencia de reglas',()=>showSeq(()=>deal()))}drawLegend();return deal()}
+   if(am==='cond')return deal();
+   left--;if(left<=0)return change();
+   return deal()}
+  function change(){
+   changes++;
+   if(am==='reversal'){prev=snap();updates++;const ds=frames.map(f=>map[f.id]);let nm,g=0;do{const sh=shuffle(frames.map(f=>map[f.id]));nm={};frames.forEach((f,i)=>nm[f.id]=sh[i])}while(frames.some(f=>nm[f.id]===map[f.id])&&g++<30);
+    /* con 3 marcos y 3 dimensiones, la tabla nueva es una permutación sin puntos fijos; con 2 marcos se intercambian */
+    if(frames.length===2){nm={};nm[frames[0].id]=map[frames[1].id];nm[frames[1].id]=map[frames[0].id]}
+    map=nm;sinceChange=0;left=swRevEvery(L);drawLegend();return banner('¡LA TABLA CAMBIÓ!','Ahora: '+frames.map(f=>`marco ${f.n} → ${SWDIM[map[f.id]]}`).join(' · '))}
+   if(am==='double'){prev=snap();updates++;let d;do d=pick(SWDIMS);while(d===dim);dim=d;
+    if(L>=8&&Math.random()<.35){inv={a:inv.a?false:true,m:inv.m?false:true}}   /* a veces se invierte también la tabla de marcos */
+    sinceChange=0;left=swEvery(L,am);drawLegend();return banner('¡CAMBIO DE REGLA!',`Ahora clasifica por ${SWDIM[dim]}${L>=8?'. Revisa la tabla de marcos.':''}`)}
+   /* std / unpred / caos: cambia la dimensión */
+   prev=snap();updates++;let d;do d=pick(SWDIMS);while(d===dim);dim=d;sinceChange=0;left=swEvery(L,am);drawLegend();
+   return banner('¡CAMBIO DE REGLA!',`Ahora clasifica por ${SWDIM[dim]}`)}
+  /* ---- memoria de secuencia ---- */
+  function showSeq(after){frozen=true;card=null;const show=swSeqShow(L);
+   $('#swc').innerHTML=`<div class="arena-banner" style="position:relative;border-radius:18px;padding:22px"><div><b>MEMORIZA LA SECUENCIA</b>${seq.map((d,i)=>`<span class="sq-chip">${i+1}. ${SWDIM[d]}</span>`).join('')}<div class="hp-bar"><i></i></div></div></div>`;
+   const i=$('.hp-bar i',$('#swc'));if(i&&!RM()){i.style.transition=`transform ${show}ms linear`;requestAnimationFrame(()=>requestAnimationFrame(()=>{i.style.transform='scaleX(0)'}))}
+   $('#swr').innerHTML=`${ic('switch')} Memoriza la secuencia`;$('#swl').innerHTML='';Sound.alert();ctx.say('Memoriza la secuencia de reglas');
+   ctx.clock.after(show,()=>{if(done)return;frozen=false;drawLegend();after()})}
+  /* ---- caos: bloques con tarjeta de reglas y descanso ---- */
+  function nextBlock(){
+   if(blockIdx>=swBlocks(L)){done=true;return ctx.end()}
+   const ph=blockPhases[blockIdx%blockPhases.length];blockIdx++;resting=true;card=null;$('#swc').innerHTML='';
+   const info={std:['Regla básica','Clasifica por la dimensión indicada; cambia con aviso.'],cond:['Regla condicional','El marco de la carta decide qué dimensión usar (mira la tabla).'],reversal:['Cambio reversible','Como el condicional, pero la tabla se actualiza durante el bloque.'],double:['Doble cambio','Dimensión activa + marco sólido (pila correcta) o discontinuo (pila contraria).'],memory:['Switch + memoria','Memoriza la secuencia de reglas y aplícalas en orden.']}[ph];
+   const b=document.createElement('div');b.className='sbrief';b.style.borderRadius='24px';b.innerHTML=`<div class="sb-in"><div class="eyebrow">Bloque ${blockIdx} de ${swBlocks(L)}</div><h3>${info[0]}</h3><p>${info[1]}</p><p class="note">Recuerda: las cartas con ✕ se saltan.</p><button class="btn btn-primary" id="swb-go">Empezar bloque</button><p class="note">${blockIdx>1?'Descanso sin penalización.':'No hay prisa en las tarjetas.'}</p></div>`;root.appendChild(b);
+   $('#swb-go',b).onclick=()=>{if(ctx.clock.paused)return;b.remove();resting=false;setup(ph);blockLeft=blockLen();if(ph==='memory'){showSeq(()=>deal())}else deal()};$('#swb-go',b).focus({preventScroll:true})}
+  $('#swp').addEventListener('click',e=>{const b=e.target.closest('.sw-pile');if(b)respond(+b.dataset.i)});
+  const sk=$('#sw-skip');if(sk)sk.addEventListener('click',()=>respond(-1));
+  ctx.key(e=>{if(/^[1-4]$/.test(e.key)){e.preventDefault();respond(+e.key-1)}else if(chaos&&(e.key==='0'||e.key===' ')){e.preventDefault();respond(-1)}});
+  /* ---- arranque ---- */
+  ctx.score(0,'Aciertos');
+  if(chaos){blockPhases=shuffle(swMini).slice(0,Math.min(swMini.length,swBlocks(L)));while(blockPhases.length<swBlocks(L))blockPhases.push(pick(swMini));nextBlock()}
+  else{setup(mode);if(mode==='memory')showSeq(()=>deal());else deal();ctx.countdown(dur,()=>{done=true;ctx.end()})}
+  /* ---- resumen ---- */
+  const med=a=>{const v=a.filter(x=>x!=null);return v.length?median(v):null};
+  return {peek:()=>({card,frozen,resting,am,dim,map,inv,seq,turn,sinceChange,prev,ansNow:card?ansNow(card):null}),summary(){
+   const A=T.filter(x=>!x.nogo),N=T.filter(x=>x.nogo),okA=A.filter(x=>x.ok).length,okN=N.filter(x=>x.ok).length,ok=okA+okN,n=T.length;if(!n)return null;
+   const rtOk=A.filter(x=>x.ok).map(x=>x.rt),first=A.filter(x=>x.ok&&x.first).map(x=>x.rt),rest=A.filter(x=>x.ok&&!x.first&&!x.post).map(x=>x.rt);
+   const swCost=first.length&&rest.length?Math.round(med(first)-med(rest)):null;
+   const err=A.filter(x=>!x.ok).length,pers=A.filter(x=>x.pers).length,post=A.filter(x=>x.post),postAcc=post.length?post.filter(x=>x.ok).length/post.length:null,otherA=A.filter(x=>!x.post),otherAcc=otherA.length?otherA.filter(x=>x.ok).length/otherA.length:null;
+   const metrics=[{label:'Aciertos',value:`${ok}/${n}`},{label:'Cambios de regla',value:changes},{label:'Mediana de respuesta',value:rtOk.length?Math.round(med(rtOk))+' ms':'—'}];
+   if(swCost!=null)metrics.push({label:'Coste de cambio',value:(swCost>=0?'+':'')+swCost+' ms'});
+   if(updates&&err)metrics.push({label:'Errores perseverativos',value:`${pers}/${err}`});
+   if(postAcc!=null)metrics.push({label:'Precisión tras actualizar',value:pct(postAcc)});
+   if(N.length)metrics.push({label:'Cartas con ✕ saltadas',value:`${okN}/${N.length}`});
+   const details=`<h4>Flexibilidad cognitiva</h4>${swCost!=null?`<p>Tras un cambio tardaste una mediana de <b>${Math.round(med(first))} ms</b> en la primera carta, frente a <b>${Math.round(med(rest))} ms</b> con la regla asentada: <b>coste de cambio ${(swCost>=0?'+':'')}${swCost} ms</b>.</p>`:''}${postAcc!=null&&otherAcc!=null?`<p>En las 3 cartas posteriores a una actualización acertaste el <b>${pct(postAcc)}</b>, frente al <b>${pct(otherAcc)}</b> en el resto.</p>`:''}${updates&&err?`<p>Un error <b>perseverativo</b> es seguir aplicando la regla anterior justo después de un cambio. Tuviste ${pers} de ${err} errores.</p>`:''}${N.length?`<p>Las cartas con ✕ eran de inhibición: lo correcto era no clasificarlas. Saltaste bien ${okN} de ${N.length}.</p>`:''}<p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:ok,wrong:n-ok,total:n,acc:ok/n,score:ok,rt:rtOk.length?avg(rtOk):null,metrics,details,
+    extra:{switches:changes,cost:swCost,pers,errors:err,postAcc,otherAcc,nogo:N.length?{n:N.length,ok:okN}:null,omRate:0,faRate:N.length?(N.length-okN)/N.length:0}}}}
  }});
 
 /* =====================================================================
