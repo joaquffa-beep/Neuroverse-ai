@@ -773,6 +773,21 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .ins-mv{font:800 1.7rem var(--display);font-variant-numeric:tabular-nums}.ins-ms{display:flex;flex-wrap:wrap;gap:.3rem .8rem;font-size:var(--t-sm)}
 .ins-k{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;text-align:center}.ins-k b{display:block;font:800 1.5rem var(--display)}.ins-k small{color:var(--muted)}
 .ins-wk{display:flex;gap:.4rem;align-items:flex-end;height:72px;margin-top:.8rem}.ins-wk div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}.ins-wk i{width:100%;min-height:3px;border-radius:5px;background:var(--teal);display:block}.ins-wk small{font-size:.65rem;color:var(--muted)}
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+.lab-card{display:flex;flex-direction:column;gap:.4rem;text-align:left;padding:1.2rem;cursor:pointer;border:1px solid var(--line-2);color:inherit;font:inherit;transition:transform .15s,border-color .15s}.lab-card:hover{transform:translateY(-3px);border-color:var(--c)}.lab-card b{font:700 1.15rem var(--display)}.lab-card small{color:var(--muted);line-height:1.4}.lab-ic{display:inline-grid;width:34px;height:34px;color:var(--c)}.lab-ic svg{width:100%;height:100%}
+.cm-legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:var(--t-sm);color:var(--muted);margin-bottom:.8rem}.cm-legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:.3rem;background:rgba(var(--ov),.08);border:1px dashed var(--line-2)}.cm-legend i.g{background:#3DDC84;border:0}.cm-legend i.a{background:#FFB547;border:0}.cm-legend i.r{background:#FF5470;border:0}.cm-legend i.rec{background:transparent;border:2px solid var(--teal)}
+.cm-wrap{overflow-x:auto}.cm-t{border-collapse:separate;border-spacing:3px;min-width:640px}.cm-t th{font-size:var(--t-2xs);color:var(--muted);font-weight:600;text-align:center;padding:0 2px}.cm-t th[scope=row]{text-align:left;white-space:nowrap;padding-right:.6rem;font-size:var(--t-sm);color:var(--text)}
+.cm-t td{width:30px;height:28px;padding:0;border-radius:7px}.cm-t td button{width:100%;height:100%;border:0;background:transparent;color:inherit;font:700 .72rem var(--font);cursor:pointer;border-radius:7px}
+.cm-t td.e{background:rgba(var(--ov),.06);border:1px dashed var(--line-2)}.cm-t td.g{background:rgba(61,220,132,.7);color:#04210F}.cm-t td.a{background:rgba(255,181,71,.75);color:#2A1A00}.cm-t td.r{background:rgba(255,84,112,.7);color:#2A0007}.cm-t td.rec{outline:2px solid var(--teal);outline-offset:1px}.cm-t td.na{background:transparent}
+.cm-t td button:hover{box-shadow:inset 0 0 0 2px rgba(255,255,255,.5)}.cm-t td button:focus-visible{outline:2px solid var(--teal)}
+.vault-ach{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem}.vault-ach li{display:grid;grid-template-columns:auto 1fr auto;gap:.7rem;align-items:center}.va-ic{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--c)}.va-ic svg{width:20px;height:20px}.vault-ach small{display:block;color:var(--muted)}.vault-ach time{color:var(--muted);font-size:var(--t-sm)}
+.gx-card{position:relative;padding:0;overflow:hidden;background:#070C1C}.gx-card canvas{display:block;width:100%}.gx-tip{position:absolute;z-index:2;width:180px;padding:.7rem .8rem;border-radius:14px;background:rgba(10,16,36,.92);border:1px solid #3A4A7C;color:#F2F6FF;display:flex;flex-direction:column;gap:.25rem;font-size:var(--t-sm)}.gx-tip span{color:#9CC2FF}
+.gx-list,.gx-list ul{list-style:none;padding:0;margin:0}.gx-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin-top:.8rem}.gx-grp b{display:block;margin-bottom:.35rem}.gx-list ul{display:flex;flex-direction:column;gap:.3rem}
+.gx-b{width:100%;display:grid;grid-template-columns:auto 1fr;gap:.1rem .6rem;align-items:center;text-align:left;padding:.45rem .6rem;border-radius:10px;border:1px solid var(--line-2);background:rgba(var(--ov),.03);color:inherit;font:600 .85rem var(--font);cursor:pointer}.gx-b i{width:10px;height:10px;border-radius:50%;background:var(--c);grid-row:1/3}.gx-b small{grid-column:2;color:var(--muted);font-weight:400}.gx-b:hover{border-color:var(--c)}
+.fu{gap:.9rem}.fu-stage{width:100%;max-width:520px;min-height:170px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);display:grid;place-items:center;align-content:center;gap:.4rem;padding:1rem;user-select:none}
+.fu-dig{font:800 2.2rem var(--display);letter-spacing:.3em;color:#9CC2FF;min-height:2.6rem}.fu-word{font:800 3.4rem var(--display);min-height:4rem;line-height:1.1}
+.fu-btns{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;width:100%;max-width:520px}.fu-b{min-height:56px;padding:.5rem .3rem;font-size:.8rem;position:relative}.fu-b .kbd{position:absolute;top:4px;left:5px;font-size:.6rem}
+.fu-nums{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}.fu-n{min-width:52px;min-height:52px;font:700 1.2rem var(--display)}
 .cb{max-width:560px;gap:.9rem}
 .cb-board{display:flex;flex-direction:column;gap:.4rem;width:100%;max-width:440px;max-height:clamp(190px,40vh,330px);overflow-y:auto;overscroll-behavior:contain;padding:2px}
 .cb-row{display:flex;align-items:center;gap:.6rem;padding:.3rem .55rem;border-radius:14px;border:1px solid var(--line-2);background:rgba(var(--ov),.03)}
@@ -1456,6 +1471,7 @@ cpt:'M3 12h3l2-6 3 12 3-9 2 3h5',
 rulefind:'M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z',
 reversal:'M7 17V5M3.5 8.5L7 5l3.5 3.5M17 7v12M13.5 15.5L17 19l3.5-3.5',
 agl:'M4 5h16v11H11l-4 4v-4H4zM8 9h8M8 12h5',
+fusion:'<circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/>',
 cloud:'M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 10a4 4 0 010 8z',
 calendar:'<rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
 medal:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/>',
@@ -1503,7 +1519,7 @@ function animateIn(root=document){const go=()=>{$$('.rv[data-off]',root).forEach
 
 /* ---------- Habilidades y mundos ---------- */
 const SKILLS=[
- {id:'attention',name:'Atención y concentración',short:'Atención',world:'FOCUS LAB',color:'#538CFF',c2:'#35E6DF',icon:'focus',desc:'Atención selectiva, concentración y control inhibitorio.',blurb:'Laboratorio de luz y precisión: filtra lo irrelevante y mantén el foco.',games:['stroop','hunt','flanker','vsearch','mot','blink','cpt']},
+ {id:'attention',name:'Atención y concentración',short:'Atención',world:'FOCUS LAB',color:'#538CFF',c2:'#35E6DF',icon:'focus',desc:'Atención selectiva, concentración y control inhibitorio.',blurb:'Laboratorio de luz y precisión: filtra lo irrelevante y mantén el foco.',games:['stroop','hunt','flanker','vsearch','mot','blink','cpt','fusion']},
  {id:'memory',name:'Memoria',short:'Memoria',world:'MEMORY MATRIX',color:'#9B6DFF',c2:'#FF65C7',icon:'memory',desc:'Memoria visual, verbal y memoria de trabajo.',blurb:'Una red de recuerdos luminosos: palabras, secuencias y parejas.',games:['words','sequence','pairs','nback','updater','backward','changed','delayed']},
  {id:'logic',name:'Razonamiento lógico',short:'Lógica',world:'LOGIC UNIVERSE',color:'#35E6DF',c2:'#538CFF',icon:'logic',desc:'Deducción, patrones y resolución de problemas.',blurb:'Geometría y estructuras: descubre la regla escondida en cada patrón.',games:['sudoku','pattern','logicrush','matrix','code','rotation','circuit','strategy','deduction']},
  {id:'math',name:'Agilidad matemática',short:'Cálculo',world:'MATH SPEED',color:'#FFB547',c2:'#FF65C7',icon:'math',desc:'Cálculo mental y memoria de trabajo numérica.',blurb:'Números en movimiento: calcula con velocidad y cabeza fría.',games:['flash','countdown','truefalse']},
@@ -2627,6 +2643,7 @@ SCREENS.home={title:'Centro de control',
       <div class="hero-actions">
         <button class="btn-mission" data-start><span class="bm-ic">${ic('play')}</span><span>INICIAR ENTRENAMIENTO<small>${doneToday?'Misión de hoy completada · repetir':`Misión de ${mins} min · ${plan.length} actividades`}</small></span></button>
         <button class="btn btn-lg" data-go="worlds">${ic('worlds')} Explorar mundos</button>
+        <button class="btn btn-lg" data-go="lab">${ic('spark')} Laboratorio</button>
       </div>
     </div>
     <div class="hero-brain"><canvas class="brain-cv" id="brain-cv" role="img" aria-label="Cerebro holográfico animado que evoluciona con tu progreso. Arrástralo para girarlo y toca una región para ver su mundo."></canvas>
@@ -2866,7 +2883,7 @@ SCREENS.stats={title:'Mi evolución',
   const bestR=arr.filter(r=>r.score!=null).reduce((b,r)=>!b||betterFn(r,b)?r:b,null)||arr.reduce((b,r)=>!b||r.acc>b.acc?r:b,null);
   const trend=arr.length>=4?avg(arr.slice(-3).map(r=>r.acc))-avg(arr.slice(-6,-3).map(r=>r.acc)):null;
   const cmpCell=(lbl,r)=>`<div class="cmp"><small>${lbl}</small><b>${r?pct(r.acc):'—'}</b><span>${r?`${def.metric.label}: ${fmtScore(cg,r.score)} · ${fmtDate(r.date)}`:''}</span></div>`;
-  return `<div class="sec-h"><div><div class="eyebrow">Centro de inteligencia</div><h1>MI EVOLUCIÓN COGNITIVA</h1><p>Rendimiento dentro de los juegos. No es una medición clínica ni científica de tus capacidades.</p></div><button class="btn btn-primary" data-go="insights">${ic('brain')} Cognitive Insights</button></div>
+  return `<div class="sec-h"><div><div class="eyebrow">Centro de inteligencia</div><h1>MI EVOLUCIÓN COGNITIVA</h1><p>Rendimiento dentro de los juegos. No es una medición clínica ni científica de tus capacidades.</p></div><div class="row"><button class="btn btn-primary" data-go="insights">${ic('brain')} Cognitive Insights</button><button class="btn" data-go="lab">${ic('spark')} Laboratorio</button></div></div>
   <div class="kpis stagger">${kpi('history','#35E6DF',cnt(Math.round(S.stats.totalSec/60))+'<small>min</small>','Tiempo total')}${kpi('daily','#538CFF',cnt(S.stats.activities),'Actividades')}${kpi('check','#9B6DFF',last30.length?cnt(Math.round(avg(last30.map(r=>r.acc))*100))+'<small>%</small>':'—','Precisión media (30 d)')}${kpi('calendar','#FF65C7',cnt(st.total),'Días entrenados',`Racha ${st.current} · mejor ${st.best}`)}</div>
   <section class="section card pad-lg"><div class="sec-h"><div><div class="eyebrow">Radar de habilidades</div><h2>Tu perfil de rendimiento</h2><p>Toca o pasa el ratón por cada eje para ver su significado.</p></div></div>
    <div class="radar-wrap"><div>${radarSVG()}</div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Habilidad</th><th class="n">Índice</th><th class="n">Nivel</th><th class="n">Actividades</th></tr></thead><tbody>${SKILLS.map(s=>{const v=skillPerf(s.id);return `<tr><td><span style="color:${s.color}">●</span> ${s.short}</td><td class="n">${v??'<span class="dim">sin datos</span>'}</td><td class="n">${skillLvl(s.id).level}</td><td class="n">${R.filter(r=>r.skill===s.id).length}</td></tr>`}).join('')}</tbody></table><p class="note" style="margin-top:.7rem">Índice (0–100) = precisión media de tus 15 últimas actividades del área × 70 + nivel medio × 3. Las áreas sin datos se marcan con un círculo punteado.</p></div></div></section>
@@ -2996,6 +3013,99 @@ SCREENS.achievements={title:'Logros',
  }};
 
 /* ---------- HISTORIAL ---------- */
+/* ---------- LABORATORIO NEURO: Neural Galaxy, Mapa de desafíos, Memory Vault y Sound Studio ----------
+   Todo se construye con tus resultados reales (nada inventado): el mapa usa partidas y precisión por nivel, el vault tus mejores marcas con fecha,
+   la galaxia la práctica reciente y el estudio los instrumentos del motor de audio. */
+const LABS=[
+ {id:'galaxy',name:'Neural Galaxy',desc:'Tus juegos como una constelación: brillan según cuánto y cuándo los practicas.',icon:'brain',c:'#9B6DFF'},
+ {id:'map',name:'Mapa de desafíos',desc:'Mapa de calor de tu precisión por juego y nivel; toca una casilla para jugar ese nivel.',icon:'worlds',c:'#35E6DF'},
+ {id:'vault',name:'Memory Vault',desc:'Tus mejores marcas y tus hitos, con fecha y nivel.',icon:'gem',c:'#FFB547'},
+ {id:'studio',name:'Sound Studio',desc:'Toca con los instrumentos, usa el metrónomo y graba una melodía.',icon:'rhythm',c:'#FF65C7'}
+];
+SCREENS.lab={title:'Laboratorio',
+ html(){return `<div class="sec-h"><div><div class="eyebrow">Laboratorio neuro</div><h1>LABORATORIO</h1><p>Herramientas para explorar tus datos y tus sonidos. Todo se calcula con tus resultados reales.</p></div></div>
+  <div class="lab-grid">${LABS.map(l=>`<button class="card lab-card" data-go="${l.id}" style="--c:${l.c}"><span class="lab-ic">${ic(l.icon)}</span><b>${l.name}</b><small>${l.desc}</small></button>`).join('')}${GAMES.fusion?`<button class="card lab-card" data-play="fusion" style="--c:#FF5470"><span class="lab-ic">${ic(GAMES.fusion.icon)}</span><b>Fusion Lab</b><small>${GAMES.fusion.tagline}</small></button>`:''}</div>`},
+ mount(){}};
+const labBack=`<button class="btn btn-ghost btn-sm" data-go="lab" style="margin-bottom:.5rem">${ic('chevL')} Laboratorio</button>`;
+/* ---- Mapa de desafíos ---- */
+SCREENS.map={title:'Mapa de desafíos',
+ html(){return `<div class="sec-h"><div><div class="eyebrow">Laboratorio</div>${labBack}<h1>MAPA DE DESAFÍOS</h1><p>Cada casilla es un nivel de un juego: el número son tus partidas y el color tu precisión media en él. El borde marca el nivel recomendado por Neuro AI (tú puedes elegir cualquiera).</p></div></div>
+  <div class="cm-legend"><span><i class="g"></i>≥ 85 %</span><span><i class="a"></i>65–84 %</span><span><i class="r"></i>&lt; 65 %</span><span><i class="e"></i>sin jugar</span><span><i class="rec"></i>recomendado</span></div>
+  ${SKILLS.map(s=>`<section class="section card pad-lg"><div class="sec-h"><div><div class="eyebrow">${s.world}</div><h2 style="color:${s.color}">${s.short}</h2></div></div><div class="cm-wrap"><table class="cm-t"><thead><tr><th scope="col">Juego</th>${Array.from({length:15},(_,i)=>`<th scope="col">${i+1}</th>`).join('')}</tr></thead><tbody>${s.games.filter(g=>GAMES[g]).map(g=>{const d=GAMES[g],G=S.games[g]||{},rec=gs(g).level;return `<tr><th scope="row">${esc(d.name)}</th>${Array.from({length:15},(_,i)=>{const L=i+1;if(L>d.maxLevel)return '<td class="na"></td>';const h=G.lv?.[L],n=h?.n||0,acc=n?h.accSum/n:null,cls=n===0?'e':acc>=.85?'g':acc>=.65?'a':'r';return `<td class="${cls}${L===rec?' rec':''}"><button data-map="${g}|${L}" aria-label="${esc(d.name)}, nivel ${L}: ${n?`${n} partida${n>1?'s':''}, ${pct(acc)} de media`:'sin jugar'}${L===rec?' (recomendado)':''}">${n||''}</button></td>`}).join('')}</tr>`}).join('')}</tbody></table></div></section>`).join('')}`},
+ mount(m){$$('[data-map]',m).forEach(b=>b.onclick=()=>{const [g,L]=b.dataset.map.split('|');Play.open(g,{level:+L})})}};
+/* ---- Memory Vault ---- */
+function vaultData(){const out=[];for(const g of Object.keys(GAMES)){const d=GAMES[g],rs=S.results.filter(r=>r.game===g&&!(r.extra&&r.extra.partial));if(!rs.length)continue;const by={};rs.forEach(r=>(by[r.mode]=by[r.mode]||[]).push(r));
+  for(const [m,arr] of Object.entries(by)){const better=d.metric?.better==='low'?(a,b)=>a<b:(a,b)=>a>b,sc=arr.filter(r=>r.score!=null),bs=sc.reduce((b,r)=>!b||better(r.score,b.score)?r:b,null),ba=arr.filter(r=>r.total>=5).reduce((b,r)=>!b||r.acc>b.acc?r:b,null);out.push({g,m,n:arr.length,bs,ba,skill:d.skill})}}return out}
+SCREENS.vault={title:'Memory Vault',
+ html(){const V=vaultData(),f=UI.vaultF||'all',rows=V.filter(v=>f==='all'||v.skill===f),ach=Object.entries(S.achievements).map(([id,ts])=>({a:ACH.find(x=>x.id===id),ts})).filter(x=>x.a).sort((a,b)=>b.ts-a.ts).slice(0,8);
+  if(!V.length)return `<div class="sec-h"><div><div class="eyebrow">Laboratorio</div>${labBack}<h1>MEMORY VAULT</h1></div></div><div class="empty" style="padding:3rem 1.2rem">${ic('gem')}<h3>Tu vault está vacío</h3><p>Cada mejor marca que consigas se guardará aquí con su fecha y su nivel. No mostramos marcas inventadas.</p><button class="btn btn-primary btn-lg" data-start>${ic('play')} Comenzar misión de hoy</button></div>`;
+  return `<div class="sec-h"><div><div class="eyebrow">Laboratorio</div>${labBack}<h1>MEMORY VAULT</h1><p>Tus mejores marcas por juego y modo, con la fecha y el nivel en que las lograste.</p></div></div>
+  <div class="kpis stagger">${kpi('gem','#FFB547',cnt(V.length),'Marcas guardadas')}${kpi('daily','#538CFF',cnt(S.stats.activities),'Actividades')}${kpi('medal','#9B6DFF',cnt(Object.keys(S.achievements).length)+'<small>/'+ACH.length+'</small>','Logros')}${kpi('flame','#FF65C7',cnt(streak().best),'Mejor racha (días)')}</div>
+  <section class="section card pad-lg"><div class="row" id="v-filter" style="margin-bottom:.9rem"><button class="chip ${f==='all'?'on':''}" data-f="all">Todas</button>${SKILLS.map(s=>`<button class="chip ${f===s.id?'on':''}" data-f="${s.id}" style="--c:${s.color}">${ic(s.icon)} ${s.short}</button>`).join('')}</div>
+   <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Juego · modo</th><th class="n">Partidas</th><th class="n">Mejor marca</th><th class="n">Mejor precisión</th></tr></thead><tbody>${rows.map(v=>{const d=GAMES[v.g];return `<tr><td><span style="color:${SK[d.skill].color}">●</span> ${esc(d.name)}${d.modes?` · <span class="dim">${esc(modeName(v.g,v.m))}</span>`:''}</td><td class="n">${v.n}</td><td class="n">${v.bs?`<b>${fmtScore(v.g,v.bs.score)}</b> <small class="dim">${esc(d.metric?.label||'')} · nivel ${v.bs.level} · ${fmtDate(v.bs.date)}</small>`:'<span class="dim">—</span>'}</td><td class="n">${v.ba?`<b>${pct(v.ba.acc)}</b> <small class="dim">nivel ${v.ba.level} · ${fmtDate(v.ba.date)}</small>`:'<span class="dim">—</span>'}</td></tr>`}).join('')}</tbody></table></div></section>
+  <section class="section card pad-lg"><div class="eyebrow">Hitos</div><h3 style="margin:.2rem 0 .8rem">Últimos logros</h3>${ach.length?`<ul class="vault-ach">${ach.map(x=>`<li><span class="va-ic" style="--c:${x.a.c}">${ic(x.a.icon)}</span><span><b>${esc(x.a.name)}</b><small>${esc(x.a.desc)}</small></span><time>${fmtDate(dkey(new Date(x.ts)))}</time></li>`).join('')}</ul>`:'<p class="small">Aún no has desbloqueado logros.</p>'}</section>`},
+ mount(m){$$('#v-filter .chip',m).forEach(b=>b.onclick=()=>{UI.vaultF=b.dataset.f;UI.render()})}};
+/* ---- Sound Studio ---- */
+SCREENS.studio={title:'Sound Studio',
+ html(){const on=Sound.on(),s=S.settings;
+  return `<div class="sec-h"><div><div class="eyebrow">Laboratorio</div>${labBack}<h1>SOUND STUDIO</h1><p>Un estudio para tocar con los instrumentos del juego, practicar con metrónomo y grabar una melodía. Nada se envía a ningún sitio.</p></div></div>
+  ${on?'':`<div class="banner-warn">El sonido está desactivado. <button class="btn btn-sm" id="sd-on" type="button">Activar sonido</button></div>`}
+  <div class="g-main"><div class="stack">
+   <div class="card pad-lg"><h3>Teclado</h3><div class="field" style="margin:.6rem 0"><label for="sd-inst">Instrumento</label><select class="input" id="sd-inst">${Object.entries(INST_N).map(([k,n])=>`<option value="${k}" ${(s.inst||'piano')===k?'selected':''}>${n}</option>`).join('')}</select></div>
+    <div class="rh-kb" data-stim id="sd-kb">${SCALE_N.map((nm,i)=>`<button class="rh-key" data-k="${i}" aria-label="${nm}"><span class="kbd">${i+1}</span><b>${nm}${i===7?'’':''}</b></button>`).join('')}</div>
+    <p class="note" style="margin-top:.5rem">Teclas 1–8 del teclado. Escala de Do mayor (Do4–Do5).</p></div>
+   <div class="card pad-lg"><h3>Grabadora</h3><div class="row" style="margin:.6rem 0"><button class="btn" id="sd-rec" type="button">● Grabar</button><button class="btn" id="sd-play" type="button" disabled>▶ Reproducir</button><button class="btn btn-ghost" id="sd-clr" type="button" disabled>Borrar</button></div><div class="small muted" id="sd-info" aria-live="polite">Sin grabación.</div></div>
+  </div><div class="stack">
+   <div class="card pad-lg"><h3>Metrónomo</h3><div class="field" style="margin:.6rem 0"><label for="sd-bpm">Tempo: <b id="sd-bpmv">100</b> pulsaciones por minuto</label><input type="range" id="sd-bpm" min="40" max="200" step="1" value="100"></div><div class="beat-row" id="sd-beats"><i></i><i></i><i></i><i></i></div><div class="row" style="margin-top:.6rem"><button class="btn btn-primary" id="sd-metro" type="button">▶ Iniciar</button></div></div>
+   <div class="card pad-lg"><h3>Mezcla</h3><div class="field" style="margin:.6rem 0"><label for="sd-vol">Instrumentos y metrónomo</label><input type="range" id="sd-vol" min="0" max="1" step=".05" value="${s.gameVol??1}"></div><div class="row"><button class="btn" id="sd-amb" type="button">Probar música ambiental</button></div><p class="note" style="margin-top:.5rem">Los volúmenes del resto de canales están en Configuración.</p></div>
+  </div></div>`},
+ mount(m){
+  const s=S.settings,st=UI.sd={bpm:100,metro:false,rec:false,take:[],t0:0,timer:null,nextT:0,beat:0,playing:false},alive=()=>UI.cur==='studio';
+  const keys=$$('.rh-key',m),lit=k=>{keys[k].classList.add('lit');setTimeout(()=>keys[k].classList.remove('lit'),180)};
+  const note=k=>{Sound.inst(s.inst||'piano',SCALE[k],.4,.3,0,true);lit(k);if(st.rec)st.take.push({k,t:performance.now()-st.t0});info()};
+  const info=()=>{const n=st.take.length,dur=n?Math.round(st.take.at(-1).t/100)/10:0;$('#sd-info').textContent=st.rec?`Grabando… ${n} nota${n===1?'':'s'}`:n?`${n} nota${n===1?'':'s'} · ${dur} s`:'Sin grabación.';$('#sd-play').disabled=st.rec||!n||st.playing;$('#sd-clr').disabled=st.rec||!n};
+  $('#sd-on')?.addEventListener('click',()=>{s.sound=true;if(s.volume<=0)s.volume=.55;save();Sound.init();Sound.setVol();UI.render()});
+  $('#sd-inst').onchange=e=>{s.inst=e.target.value;save();[0,2,4,7].forEach((k,i)=>Sound.inst(s.inst,SCALE[k],.28,.3,i*.2,true))};
+  $('#sd-kb').addEventListener('pointerdown',e=>{const b=e.target.closest('.rh-key');if(b){e.preventDefault();note(+b.dataset.k)}});
+  const onKey=e=>{if(!alive()){document.removeEventListener('keydown',onKey);stopMetro();return}if(e.target.closest&&e.target.closest('input,select,textarea'))return;if(/^[1-8]$/.test(e.key)&&!e.repeat){e.preventDefault();note(+e.key-1)}};document.addEventListener('keydown',onKey);
+  $('#sd-rec').onclick=()=>{if(st.rec){st.rec=false;$('#sd-rec').textContent='● Grabar'}else{st.rec=true;st.take=[];st.t0=performance.now();$('#sd-rec').textContent='■ Parar'}info()};
+  $('#sd-play').onclick=()=>{if(!st.take.length||st.playing)return;st.playing=true;info();const t0=st.take[0].t;st.take.forEach(n=>{Sound.inst(s.inst||'piano',SCALE[n.k],.4,.3,(n.t-t0)/1000+.05,true);setTimeout(()=>lit(n.k),(n.t-t0)+50)});setTimeout(()=>{st.playing=false;if(alive())info()},st.take.at(-1).t-t0+700)};
+  $('#sd-clr').onclick=()=>{st.take=[];info()};
+  /* metrónomo con planificación anticipada sobre el reloj del audio: no depende de la exactitud de setTimeout */
+  const beatsEl=$$('#sd-beats i',m);
+  function pump(){if(!alive()||!st.metro){return stopMetro()}const c=Sound.ctx;while(st.nextT<c.currentTime+.12){const when=Math.max(0,st.nextT-c.currentTime),b=st.beat%4;Sound.drum('click',when,.5,b===0,true);setTimeout(()=>{if(alive())beatsEl.forEach((el,i)=>el.classList.toggle('on',i===b))},when*1000);st.nextT+=60/st.bpm;st.beat++}}
+  function stopMetro(){st.metro=false;clearInterval(st.timer);st.timer=null;const b=$('#sd-metro');if(b)b.textContent='▶ Iniciar';beatsEl.forEach(el=>el.classList.remove('on'))}
+  $('#sd-metro').onclick=()=>{if(st.metro)return stopMetro();if(!Sound.init())return;if(Sound.ctx.state==='suspended')Sound.ctx.resume();st.metro=true;st.beat=0;st.nextT=Sound.ctx.currentTime+.08;$('#sd-metro').textContent='■ Detener';pump();st.timer=setInterval(pump,25)};
+  $('#sd-bpm').oninput=e=>{st.bpm=+e.target.value;$('#sd-bpmv').textContent=st.bpm};
+  $('#sd-vol').onchange=e=>{s.gameVol=+e.target.value;save();Sound.setVol();Sound.inst(s.inst||'piano',SCALE[4],.3,.3,0,true)};
+  $('#sd-amb').onclick=()=>{if(!Sound.on()){toast('Activa el sonido para probar la música.',{icon:'info'});return}Ambient.on?Ambient.stop():Ambient.start(true)}}};
+/* ---- Neural Galaxy ---- */
+function gxLayout(W,H){
+ const R=seeded('galaxy-v1'),m=Math.min(W,H),cx=W/2,cy=H/2,out=[],centers={};
+ SKILLS.forEach((s,i)=>{const a=-Math.PI/2+i/SKILLS.length*Math.PI*2;centers[s.id]={x:cx+Math.cos(a)*m*.3*(W/H>1.2?W/H*.75:1),y:cy+Math.sin(a)*m*.3,a}});
+ SKILLS.forEach(s=>{const c=centers[s.id],gl=s.games.filter(g=>GAMES[g]);gl.forEach((g,j)=>{const ang=j/gl.length*Math.PI*2+R()*.6,rad=m*(.08+R()*.075);out.push({g,sk:s.id,col:s.color,x:c.x+Math.cos(ang)*rad,y:c.y+Math.sin(ang)*rad})})});
+ const pad=14;for(let it=0;it<60;it++)for(let i=0;i<out.length;i++)for(let j=i+1;j<out.length;j++){const a=out[i],b=out[j],dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||.01;if(d<26){const push=(26-d)/2,nx=dx/d,ny=dy/d;a.x-=nx*push;a.y-=ny*push;b.x+=nx*push;b.y+=ny*push}}
+ out.forEach(o=>{o.x=clamp(o.x,pad,W-pad);o.y=clamp(o.y,pad,H-pad)});return {stars:out,centers}}
+function gxStars(W,H){const L=gxLayout(W,H),now=Date.now();L.stars.forEach(o=>{const G=S.games[o.g]||{},plays=G.plays||0,days=G.last?(now-G.last)/864e5:999;o.plays=plays;o.days=days;o.level=gs(o.g).level;o.bright=plays?.3+.7*Math.exp(-days/14):.12;o.r=plays?3.2+Math.sqrt(plays)*1.5:2.4});return L}
+SCREENS.galaxy={title:'Neural Galaxy',
+ html(){const games=Object.keys(GAMES);return `<div class="sec-h"><div><div class="eyebrow">Laboratorio</div>${labBack}<h1>NEURAL GALAXY</h1><p>Cada estrella es un juego. Su tamaño crece con tus partidas y su brillo con lo reciente que la jugaste (se apaga poco a poco en unas dos semanas). Las estrellas huecas aún no las has jugado.</p></div></div>
+  <div class="card gx-card" data-stim><canvas id="gxc" aria-label="Mapa de estrellas de tus juegos; usa la lista de abajo para acceder con teclado"></canvas><div class="gx-tip" id="gxt" hidden></div></div>
+  <section class="section card pad-lg"><h3>Lista de juegos</h3><p class="small muted">Misma información que la galaxia, accesible con teclado.</p><ul class="gx-list" id="gxl">${SKILLS.map(s=>`<li class="gx-grp"><b style="color:${s.color}">${s.world}</b><ul>${s.games.filter(g=>GAMES[g]).map(g=>{const G=S.games[g]||{},d=GAMES[g];return `<li><button class="gx-b" data-play="${g}" style="--c:${s.color}"><i></i>${esc(d.name)}<small>${G.plays?`${G.plays} partida${G.plays>1?'s':''} · nivel ${gs(g).level}${G.last?' · '+fmtDate(dkey(new Date(G.last))):''}`:'sin jugar'}</small></button></li>`}).join('')}</ul></li>`).join('')}</ul></section>`},
+ mount(m){
+  const cv=$('#gxc',m),tip=$('#gxt',m),g=cv.getContext('2d'),rm=RM();let W=0,H=0,L=null,raf=0,hov=null,dpr=Math.min(2,devicePixelRatio||1);
+  const fit=()=>{const w=cv.parentElement.clientWidth,h=Math.round(clamp(w*.62,300,520));if(w===W&&h===H)return;W=w;H=h;cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';g.setTransform(dpr,0,0,dpr,0,0);L=gxStars(W,H)};
+  const pick=(x,y)=>{let b=null,bd=16;L.stars.forEach(o=>{const d=Math.hypot(o.x-x,o.y-y);if(d<bd){bd=d;b=o}});return b};
+  const draw=t=>{if(UI.cur!=='galaxy'){cancelAnimationFrame(raf);return}fit();g.clearRect(0,0,W,H);g.fillStyle='#070C1C';g.fillRect(0,0,W,H);
+   SKILLS.forEach(s=>{const c=L.centers[s.id],gr=g.createRadialGradient(c.x,c.y,0,c.x,c.y,Math.min(W,H)*.24);gr.addColorStop(0,s.color+'26');gr.addColorStop(1,s.color+'00');g.fillStyle=gr;g.beginPath();g.arc(c.x,c.y,Math.min(W,H)*.24,0,7);g.fill();g.fillStyle='#9CC2FF99';g.font='600 11px system-ui,sans-serif';g.textAlign='center';g.fillText(s.short.toUpperCase(),c.x,c.y+Math.min(W,H)*.2)});
+   SKILLS.forEach(s=>{const ss=L.stars.filter(o=>o.sk===s.id);g.strokeStyle=s.color+'30';g.lineWidth=1;ss.forEach((a,i)=>{const b=ss[(i+1)%ss.length];if(a!==b){g.beginPath();g.moveTo(a.x,a.y);g.lineTo(b.x,b.y);g.stroke()}})});
+   L.stars.forEach((o,i)=>{const tw=rm?1:.88+.12*Math.sin(t*.002+i*1.7),br=o.bright*tw,r=o.r*(o===hov?1.5:1);const gr=g.createRadialGradient(o.x,o.y,0,o.x,o.y,r*4);gr.addColorStop(0,o.col+Math.round(clamp(br,0,1)*255).toString(16).padStart(2,'0'));gr.addColorStop(1,o.col+'00');g.fillStyle=gr;g.beginPath();g.arc(o.x,o.y,r*4,0,7);g.fill();
+    g.beginPath();g.arc(o.x,o.y,r,0,7);if(o.plays){g.fillStyle=o.col;g.globalAlpha=clamp(.4+br*.6,0,1);g.fill();g.globalAlpha=1}else{g.strokeStyle=o.col;g.globalAlpha=.7;g.lineWidth=1.2;g.stroke();g.globalAlpha=1}});
+   if(hov){g.strokeStyle='#fff';g.lineWidth=1.5;g.beginPath();g.arc(hov.x,hov.y,hov.r+5,0,7);g.stroke()}
+   raf=requestAnimationFrame(draw)};
+  const show=o=>{hov=o;if(!o){tip.hidden=true;return}const G=S.games[o.g]||{};tip.hidden=false;tip.innerHTML=`<b>${esc(GAMES[o.g].name)}</b><span>${SK[o.sk].short} · nivel ${o.level}</span><span>${o.plays?`${o.plays} partida${o.plays>1?'s':''} · última hace ${Math.round(o.days)} día${Math.round(o.days)===1?'':'s'}`:'Sin jugar todavía'}</span><button class="btn btn-sm btn-primary" data-play="${o.g}">Jugar</button>`;tip.style.left=clamp(o.x+14,4,W-190)+'px';tip.style.top=clamp(o.y-10,4,H-110)+'px'};
+  cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();const o=pick(e.clientX-r.left,e.clientY-r.top);if(o!==hov&&!tip.matches(':hover'))show(o)});
+  cv.addEventListener('pointerdown',e=>{const r=cv.getBoundingClientRect();show(pick(e.clientX-r.left,e.clientY-r.top))});
+  UI.gx={pick:(x,y)=>pick(x,y),stars:()=>L.stars,size:()=>[W,H]};fit();raf=requestAnimationFrame(draw)}};
 SCREENS.history={title:'Historial',
  html(){
   const tab=UI.histTab||'acts',flt=UI.histF||'all',lim=UI.histLim||40;
@@ -5819,6 +5929,74 @@ reg({id:'agl',skill:'learning',name:'Lenguaje alienígena',icon:'agl',tagline:'D
    const details=`<h4>¿Qué mide esta tarea?</h4><p>Es aprendizaje de gramáticas artificiales: ${fb?'se infiere una estructura a partir del feedback.':'se absorbe una estructura estudiando ejemplos y se aplica a palabras nuevas, a menudo sin poder explicarla.'} Acertar por azar da el 50 %; lo habitual es obtener resultados modestos por encima del azar. Las palabras no válidas rompen la gramática cambiando o intercambiando sílabas${L>=7?', usando casi siempre pares de sílabas que también existen en la gramática, así que rara vez se delatan por un par ilegal':''}. La gramática se crea al azar en cada partida.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
    return {correct:okN,wrong:n-okN,total:n,acc:okN/n,score:okN,rt:avg(T.map(x=>x.rt)),metrics,details,extra:{mode,dprime:dp,bias:cb,legalBad:G?G.legalBad:null,omRate:0,faRate:ug.length?fa/ug.length:0}}}}
  }});
+/* ---------- FUSION LAB: doble tarea (cognitive fusion) ----------
+   «Interferencia bajo carga»: se resuelven conflictos de color (la palabra dice un color y está escrita en otro: hay que responder al color de la tinta)
+   alternando rondas CON y SIN dígitos a recordar; la diferencia de tiempos muestra el coste de dividir la atención.
+   «Contar mientras buscas»: se busca un objetivo en cada pantalla y, a la vez, se cuenta en silencio cuántas cruces doradas aparecen. */
+const FU_C=[{id:'r',n:'ROJO',h:'#FF4D5E'},{id:'b',n:'AZUL',h:'#538CFF'},{id:'g',n:'VERDE',h:'#3DDC84'},{id:'y',n:'AMARILLO',h:'#FFD23F'}];
+const fuDig=L=>L<=5?3:L<=10?4:L<=13?5:6;
+const fuScreens=L=>L<=5?4:L<=10?5:6;
+reg({id:'fusion',skill:'attention',name:'Fusion Lab',icon:'fusion',tagline:'Dos tareas a la vez: ¿cuánto cuesta dividir la atención?',
+ howTo:m=>({
+  load:['Aparecerán palabras de colores escritas con otra tinta. Responde siempre al <b>color de la tinta</b> (no a lo que dice la palabra). Teclas 1–4.','En las rondas con carga verás antes unos <b>dígitos para recordar</b>: tendrás que escribirlos al final, mientras sigues resolviendo los colores.','Se compara tu velocidad con y sin carga: el coste de dividir la atención.'],
+  count:['En cada pantalla hay que tocar el objetivo que se indica arriba (forma + color), igual que en Búsqueda visual.','A la vez, cuenta <b>en silencio</b> cuántas <b>cruces doradas</b> aparecen en total en las pantallas de la serie. No las toques.','Al final de la serie dirás cuántas viste. Se mide la búsqueda y la exactitud del recuento.']
+ }[m]||[]),
+ example:m=>`<div class="ex-stim" data-stim style="gap:1rem;font-family:var(--display);font-weight:800;font-size:1.4rem">${m==='count'?`<span style="width:34px;height:34px">${shapeSVG('triangle','#FF4D5E')}</span><span style="width:34px;height:34px">${shapeSVG('cross','#FFD23F')}</span><span style="color:#9CC2FF;font-size:.9rem">+1</span>`:`<span style="color:#FF4D5E">AZUL</span><span style="color:#9CC2FF;font-size:.9rem">→ rojo</span><span style="color:#F2F6FF;font-size:.9rem">4 · 7 · 1</span>`}</div><p class="small" style="margin-top:.5rem">${m==='count'?'Busca el objetivo y cuenta las cruces doradas sin tocarlas.':'La palabra dice AZUL pero está escrita en rojo: respondes «rojo».'}</p>`,
+ modes:[{id:'load',name:'Interferencia bajo carga',desc:'Colores + dígitos a recordar'},{id:'count',name:'Contar mientras buscas',desc:'Búsqueda + recuento'}],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{mode:'load',min:100,max:210},speed:true,
+ levelInfo:(L,m)=>m==='count'?`Series de ${fuScreens(L)} pantallas con ${vsSizes(L)[0]}-${vsSizes(L).at(-1)} elementos`:`${fuDig(L)} dígitos a recordar · rondas de 6 colores, con y sin carga`,
+ start(ctx){return ctx.mode==='count'?fuCount(ctx):fuLoad(ctx)}});
+function fuLoad(ctx){
+ const L=ctx.level,nd=fuDig(L),per=6,N=ctx.budget?Infinity:6,R=[],T=[];
+ let round=0,phase='idle',cur=null,digits=null,isLoad=false,tIdx=0,t0=0,timeUp=false,done=false,kp=null,lim=null;
+ ctx.stage.innerHTML=`<div class="g-wrap fu"><div class="g-prompt" id="fup" aria-live="polite"></div><div class="fu-stage" data-stim id="fus"><span id="fud" class="fu-dig"></span><span id="fuw" class="fu-word"></span></div><div class="fu-btns" id="fub">${FU_C.map((c,i)=>`<button class="opt fu-b" data-c="${c.id}"><span class="kbd">${i+1}</span>${c.n}</button>`).join('')}</div><div id="fur" style="width:100%;max-width:360px"></div><div class="small dim" id="fuh" style="text-align:center;min-height:1.4em" aria-live="polite"></div></div>`;
+ const head=t=>{$('#fup').innerHTML=`Ronda ${round+1}${N<Infinity?' de '+N:''} · ${isLoad?'<b>con carga</b>':'<b>sin carga</b>'} · ${t}`};
+ const setBtns=on=>$$('#fub .fu-b').forEach(b=>b.disabled=!on);
+ function newRound(){if(done)return;if(round>=N||timeUp){done=true;return ctx.end()}isLoad=round%2===0;tIdx=0;digits=null;$('#fur').innerHTML='';$('#fuw').textContent='';setBtns(false);
+  if(isLoad){digits=Array.from({length:nd},(_,i)=>i?ri(0,9):ri(1,9));phase='mem';head('memoriza los dígitos');$('#fud').textContent=digits.join(' ');ctx.clock.after(2200+nd*250,()=>{if(done)return;$('#fud').textContent='●'.repeat(nd);trial()})}
+  else{$('#fud').textContent='';trial()}}
+ function trial(){if(done)return;if(tIdx>=per){return isLoad?recall():endRound(null)}const w=pick(FU_C),inc=Math.random()<.8,ink=inc?pick(FU_C.filter(c=>c.id!==w.id)):w;cur={w:w.id,ink:ink.id,inc};phase='in';setBtns(true);head(`ink ${tIdx+1}/${per}`.replace('ink','colores'));
+  const el=$('#fuw');el.textContent=w.n;el.style.color=ink.h;el.dataset.word=w.id;el.dataset.ink=ink.id;t0=ctx.clock.now()}
+ function answer(id){if(phase!=='in'||done||ctx.clock.paused)return;phase='fb';const rt=ctx.clock.now()-t0,ok=id===cur.ink;T.push({load:isLoad,ok,rt,inc:cur.inc,round});setBtns(false);
+  ctx.feedback(ok);ctx.score(T.filter(x=>x.ok).length+R.filter(x=>x.recall).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length);$('#fuw').textContent='';tIdx++;ctx.clock.after(ok?220:500,trial)}
+ function recall(){phase='rec';setBtns(false);$('#fuw').textContent='';$('#fud').textContent='?';head('escribe los dígitos, en orden');$('#fur').innerHTML='<div id="fukp"></div>';kp=keypad($('#fukp'),{onSubmit:v=>recallDone(v),maxLen:nd});lim=null}
+ function recallDone(v){if(phase!=='rec')return;phase='fb';const ok=String(v)===digits.join('');kp.flash(ok);kp.disable(true);ctx.feedback(ok,{msg:ok?'¡Dígitos correctos!':'Eran '+digits.join(' ')});$('#fuh').textContent=ok?'':'Eran '+digits.join(' ');endRound(ok)}
+ function endRound(recallOk){R.push({load:isLoad,recall:recallOk===true,asked:recallOk!=null});round++;ctx.clock.after(recallOk==null?500:1200,()=>{$('#fuh').textContent='';newRound()})}
+ $('#fub').onclick=e=>{const b=e.target.closest('.fu-b');if(b)answer(b.dataset.c)};
+ ctx.key(e=>{if(phase==='in'&&/^[1-4]$/.test(e.key)){e.preventDefault();answer(FU_C[+e.key-1].id)}else if(phase==='rec'&&kp)kp.key(e)});
+ ctx.clock.after(500,newRound);
+ return {peek:()=>({T,R,cur,digits,phase,round,isLoad,nd}),onTimeUp(){timeUp=true;if(phase==='idle'||phase==='mem'){done=true;ctx.end()}else if(phase==='rec')lim=ctx.clock.after(20000,()=>{if(!done){done=true;ctx.end()}})},summary(){
+  const n=T.length;if(!n)return null;const okS=T.filter(x=>x.ok).length,asked=R.filter(x=>x.asked),okR=asked.filter(x=>x.recall).length;
+  const Ld=T.filter(x=>x.load),Nl=T.filter(x=>!x.load),med=a=>a.length?median(a.filter(x=>x.ok).map(x=>x.rt)):null,mL=Ld.filter(x=>x.ok).length>=3?med(Ld):null,mN=Nl.filter(x=>x.ok).length>=3?med(Nl):null,cost=mL!=null&&mN!=null?mL-mN:null;
+  const acc=a=>a.length?a.filter(x=>x.ok).length/a.length:null;
+  const metrics=[{label:'Colores acertados',value:`${okS}/${n}`},{label:'Dígitos recordados',value:asked.length?`${okR}/${asked.length}`:'—'},{label:'Mediana sin carga',value:mN!=null?Math.round(mN)+' ms':'—'},{label:'Mediana con carga',value:mL!=null?Math.round(mL)+' ms':'—'},{label:'Coste de la carga',value:cost!=null?`${cost>=0?'+':''}${Math.round(cost)} ms`:'—'},{label:'Precisión con / sin carga',value:`${Ld.length?pct(acc(Ld)):'—'} / ${Nl.length?pct(acc(Nl)):'—'}`}];
+  const details=`<h4>¿Qué mide esta tarea?</h4><p>Es una tarea de doble tarea: mantener dígitos en la memoria de trabajo mientras se resuelve interferencia de color. Si con carga respondes más lento o con más errores, hay un «coste de la carga» (se compara con las rondas sin dígitos). Con pocas rondas es muy variable: tómalo como orientación.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+  const tot=n+asked.length;return {correct:okS+okR,wrong:tot-okS-okR,total:tot,acc:(okS+okR)/tot,score:okS+okR,rt:avg(T.filter(x=>x.ok).map(x=>x.rt)),metrics,details,extra:{mode:'load',cost,recallAcc:asked.length?okR/asked.length:null,omRate:0,faRate:0}}}}}
+function fuCount(ctx){
+ const L=ctx.level,sizes=vsSizes(L),per=fuScreens(L),N=ctx.budget?Infinity:2,B=[],S1=[];
+ let block=0,sIdx=0,seen=0,phase='idle',cur=null,t0=0,timeUp=false,done=false,lim=null;
+ ctx.stage.innerHTML=`<div class="g-wrap fu"><div class="g-prompt" id="fup" aria-live="polite"></div><div class="vs-arena" data-stim id="fua"></div><div id="fuq" style="width:100%;max-width:520px"></div><div class="small dim" id="fuh" style="text-align:center;min-height:1.4em" aria-live="polite"></div></div>`;
+ function newBlock(){if(done)return;if(block>=N||timeUp){done=true;return ctx.end()}sIdx=0;seen=0;$('#fuq').innerHTML='';screen()}
+ function screen(){if(done)return;if(sIdx>=per)return ask();const n=pick(sizes),it=vsMake(L,'conj',n),special=Math.random()<.5,pos=vsLayout(n);let sp=-1;
+  if(special){const cands=it.items.map((_,i)=>i).filter(i=>i!==it.target);sp=pick(cands);seen++}
+  cur={it,pos,sp,n};phase='in';$('#fup').innerHTML=`Serie ${block+1}${N<Infinity?' de '+N:''} · pantalla ${sIdx+1}/${per} · <b>Toca</b> <span class="vs-tg" data-stim data-s="${it.tgt.s}" data-c="${it.tgt.c}" role="img" aria-label="${VS_SN[it.tgt.s]} ${VS_CN[it.tgt.c]}">${vsSVG(it.tgt.s,it.tgt.c)}</span> <span class="dim">y cuenta las cruces doradas</span>`;
+  $('#fua').innerHTML=it.items.map((x,i)=>i===sp?`<button class="vs-i" data-i="${i}" data-special="1" style="left:${pos[i][0].toFixed(2)}%;top:${pos[i][1].toFixed(2)}%" aria-label="cruz dorada">${shapeSVG('cross','#FFD23F')}</button>`:`<button class="vs-i" data-i="${i}" data-s="${x.s}" data-c="${x.c}" style="left:${pos[i][0].toFixed(2)}%;top:${pos[i][1].toFixed(2)}%" aria-label="${VS_SN[x.s]} ${VS_CN[x.c]}">${vsSVG(x.s,x.c)}</button>`).join('');
+  $('#fua').style.setProperty('--is',(n<=12?50:n<=25?40:n<=36?34:30)+'px');t0=ctx.clock.now()}
+ function tap(i){if(phase!=='in'||done||ctx.clock.paused)return;phase='fb';const rt=ctx.clock.now()-t0,ok=i===cur.it.target;S1.push({ok,rt,n:cur.n,special:cur.sp>=0,block});
+  ctx.feedback(ok);ctx.score(S1.filter(x=>x.ok).length+B.filter(b=>b.exact).length,'Aciertos');ctx.hits(S1.filter(x=>x.ok).length);const t=$(`#fua .vs-i[data-i="${cur.it.target}"]`);t&&t.classList.add('vs-hit');if(!ok){const e=$(`#fua .vs-i[data-i="${i}"]`);e&&e.classList.add('vs-bad')}$$('#fua .vs-i').forEach(b=>b.disabled=true);
+  sIdx++;ctx.clock.after(ok?300:900,screen)}
+ function ask(){phase='ask';$('#fua').innerHTML='';$('#fup').innerHTML=`Serie ${block+1}${N<Infinity?' de '+N:''} · <b>¿Cuántas cruces doradas viste en total?</b>`;
+  $('#fuq').innerHTML=`<div class="fu-nums" id="fun">${Array.from({length:per+1},(_,k)=>`<button class="btn fu-n" data-k="${k}">${k}</button>`).join('')}</div>`;$('#fun').onclick=e=>{const b=e.target.closest('.fu-n');if(b)report(+b.dataset.k)}}
+ function report(k){if(phase!=='ask')return;phase='fb';const exact=k===seen;B.push({said:k,truth:seen,exact,err:Math.abs(k-seen)});ctx.feedback(exact,{msg:exact?'¡Recuento exacto!':`Eran ${seen}`});$$('#fun .fu-n').forEach(b=>b.disabled=true);$('#fuh').textContent=exact?'¡Recuento exacto!':`Eran ${seen} (dijiste ${k})`;block++;ctx.clock.after(1500,()=>{$('#fuh').textContent='';newBlock()})}
+ $('#fua').onclick=e=>{const b=e.target.closest('.vs-i');if(b)tap(+b.dataset.i)};
+ ctx.key(e=>{if(phase==='ask'&&/^[0-9]$/.test(e.key)&&+e.key<=per){e.preventDefault();report(+e.key)}});
+ ctx.clock.after(500,newBlock);
+ return {peek:()=>({S1,B,cur,phase,seen,block,per}),onTimeUp(){timeUp=true;if(phase==='idle'){done=true;ctx.end()}else if(phase==='in'||phase==='ask')lim=ctx.clock.after(25000,()=>{if(!done){done=true;ctx.end()}})},summary(){
+  const n=S1.length;if(!n)return null;const okS=S1.filter(x=>x.ok).length,ex=B.filter(b=>b.exact).length,rts=S1.filter(x=>x.ok).map(x=>x.rt),errs=B.map(b=>b.err);
+  const withS=S1.filter(x=>x.ok&&x.special).map(x=>x.rt),noS=S1.filter(x=>x.ok&&!x.special).map(x=>x.rt);
+  const metrics=[{label:'Objetivos encontrados',value:`${okS}/${n}`},{label:'Recuentos exactos',value:B.length?`${ex}/${B.length}`:'—'},{label:'Error medio del recuento',value:errs.length?avg(errs).toFixed(1)+' cruces':'—'},{label:'Tiempo mediano de búsqueda',value:rts.length?(median(rts)/1000).toFixed(2)+' s':'—'},...(withS.length>=3&&noS.length>=3?[{label:'Pantallas con cruz vs sin cruz',value:`${(median(withS)/1000).toFixed(2)} s vs ${(median(noS)/1000).toFixed(2)} s`}]:[])];
+  const details=`<h4>¿Qué mide esta tarea?</h4><p>Es una tarea de doble tarea: se busca un objetivo mientras se mantiene un recuento en la memoria de trabajo. Si el recuento falla o la búsqueda se enlentece, estás pagando un coste por dividir la atención. Con pocas series es una medida aproximada.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+  const tot=n+B.length;return {correct:okS+ex,wrong:tot-okS-ex,total:tot,acc:(okS+ex)/tot,score:okS+ex,rt:rts.length?avg(rts):null,metrics,details,extra:{mode:'count',countErr:errs.length?avg(errs):null,exactRate:B.length?ex/B.length:null,omRate:0,faRate:0}}}}}
 /* =====================================================================
    MUNDO 4 — MATH SPEED
    ===================================================================== */
