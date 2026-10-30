@@ -749,6 +749,78 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .wc-ghost{display:grid;place-items:center;padding:6px;opacity:.55;border:2px dashed #3DDC84;border-radius:14px}.wc-ghost svg{width:100%;height:100%;max-width:64px;max-height:64px}
 .wc-opts{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%}.wc-op{width:58px;height:58px;padding:6px;border:2px solid var(--line-2);border-radius:14px;background:var(--stim);cursor:pointer}.wc-op svg{width:100%;height:100%}
 .wc-bar{width:100%;min-height:8px}.wc-bar .hp-bar{background:rgba(var(--ov),.12);max-width:none}
+.mx-err{gap:.65rem}.mx-err .pat-fig{width:clamp(76px,22vw,108px)}
+.mx-b{position:relative;cursor:pointer;padding:0;color:inherit;font:inherit;transition:transform var(--d1),border-color var(--d2),box-shadow var(--d2)}
+.mx-b:hover:not(:disabled){transform:translateY(-2px);border-color:var(--c, var(--teal))}.mx-b:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.mx-b .mx-k{position:absolute;top:3px;left:4px;min-width:16px;height:16px;font-size:.625rem;opacity:.6}
+.mx-b.right{border-color:var(--ok);box-shadow:0 0 0 2px rgba(61,220,132,.35)}.mx-b.wrong{border-color:var(--bad);box-shadow:0 0 0 2px rgba(255,84,112,.35)}
+.cb{max-width:560px;gap:.9rem}
+.cb-board{display:flex;flex-direction:column;gap:.4rem;width:100%;max-width:440px;max-height:clamp(190px,40vh,330px);overflow-y:auto;overscroll-behavior:contain;padding:2px}
+.cb-row{display:flex;align-items:center;gap:.6rem;padding:.3rem .55rem;border-radius:14px;border:1px solid var(--line-2);background:rgba(var(--ov),.03)}
+.cb-row.cur{border-color:var(--teal);background:rgba(53,230,223,.06)}.cb-row.clue{background:rgba(var(--ov),.05)}
+.cb-i{min-width:1.5rem;font-size:var(--t-2xs);font-weight:700;color:var(--muted);text-align:right}
+.cb-slots{display:flex;gap:.4rem;flex:1;flex-wrap:wrap}
+.cb-slot{width:38px;height:38px;border-radius:50%;background:var(--stim);border:1px solid var(--line-2);display:grid;place-items:center;color:#F2F6FF;font-family:var(--display);font-weight:700;font-size:1.05rem}
+.cb-slot svg{width:68%;height:68%}.cb-slot.empty{background:transparent;border-style:dashed}
+.cb-row.cur .cb-slot[data-v]{cursor:pointer}
+.cb-fb{display:grid;grid-template-columns:repeat(var(--fc,3),14px);gap:4px;justify-content:end;min-width:56px}
+.cb-peg{width:14px;height:14px;border-radius:50%;border:2px solid transparent;box-sizing:border-box;background:rgba(var(--ov),.1)}
+.cb-peg.ex{background:var(--text);border-color:var(--text)}.cb-peg.mi{background:transparent;border-color:var(--text)}
+.cb-pal{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;max-width:440px}
+.cb-k{position:relative;width:50px;height:50px;border-radius:50%;background:var(--stim);border:1px solid var(--line-2);display:grid;place-items:center;color:#F2F6FF;font-family:var(--display);font-weight:700;font-size:1.2rem;cursor:pointer;padding:0;transition:transform var(--d1),opacity var(--d2)}
+.cb-k svg{width:62%;height:62%}.cb-k:hover:not(:disabled){transform:translateY(-2px)}.cb-k:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.cb-k.used{opacity:.35}.cb-k:disabled{cursor:default;opacity:.5}
+.cb-kk{position:absolute;top:-6px;left:-4px;min-width:16px;height:16px;border-radius:5px;background:var(--base,#0B1022);border:1px solid var(--line-2);font-size:.625rem;display:grid;place-items:center;color:var(--muted);font-family:var(--font)}
+.cb-act{display:flex;gap:.7rem;justify-content:center}
+.mr{gap:1rem}
+.mr-pair{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.mr-fig{width:min(42vw,200px)}.mr-ref{width:min(46vw,190px)}
+.mr-surf{display:grid;place-items:center;width:100%;aspect-ratio:1;border-radius:16px;background:var(--stim);border:1px solid var(--line-2)}
+.mr-surf svg{width:92%;height:92%}
+.mr-opts{grid-template-columns:repeat(4,minmax(0,1fr));max-width:600px}
+@media (max-width:520px){.mr-opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mr-o{flex-direction:column;gap:.3rem;padding:.45rem;min-height:0}
+.mr-o .mr-surf svg{width:100%;height:100%}.mr-o .kbd{position:absolute;top:8px;left:8px;z-index:1}
+.mr-tag{font-size:.6875rem;font-weight:700;color:var(--muted);text-align:center;line-height:1.2}
+.lc{gap:.9rem}.lc-wrap{width:100%;max-width:600px;padding:.6rem .4rem;border-radius:20px;background:var(--stim);border:1px solid var(--line-2)}
+.lc-svg{display:block;width:100%;height:auto;max-height:340px}
+.lc-wire{fill:none;stroke:#6E7FAE;stroke-width:2.4;stroke-linecap:round}.lc-wire.on{stroke:#35E6DF;stroke-width:3.6}.lc-wire.off{stroke:#6E7FAE;stroke-dasharray:6 5}
+.lc-g rect{fill:#16213F;stroke:#6E7FAE;stroke-width:1.5}.lc-g text{fill:#F2F6FF;font:700 16px var(--font)}.lc-g.q rect{stroke:#FFC24B;stroke-width:3}.lc-g.hid rect{stroke-dasharray:5 4;stroke:#FFC24B}.lc-g .lc-gv{fill:#9CC2FF;font:700 12px var(--font)}
+.lc-in circle{fill:#16213F;stroke:#6E7FAE;stroke-width:2}.lc-in.on circle{fill:#35E6DF;stroke:#35E6DF}.lc-in text{fill:#F2F6FF;font:700 16px var(--font)}.lc-in.on .lc-v{fill:#06121B}.lc-in .lc-lab{fill:#9CC2FF}
+.lc-lamp circle{fill:#16213F;stroke:#6E7FAE;stroke-width:2.4}.lc-lamp.on circle{fill:#FFC24B;stroke:#FFC24B}.lc-lamp text{fill:#F2F6FF;font:700 16px var(--font)}.lc-lamp.on text{fill:#2A1A00}
+.lc-sws{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center}
+.lc-sw{position:relative;display:flex;align-items:center;justify-content:center;gap:.5rem;min-width:84px;min-height:52px;padding:.5rem .9rem;border-radius:16px;border:1px solid var(--line-2);background:rgba(var(--ov),.05);cursor:pointer;font-weight:700;font-size:1.05rem;color:inherit;font-family:inherit}
+.lc-sw.on{border-color:var(--teal);background:rgba(53,230,223,.12)}.lc-sw .kbd{position:absolute;top:-8px;left:-6px;background:var(--base,#0B1022)}.lc-sv{font-family:var(--display);font-size:1.3rem}.lc-sw:disabled{opacity:.6;cursor:default}
+.lc-tabw{overflow-x:auto;max-width:100%}.lc-tab{border-collapse:separate;border-spacing:0;margin:0 auto;font-weight:600;min-width:240px}.lc-tab th,.lc-tab td{padding:.35rem .8rem;text-align:center;border-bottom:1px solid var(--line-2);font-variant-numeric:tabular-nums}.lc-tab th{color:var(--muted);font-size:var(--t-sm)}.lc-tab td:last-child,.lc-tab th:last-child{border-left:1px solid var(--line-2)}
+.sl{gap:.9rem}.sl-bar{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+.sl-chip{padding:.3rem .8rem;border-radius:999px;border:1px solid var(--line-2);background:rgba(var(--ov),.05);font-weight:600;font-size:var(--t-sm);font-variant-numeric:tabular-nums}
+.sl-goalw{display:flex;flex-direction:column;align-items:center;gap:.25rem;width:100%}.sl-wrap.sl-goal{max-width:260px;padding:.5rem .4rem .35rem}
+.sl-wrap{width:100%;max-width:560px;padding:.8rem .6rem .5rem;border-radius:20px;background:var(--stim);border:1px solid var(--line-2)}
+.sl-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+.sl-peg{position:relative;display:flex;flex-direction:column-reverse;align-items:center;height:var(--ph,200px);padding-bottom:13px;border-radius:14px;cursor:pointer;border:2px solid transparent;transition:border-color var(--d2),background var(--d2)}
+.sl-peg::before{content:'';position:absolute;bottom:12px;left:50%;width:8px;margin-left:-4px;height:var(--rh,150px);border-radius:4px;background:#2B3A66}
+.sl-peg::after{content:'';position:absolute;bottom:5px;left:6%;right:6%;height:7px;border-radius:4px;background:#3A4A7C}
+.sl-peg:hover{background:rgba(255,255,255,.04)}.sl-peg:focus-visible{outline:2px solid #35E6DF;outline-offset:2px}
+.sl-peg.sel{border-color:#FFC24B;background:rgba(255,194,75,.09)}.sl-peg.bad{animation:slshake .32s}
+@keyframes slshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.sl-d,.sl-b{position:relative;z-index:1;display:grid;place-items:center;background:var(--dc);color:#06121B;font:700 .8rem var(--font);margin-bottom:3px}
+.sl-d{height:28px;width:var(--w);border-radius:9px}.sl-b{width:34px;height:34px;border-radius:50%}
+.mini .sl-peg{cursor:default}.mini .sl-peg:hover{background:none}.mini .sl-d{height:11px;border-radius:4px;margin-bottom:3px}.mini .sl-b{width:20px;height:20px;margin-bottom:3px;font-size:.625rem}
+.sl-k{position:absolute;top:4px;left:4px;z-index:2}.sl-cap{position:absolute;top:6px;right:8px;font-size:.6875rem;font-weight:700;color:#9CC2FF}
+@media (prefers-reduced-motion:reduce){.sl-peg.bad{animation:none}}
+.dd{gap:.9rem}.dd-clues{width:100%;max-width:640px;padding:.7rem .9rem;border-radius:18px;border:1px solid var(--line-2);background:rgba(var(--ov),.04)}
+.dd-clues ol{margin:.4rem 0 0;padding:0 .3rem 0 1.3rem;display:flex;flex-direction:column;gap:.4rem;line-height:1.9;max-height:clamp(150px,30vh,250px);overflow-y:auto;overscroll-behavior:contain}
+.dd-chip{display:inline-flex;align-items:baseline;gap:.35rem;padding:.02rem .5rem;border-radius:8px;background:rgba(53,230,223,.12);border:1px solid rgba(53,230,223,.32);font-weight:700;white-space:nowrap}
+.dd-chip i{font-style:normal;font-size:.66em;opacity:.7;text-transform:uppercase;letter-spacing:.05em}
+.dd-grid{width:100%;max-width:640px;display:flex;flex-direction:column;gap:.35rem}
+.dd-row{display:grid;grid-template-columns:minmax(58px,.85fr) repeat(var(--n,4),minmax(0,1fr));gap:.35rem;align-items:center}
+.dd-l{font-size:var(--t-sm);font-weight:700;color:var(--muted)}.dd-hc{font-size:var(--t-2xs);font-weight:700;color:var(--muted);text-align:center;text-transform:uppercase;letter-spacing:.05em}
+.dd-cell{min-height:46px;padding:.25rem .2rem;border-radius:12px;border:1px solid var(--line-2);background:rgba(var(--ov),.05);color:inherit;font:600 .8125rem var(--font);cursor:pointer;overflow-wrap:anywhere;transition:border-color var(--d2),background var(--d2)}
+.dd-cell.empty{color:var(--muted)}.dd-cell:hover:not(:disabled){border-color:var(--teal)}.dd-cell.sel{border-color:var(--teal);background:rgba(53,230,223,.14);box-shadow:0 0 0 2px rgba(53,230,223,.3)}
+.dd-cell.bad{border-color:var(--bad);background:rgba(255,84,112,.14)}.dd-cell:disabled{cursor:default}
+.dd-pal{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;align-items:center;min-height:48px;max-width:640px}
+.dd-pv{position:relative;min-height:44px;padding:.4rem .9rem;border-radius:12px;border:1px solid var(--line-2);background:rgba(var(--ov),.06);color:inherit;font:700 .9rem var(--font);cursor:pointer;display:flex;gap:.45rem;align-items:center}
+.dd-pv .kbd{opacity:.6}.dd-pv.on{border-color:var(--teal);background:rgba(53,230,223,.14)}.dd-pv.used{opacity:.55}.dd-pv.clr{border-style:dashed;color:var(--muted)}
 /* Recuerdo diferido */
 .dl{max-width:640px}
 .dl-top{text-align:center;color:var(--muted);font-weight:700;letter-spacing:.06em}
@@ -1315,6 +1387,12 @@ updater:'M4 6h10M4 12h7M4 18h10M18 6v12M15 15l3 3 3-3',
 backward:'M20 12H8M12 8l-4 4 4 4M4 5v14',
 changed:'<rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"/><path d="M15 6h4M17 4l2 2-2 2"/>',
 delayed:'M6 3h12M6 21h12M7 3v4l5 5-5 5v4M17 3v4l-5 5 5 5v4',
+matrix:'<circle cx="6" cy="6" r="2.2"/><rect x="10.2" y="3.8" width="4.4" height="4.4" rx=".8" fill="currentColor"/><path d="M17.9 3.8l2.4 4.4h-4.8z"/><rect x="3.8" y="10.2" width="4.4" height="4.4" rx=".8" fill="currentColor"/><path d="M12.4 10.2l2.4 4.4H10z"/><circle cx="18" cy="12.4" r="2.2" fill="currentColor"/><path d="M6 15.8l2.4 4.4H3.6z"/><circle cx="12.4" cy="18" r="2.2"/><rect x="15.8" y="15.8" width="4.4" height="4.4" rx=".8" stroke-dasharray="1.6 1.6"/>',
+code:'<circle cx="6" cy="8" r="2.4"/><circle cx="12" cy="8" r="2.4" fill="currentColor"/><circle cx="18" cy="8" r="2.4"/><circle cx="6" cy="16" r="2.4" fill="currentColor"/><circle cx="12" cy="16" r="2.4"/><circle cx="18" cy="16" r="2.4" fill="currentColor"/>',
+rotation:'<rect x="5" y="10" width="9" height="9" rx="1.6" transform="rotate(-15 9.5 14.5)"/><path d="M15 4.5a7 7 0 014.5 4M19.7 4v4.2h-4.2"/>',
+circuit:'<circle cx="4.5" cy="7" r="1.6"/><circle cx="4.5" cy="17" r="1.6"/><path d="M6 7h4M6 17h4M10 4.5h5a4 4 0 010 5h-5zM10 14.5h5a4 4 0 010 5h-5zM19 7h2.5M19 17h2.5"/>',
+strategy:'<path d="M5 20V5M12 20V9M19 20V13M3 20h18"/><rect x="2.5" y="12" width="5" height="3" rx="1"/><rect x="9.5" y="6" width="5" height="3" rx="1" fill="currentColor"/>',
+deduction:'<circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L20 20M7.5 10l2 2 3.5-4"/>',
 cloud:'M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 10a4 4 0 010 8z',
 calendar:'<rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
 medal:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/>',
@@ -1364,7 +1442,7 @@ function animateIn(root=document){const go=()=>{$$('.rv[data-off]',root).forEach
 const SKILLS=[
  {id:'attention',name:'Atención y concentración',short:'Atención',world:'FOCUS LAB',color:'#538CFF',c2:'#35E6DF',icon:'focus',desc:'Atención selectiva, concentración y control inhibitorio.',blurb:'Laboratorio de luz y precisión: filtra lo irrelevante y mantén el foco.',games:['stroop','hunt']},
  {id:'memory',name:'Memoria',short:'Memoria',world:'MEMORY MATRIX',color:'#9B6DFF',c2:'#FF65C7',icon:'memory',desc:'Memoria visual, verbal y memoria de trabajo.',blurb:'Una red de recuerdos luminosos: palabras, secuencias y parejas.',games:['words','sequence','pairs','nback','updater','backward','changed','delayed']},
- {id:'logic',name:'Razonamiento lógico',short:'Lógica',world:'LOGIC UNIVERSE',color:'#35E6DF',c2:'#538CFF',icon:'logic',desc:'Deducción, patrones y resolución de problemas.',blurb:'Geometría y estructuras: descubre la regla escondida en cada patrón.',games:['sudoku','pattern','logicrush']},
+ {id:'logic',name:'Razonamiento lógico',short:'Lógica',world:'LOGIC UNIVERSE',color:'#35E6DF',c2:'#538CFF',icon:'logic',desc:'Deducción, patrones y resolución de problemas.',blurb:'Geometría y estructuras: descubre la regla escondida en cada patrón.',games:['sudoku','pattern','logicrush','matrix','code','rotation','circuit','strategy','deduction']},
  {id:'math',name:'Agilidad matemática',short:'Cálculo',world:'MATH SPEED',color:'#FFB547',c2:'#FF65C7',icon:'math',desc:'Cálculo mental y memoria de trabajo numérica.',blurb:'Números en movimiento: calcula con velocidad y cabeza fría.',games:['flash','countdown','truefalse']},
  {id:'language',name:'Lenguaje y fluidez verbal',short:'Lenguaje',world:'WORD POWER',color:'#FF65C7',c2:'#9B6DFF',icon:'language',desc:'Vocabulario, acceso léxico y fluidez verbal.',blurb:'Partículas de letras: encuentra, encadena y reordena palabras.',games:['categories','chain','anagram']},
  {id:'motor',name:'Coordinación visomotora',short:'Coordinación',world:'MOTOR SYNC',color:'#5CFF8F',c2:'#35E6DF',icon:'motor',desc:'Coordinación ojo-mano, precisión y reacción.',blurb:'Circuitos y trayectorias: traza con exactitud y reacciona a tiempo.',games:['mirror','path','reflex']},
@@ -4367,6 +4445,617 @@ reg({id:'logicrush',skill:'logic',name:'Lógica contrarreloj',icon:'logicq',tagl
   return {onTimeUp(){timeUp=true;if(ans)ctx.end()},summary(){const n=st.c+st.w;return {correct:st.c,wrong:st.w,total:n,acc:n?st.c/n:0,score:st.c,rt:avg(st.rts),metrics:[{label:'Aciertos',value:`${st.c}/${n}`},{label:'Sin responder a tiempo',value:st.to},{label:'Tiempo medio (aciertos)',value:st.rts.length?(avg(st.rts)/1000).toFixed(1)+' s':'—'}]}}};
  }});
 
+/* ---------- MATRICES LÓGICAS (Matrix Reasoning + Multirule Patterns) ----------
+   Matrices 3×3 generadas por reglas. Cada propiedad (forma, color, tamaño, relleno) toma tres valores (índices 0-2) y sigue una
+   regla; un comprobador independiente garantiza que la casilla que falta sólo admite UN valor por propiedad. */
+const MX_ATTR=['shape','color','size','fill'];
+const MX_NAME={shape:'la forma',color:'el color',size:'el tamaño',fill:'el relleno'};
+const MX_SHAPES=['circle','square','triangle','diamond','star','hex'],MX_FILL=['solid','empty','dot'],MX_SIZE=[.5,.74,.98];
+const mxS=(a,b)=>((-a-b)%3+3)%3;
+const mxCols=g=>[0,1,2].map(c=>[g[0][c],g[1][c],g[2][c]]);
+const mxEq3=v=>v[0]===v[1]&&v[1]===v[2],mxDist3=v=>v[0]!==v[1]&&v[1]!==v[2]&&v[0]!==v[2];
+/* generadores de la cuadrícula de índices de una propiedad */
+const MXG={
+ const:()=>{const v=ri(0,2);return [[v,v,v],[v,v,v],[v,v,v]]},
+ rowc:()=>shuffle([0,1,2]).map(v=>[v,v,v]),
+ colc:()=>{const p=shuffle([0,1,2]);return [0,1,2].map(()=>p.slice())},
+ latin:()=>{const p=shuffle([0,1,2]),a=pick([1,2]);return [0,1,2].map(r=>[0,1,2].map(c=>p[(a*r+c)%3]))},
+ rowset:()=>[0,1,2].map(()=>{const a=ri(0,2),b=ri(0,2);return [a,b,mxS(a,b)]}),
+ colset:()=>mxCols(MXG.rowset()),
+ set2:()=>{const a=ri(0,2),b=ri(0,2),c=ri(0,2),d=ri(0,2),g=[[a,b,mxS(a,b)],[c,d,mxS(c,d)],[mxS(a,c),mxS(b,d),0]];g[2][2]=mxS(g[2][0],g[2][1]);return g}
+};
+/* biblioteca de reglas que usa el solucionador (propiedades de la cuadrícula completa) */
+const MXOK={
+ const:g=>g.every(r=>r.every(v=>v===g[0][0])),
+ rowc:g=>g.every(mxEq3),
+ colc:g=>mxCols(g).every(mxEq3),
+ latin:g=>g.every(mxDist3)&&mxCols(g).every(mxDist3),
+ rowset:g=>g.every(r=>mxEq3(r)||mxDist3(r)),
+ colset:g=>mxCols(g).every(v=>mxEq3(v)||mxDist3(v)),
+ set2:g=>MXOK.rowset(g)&&MXOK.colset(g)
+};
+const mxFits=g=>Object.keys(MXOK).filter(k=>MXOK[k](g));
+const mxCand=g=>[0,1,2].filter(v=>{const h=g.map(r=>r.slice());h[2][2]=v;return mxFits(h).length>0});
+/* "Encuentra el error" usa una biblioteca estricta: las reglas de conjunto de una sola dirección admiten demasiados arreglos */
+const MX_STRICT=['const','rowc','colc','latin','set2'],mxFitsS=g=>MX_STRICT.filter(k=>MXOK[k](g));
+const mxPoolE=L=>L<=2?['rowc','colc']:L<=5?['rowc','colc','latin']:['rowc','colc','latin','set2'];
+const MX_TXT={
+ const:a=>`${cap(MX_NAME[a])} no cambia en ninguna figura.`,
+ rowc:a=>`${cap(MX_NAME[a])} es igual dentro de cada fila y cambia de una fila a otra.`,
+ colc:a=>`${cap(MX_NAME[a])} es igual dentro de cada columna y cambia de una columna a otra.`,
+ latin:a=>`En cada fila y en cada columna aparecen los tres valores de ${MX_NAME[a]}, sin repetir.`,
+ rowset:a=>`En cada fila, ${MX_NAME[a]} es igual en las tres figuras o distinto en las tres.`,
+ colset:a=>`En cada columna, ${MX_NAME[a]} es igual en las tres figuras o distinto en las tres.`,
+ set2:a=>`En cada fila y en cada columna, ${MX_NAME[a]} es igual en las tres figuras o distinto en las tres.`
+};
+const mxPool=L=>L<=2?['rowc','colc']:L<=4?['rowc','colc','latin']:L<=7?['rowc','colc','latin','rowset','colset']:['latin','rowset','colset','set2','rowc','colc'];
+const mxK=(L,m)=>m==='multi'?clamp(Math.ceil(L/4)+1,2,4):[1,1,2,2,2,3,3,3,3,4,4,4,4,4,4][clamp(L,1,15)-1];
+const mxNOpt=L=>L<=5?4:6;
+function mxSVG(v,P){
+ const sh=P.shape[v.shape],col=P.color[v.color],z=MX_SIZE[v.size],f=MX_FILL[v.fill];
+ const st=f==='solid'?`fill="${col}"`:`fill="none" stroke="${col}" stroke-width="${(7/z).toFixed(1)}" stroke-linejoin="round"`;
+ const dot=f==='dot'?`<circle cx="50" cy="53" r="11" fill="${col}" stroke="none"/>`:'';
+ return `<svg viewBox="0 0 100 100" aria-hidden="true"><g transform="translate(50 50) scale(${z}) translate(-50 -50)" ${st}>${shapePath(sh)}${dot}</g></svg>`
+}
+/* una cuadrícula válida para una propiedad con la regla indicada, con respuesta única en la casilla (2,2) */
+function mxGrid(rule){let g,t=0;do{g=MXG[rule]();t++}while(t<60&&(mxCand(g).length!==1||mxCand(g)[0]!==g[2][2]||(rule!=='const'&&new Set(g.flat()).size<2)));return g}
+function mxBuild(L,mode,poolOv){
+ const k=mxK(L,mode),pool=poolOv||mxPool(L);let attrs,rules,t=0;
+ do{attrs=sample(MX_ATTR,k);rules=attrs.map(()=>pick(pool));t++}while(t<30&&mode==='multi'&&k>=2&&new Set(rules).size<2);
+ const grids={},rule={};MX_ATTR.forEach(a=>{const i=attrs.indexOf(a);rule[a]=i<0?'const':rules[i];grids[a]=mxGrid(rule[a])});
+ return {k,attrs,rule,grids,P:{shape:sample(MX_SHAPES,3),color:sample(VC,3)}}
+}
+const mxVals=(grids,r,c)=>({shape:grids.shape[r][c],color:grids.color[r][c],size:grids.size[r][c],fill:grids.fill[r][c]});
+const mxKey=v=>MX_ATTR.map(a=>v[a]).join('');
+function mxItem(L,mode){
+ const b=mxBuild(L,mode),ansV=mxVals(b.grids,2,2),want=mxNOpt(L)-1,seen=new Set([mxKey(ansV)]),dis=[];
+ const singles=[];MX_ATTR.forEach(a=>[0,1,2].filter(v=>v!==ansV[a]).forEach(v=>singles.push({...ansV,[a]:v,_a:[a]})));
+ const doubles=[];for(let i=0;i<4;i++)for(let j=i+1;j<4;j++){const a=MX_ATTR[i],c=MX_ATTR[j];[0,1,2].filter(v=>v!==ansV[a]).forEach(x=>[0,1,2].filter(v=>v!==ansV[c]).forEach(y=>doubles.push({...ansV,[a]:x,[c]:y,_a:[a,c]})))}
+ /* a partir del nivel 6 se prefieren distractores que cambian propiedades que sí varían (más tentadores) */
+ const pri=d=>(L>=6?d._a.some(a=>b.attrs.includes(a))?0:1:0)+Math.random()*(L>=6?.9:2);[...singles,...doubles].forEach(d=>{d._p=pri(d)});
+ for(const d of [...singles.sort((x,y)=>x._p-y._p),...doubles.sort((x,y)=>x._p-y._p)]){const key=mxKey(d);if(seen.has(key))continue;seen.add(key);dis.push(d);if(dis.length>=want)break}
+ const strip=v=>({shape:v.shape,color:v.color,size:v.size,fill:v.fill}),all=shuffle([{v:strip(ansV),ok:true},...dis.map(d=>({v:strip(d),ok:false}))]);
+ return {...b,mode,opts:all.map(o=>o.v),ans:all.findIndex(o=>o.ok),ansV}
+}
+/* ¿qué casillas podrían "arreglarse" cambiándolas para que todas las propiedades vuelvan a cumplir alguna regla? */
+function mxFixable(grids){
+ const out=[];
+ for(let r=0;r<3;r++)for(let c=0;c<3;c++){
+  const ok=MX_ATTR.every(a=>[0,1,2].some(v=>{const h=grids[a].map(x=>x.slice());h[r][c]=v;return mxFitsS(h).length>0}));
+  if(ok)out.push([r,c])}
+ return out
+}
+function mxError(L){
+ for(let t=0;t<80;t++){
+  const b=mxBuild(L,L>=6?'multi':'classic',mxPoolE(L)),r=ri(0,2),c=ri(0,2),pool=L>=5&&b.attrs.length?b.attrs:MX_ATTR,a=pick(pool),w=pick([0,1,2].filter(v=>v!==b.grids[a][r][c]));
+  const grids={};MX_ATTR.forEach(x=>grids[x]=b.grids[x].map(y=>y.slice()));grids[a][r][c]=w;
+  const fx=mxFixable(grids);
+  if(fx.length===1&&fx[0][0]===r&&fx[0][1]===c)return {...b,mode:'error',grids,bad:[r,c],badAttr:a,orig:b.grids[a][r][c]}
+ }
+ return mxItem(L,'classic')
+}
+reg({id:'matrix',skill:'logic',name:'Matrices lógicas',icon:'matrix',tagline:'Descubre las reglas de la matriz y completa la figura.',
+ howTo:m=>({
+  classic:['Cada matriz 3×3 sigue reglas sobre la forma, el color, el tamaño o el relleno de las figuras.','Descubre qué regla sigue cada propiedad y elige la figura que completa la casilla «?».','Tras cada respuesta verás las reglas que se aplicaban. Teclas 1–6 para responder.'],
+  multi:['En estas matrices cambian varias propiedades a la vez, cada una con su propia regla.','Analiza cada propiedad por separado (forma, color, tamaño, relleno) y combina lo que deduzcas para elegir la figura correcta.','Con la dificultad sube el número de propiedades y los tipos de regla.'],
+  error:['La matriz está completa, pero una figura rompe las reglas.','Descubre qué regla sigue cada propiedad y pulsa la figura que no encaja.','Teclas 1–9 para elegir la casilla (de izquierda a derecha y de arriba abajo).']
+ }[m]||[]),
+ example:m=>{const P={shape:['circle','square','triangle'],color:['#538CFF','#FF65C7','#FFB547']},cell=(s,c)=>`<div style="width:40px;height:40px;border-radius:9px;background:rgba(53,230,223,.08);border:1px solid rgba(53,230,223,.3);display:grid;place-items:center">${mxSVG({shape:s,color:c,size:2,fill:0},P).replace('<svg ','<svg style="width:30px;height:30px" ')}</div>`;
+  const g=[[0,1,2],[1,2,0],[2,0,1]],cells=g.flatMap((row,r)=>row.map((s,c)=>r===2&&c===2?`<div style="width:40px;height:40px;border-radius:9px;border:1px dashed rgba(53,230,223,.5);display:grid;place-items:center;color:#35E6DF;font-weight:700">?</div>`:cell(s,0)));
+  return `<div class="ex-stim" data-stim style="flex-direction:column;gap:.6rem"><div style="display:grid;grid-template-columns:repeat(3,40px);gap:5px">${cells.join('')}</div></div><p class="small" style="margin-top:.5rem">${m==='error'?'Si cada fila y cada columna deben tener las tres formas, la figura que repite una forma es la que no encaja.':'Aquí cada forma aparece una vez en cada fila y en cada columna: a la última fila le falta el <b>cuadrado</b>.'}</p>`},
+ modes:[{id:'classic',name:'Clásica',desc:'Completa la matriz'},{id:'multi',name:'Multirregla',desc:'Varias reglas a la vez'},{id:'error',name:'Encuentra el error',desc:'Una figura no encaja'}],
+ maxLevel:15,metric:{label:'Matrices resueltas',better:'high'},daily:{mode:'classic',min:90,max:200},
+ levelInfo:(L,m)=>m==='error'?`${mxK(L,L>=6?'multi':'classic')} propiedad${mxK(L,L>=6?'multi':'classic')>1?'es':''} con reglas · ${mxPoolE(L).length} tipos de regla`:`${mxK(L,m)} propiedad${mxK(L,m)>1?'es':''} cambia${mxK(L,m)>1?'n':''} · ${mxNOpt(L)} opciones · ${mxPool(L).length} tipos de regla`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode||'classic',N=ctx.budget?Infinity:8,st={c:0,w:0,rts:[],byK:{}};let cur=null,ans=false,timeUp=false,t0=0;
+  const bump=(k,ok)=>{const o=st.byK[k]||(st.byK[k]={c:0,n:0});o.n++;if(ok)o.c++};
+  const rulesHtml=()=>{const lines=cur.attrs.map(a=>MX_TXT[cur.rule[a]](a)),rest=MX_ATTR.filter(a=>!cur.attrs.includes(a));return lines.join('<br>')+(rest.length?`<br><span class="dim">${cap(rest.map(a=>MX_NAME[a].replace(/^(la|el) /,'')).join(', ').replace(/, ([^,]*)$/,' y $1'))} no cambia${rest.length>1?'n':''}.</span>`:'')};
+  function next(){const n=st.c+st.w;if(n>=N||timeUp)return ctx.end();cur=mode==='error'?mxError(L):mxItem(L,mode);ans=false;
+   const head=`<div class="g-prompt">Matriz ${n+1}${N<Infinity?' de '+N:''} · <b>${cur.mode==='error'?'¿Qué figura rompe las reglas?':'¿Qué figura completa la matriz?'}</b></div>`;
+   if(cur.mode==='error'){
+    ctx.stage.innerHTML=`<div class="g-wrap">${head}<div class="pat-matrix mx mx-err" id="mxm">${[0,1,2].flatMap(r=>[0,1,2].map(c=>`<button class="pat-fig mx-b" data-i="${r*3+c}" data-v="${MX_ATTR.map(a=>cur.grids[a][r][c]).join('')}" aria-label="Figura ${r*3+c+1}"><span class="kbd mx-k">${r*3+c+1}</span>${mxSVG(mxVals(cur.grids,r,c),cur.P)}</button>`)).join('')}</div><div id="mxe" style="width:100%;max-width:640px"></div></div>`;
+    $('#mxm').onclick=e=>{const b=e.target.closest('.mx-b');if(b&&!ctx.clock.paused)choose(+b.dataset.i)}}
+   else{
+    const cells=[0,1,2].flatMap(r=>[0,1,2].map(c=>r===2&&c===2?'<div class="pat-fig q">?</div>':`<div class="pat-fig" data-v="${MX_ATTR.map(a=>cur.grids[a][r][c]).join('')}">${mxSVG(mxVals(cur.grids,r,c),cur.P)}</div>`));
+    const nc=cur.opts.length===4?4:3;
+    ctx.stage.innerHTML=`<div class="g-wrap">${head}<div class="pat-matrix mx" id="mxm">${cells.join('')}</div><div class="opts" id="mxo" style="max-width:${nc===4?520:420}px;grid-template-columns:repeat(${nc},1fr)">${cur.opts.map((v,i)=>`<button class="opt opt-fig" data-i="${i}" data-v="${MX_ATTR.map(a=>v[a]).join('')}" aria-label="Opción ${i+1}"><span class="kbd">${i+1}</span>${mxSVG(v,cur.P)}</button>`).join('')}</div><div id="mxe" style="width:100%;max-width:640px"></div></div>`;
+    $('#mxo').onclick=e=>{const b=e.target.closest('.opt');if(b&&!ctx.clock.paused)choose(+b.dataset.i)}}
+   t0=ctx.clock.now()}
+  function choose(i){if(ans||!cur)return;ans=true;const rt=ctx.clock.now()-t0;let ok,expl;
+   if(cur.mode==='error'){const bi=cur.bad[0]*3+cur.bad[1];ok=i===bi;$$('#mxm .mx-b').forEach((b,k)=>{b.disabled=true;if(k===bi)b.classList.add(ok?'right':'wrong');else if(k===i)b.classList.add('wrong')});
+    expl=`La figura de la fila ${cur.bad[0]+1}, columna ${cur.bad[1]+1} rompe la regla de ${MX_NAME[cur.badAttr]}: ${MX_TXT[cur.rule[cur.badAttr]](cur.badAttr)}`}
+   else{ok=i===cur.ans;$$('#mxo .opt').forEach((b,k)=>{b.disabled=true;if(k===cur.ans)b.classList.add('right');else if(k===i)b.classList.add('wrong')});expl=rulesHtml()}
+   if(ok){st.c++;st.rts.push(rt)}else st.w++;bump(cur.k||cur.attrs.length,ok);
+   ctx.feedback(ok);ctx.score(st.c,'Resueltas');ctx.hits(st.c);
+   $('#mxe').innerHTML=`<div class="explain-box ${ok?'':'bad'}"><b>${ok?'¡Correcto!':'No era esa.'}</b> ${expl}</div><div style="text-align:center;margin-top:12px"><button class="btn btn-primary" id="mxn">${timeUp?'Terminar':'Siguiente'} ${ic('arrowR')}</button></div>`;
+   $('#mxn').onclick=next;$('#mxn').focus({preventScroll:true});$('#mxe').scrollIntoView({block:'nearest',behavior:RM()?'auto':'smooth'});if(timeUp)ctx.clock.after(2500,()=>ctx.end())}
+  ctx.key(e=>{if(e.target.closest&&e.target.closest('button')&&e.key==='Enter')return;if(!ans&&cur){const mx=cur.mode==='error'?9:cur.opts.length;if(/^[1-9]$/.test(e.key)&&+e.key<=mx){e.preventDefault();choose(+e.key-1)}}else if(ans&&e.key==='Enter'){e.preventDefault();next()}});
+  next();
+  return {peek:()=>({cur,ans}),onTimeUp(){timeUp=true;if(ans)ctx.end()},summary(){
+   const n=st.c+st.w;if(!n)return null;const ks=Object.keys(st.byK).map(Number).sort((a,b)=>a-b);
+   const metrics=[{label:'Matrices resueltas',value:`${st.c}/${n}`},{label:'Tiempo mediano (aciertos)',value:st.rts.length?(median(st.rts)/1000).toFixed(1)+' s':'—'},...(ks.length>1||mode!=='error'?[{label:'Aciertos por nº de reglas',value:ks.map(k=>`${k} regla${k>1?"s":""}: ${st.byK[k].c}/${st.byK[k].n}`).join(' · ')}]:[])];
+   const details=`<h4>¿Qué mide esta tarea?</h4><p>Es una tarea de razonamiento por matrices: hay que inferir reglas a partir de ejemplos y aplicarlas a una casilla nueva. La dificultad sube con el número de propiedades que cambian y con el tipo de regla. Cada matriz está comprobada para tener una única respuesta posible dentro de las reglas del juego.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:st.c,wrong:st.w,total:n,acc:st.c/n,score:st.c,rt:avg(st.rts),metrics,details,extra:{mode,omRate:0,faRate:0}}}}
+ }});
+/* ---------- DESCIFRA EL CÓDIGO (Code Breaker) ----------
+   Deducción tipo Mastermind. Pistas: círculo lleno = símbolo correcto en su sitio; anillo = símbolo correcto en otra posición.
+   Métrica propia: «intentos coherentes» (cada intento es compatible con todas las pistas anteriores). */
+const CB_SYM=[['circle','#FF4D5E','círculo rojo'],['square','#538CFF','cuadrado azul'],['triangle','#3DDC84','triángulo verde'],['star','#FFD23F','estrella amarilla'],['diamond','#B36DFF','rombo morado'],['hex','#46D8CC','hexágono turquesa'],['cross','#FF9F43','cruz naranja'],['arrow','#EDF5FF','flecha blanca']];
+const cbN=L=>L<=4?3:L<=10?4:5,cbM=L=>[4,4,5,5,5,5,6,6,6,6,6,6,7,7,8][clamp(L,1,15)-1],cbRep=L=>L>=9,cbTry=L=>L<=4?8:L<=8?9:L<=12?10:11;
+const cbDim=L=>({n:L<=4?3:L<=12?4:5,m:L<=4?4:L<=8?5:6,rep:L>=9});
+function cbFb(secret,guess){let ex=0;const cs={},cg={};for(let i=0;i<secret.length;i++){if(secret[i]===guess[i])ex++;else{cs[secret[i]]=(cs[secret[i]]||0)+1;cg[guess[i]]=(cg[guess[i]]||0)+1}}let mi=0;for(const k in cg)mi+=Math.min(cg[k],cs[k]||0);return [ex,mi]}
+const cbSame=(a,b)=>a[0]===b[0]&&a[1]===b[1];
+function cbAll(n,m,rep){const out=[],a=[],rec=()=>{if(a.length===n){out.push(a.slice());return}for(let v=0;v<m;v++){if(!rep&&a.includes(v))continue;a.push(v);rec();a.pop()}};rec();return out}
+function cbRand(n,m,rep){const a=[];while(a.length<n){const v=ri(0,m-1);if(rep||!a.includes(v))a.push(v)}return a}
+/* pistas ya dadas con solución única; se eliminan las pistas redundantes */
+function cbDeduce(L){
+ const {n,m,rep}=cbDim(L),all=cbAll(n,m,rep),minK=L<=4?2:3;
+ for(let t=0;t<60;t++){
+  const secret=pick(all),clues=[];let set=all;
+  while(set.length>1&&clues.length<8){const g=pick(set.filter(x=>x.some((v,i)=>v!==secret[i]))),fb=cbFb(secret,g);clues.push({g,fb});set=set.filter(c=>cbSame(cbFb(c,g),fb))}
+  if(set.length!==1)continue;
+  let k=clues.slice();for(let i=k.length-1;i>=0;i--){const t2=k.filter((_,j)=>j!==i);if(t2.length<minK)continue;if(all.filter(c=>t2.every(cl=>cbSame(cbFb(c,cl.g),cl.fb))).length===1)k=t2}
+  if(k.length>=minK&&k.length<=6){let cur=all;const left=k.map(cl=>{cur=cur.filter(c=>cbSame(cbFb(c,cl.g),cl.fb));return cur.length});return {n,m,rep,secret,clues:k,left,total:all.length}}
+ }
+ const secret=pick(all),g=pick(all.filter(x=>x.some((v,i)=>v!==secret[i])));return {n,m,rep,secret,clues:[{g,fb:cbFb(secret,g)}],left:[1],total:all.length,weak:true}
+}
+reg({id:'code',skill:'logic',name:'Descifra el código',icon:'code',tagline:'Deduce el código secreto con las pistas de cada intento.',
+ howTo:m=>({
+  colors:['Hay un código secreto hecho de símbolos (forma + color). Construye tu intento con la paleta y pulsa «Probar».','Pista de círculo lleno = símbolo correcto en su sitio. Pista de anillo = símbolo que está en el código pero en otra posición.','Haz que cada intento sea compatible con todas las pistas anteriores. Teclas 1–8 para los símbolos, Retroceso y Enter.'],
+  digits:['Hay un código secreto de cifras. Escribe tu intento con el teclado o la paleta y pulsa «Probar».','Pista de círculo lleno = cifra correcta en su sitio. Pista de anillo = cifra que está en el código pero en otra posición.','Haz que cada intento sea compatible con todas las pistas anteriores.'],
+  deduce:['Ya hay varios intentos con sus pistas: sólo existe un código que las cumple todas.','Razona cuál es y constrúyelo. Tienes un único intento.','Después verás cuántos códigos quedaban posibles tras cada pista.']
+ }[m]||[]),
+ example:m=>{const sym=i=>`<span style="width:34px;height:34px;border-radius:50%;background:#0F1730;display:grid;place-items:center">${m==='digits'?`<b style="color:#F2F6FF">${[3,1,7][i]}</b>`:shapeSVG(CB_SYM[[0,2,3][i]][0],CB_SYM[[0,2,3][i]][1]).replace('<svg ','<svg style="width:22px;height:22px" ')}</span>`;
+  return `<div class="ex-stim" data-stim style="gap:.8rem"><div style="display:flex;gap:6px">${[0,1,2].map(sym).join('')}</div><div style="display:flex;gap:4px"><i style="width:13px;height:13px;border-radius:50%;background:#F2F6FF;display:inline-block"></i><i style="width:13px;height:13px;border-radius:50%;border:2px solid #F2F6FF;box-sizing:border-box;display:inline-block"></i></div></div><p class="small" style="margin-top:.5rem">Un círculo lleno y un anillo: un símbolo está bien colocado y otro está en el código pero en otro sitio.</p>`},
+ modes:[{id:'colors',name:'Colores y formas',desc:'Símbolos'},{id:'digits',name:'Números',desc:'Cifras'},{id:'deduce',name:'Deducción pura',desc:'Un solo intento'}],
+ maxLevel:15,metric:{label:'Códigos descifrados',better:'high'},daily:{mode:'colors',min:100,max:220},
+ levelInfo:(L,m)=>m==='deduce'?`${cbDim(L).n} posiciones · ${cbDim(L).m} símbolos · ${cbDim(L).rep?'pueden repetirse':'sin repeticiones'}`:`${cbN(L)} posiciones · ${cbM(L)} ${m==='digits'?'cifras':'símbolos'} · ${cbRep(L)?'con repeticiones':'sin repeticiones'} · ${cbTry(L)} intentos`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode||'colors',isD=mode==='deduce',dg=mode==='digits',N=ctx.budget?Infinity:(isD?6:3);
+  const st={c:0,w:0,att:[],cons:0,consN:0,ts:[]};
+  let it=null,rows=[],cur=[],phase='idle',timeUp=false,t0=0,limitTm=null,fin=false;
+  ctx.stage.innerHTML=`<div class="g-wrap cb"><div class="g-prompt" id="cbs" aria-live="polite"></div><div class="cb-board" id="cbb"></div><div class="cb-pal" id="cbp"></div><div class="cb-act"><button class="btn btn-ghost" id="cbdel">Borrar</button><button class="btn btn-primary" id="cbok" disabled>Probar</button></div><div id="cbe" style="width:100%;max-width:560px"></div></div>`;
+  const sym=v=>dg?`<span>${v}</span>`:shapeSVG(CB_SYM[v][0],CB_SYM[v][1]);
+  const symName=v=>dg?String(v):CB_SYM[v][2];
+  const fbHtml=(fb,n)=>{return `<div class="cb-fb" style="--fc:${Math.min(n,3)}" role="img" aria-label="${fb[0]} en su sitio, ${fb[1]} en otra posición">${'<i class="cb-peg ex"></i>'.repeat(fb[0])}${'<i class="cb-peg mi"></i>'.repeat(fb[1])}${'<i class="cb-peg"></i>'.repeat(Math.max(0,n-fb[0]-fb[1]))}</div>`};
+  function draw(){
+   const n=it.n,max=it.max;
+   const hist=rows.map((r,i)=>`<div class="cb-row ${r.clue?'clue':''}" data-fb="${r.fb[0]},${r.fb[1]}"><span class="cb-i">${r.clue?'P'+(i+1):i+1}</span><div class="cb-slots">${r.g.map(v=>`<span class="cb-slot" data-stim data-v="${v}" title="${esc(symName(v))}">${sym(v)}</span>`).join('')}</div>${fbHtml(r.fb,n)}</div>`).join('');
+   const curRow=phase==='in'?`<div class="cb-row cur"><span class="cb-i">${isD?'?':rows.length+1}</span><div class="cb-slots" id="cbsl">${Array.from({length:n},(_,i)=>cur[i]==null?`<span class="cb-slot empty" data-s="${i}" aria-label="Posición ${i+1} vacía"></span>`:`<span class="cb-slot" data-stim data-s="${i}" data-v="${cur[i]}" aria-label="${esc(symName(cur[i]))}, pulsa para quitar">${sym(cur[i])}</span>`).join('')}</div><div class="cb-fb" style="--fc:${Math.min(n,3)}"></div></div>`:'';
+   $('#cbb').innerHTML=hist+curRow;$('#cbb').scrollTop=1e5;
+   $('#cbok').disabled=!(phase==='in'&&cur.length===n&&cur.every(v=>v!=null));
+   $$('#cbp .cb-k').forEach(b=>{b.classList.toggle('used',!it.rep&&cur.includes(+b.dataset.v));b.disabled=phase!=='in'})}
+  function prompt(){const n=st.c+st.w;$('#cbs').innerHTML=`${isD?'Deducción':'Código'} ${n+1}${N<Infinity?' de '+N:''}${isD?'':` · intento ${Math.min(rows.length+1,it.max)} de ${it.max}`} · <b>${isD?'¿Cuál es el único código posible?':`${it.n} posiciones${it.rep?', pueden repetirse':', sin repetir'}`}</b>`}
+  function newItem(){
+   if(isD){const d=cbDeduce(L);it={...d,max:1}}else{const n=cbN(L),m=cbM(L),rep=cbRep(L);it={n,m,rep,max:cbTry(L),secret:cbRand(n,m,rep)}}
+   rows=isD?it.clues.map(c=>({g:c.g,fb:c.fb,clue:true})):[];cur=[];phase='in';fin=false;
+   $('#cbp').innerHTML=Array.from({length:it.m},(_,v)=>`<button class="cb-k" data-stim data-v="${v}" aria-label="${esc(symName(v))}"><span class="cb-kk">${dg?v:v+1}</span>${sym(v)}</button>`).join('');
+   $('#cbe').innerHTML='';prompt();draw();t0=ctx.clock.now()}
+  function add(v){if(phase!=='in'||ctx.clock.paused)return;if(!it.rep&&cur.includes(v))return;const i=Array.from({length:it.n},(_,k)=>k).find(k=>cur[k]==null);if(i==null)return;cur[i]=v;draw()}
+  function removeAt(i){if(phase!=='in'||ctx.clock.paused)return;cur[i]=null;draw()}
+  function backspace(){if(phase!=='in')return;for(let i=it.n-1;i>=0;i--)if(cur[i]!=null){cur[i]=null;break}draw()}
+  function submit(){
+   if(phase!=='in'||ctx.clock.paused||cur.length!==it.n||cur.some(v=>v==null))return;
+   const g=cur.slice(),fb=cbFb(it.secret,g);
+   if(!isD&&rows.length>0){st.consN++;if(rows.every(r=>cbSame(cbFb(g,r.g),r.fb)))st.cons++}
+   const solved=fb[0]===it.n;rows.push({g,fb});
+   if(solved||rows.length>=it.max||isD)finish(solved,g);else{cur=[];prompt();draw()}}
+  function finish(solved,g){
+   phase='done';fin=true;ctx.clock.cancel(limitTm);const rt=ctx.clock.now()-t0;
+   if(solved){st.c++;st.att.push(isD?1:rows.length);st.ts.push(rt)}else st.w++;
+   ctx.feedback(solved,{msg:solved?(isD?'Código deducido':`Descifrado en ${rows.length} intento${rows.length>1?'s':''}`):'No era ese'});ctx.score(st.c,'Descifrados');ctx.hits(st.c);
+   draw();const lastN=isD?'':`<br>Intentos coherentes con las pistas previas: <b>${st.consN?st.cons+' de '+st.consN:'—'}</b> (acumulado).`;
+   let msg;
+   if(isD)msg=solved?`Sólo ese código cumple todas las pistas.`:`El único código posible era <b>${it.secret.map(symName).join(', ')}</b>.`;
+   else msg=solved?`Lo descifraste en <b>${rows.length}</b> intento${rows.length>1?'s':''}.`:`Se acabaron los intentos. El código era <b>${it.secret.map(symName).join(', ')}</b>.`;
+   const left=isD?`<br><span class="dim">Códigos posibles tras cada pista: ${it.total} → ${it.left.join(' → ')}.</span>`:'';
+   const secretRow=!solved?`<div class="cb-row clue" style="margin-top:.6rem"><span class="cb-i">✔</span><div class="cb-slots">${it.secret.map(v=>`<span class="cb-slot" data-stim data-v="${v}">${sym(v)}</span>`).join('')}</div></div>`:'';
+   $('#cbe').innerHTML=`<div class="explain-box ${solved?'':'bad'}"><b>${solved?'¡Correcto!':'No era esa.'}</b> ${msg}${left}${lastN}</div>${secretRow}<div style="text-align:center;margin-top:12px"><button class="btn btn-primary" id="cbn">${(timeUp||st.c+st.w>=N)?'Terminar':'Siguiente'} ${ic('arrowR')}</button></div>`;
+   $('#cbn').onclick=next;$('#cbn').focus({preventScroll:true});$('#cbe').scrollIntoView({block:'nearest',behavior:RM()?'auto':'smooth'});
+   if(timeUp)ctx.clock.after(3500,()=>ctx.end())}
+  function next(){if(st.c+st.w>=N||timeUp)return ctx.end();newItem()}
+  $('#cbp').onclick=e=>{const b=e.target.closest('.cb-k');if(b)add(+b.dataset.v)};
+  $('#cbb').onclick=e=>{const s=e.target.closest('.cb-row.cur .cb-slot[data-s]');if(s&&s.dataset.v!=null)removeAt(+s.dataset.s)};
+  $('#cbdel').onclick=()=>{if(phase==='in'&&!ctx.clock.paused){cur=[];draw()}};
+  $('#cbok').onclick=submit;
+  ctx.key(e=>{if(e.target.closest&&e.target.closest('button')&&e.key==='Enter')return;
+   if(phase==='in'){if(e.key==='Enter'){e.preventDefault();submit()}else if(e.key==='Backspace'){e.preventDefault();backspace()}
+    else if(dg&&/^[0-9]$/.test(e.key)&&+e.key<it.m){e.preventDefault();add(+e.key)}
+    else if(!dg&&/^[1-9]$/.test(e.key)&&+e.key<=it.m){e.preventDefault();add(+e.key-1)}}
+   else if(phase==='done'&&e.key==='Enter'){e.preventDefault();next()}});
+  newItem();
+  return {peek:()=>({it,rows,cur,phase}),onTimeUp(){timeUp=true;if(phase==='done'||phase==='idle')return ctx.end();
+    $('#cbs').innerHTML='<b>Tiempo cumplido</b> · termina este código';
+    limitTm=ctx.clock.after(45000,()=>{if(fin)return;fin=true;if(rows.length>=3){st.w++;st.ts.push(ctx.clock.now()-t0)}ctx.end()})},
+   summary(){
+    const n=st.c+st.w;if(!n)return null;
+    const metrics=isD?[{label:'Deducciones correctas',value:`${st.c}/${n}`},{label:'Tiempo mediano por deducción',value:st.ts.length?(median(st.ts)/1000).toFixed(1)+' s':'—'}]
+     :[{label:'Códigos descifrados',value:`${st.c}/${n}`},{label:'Intentos medios (códigos resueltos)',value:st.att.length?avg(st.att).toFixed(1):'—'},{label:'Intentos coherentes con las pistas',value:st.consN?pct(st.cons/st.consN):'—'},{label:'Tiempo medio por código',value:st.ts.length?(avg(st.ts)/1000).toFixed(0)+' s':'—'}];
+    const details=isD?`<h4>¿Qué mide la deducción pura?</h4><p>Con las pistas ya dadas sólo existe un código posible; hay que razonar qué combinación cumple todas a la vez. Tras cada ronda se muestra cuántos códigos seguían siendo posibles después de cada pista.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`
+     :`<h4>¿Qué es un intento «coherente»?</h4><p>Es un intento que podría ser el código secreto según todas las pistas anteriores. Si casi todos tus intentos son coherentes, estás aprovechando bien la información; si no lo son, estás explorando o repitiendo posibilidades que ya estaban descartadas. Es un indicador de tu estrategia en esta tarea, no de una capacidad general.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+    return {correct:st.c,wrong:st.w,total:n,acc:st.c/n,score:st.c,rt:st.ts.length?avg(st.ts):null,metrics,details,extra:{mode,consRate:st.consN?st.cons/st.consN:null,avgAttempts:st.att.length?avg(st.att):null,omRate:0,faRate:0}}}}
+ }});
+/* ---------- ROTACIÓN MENTAL ----------
+   Figuras de casillas conectadas (poliominós) y QUIRALES: su reflejo no coincide con ninguna rotación, de modo que
+   «espejo» siempre es una respuesta distinta. La igualdad se decide con una forma canónica independiente del ángulo. */
+const mrCanon=cs=>{const mx=Math.min(...cs.map(c=>c[0])),my=Math.min(...cs.map(c=>c[1]));return cs.map(c=>[c[0]-mx,c[1]-my]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]).map(c=>c.join(',')).join(';')};
+const mrRot90=cs=>cs.map(([x,y])=>[-y,x]),mrMir=cs=>cs.map(([x,y])=>[-x,y]);
+const mrKey=cs=>{let best=null,c=cs;for(let i=0;i<4;i++){const k=mrCanon(c);if(best==null||k<best)best=k;c=mrRot90(c)}return best};
+const mrN=L=>L<=4?5:L<=8?6:L<=12?7:8;
+const mrDirs=[[1,0],[-1,0],[0,1],[0,-1]],mrHas=(cs,x,y)=>cs.some(c=>c[0]===x&&c[1]===y);
+function mrGrow(n){const cs=[[0,0]];while(cs.length<n){const [x,y]=pick(cs),[dx,dy]=pick(mrDirs);if(!mrHas(cs,x+dx,y+dy))cs.push([x+dx,y+dy])}return cs}
+function mrConn(cs){if(!cs.length)return false;const seen=new Set(['0']),q=[0];while(q.length){const i=q.pop();for(let j=0;j<cs.length;j++)if(!seen.has(String(j))&&Math.abs(cs[i][0]-cs[j][0])+Math.abs(cs[i][1]-cs[j][1])===1){seen.add(String(j));q.push(j)}}return seen.size===cs.length}
+function mrShape(n){let c,t=0,ok;do{c=mrGrow(n);t++;const w=Math.max(...c.map(p=>p[0]))-Math.min(...c.map(p=>p[0]))+1,h=Math.max(...c.map(p=>p[1]))-Math.min(...c.map(p=>p[1]))+1;ok=mrKey(c)!==mrKey(mrMir(c))&&Math.max(w,h)>=3&&w*h>n}while(t<300&&!ok);return c}
+/* mueve una casilla a otro sitio manteniendo la figura conectada y distinta de la original */
+function mrAlter(cs){
+ for(let t=0;t<100;t++){
+  const i=ri(0,cs.length-1),rest=cs.filter((_,j)=>j!==i);if(!mrConn(rest))continue;
+  const spots=[];rest.forEach(([x,y])=>mrDirs.forEach(([dx,dy])=>{const p=[x+dx,y+dy];if(!mrHas(rest,p[0],p[1])&&!(p[0]===cs[i][0]&&p[1]===cs[i][1])&&!mrHas(spots,p[0],p[1]))spots.push(p)}));
+  if(!spots.length)continue;const out=[...rest,pick(spots)];if(mrKey(out)!==mrKey(cs))return out}
+ return null}
+const mrAngle=L=>{const pool=L<=3?[45,90,135,225,270,315]:L<=8?[60,90,120,150,210,240,270,300]:Array.from({length:21},(_,i)=>30+i*15).filter(a=>a!==180||Math.random()<.5);return pick(pool)};
+const mrDisp=d=>{d=((d%360)+360)%360;return Math.min(d,360-d)};
+const mrBucket=d=>d<=60?0:d<=120?1:2,MR_BN=['≤60°','61–120°','>120°'];
+function mrSVG(cs,deg,col){
+ const xs=cs.map(c=>c[0]),ys=cs.map(c=>c[1]),cx=(Math.min(...xs)+Math.max(...xs)+1)/2,cy=(Math.min(...ys)+Math.max(...ys)+1)/2;
+ let r=0;cs.forEach(([x,y])=>[[0,0],[1,0],[0,1],[1,1]].forEach(([a,b])=>{r=Math.max(r,Math.hypot(x+a-cx,y+b-cy))}));
+ const s=(44/r).toFixed(3);
+ return `<svg viewBox="-50 -50 100 100" aria-hidden="true"><g transform="rotate(${deg})"><g transform="scale(${s}) translate(${-cx} ${-cy})" fill="${col}" stroke="rgba(8,13,27,.55)" stroke-width="0.07" stroke-linejoin="round">${cs.map(([x,y])=>`<rect x="${x}" y="${y}" width="1" height="1" rx="0.12"/>`).join('')}</g></g></svg>`}
+const mrCells=cs=>cs.map(c=>c.join(',')).join(';');
+function mrPair(L){
+ const base=mrShape(mrN(L)),same=Math.random()<.5;let other=base,kind='same';
+ if(!same){const mirror=L>=5&&(L>=10||Math.random()<.7),alt=mirror?null:mrAlter(base);if(mirror){other=mrMir(base);kind='mirror'}else{other=alt||mrMir(base);kind=alt?'moved':'mirror'}}
+ const deg=mrAngle(L)*pick([1,-1]);return {base,other,deg,same,kind,col:pick(VC)}}
+function mrChoose(L){
+ const base=mrShape(mrN(L));let guard=0,dist;
+ do{
+  const a1=mrAlter(base),a2=mrAlter(base),a3=mrAlter(base);dist=[];
+  const kinds=L<=3?['moved','moved','moved']:L<=8?['mirror','moved','moved']:['mirror','mirror+moved','moved'];
+  const make=(k,i)=>k==='mirror'?mrMir(base):k==='moved'?[a1,a2,a3][i]:(()=>{const a=[a1,a2,a3][i];return a&&mrMir(a)})();
+  kinds.forEach((k,i)=>{const c=make(k,i);if(c)dist.push({cells:c,kind:k})});
+  const keys=new Set([mrKey(base),...dist.map(d=>mrKey(d.cells))]);if(dist.length===3&&keys.size===4)break;dist=null;guard++
+ }while(guard<80);
+ if(!dist){dist=[{cells:mrMir(base),kind:'mirror'}];const seen=new Set([mrKey(base),mrKey(mrMir(base))]);for(let t=0;t<200&&dist.length<3;t++){const a=mrAlter(base);if(a&&!seen.has(mrKey(a))){seen.add(mrKey(a));dist.push({cells:a,kind:'moved'})}}}
+ const opts=shuffle([{cells:base,kind:'same',ok:true},...dist.map(d=>({...d,ok:false}))]).map(o=>({...o,deg:pick([30,45,60,90,120,150,180,210,240,270,300,330])}));
+ const refDeg=0,ans=opts.findIndex(o=>o.ok);
+ return {base,opts,ans,refDeg,col:pick(VC)}}
+reg({id:'rotation',skill:'logic',name:'Rotación mental',icon:'rotation',tagline:'Gira figuras en tu mente y distingue las iguales de las espejo.',
+ howTo:m=>({
+  pair:['Verás dos figuras. Una puede estar girada respecto a la otra.','Decide si son la <b>misma figura girada</b> (aunque esté de lado o boca abajo) o si son <b>distintas</b>: un espejo o una casilla cambiada.','Una figura en espejo nunca coincide con la original, por mucho que la gires. Teclas 1 (Igual) y 2 (Distinta).'],
+  choose:['Arriba tienes la figura de referencia.','Elige la opción que es <b>esa misma figura girada</b>. Las otras son reflejos en espejo o tienen una casilla cambiada de sitio.','Imagina girar la referencia hasta que encaje. Teclas 1–4 para responder.']
+ }[m]||[]),
+ example:m=>{const cs=[[0,0],[1,0],[2,0],[2,1],[3,1]],mk=(c,d)=>`<span style="width:66px;height:66px;border-radius:12px;background:#0F1730;display:grid;place-items:center">${mrSVG(c,d,'#35E6DF').replace('<svg ','<svg style="width:56px;height:56px" ')}</span>`;
+  return `<div class="ex-stim" data-stim style="gap:.8rem">${mk(cs,0)}<span style="color:#9CC2FF">→</span>${mk(cs,90)}<span style="color:#9CC2FF">≠</span>${mk(mrMir(cs),90)}</div><p class="small" style="margin-top:.5rem">La segunda es la misma figura girada 90°; la tercera es su <b>espejo</b>: no se puede obtener girando.</p>`},
+ modes:[{id:'pair',name:'¿Igual o distinta?',desc:'Compara dos figuras'},{id:'choose',name:'Elige la girada',desc:'Una referencia, 4 opciones'}],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{mode:'choose',min:90,max:200},
+ levelInfo:(L,m)=>`Figuras de ${mrN(L)} casillas · giros ${L<=3?'de 45° a 315°':L<=8?'de 60° a 300°':'de 30° a 330°'} · ${m==='pair'?(L>=5?'las distintas suelen ser espejos':'las distintas tienen una casilla movida'):(L<=3?'distractores con casillas cambiadas':L<=8?'un espejo entre los distractores':'espejos y casi-espejos')}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode||'choose',N=ctx.budget?Infinity:(mode==='pair'?10:8),st={c:0,w:0,rts:[],byB:[[],[],[]],byBn:[0,0,0]};
+  let cur=null,ans=false,timeUp=false,t0=0;
+  const surf=(cs,deg,col,extra='')=>`<span class="mr-surf" data-stim ${extra}>${mrSVG(cs,deg,col)}</span>`;
+  function next(){const n=st.c+st.w;if(n>=N||timeUp)return ctx.end();ans=false;
+   const head=`<div class="g-prompt">Figura ${n+1}${N<Infinity?' de '+N:''} · <b>${mode==='pair'?'¿Son la misma figura (girada) o son distintas?':'¿Cuál es la referencia girada?'}</b></div>`;
+   if(mode==='pair'){cur=mrPair(L);
+    ctx.stage.innerHTML=`<div class="g-wrap mr">${head}<div class="mr-pair"><div class="mr-fig" id="mra" data-cells="${mrCells(cur.base)}" data-deg="0">${surf(cur.base,0,cur.col)}</div><div class="mr-fig" id="mrb" data-cells="${mrCells(cur.other)}" data-deg="${cur.deg}">${surf(cur.other,cur.deg,cur.col)}</div></div><div class="opts" id="mro" style="max-width:420px"><button class="opt" data-i="0"><span class="kbd">1</span>Igual (girada)</button><button class="opt" data-i="1"><span class="kbd">2</span>Distinta</button></div><div id="mre" style="width:100%;max-width:640px"></div></div>`;
+    $('#mro').onclick=e=>{const b=e.target.closest('.opt');if(b&&!ctx.clock.paused)choose(+b.dataset.i)}}
+   else{cur=mrChoose(L);
+    ctx.stage.innerHTML=`<div class="g-wrap mr">${head}<div class="mr-fig mr-ref" id="mra" data-cells="${mrCells(cur.base)}" data-deg="0">${surf(cur.base,0,cur.col)}</div><div class="opts mr-opts" id="mro">${cur.opts.map((o,i)=>`<button class="opt opt-fig mr-o" data-i="${i}" data-cells="${mrCells(o.cells)}" data-deg="${o.deg}" aria-label="Opción ${i+1}"><span class="kbd">${i+1}</span>${surf(o.cells,o.deg,cur.col)}</button>`).join('')}</div><div id="mre" style="width:100%;max-width:640px"></div></div>`;
+    $('#mro').onclick=e=>{const b=e.target.closest('.opt');if(b&&!ctx.clock.paused)choose(+b.dataset.i)}}
+   t0=ctx.clock.now()}
+  function choose(i){if(ans||!cur)return;ans=true;const rt=ctx.clock.now()-t0;let ok,disp,expl;
+   if(mode==='pair'){const said=i===0;ok=said===cur.same;disp=mrDisp(cur.deg);
+    $$('#mro .opt').forEach((b,k)=>{b.disabled=true;if(k===(cur.same?0:1))b.classList.add('right');else if(k===i)b.classList.add('wrong')});
+    expl=cur.same?`Eran la misma figura: una está girada ${disp}°.`:cur.kind==='mirror'?`Eran distintas: una es el <b>espejo</b> de la otra, y un espejo nunca coincide con la original por mucho que se gire.`:`Eran distintas: en una de ellas hay una casilla cambiada de sitio.`}
+   else{ok=i===cur.ans;const o=cur.opts[cur.ans];disp=mrDisp(o.deg);
+    $$('#mro .opt').forEach((b,k)=>{b.disabled=true;const op=cur.opts[k];if(k===cur.ans)b.classList.add('right');else if(k===i)b.classList.add('wrong');b.insertAdjacentHTML('beforeend',`<span class="mr-tag">${op.ok?'misma, girada':op.kind==='mirror'?'espejo':op.kind==='moved'?'casilla movida':'espejo + casilla movida'}</span>`)});
+    expl=`La opción ${cur.ans+1} es la referencia girada ${disp}°. Las otras son espejos o tienen una casilla cambiada.`}
+   const bk=mrBucket(disp);st.byBn[bk]++;if(ok){st.c++;st.rts.push(rt);st.byB[bk].push(rt)}else st.w++;
+   ctx.feedback(ok);ctx.score(st.c,'Aciertos');ctx.hits(st.c);
+   $('#mre').innerHTML=`<div class="explain-box ${ok?'':'bad'}"><b>${ok?'¡Correcto!':'No era esa.'}</b> ${expl}</div><div style="text-align:center;margin-top:12px"><button class="btn btn-primary" id="mrn">${timeUp?'Terminar':'Siguiente'} ${ic('arrowR')}</button></div>`;
+   $('#mrn').onclick=next;$('#mrn').focus({preventScroll:true});$('#mre').scrollIntoView({block:'nearest',behavior:RM()?'auto':'smooth'});if(timeUp)ctx.clock.after(2500,()=>ctx.end())}
+  ctx.key(e=>{if(e.target.closest&&e.target.closest('button')&&e.key==='Enter')return;
+   if(!ans&&cur){const mx=mode==='pair'?2:4;if(/^[1-9]$/.test(e.key)&&+e.key<=mx){e.preventDefault();choose(+e.key-1)}}
+   else if(ans&&e.key==='Enter'){e.preventDefault();next()}});
+  next();
+  return {peek:()=>({cur,ans,mode}),onTimeUp(){timeUp=true;if(ans)ctx.end()},summary(){
+   const n=st.c+st.w;if(!n)return null;
+   const bm=st.byB.map((a,i)=>a.length?`${MR_BN[i]}: ${(median(a)/1000).toFixed(1)} s`:null).filter(Boolean);
+   const metrics=[{label:'Aciertos',value:`${st.c}/${n}`},{label:'Tiempo mediano (aciertos)',value:st.rts.length?(median(st.rts)/1000).toFixed(1)+' s':'—'},...(bm.length>1?[{label:'Tiempo mediano según el giro',value:bm.join(' · ')}]:[])];
+   const details=`<h4>¿Qué mide la rotación mental?</h4><p>Es una tarea clásica de imaginería espacial: hay que girar mentalmente una figura para compararla con otra. Es habitual que el tiempo de respuesta aumente cuanto mayor es el ángulo de giro; por eso se muestra el tiempo según el giro. Las figuras en espejo son siempre «distintas»: no coinciden con la original girando.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:st.c,wrong:st.w,total:n,acc:st.c/n,score:st.c,rt:avg(st.rts),metrics,details,extra:{mode,omRate:0,faRate:0}}}}
+ }});
+/* ---------- CIRCUITOS LÓGICOS ----------
+   Circuitos de puertas booleanas generados al azar (cada entrada llega a la salida). Tres modos:
+   evaluar la salida, ajustar las entradas con el mínimo de cambios y deducir una puerta oculta a partir de ejemplos. */
+const LC_OPS={AND:(a,b)=>a&b,OR:(a,b)=>a|b,XOR:(a,b)=>a^b,NAND:(a,b)=>1^(a&b),NOR:(a,b)=>1^(a|b),NOT:a=>1^a};
+const LC_LBL='ABCDE';
+const lcN=L=>[2,2,3,3,3,3,4,4,4,4,4,5,5,5,5][clamp(L,1,15)-1];
+const lcPool=L=>L<=2?['AND','OR']:L<=5?['AND','OR','NOT']:L<=9?['AND','OR','NOT','NAND','NOR']:['AND','OR','NOT','NAND','NOR','XOR'];
+function lcEval(c,asg,over){const v={};c.nodes.forEach(n=>{v[n.id]=n.kind==='in'?asg[+n.id.slice(1)]:(over&&over[n.id]?over[n.id]:n.op)==='NOT'?1^v[n.in[0]]:LC_OPS[over&&over[n.id]?over[n.id]:n.op](v[n.in[0]],v[n.in[1]])});return v}
+const lcAll=n=>Array.from({length:1<<n},(_,m)=>Array.from({length:n},(_,i)=>(m>>i)&1));
+function lcBuild(L,nIn){
+ const nodes=Array.from({length:nIn},(_,i)=>({id:'I'+i,kind:'in',label:LC_LBL[i]})),pool=lcPool(L),bin=pool.filter(o=>o!=='NOT'),hasNot=pool.includes('NOT');
+ let avail=nodes.map(n=>n.id),g=0,reuse=L>=8?ri(0,2):0;
+ const gate=(op,inp)=>{const n={id:'G'+g++,kind:'gate',op,in:inp};nodes.push(n);return n.id};
+ const isNot=id=>{const n=nodes.find(x=>x.id===id);return n.kind==='gate'&&n.op==='NOT'};
+ while(avail.length>1){
+  if(hasNot&&Math.random()<.28){const a=pick(avail);if(!isNot(a)){avail=avail.filter(x=>x!==a);avail.push(gate('NOT',[a]));continue}}
+  const a=pick(avail);avail=avail.filter(x=>x!==a);let b;
+  if(reuse>0&&g>=1){reuse--;b=pick(nodes.map(n=>n.id).filter(x=>x!==a))}else b=pick(avail);
+  avail=avail.filter(x=>x!==b);avail.push(gate(pick(bin),[a,b]))}
+ return {nodes,out:avail[0]}}
+/* la salida debe depender de todas las entradas */
+const lcSens=c=>{const n=c.nodes.filter(x=>x.kind==='in').length,all=lcAll(n);return c.nodes.filter(x=>x.kind==='in').every((_,i)=>all.some(a=>{const b=a.slice();b[i]^=1;return lcEval(c,a)[c.out]!==lcEval(c,b)[c.out]}))};
+function lcExpr(c,id,top=true,vals=null){
+ const n=c.nodes.find(x=>x.id===id);if(n.kind==='in')return vals?String(vals[id]):n.label;
+ const s=n.op==='NOT'?`NOT ${lcExpr(c,n.in[0],false,vals)}`:`${lcExpr(c,n.in[0],false,vals)} ${n.op} ${lcExpr(c,n.in[1],false,vals)}`;return top?s:`(${s})`}
+function lcItem(L,mode){
+ const nIn=Math.max(mode==='hidden'?3:2,lcN(L));
+ for(let t=0;t<300;t++){
+  const c=lcBuild(L,nIn);if(!lcSens(c)||lcLayout(c).D>(nIn>=4?4:3))continue;const all=lcAll(nIn),gates=c.nodes.filter(n=>n.kind==='gate');
+  if(mode==='eval'){const asg=pick(all),vals=lcEval(c,asg),inner=gates.filter(g=>g.id!==c.out),target=L>=4&&inner.length&&Math.random()<.45?pick(inner).id:c.out;return {mode,c,nIn,asg,target,ans:vals[target]}}
+  if(mode==='set'){const goal=pick([0,1]),start=pick(all),sols=all.filter(a=>lcEval(c,a)[c.out]===goal);if(!sols.length)continue;
+   const ham=(a,b)=>a.reduce((s,x,i)=>s+(x!==b[i]?1:0),0),minH=Math.min(...sols.map(s=>ham(start,s)));if(minH<(L>=6?2:1))continue;return {mode,c,nIn,goal,start,minH,sols}}
+  if(mode==='hidden'){
+   const bins=gates.filter(g=>g.op!=='NOT');if(!bins.length)continue;const h=pick(bins),real=h.op,CAND=['AND','OR','XOR','NAND','NOR'],cands=shuffle([real,...sample(CAND.filter(o=>o!==real),3)]);
+   const outOf=(a,op)=>lcEval(c,a,{[h.id]:op})[c.out],rows=[];let alive=cands.filter(o=>o!==real);
+   while(alive.length&&rows.length<4){let best=null,bestK=0;shuffle(all).forEach(a=>{const k=alive.filter(o=>outOf(a,o)!==outOf(a,real)).length;if(k>bestK){bestK=k;best=a}});if(!best)break;rows.push(best);alive=alive.filter(o=>outOf(best,o)===outOf(best,real))}
+   if(alive.length)continue;return {mode,c,nIn,hid:h.id,real,cands,ans:cands.indexOf(real),rows:rows.map(a=>({a,out:outOf(a,real)}))}}
+ }
+ return null}
+function lcLayout(c){
+ const depth={};c.nodes.forEach(n=>{depth[n.id]=n.kind==='in'?0:1+Math.max(...n.in.map(i=>depth[i]))});
+ const D=Math.max(...Object.values(depth)),cols=Array.from({length:D+1},()=>[]);c.nodes.forEach(n=>cols[depth[n.id]].push(n.id));
+ const CW=84,H=Math.max(150,Math.max(...cols.map(a=>a.length))*64+26),W=44+CW*D+96,pos={};
+ cols.forEach((ids,ci)=>ids.forEach((id,i)=>{pos[id]={x:40+ci*CW,y:H*(i+1)/(ids.length+1)}}));
+ return {D,pos,W,H}}
+function lcSVG(it,{hide=null,mark=null,asg=null}={}){
+ const c=it.c,{pos,W,H}=lcLayout(c),gw=60,gh=34,ir=18,wires=[],nodes=[];
+ c.nodes.filter(n=>n.kind==='gate').forEach(n=>n.in.forEach((src,k)=>{
+  const s=pos[src],d=pos[n.id],sx=s.x+(c.nodes.find(x=>x.id===src).kind==='in'?ir:gw/2),dx=d.x-gw/2,dy=d.y+(n.in.length>1?(k?9:-9):0),mx=(sx+dx)/2;
+  wires.push(`<path class="lc-wire" data-from="${src}" data-to="${n.id}" d="M${sx} ${s.y}C${mx} ${s.y} ${mx} ${dy} ${dx} ${dy}"/>`)}));
+ c.nodes.forEach(n=>{const p=pos[n.id];
+  if(n.kind==='in'){const v=asg?asg[+n.id.slice(1)]:null;nodes.push(`<g class="lc-in ${v?'on':''}" data-id="${n.id}" ${v==null?'':`data-val="${v}"`}><text class="lc-lab" x="${p.x-ir-8}" y="${p.y+5}" text-anchor="end">${n.label}</text><circle cx="${p.x}" cy="${p.y}" r="${ir}"/><text class="lc-v" x="${p.x}" y="${p.y+6}" text-anchor="middle">${v==null?'':v}</text></g>`)}
+  else{const hid=hide===n.id;nodes.push(`<g class="lc-g ${mark===n.id?'q':''} ${hid?'hid':''}" data-id="${n.id}" data-op="${hid?'?':n.op}" data-in="${n.in.join(',')}"><rect x="${p.x-gw/2}" y="${p.y-gh/2}" width="${gw}" height="${gh}" rx="9"/><text x="${p.x}" y="${p.y+5}" text-anchor="middle">${hid?'?':n.op}</text><text class="lc-gv" x="${p.x+gw/2-4}" y="${p.y-gh/2-5}" text-anchor="end"></text></g>`)}});
+ const o=pos[c.out],lx=o.x+gw/2+34;
+ return `<svg class="lc-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Circuito lógico con ${c.nodes.filter(n=>n.kind==='in').length} entradas y una salida"><path class="lc-wire out" data-from="${c.out}" data-to="lamp" d="M${o.x+gw/2} ${o.y}H${lx-14}"/>${wires.join('')}${nodes.join('')}<g class="lc-lamp" data-id="lamp"><circle cx="${lx}" cy="${o.y}" r="14"/><text x="${lx}" y="${o.y+5}" text-anchor="middle" class="lc-lt">${it.mode==='set'?'?':''}</text></g></svg>`}
+function lcReveal(root,c,vals,lampOn=null){
+ $$('.lc-wire',root).forEach(w=>{const v=w.dataset.from==='lamp'?0:vals[w.dataset.from];w.classList.remove('on','off');w.classList.add(v?'on':'off')});
+ c.nodes.filter(n=>n.kind==='gate').forEach(n=>{const g=root.querySelector(`.lc-g[data-id="${n.id}"] .lc-gv`);if(g)g.textContent='='+vals[n.id]});
+ const lamp=root.querySelector('.lc-lamp');if(lamp){lamp.classList.toggle('on',!!vals[c.out]);const t=lamp.querySelector('text');if(t)t.textContent=vals[c.out]}}
+const lcAsgTxt=a=>a.map((v,i)=>`${LC_LBL[i]}=${v}`).join(', ');
+reg({id:'circuit',skill:'logic',name:'Circuitos lógicos',icon:'circuit',tagline:'Sigue la señal por puertas AND, OR, NOT… y deduce el resultado.',
+ howTo:m=>({
+  eval:['Cada entrada vale 0 (apagada) o 1 (encendida). Las puertas combinan las señales: AND da 1 sólo si ambas entradas son 1; OR da 1 si alguna es 1; NOT invierte; NAND y NOR son el NOT de AND y de OR; XOR da 1 si las entradas son distintas.','Sigue la señal de izquierda a derecha y elige el valor de la salida (o de la puerta marcada con un borde de color).','Tras responder verás la expresión y el cálculo paso a paso. Teclas 0 y 1.'],
+  set:['Cambia las entradas (A, B, C…) para que la salida valga el valor pedido.','Pulsa «Comprobar» para ver el resultado: tienes 2 comprobaciones. Se registra cuántos cambios hiciste frente al mínimo posible.','Teclas 1–5 para cambiar las entradas y Enter para comprobar.'],
+  hidden:['Una de las puertas está oculta (?). Se muestran algunos ejemplos: valores de las entradas y la salida del circuito completo.','Deduce qué puerta es la oculta comprobando cuál de las opciones reproduce todos los ejemplos.','Teclas 1–4 para elegir.']
+ }[m]||[]),
+ example:m=>`<div class="ex-stim" data-stim style="gap:.6rem;font-family:var(--display);font-weight:700;flex-wrap:wrap"><span style="color:#35E6DF">1</span><span style="color:#9CC2FF">→</span><span style="padding:.25rem .6rem;border-radius:8px;background:#16213F;color:#F2F6FF;font-size:.85rem">AND</span><span style="color:#9CC2FF">←</span><span style="color:#8493AF">0</span><span style="color:#9CC2FF">⇒</span><span style="color:#FFC24B">0</span></div><p class="small" style="margin-top:.5rem">${m==='hidden'?'Si con entradas 1 y 0 el circuito da 0 pero con 1 y 1 da 1, la puerta podría ser un AND.':'AND sólo da 1 si las dos entradas valen 1: aquí una vale 0, así que sale 0.'}</p>`,
+ modes:[{id:'eval',name:'Evalúa',desc:'¿Qué sale?'},{id:'set',name:'Ajusta',desc:'Haz que la salida valga…'},{id:'hidden',name:'Puerta oculta',desc:'Deduce la puerta'}],
+ maxLevel:15,metric:{label:'Circuitos resueltos',better:'high'},daily:{mode:'eval',min:80,max:180},
+ levelInfo:(L,m)=>`${Math.max(m==='hidden'?3:2,lcN(L))} entradas · puertas: ${lcPool(L).join(', ')}${L>=8?' · señales compartidas':''}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode||'eval',N=ctx.budget?Infinity:(mode==='eval'?8:6),st={c:0,w:0,rts:[],first:0,sets:0,eff:[]};
+  let it=null,asg=null,ans=false,tries=0,toggles=0,timeUp=false,t0=0;
+  function qText(){return mode==='eval'?(it.target===it.c.out?'¿Qué valor sale por la salida?':'¿Qué valor tiene la señal de la puerta marcada?'):mode==='set'?`Deja la salida en <b>${it.goal}</b>`:'¿Qué puerta es la oculta (?)?'}
+  function next(){const n=st.c+st.w;if(n>=N||timeUp)return ctx.end();it=lcItem(L,mode);if(!it)return ctx.end();ans=false;tries=0;toggles=0;asg=mode==='set'?it.start.slice():mode==='eval'?it.asg:null;
+   const svg=lcSVG(it,{hide:mode==='hidden'?it.hid:null,mark:mode==='eval'&&it.target!==it.c.out?it.target:null,asg:mode==='hidden'?null:asg});
+   let ui='';
+   if(mode==='eval')ui=`<div class="opts" id="lco" style="max-width:420px"><button class="opt" data-i="0"><span class="kbd">0</span>0 · apagada</button><button class="opt" data-i="1"><span class="kbd">1</span>1 · encendida</button></div>`;
+   else if(mode==='set')ui=`<div class="lc-sws" id="lcs">${asg.map((v,i)=>`<button class="lc-sw ${v?'on':''}" data-i="${i}" aria-pressed="${v?'true':'false'}" aria-label="Entrada ${LC_LBL[i]}"><span class="kbd">${i+1}</span><b>${LC_LBL[i]}</b><span class="lc-sv">${v}</span></button>`).join('')}</div><div class="cb-act"><button class="btn btn-primary" id="lcok">Comprobar</button></div><div id="lcm" class="small" style="min-height:1.4em;text-align:center" aria-live="polite"></div>`;
+   else ui=`<div class="lc-tabw"><table class="lc-tab" id="lct"><thead><tr>${Array.from({length:it.nIn},(_,i)=>`<th>${LC_LBL[i]}</th>`).join('')}<th>Salida</th></tr></thead><tbody>${it.rows.map(r=>`<tr data-out="${r.out}">${r.a.map(v=>`<td>${v}</td>`).join('')}<td><b>${r.out}</b></td></tr>`).join('')}</tbody></table></div><div class="opts" id="lco" style="max-width:520px;grid-template-columns:repeat(${it.cands.length},1fr)">${it.cands.map((o,i)=>`<button class="opt" data-i="${i}" data-op="${o}"><span class="kbd">${i+1}</span>${o}</button>`).join('')}</div>`;
+   ctx.stage.innerHTML=`<div class="g-wrap lc"><div class="g-prompt">Circuito ${n+1}${N<Infinity?' de '+N:''} · <b>${qText()}</b></div><div class="lc-wrap" data-stim id="lcw">${svg}</div>${ui}<div id="lce" style="width:100%;max-width:640px"></div></div>`;
+   if(mode==='set'){const lamp=$('#lcw .lc-lamp');lamp&&lamp.classList.add('unk');$('#lcs').onclick=e=>{const b=e.target.closest('.lc-sw');if(b)flip(+b.dataset.i)};$('#lcok').onclick=check}
+   else $('#lco').onclick=e=>{const b=e.target.closest('.opt');if(b&&!ctx.clock.paused)choose(+b.dataset.i)};
+   t0=ctx.clock.now()}
+  function flip(i){if(ans||ctx.clock.paused)return;asg[i]^=1;toggles++;const b=$(`#lcs .lc-sw[data-i="${i}"]`);b.classList.toggle('on',!!asg[i]);b.setAttribute('aria-pressed',asg[i]?'true':'false');b.querySelector('.lc-sv').textContent=asg[i];
+   const g=$(`#lcw .lc-in[data-id="I${i}"]`);g.classList.toggle('on',!!asg[i]);g.dataset.val=asg[i];g.querySelector('.lc-v').textContent=asg[i];
+   $$('#lcw .lc-wire').forEach(w=>w.classList.remove('on','off'));$$('#lcw .lc-gv').forEach(x=>x.textContent='');const lp=$('#lcw .lc-lamp');lp.classList.remove('on');lp.querySelector('text').textContent='?';$('#lcm').textContent=''}
+  function finish(ok,expl){ans=true;const rt=ctx.clock.now()-t0;if(ok){st.c++;st.rts.push(rt)}else st.w++;
+   ctx.feedback(ok);ctx.score(st.c,'Resueltos');ctx.hits(st.c);
+   $('#lce').innerHTML=`<div class="explain-box ${ok?'':'bad'}"><b>${ok?'¡Correcto!':'No era esa.'}</b> ${expl}</div><div style="text-align:center;margin-top:12px"><button class="btn btn-primary" id="lcn">${timeUp?'Terminar':'Siguiente'} ${ic('arrowR')}</button></div>`;
+   $('#lcn').onclick=next;$('#lcn').focus({preventScroll:true});$('#lce').scrollIntoView({block:'nearest',behavior:RM()?'auto':'smooth'});if(timeUp)ctx.clock.after(2500,()=>ctx.end())}
+  function choose(i){if(ans||!it)return;const root=$('#lcw');let ok,expl;
+   $$('#lco .opt').forEach(b=>b.disabled=true);
+   if(mode==='eval'){const vals=lcEval(it.c,asg);ok=i===it.ans;lcReveal(root,it.c,vals);
+    $$('#lco .opt').forEach((b,k)=>{if(k===it.ans)b.classList.add('right');else if(k===i)b.classList.add('wrong')});
+    expl=`${lcExpr(it.c,it.target)}<br>Con ${lcAsgTxt(asg)} → ${lcExpr(it.c,it.target,true,Object.fromEntries(it.c.nodes.filter(n=>n.kind==='in').map(n=>[n.id,vals[n.id]])))} = <b>${it.ans}</b>.`}
+   else{ok=i===it.ans;const a0=it.rows[0].a,vals=lcEval(it.c,a0,{[it.hid]:it.real});$$('.lc-in',root).forEach(g=>{const k=+g.dataset.id.slice(1);g.classList.toggle('on',!!a0[k]);g.dataset.val=a0[k];g.querySelector('.lc-v').textContent=a0[k]});lcReveal(root,it.c,vals);const g=$(`#lcw .lc-g[data-id="${it.hid}"]`);g.dataset.op=it.real;g.querySelector('text').textContent=it.real;g.classList.remove('hid');
+    $$('#lco .opt').forEach((b,k)=>{if(k===it.ans)b.classList.add('right');else if(k===i)b.classList.add('wrong')});
+    expl=`La puerta oculta era <b>${it.real}</b>: es la única opción que reproduce todos los ejemplos${it.rows.length>1?` (${it.rows.length})`:''}.<br><span class="dim">El circuito se muestra con los valores del primer ejemplo.</span>`}
+   finish(ok,expl)}
+  function check(){if(ans||ctx.clock.paused)return;tries++;const vals=lcEval(it.c,asg);lcReveal($('#lcw'),it.c,vals);const out=vals[it.c.out],ok=out===it.goal;
+   if(ok){st.sets++;if(tries===1)st.first++;const eff=toggles?Math.min(1,it.minH/toggles):1;st.eff.push(eff);$$('#lcs .lc-sw').forEach(b=>b.disabled=true);$('#lcok').disabled=true;
+    finish(true,`La salida vale ${out}. Hiciste ${toggles} cambio${toggles===1?'':'s'}; el mínimo posible desde el punto de partida era ${it.minH}.`)}
+   else if(tries>=2){st.sets++;st.eff.push(0);$$('#lcs .lc-sw').forEach(b=>b.disabled=true);$('#lcok').disabled=true;const sol=it.sols.slice().sort((a,b)=>a.reduce((s,x,i)=>s+(x!==it.start[i]),0)-b.reduce((s,x,i)=>s+(x!==it.start[i]),0))[0];
+    finish(false,`La salida sigue valiendo ${out}. Una solución con el mínimo de cambios: ${lcAsgTxt(sol)}.<br>${lcExpr(it.c,it.c.out)}`)}
+   else{$('#lcm').innerHTML=`La salida vale <b>${out}</b>, no ${it.goal}. Te queda 1 comprobación.`;ctx.say(`La salida vale ${out}, no ${it.goal}`)}}
+  ctx.key(e=>{if(e.target.closest&&e.target.closest('button')&&e.key==='Enter')return;
+   if(!ans&&it){
+    if(mode==='eval'&&/^[01]$/.test(e.key)){e.preventDefault();choose(+e.key)}
+    else if(mode==='hidden'&&/^[1-5]$/.test(e.key)&&+e.key<=it.cands.length){e.preventDefault();choose(+e.key-1)}
+    else if(mode==='set'){if(/^[1-5]$/.test(e.key)&&+e.key<=it.nIn){e.preventDefault();flip(+e.key-1)}else if(e.key==='Enter'){e.preventDefault();check()}}}
+   else if(ans&&e.key==='Enter'){e.preventDefault();next()}});
+  next();
+  return {peek:()=>({it,asg,ans,tries}),onTimeUp(){timeUp=true;if(ans)ctx.end()},summary(){
+   const n=st.c+st.w;if(!n)return null;
+   const metrics=[{label:'Circuitos resueltos',value:`${st.c}/${n}`},{label:'Tiempo mediano (aciertos)',value:st.rts.length?(median(st.rts)/1000).toFixed(1)+' s':'—'},...(mode==='set'?[{label:'Resueltos a la primera',value:`${st.first}/${n}`},{label:'Eficiencia de cambios',value:st.eff.length?pct(avg(st.eff)):'—'}]:[])];
+   const details=`<h4>¿Qué mide esta tarea?</h4><p>Es razonamiento lógico con puertas booleanas: seguir una señal, combinar condiciones y, en la puerta oculta, deducir una regla a partir de ejemplos. ${mode==='set'?'La eficiencia de cambios compara tus cambios con el mínimo posible desde la posición inicial (1 = ninguno de más).':''}</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:st.c,wrong:st.w,total:n,acc:st.c/n,score:st.c,rt:avg(st.rts),metrics,details,extra:{mode,first:st.first,eff:st.eff.length?avg(st.eff):null,omRate:0,faRate:0}}}}
+ }});
+/* ---------- LABORATORIO DE ESTRATEGIA (planificación) ----------
+   Torre de Hanói generalizada (estado inicial y final cualquiera) y Torre de Londres (varillas con capacidad distinta).
+   El mínimo de movimientos de cada puzle se calcula con una búsqueda exhaustiva (BFS): la eficiencia se compara con el óptimo real. */
+const slColors=['#FF4D5E','#FFB547','#FFD23F','#3DDC84','#46D8CC','#538CFF','#B36DFF'];
+/* Hanói: estado = varilla (0-2) de cada disco; disco 0 = el más pequeño */
+function slHnTops(pos){const top=[null,null,null];for(let d=pos.length-1;d>=0;d--)top[pos[d]]=d;return top}
+function slHnMoves(pos){const top=slHnTops(pos),out=[];for(let a=0;a<3;a++){const d=top[a];if(d==null)continue;for(let b=0;b<3;b++)if(b!==a&&(top[b]==null||top[b]>d))out.push([d,b])}return out}
+function slHnDist(start){const dist=new Map([[start.join(''),0]]);let q=[start];while(q.length){const nq=[];for(const s of q){const ds=dist.get(s.join(''));for(const [d,b] of slHnMoves(s)){const t=s.slice();t[d]=b;const k=t.join('');if(!dist.has(k)){dist.set(k,ds+1);nq.push(t)}}}q=nq}return dist}
+const slHnCfg=L=>[[3,3,4],[3,4,5],[3,5,7],[4,6,8],[4,8,10],[4,10,12],[4,12,15],[5,12,15],[5,15,18],[5,18,21],[5,21,24],[5,24,27],[5,27,29],[5,29,31],[5,31,31]][clamp(L,1,15)-1];
+function slHanoi(L){
+ const [n,lo,hi]=slHnCfg(L);
+ for(let t=0;t<200;t++){
+  const start=Array.from({length:n},()=>ri(0,2)),dist=slHnDist(start),cands=[...dist.entries()].filter(([,d])=>d>=lo&&d<=hi);
+  if(!cands.length)continue;const [k,d]=pick(cands);return {kind:'hanoi',n,start,goal:k.split('').map(Number),opt:d}}
+ const start=Array(n).fill(0),goal=Array(n).fill(2);return {kind:'hanoi',n,start,goal,opt:(1<<n)-1}}
+/* Londres: estado = 3 pilas (abajo→arriba) con bolas 0..k-1; capacidades por varilla */
+const slLoCfg=L=>L<=3?{caps:[3,2,1],lo:2+(L>1)+(L>2),hi:3+(L>2)}:L<=6?{caps:[3,2,1],lo:4+(L>4),hi:5+(L>5)}:L<=9?{caps:[3,2,1],lo:6,hi:7+(L>8)}:L<=12?{caps:[3,2,2],lo:5+(L>10),hi:7+(L>11)}:{caps:[3,2,2],lo:8+(L>13),hi:10+(L>13)};
+const slLoKey=s=>s.map(p=>p.join('')).join('|');
+function slLoMoves(s,caps){const out=[];for(let a=0;a<3;a++){if(!s[a].length)continue;for(let b=0;b<3;b++)if(b!==a&&s[b].length<caps[b])out.push([a,b])}return out}
+const slLoApply=(s,a,b)=>{const t=s.map(p=>p.slice());t[b].push(t[a].pop());return t};
+function slLoDist(start,caps){const dist=new Map([[slLoKey(start),0]]);let q=[start];while(q.length){const nq=[];for(const s of q){const ds=dist.get(slLoKey(s));for(const [a,b] of slLoMoves(s,caps)){const t=slLoApply(s,a,b),k=slLoKey(t);if(!dist.has(k)){dist.set(k,ds+1);nq.push(t)}}}q=nq}return dist}
+function slLoRand(caps,k){const s=[[],[],[]];const balls=shuffle([...Array(k).keys()]);balls.forEach(b=>{let p;do p=ri(0,2);while(s[p].length>=caps[p]);s[p].push(b)});return s}
+function slLondon(L){
+ const {caps,lo,hi}=slLoCfg(L),k=caps.reduce((a,b)=>a+b,0)>=6&&caps[2]===2?4:3;
+ for(let t=0;t<300;t++){
+  const start=slLoRand(caps,k),dist=slLoDist(start,caps),cands=[...dist.entries()].filter(([,d])=>d>=lo&&d<=hi);
+  if(!cands.length)continue;const [key,d]=pick(cands);return {kind:'london',caps,k,start,goal:key.split('|').map(p=>p.split('').filter(x=>x!=='').map(Number)),opt:d}}
+ const start=slLoRand(caps,k),dist=slLoDist(start,caps),far=[...dist.entries()].sort((a,b)=>b[1]-a[1])[0];return {kind:'london',caps,k,start,goal:far[0].split('|').map(p=>p.split('').filter(x=>x!=='').map(Number)),opt:far[1]}}
+reg({id:'strategy',skill:'logic',name:'Laboratorio de estrategia',icon:'strategy',tagline:'Planifica la secuencia de movimientos más corta.',
+ howTo:m=>({
+  hanoi:['Mueve los discos hasta dejarlos como en el objetivo (modelo pequeño).','Reglas: mueves un solo disco cada vez (el de arriba de una varilla) y nunca puedes poner uno grande sobre uno más pequeño.','Hay un mínimo posible de movimientos: planifica antes de mover. Toca una varilla para elegir de dónde sale el disco y otra para elegir adónde va (teclas 1–3).'],
+  london:['Mueve las bolas hasta dejarlas como en el objetivo (modelo pequeño).','Reglas: mueves una sola bola cada vez (la de arriba de una varilla) y cada varilla tiene una capacidad limitada: 3, 2 y 1 bolas (o 3, 2 y 2).','Hay un mínimo posible de movimientos: planifica antes de mover. Toca una varilla para elegir de dónde sale la bola y otra para elegir adónde va (teclas 1–3).']
+ }[m]||[]),
+ example:m=>{const bar=(w,c)=>`<i style="display:block;width:${w}px;height:12px;border-radius:5px;background:${c};margin:2px auto"></i>`;
+  return `<div class="ex-stim" data-stim style="gap:1.2rem;align-items:flex-end"><div style="width:70px">${bar(62,'#FFB547')}${bar(44,'#3DDC84')}${bar(26,'#538CFF')}</div><div style="width:70px;opacity:.55">${bar(26,'#538CFF')}</div><div style="width:70px;opacity:.55"></div></div><p class="small" style="margin-top:.5rem">${m==='london'?'Una bola por movimiento, y cada varilla tiene su capacidad.':'Un disco por movimiento; nunca uno grande sobre uno pequeño.'}</p>`},
+ modes:[{id:'hanoi',name:'Torre de Hanói',desc:'Discos y reglas de tamaño'},{id:'london',name:'Torre de Londres',desc:'Bolas y capacidades'}],
+ maxLevel:15,metric:{label:'Puzles resueltos',better:'high'},daily:{mode:'hanoi',min:100,max:220},
+ levelInfo:(L,m)=>m==='london'?`${slLoCfg(L).caps[2]===2?'4':'3'} bolas · varillas de capacidad ${slLoCfg(L).caps.join('-')} · mínimo de ${slLoCfg(L).lo} a ${slLoCfg(L).hi} movimientos`:`${slHnCfg(L)[0]} discos · mínimo de ${slHnCfg(L)[1]} a ${slHnCfg(L)[2]} movimientos`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode||'hanoi',N=ctx.budget?Infinity:5,st={c:0,w:0,eff:[],ill:0,plan:[],resets:0,ts:[]};
+  let P=null,cur=null,sel=-1,moves=0,phase='idle',timeUp=false,t0=0,tFirst=null,limitTm=null;
+  const stacksOf=s=>P.kind==='hanoi'?[0,1,2].map(p=>s.map((q,d)=>q===p?d:-1).filter(d=>d>=0).sort((a,b)=>b-a)):s;
+  const isGoal=()=>P.kind==='hanoi'?cur.join('')===P.goal.join(''):slLoKey(cur)===slLoKey(P.goal);
+  const capOf=p=>P.kind==='hanoi'?P.n:P.caps[p];
+  const item=(v,mini)=>P.kind==='hanoi'?`<i class="sl-d" style="--w:${28+v*(64/Math.max(1,P.n-1))}%;--dc:${slColors[v%slColors.length]}" data-d="${v}">${mini?'':v+1}</i>`:`<i class="sl-b" style="--dc:${['#FF4D5E','#3DDC84','#538CFF','#FFD23F'][v]}" data-b="${v}">${v+1}</i>`;
+  const boardHtml=(s,mini)=>{const u=P.kind==='hanoi'?(mini?14:31):(mini?23:37),ph=u*(P.kind==='hanoi'?P.n:Math.max(...P.caps))+34;return `<div class="sl-board ${mini?'mini':''}" ${mini?'':'id="slb"'} style="--ph:${ph}px">${stacksOf(s).map((stk,p)=>`<div class="sl-peg ${!mini&&sel===p?'sel':''}" data-p="${p}" style="--rh:${u*capOf(p)+8}px" ${mini?'aria-hidden="true"':`role="button" tabindex="0" aria-label="Varilla ${p+1}: ${stk.length?stk.map(v=>P.kind==='hanoi'?'disco '+(v+1):'bola '+(v+1)).join(', '):'vacía'}${P.kind==='london'?' (capacidad '+P.caps[p]+')':''}"`}>${mini?'':`<span class="kbd sl-k">${p+1}</span>${P.kind==='london'?`<span class="sl-cap">máx. ${P.caps[p]}</span>`:''}`}${stk.map(v=>item(v,mini)).join('')}</div>`).join('')}</div>`};
+  function head(){const n=st.c+st.w;return `<div class="g-prompt">Puzle ${n+1}${N<Infinity?' de '+N:''} · <b>Deja el tablero como el objetivo</b></div>`}
+  function draw(){$('#slw').innerHTML=boardHtml(cur,false);$('#slm').textContent=moves}
+  function newPuzzle(){const n=st.c+st.w;P=mode==='london'?slLondon(L):slHanoi(L);cur=P.kind==='hanoi'?P.start.slice():P.start.map(p=>p.slice());sel=-1;moves=0;tFirst=null;phase='in';
+   ctx.stage.innerHTML=`<div class="g-wrap sl">${head()}<div class="sl-bar"><span class="sl-chip">Movimientos: <b id="slm">0</b></span><span class="sl-chip">Mínimo posible: <b id="slo">${P.opt}</b></span></div><div class="sl-goalw"><span class="small dim">Objetivo</span><div class="sl-wrap sl-goal" data-stim>${boardHtml(P.goal,true)}</div></div><div class="sl-wrap" data-stim id="slw">${boardHtml(cur,false)}</div><div class="cb-act"><button class="btn btn-ghost" id="slr">Reiniciar</button><button class="btn btn-ghost" id="slg" disabled>Rendirme</button></div><div id="sle" style="width:100%;max-width:560px" aria-live="polite"></div></div>`;
+   $('#slw').onclick=e=>{const p=e.target.closest('.sl-peg');if(p)pegTap(+p.dataset.p)};
+   $('#slr').onclick=reset;$('#slg').onclick=()=>finish(false,true);t0=ctx.clock.now()}
+  function reset(){if(phase!=='in'||ctx.clock.paused)return;st.resets++;cur=P.kind==='hanoi'?P.start.slice():P.start.map(p=>p.slice());sel=-1;draw()}
+  function legal(a,b){if(a===b)return false;if(P.kind==='hanoi'){const top=slHnTops(cur);return top[a]!=null&&(top[b]==null||top[b]>top[a])}return cur[a].length>0&&cur[b].length<P.caps[b]}
+  function apply(a,b){if(P.kind==='hanoi'){const d=slHnTops(cur)[a];cur[d]=b}else cur[b].push(cur[a].pop())}
+  function pegTap(p){if(phase!=='in'||ctx.clock.paused)return;
+   const has=P.kind==='hanoi'?slHnTops(cur)[p]!=null:cur[p].length>0;
+   if(sel<0){if(!has){flash(p);return}sel=p;draw();return}
+   if(sel===p){sel=-1;draw();return}
+   const a=sel;sel=-1;
+   if(!legal(a,p)){st.ill++;draw();flash(p);ctx.feedback(false,{msg:P.kind==='hanoi'?'Movimiento no permitido: un disco grande no va sobre uno pequeño':'Movimiento no permitido: la varilla está llena'});return}
+   if(tFirst==null){tFirst=ctx.clock.now()-t0;st.plan.push(tFirst)}
+   apply(a,p);moves++;draw();$('#slg').disabled=false;
+   if(isGoal())finish(true,false)}
+  function flash(p){const el=$(`#slw .sl-peg[data-p="${p}"]`);if(el){el.classList.remove('bad');void el.offsetWidth;el.classList.add('bad')}}
+  function finish(solved,gaveUp){if(phase!=='in')return;phase='done';ctx.clock.cancel(limitTm);const rt=ctx.clock.now()-t0;
+   if(solved){st.c++;st.eff.push(Math.min(1,P.opt/Math.max(1,moves)));st.ts.push(rt)}else st.w++;
+   ctx.feedback(solved,{msg:solved?(moves===P.opt?'¡Óptimo!':`Resuelto en ${moves} movimientos`):'Puzle no resuelto'});ctx.score(st.c,'Resueltos');ctx.hits(st.c);
+   $$('#slw .sl-peg').forEach(p=>p.style.pointerEvents='none');$('#slr').disabled=true;$('#slg').disabled=true;
+   const eff=solved?Math.min(1,P.opt/Math.max(1,moves)):0;
+   $('#sle').innerHTML=`<div class="explain-box ${solved?'':'bad'}"><b>${solved?(moves===P.opt?'¡Solución óptima!':'¡Resuelto!'):gaveUp?'Te rendiste.':'No resuelto.'}</b> ${solved?`Usaste ${moves} movimiento${moves===1?'':'s'}; el mínimo posible era ${P.opt} (eficiencia ${pct(eff)}).`:`El mínimo posible para este puzle era ${P.opt} movimientos.`}${st.ill?` <span class="dim">Intentos de movimiento no permitido hasta ahora: ${st.ill}.</span>`:''}</div><div style="text-align:center;margin-top:12px"><button class="btn btn-primary" id="sln">${(timeUp||st.c+st.w>=N)?'Terminar':'Siguiente'} ${ic('arrowR')}</button></div>`;
+   $('#sln').onclick=next;$('#sln').focus({preventScroll:true});$('#sle').scrollIntoView({block:'nearest',behavior:RM()?'auto':'smooth'});if(timeUp)ctx.clock.after(3000,()=>ctx.end())}
+  function next(){if(st.c+st.w>=N||timeUp)return ctx.end();newPuzzle()}
+  ctx.key(e=>{if(e.target.closest&&e.target.closest('button')&&e.key==='Enter')return;
+   if(phase==='in'){if(/^[1-3]$/.test(e.key)){e.preventDefault();pegTap(+e.key-1)}else if(e.key==='r'||e.key==='R'){e.preventDefault();reset()}}
+   else if(phase==='done'&&e.key==='Enter'){e.preventDefault();next()}});
+  newPuzzle();
+  return {peek:()=>({P,cur,moves,phase,sel}),onTimeUp(){timeUp=true;if(phase==='done'||phase==='idle')return ctx.end();
+    $$('.g-prompt',ctx.stage).forEach(x=>x.innerHTML='<b>Tiempo cumplido</b> · termina este puzle');
+    limitTm=ctx.clock.after(45000,()=>{if(phase==='in'){if(moves>=2){st.w++}phase='done';ctx.end()}})},
+   summary(){
+    const n=st.c+st.w;if(!n)return null;
+    const metrics=[{label:'Puzles resueltos',value:`${st.c}/${n}`},{label:'Eficiencia (óptimo ÷ movimientos)',value:st.eff.length?pct(avg(st.eff)):'—'},{label:'Planificación antes del 1.er movimiento',value:st.plan.length?(median(st.plan)/1000).toFixed(1)+' s':'—'},{label:'Movimientos no permitidos',value:st.ill},{label:'Reinicios',value:st.resets}];
+    const details=`<h4>¿Qué mide esta tarea?</h4><p>Es una tarea de planificación: hay que anticipar una secuencia de movimientos respetando reglas. El mínimo de movimientos se calcula con una búsqueda exhaustiva, así que la eficiencia compara lo que hiciste con lo mejor posible. El tiempo previo al primer movimiento indica cuánto planificaste antes de actuar; no es mejor ni peor por sí solo.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+    return {correct:st.c,wrong:st.w,total:n,acc:st.c/n,score:st.c,rt:st.ts.length?avg(st.ts):null,metrics,details,extra:{mode,eff:st.eff.length?avg(st.eff):null,ill:st.ill,resets:st.resets,omRate:0,faRate:0}}}}
+ }});
+/* ---------- DEDUCCIÓN MAESTRA (rejilla lógica) ----------
+   Casas en fila (posiciones 1..N) y varias categorías (color, mascota, bebida, oficio). Con las pistas hay que deducir qué valor
+   va en cada casa. Cada puzle se genera con una solución secreta y pistas verdaderas hasta que un solucionador por fuerza bruta
+   confirma que queda UNA sola solución; después se eliminan las pistas redundantes. */
+const DD_CATS=[{n:'Color',v:['rojo','azul','verde','amarillo','blanco']},{n:'Mascota',v:['perro','gato','pez','loro','conejo']},{n:'Bebida',v:['té','café','leche','agua','zumo']},{n:'Oficio',v:['pintor','médico','chef','piloto','autor']}];
+const ddCfg=L=>L<=3?{n:3,k:2,max:6}:L<=6?{n:4,k:2,max:8}:L<=9?{n:4,k:3,max:12}:L<=12?{n:5,k:2,max:10}:{n:5,k:2,max:9,rel:true};
+const ddTypes=L=>L<=3?['at','same','left']:L<=6?['at','same','left','adj','imm']:L<=9?['at','same','left','adj','imm','not','notat']:L<=12?['at','same','left','adj','imm','not','notat']:['same','left','adj','imm','not','notat'];
+const ddPerms=n=>{const out=[],a=[],u=[];const rec=()=>{if(a.length===n){out.push(a.slice());return}for(let v=0;v<n;v++)if(!u[v]){u[v]=1;a.push(v);rec();a.pop();u[v]=0}};rec();return out};
+/* posición (0..n-1) de la propiedad (c,v) en la candidata cand */
+const ddPos=(P,cand,c,v)=>P[cand[c]].inv[v];
+function ddHolds(cl,cand,P){
+ const pa=ddPos(P,cand,cl.a[0],cl.a[1]),pb=cl.b?ddPos(P,cand,cl.b[0],cl.b[1]):null;
+ switch(cl.t){case 'at':return pa===cl.p;case 'notat':return pa!==cl.p;case 'same':return pa===pb;case 'not':return pa!==pb;case 'left':return pa<pb;case 'imm':return pb-pa===1;case 'adj':return Math.abs(pa-pb)===1}
+ return false}
+function ddAllCands(n,k,P){let out=[[]];for(let c=0;c<k;c++){const nx=[];for(const o of out)for(let i=0;i<P.length;i++)nx.push([...o,i]);out=nx}return out}
+function ddMake(L){
+ const {n,k,max}=ddCfg(L),types=ddTypes(L),perms=ddPerms(n),P=perms.map(p=>({p,inv:p.map((_,v)=>p.indexOf(v))})),all=ddAllCands(n,k,P);
+ for(let t=0;t<60;t++){
+  const sol=Array.from({length:k},()=>ri(0,P.length-1)),clues=[];let cands=all,guard=0;
+  while(cands.length>1&&clues.length<max+6&&guard++<400){
+   const tp=pick(types),a=[ri(0,k-1),ri(0,n-1)];let b=null,p=null;
+   if(tp==='at'||tp==='notat')p=ri(0,n-1);
+   else{do{b=[ri(0,k-1),ri(0,n-1)]}while(b[0]===a[0]&&b[1]===a[1]||(tp==='same'||tp==='not')&&b[0]===a[0])}
+   const cl={t:tp,a,b,p};if(!ddHolds(cl,sol,P))continue;
+   const nx=cands.filter(c=>ddHolds(cl,c,P));if(nx.length===cands.length)continue;clues.push(cl);cands=nx}
+  if(cands.length!==1)continue;
+  let cs=clues.slice();for(let i=cs.length-1;i>=0;i--){const rest=cs.filter((_,j)=>j!==i);if(all.filter(c=>rest.every(q=>ddHolds(q,c,P))).length===1)cs=rest}
+  if(cs.length<=max)return {n,k,P,sol,clues:cs,cats:null,total:all.length}}
+ return null}
+function ddItem(L){
+ const d=ddMake(L);if(!d)return null;
+ const cats=sample(DD_CATS,d.k).map(c=>({n:c.n,v:sample(c.v,d.n)}));
+ return {...d,cats,solution:d.sol.map(si=>d.P[si].p)}} // solution[c][posición] = valor
+const ddChip=(it,c,v)=>`<span class="dd-chip" data-c="${c}" data-v="${v}"><i>${it.cats[c].n}</i>${it.cats[c].v[v]}</span>`;
+function ddText(it,cl){const A=ddChip(it,cl.a[0],cl.a[1]),B=cl.b?ddChip(it,cl.b[0],cl.b[1]):'';
+ return {at:`${A} está en la casa ${cl.p+1}.`,notat:`${A} no está en la casa ${cl.p+1}.`,same:`${A} y ${B} están en la misma casa.`,not:`${A} y ${B} no están en la misma casa.`,left:`${A} está en una casa a la izquierda de ${B}.`,imm:`${A} está justo a la izquierda de ${B}.`,adj:`${A} y ${B} están en casas contiguas.`}[cl.t]}
+reg({id:'deduction',skill:'logic',name:'Deducción maestra',icon:'deduction',tagline:'Rejilla lógica: deduce qué va en cada casa con las pistas.',
+ howTo:['Hay casas en fila (de izquierda a derecha) y varias categorías, por ejemplo color, mascota y bebida. Cada valor aparece una vez por categoría.','Lee las pistas y deduce qué valor va en cada casa. Toca una casilla de la rejilla y elige el valor.','Pulsa «Comprobar». Tienes 2 comprobaciones: la primera marca qué casillas están mal; la segunda revela la solución si no acertaste.'],
+ example:()=>`<div class="ex-stim" data-stim style="flex-direction:column;gap:.5rem;font-weight:600;font-size:.85rem"><div>«<span style="color:#FFC24B">gato</span> está en la casa 2»</div><div>«<span style="color:#FFC24B">té</span> y <span style="color:#FFC24B">gato</span> están en la misma casa»</div><div style="color:#9CC2FF">→ la bebida de la casa 2 es té</div></div><p class="small" style="margin-top:.5rem">Combina las pistas: lo que una descarta, otra lo confirma.</p>`,
+ maxLevel:15,metric:{label:'Puzles resueltos',better:'high'},daily:{min:100,max:220},
+ levelInfo:L=>{const c=ddCfg(L);return `${c.n} casas · ${c.k} categorías · pistas de ${ddTypes(L).length} tipos${c.rel?' (sin pistas de posición exacta)':''}`},
+ start(ctx){
+  const L=ctx.level,N=ctx.budget?Infinity:3,st={c:0,w:0,first:0,rts:[],checks:0};
+  let it=null,grid=null,sel=null,tries=0,phase='idle',timeUp=false,t0=0,limitTm=null;
+  const cellTxt=(c,p)=>grid[c][p]==null?'—':it.cats[c].v[grid[c][p]];
+  function draw(wrong){
+   const hdr=`<div class="dd-row dd-h"><span class="dd-l"></span>${Array.from({length:it.n},(_,p)=>`<span class="dd-hc">Casa ${p+1}</span>`).join('')}</div>`;
+   const rows=it.cats.map((cat,c)=>`<div class="dd-row"><span class="dd-l">${cat.n}</span>${Array.from({length:it.n},(_,p)=>`<button class="dd-cell ${sel&&sel.c===c&&sel.p===p?'sel':''} ${wrong&&wrong[c][p]?'bad':''} ${grid[c][p]==null?'empty':''}" data-c="${c}" data-p="${p}" aria-label="${cat.n}, casa ${p+1}: ${grid[c][p]==null?'vacío':cat.v[grid[c][p]]}${wrong&&wrong[c][p]?' (incorrecto)':''}" ${phase!=='in'?'disabled':''}>${cellTxt(c,p)}</button>`).join('')}</div>`).join('');
+   $('#ddg').innerHTML=hdr+rows;
+   const used=sel?new Set(grid[sel.c].filter(v=>v!=null)):new Set();
+   $('#ddp').innerHTML=sel?`<span class="small dim">${it.cats[sel.c].n} · casa ${sel.p+1}:</span>${it.cats[sel.c].v.map((v,i)=>`<button class="dd-pv ${grid[sel.c][sel.p]===i?'on':''} ${used.has(i)&&grid[sel.c][sel.p]!==i?'used':''}" data-v="${i}"><span class="kbd">${i+1}</span>${v}</button>`).join('')}<button class="dd-pv clr" data-v="-1">Borrar</button>`:`<span class="small dim">Toca una casilla de la rejilla para asignarle un valor.</span>`;
+   $('#ddok').disabled=phase!=='in'||grid.some(r=>r.some(v=>v==null))}
+  function newPuzzle(){const n=st.c+st.w;it=ddItem(L);if(!it)return ctx.end();grid=it.cats.map(()=>Array(it.n).fill(null));sel=null;tries=0;phase='in';
+   ctx.stage.innerHTML=`<div class="g-wrap dd"><div class="g-prompt">Puzle ${n+1}${N<Infinity?' de '+N:''} · <b>Deduce qué va en cada casa</b></div><div class="dd-clues"><b class="small dim">Pistas (${it.clues.length})</b><ol id="ddc">${it.clues.map(cl=>`<li data-t="${cl.t}" data-a="${cl.a.join(',')}" ${cl.b?`data-b="${cl.b.join(',')}"`:''} ${cl.p!=null?`data-p="${cl.p}"`:''}>${ddText(it,cl)}</li>`).join('')}</ol></div><div class="dd-grid" id="ddg" style="--n:${it.n}" role="group" aria-label="Rejilla de respuestas"></div><div class="dd-pal" id="ddp"></div><div class="cb-act"><button class="btn btn-primary" id="ddok" disabled>Comprobar</button></div><div id="dde" style="width:100%;max-width:640px" aria-live="polite"></div></div>`;
+   $('#ddg').onclick=e=>{const b=e.target.closest('.dd-cell');if(b&&phase==='in'&&!ctx.clock.paused){sel={c:+b.dataset.c,p:+b.dataset.p};draw()}};
+   $('#ddp').onclick=e=>{const b=e.target.closest('.dd-pv');if(b)assign(+b.dataset.v)};$('#ddok').onclick=check;draw();t0=ctx.clock.now()}
+  function assign(v){if(!sel||phase!=='in'||ctx.clock.paused)return;const {c,p}=sel;if(v>=0){const q=grid[c].indexOf(v);if(q>=0&&q!==p)grid[c][q]=null}grid[c][p]=v<0?null:v;
+   if(v>=0){/* avanza a la siguiente casilla vacía de la misma categoría */const nx=Array.from({length:it.n},(_,i)=>(p+1+i)%it.n).find(q=>grid[c][q]==null);if(nx!=null)sel={c,p:nx}}draw()}
+  function finish(ok){phase='done';ctx.clock.cancel(limitTm);const rt=ctx.clock.now()-t0;if(ok){st.c++;st.rts.push(rt);if(tries===1)st.first++}else st.w++;
+   ctx.feedback(ok);ctx.score(st.c,'Resueltos');ctx.hits(st.c);
+   const sol=it.cats.map((cat,c)=>`<b>${cat.n}:</b> ${it.solution[c].map(v=>cat.v[v]).join(' · ')}`).join('<br>');
+   $('#dde').innerHTML=`<div class="explain-box ${ok?'':'bad'}"><b>${ok?(tries===1?'¡Resuelto a la primera!':'¡Resuelto!'):'No resuelto.'}</b> ${ok?'':'Esta era la solución (casas 1 a '+it.n+'):'}<br>${sol}</div><div style="text-align:center;margin-top:12px"><button class="btn btn-primary" id="ddn">${(timeUp||st.c+st.w>=N)?'Terminar':'Siguiente'} ${ic('arrowR')}</button></div>`;
+   $('#ddn').onclick=next;$('#ddn').focus({preventScroll:true});$('#dde').scrollIntoView({block:'nearest',behavior:RM()?'auto':'smooth'});
+   if(!ok){grid=it.solution.map(r=>r.slice())}draw(null);if(timeUp)ctx.clock.after(3000,()=>ctx.end())}
+  function check(){if(phase!=='in'||ctx.clock.paused)return;tries++;st.checks++;
+   const wrong=grid.map((r,c)=>r.map((v,p)=>v!==it.solution[c][p])),nWrong=wrong.flat().filter(Boolean).length;
+   if(!nWrong){draw(null);return finish(true)}
+   if(tries>=2){return finish(false)}
+   sel=null;draw(wrong);$('#dde').innerHTML=`<div class="explain-box bad"><b>${nWrong} casilla${nWrong>1?'s':''} incorrecta${nWrong>1?'s':''}</b> (marcadas en rojo). Revisa las pistas: te queda 1 comprobación.</div>`;ctx.say(`${nWrong} casillas incorrectas`)}
+  function next(){if(st.c+st.w>=N||timeUp)return ctx.end();newPuzzle()}
+  ctx.key(e=>{if(e.target.closest&&e.target.closest('button')&&e.key==='Enter')return;
+   if(phase==='in'){
+    if(/^[1-5]$/.test(e.key)&&sel&&+e.key<=it.n){e.preventDefault();assign(+e.key-1)}
+    else if((e.key==='Backspace'||e.key==='Delete')&&sel){e.preventDefault();assign(-1)}
+    else if(/^Arrow/.test(e.key)){e.preventDefault();const s=sel||{c:0,p:0};const d={ArrowLeft:[0,-1],ArrowRight:[0,1],ArrowUp:[-1,0],ArrowDown:[1,0]}[e.key];sel={c:clamp(s.c+d[0],0,it.k-1),p:clamp(s.p+d[1],0,it.n-1)};draw()}
+    else if(e.key==='Enter'&&!$('#ddok').disabled){e.preventDefault();check()}}
+   else if(phase==='done'&&e.key==='Enter'){e.preventDefault();next()}});
+  newPuzzle();
+  return {peek:()=>({it,grid,sel,tries,phase}),onTimeUp(){timeUp=true;if(phase==='done'||phase==='idle')return ctx.end();
+    $$('.g-prompt',ctx.stage).forEach(x=>x.innerHTML='<b>Tiempo cumplido</b> · termina este puzle');
+    limitTm=ctx.clock.after(60000,()=>{if(phase==='in'){phase='done';if(tries>=1)st.w++;ctx.end()}})},
+   summary(){
+    const n=st.c+st.w;if(!n)return null;
+    const metrics=[{label:'Puzles resueltos',value:`${st.c}/${n}`},{label:'Resueltos a la primera comprobación',value:`${st.first}/${n}`},{label:'Tiempo mediano (resueltos)',value:st.rts.length?(median(st.rts)/1000).toFixed(0)+' s':'—'}];
+    const details=`<h4>¿Qué mide esta tarea?</h4><p>Es una tarea de deducción con restricciones: hay que combinar pistas para descartar posibilidades hasta que sólo quede una. Cada puzle está comprobado por un solucionador: tiene una única solución y ninguna pista es redundante.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+    return {correct:st.c,wrong:st.w,total:n,acc:st.c/n,score:st.c,rt:st.rts.length?avg(st.rts):null,metrics,details,extra:{first:st.first,omRate:0,faRate:0}}}}
+ }});
 /* =====================================================================
    MUNDO 4 — MATH SPEED
    ===================================================================== */
