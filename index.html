@@ -754,6 +754,14 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .mx-b:hover:not(:disabled){transform:translateY(-2px);border-color:var(--c, var(--teal))}.mx-b:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 .mx-b .mx-k{position:absolute;top:3px;left:4px;min-width:16px;height:16px;font-size:.625rem;opacity:.6}
 .mx-b.right{border-color:var(--ok);box-shadow:0 0 0 2px rgba(61,220,132,.35)}.mx-b.wrong{border-color:var(--bad);box-shadow:0 0 0 2px rgba(255,84,112,.35)}
+.rh2{gap:.9rem}.rh-lamps{display:flex;gap:1rem;justify-content:center}
+.rh-lamp{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font:800 1.4rem var(--display);border:2px solid var(--line-2);background:rgba(var(--ov),.05);color:var(--muted);transition:background .08s,box-shadow .08s,color .08s}
+.rh-lamp.on{background:var(--cosmic,#35E6DF);color:#06121B;box-shadow:0 0 22px var(--cosmic,#35E6DF)}.rh-lamp.big{width:84px;height:84px;font-size:2rem}
+.rh-dots{display:flex;gap:6px;justify-content:center;min-height:14px}.rh-dots i{width:12px;height:12px;border-radius:50%;background:rgba(var(--ov),.12)}.rh-dots i.on{background:var(--cosmic,#35E6DF)}
+.rh-kb{display:flex;gap:6px;width:100%;max-width:520px;padding:.7rem;border-radius:20px;background:var(--stim);border:1px solid var(--line-2)}
+.rh-key{position:relative;flex:1;min-width:0;min-height:140px;padding:0 0 .6rem;border-radius:0 0 12px 12px;border:1px solid #9CC2FF;background:#F2F6FF;color:#16213F;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;font-weight:700;transition:background .08s,transform .08s}
+.rh-key b{font-size:.8rem}.rh-key .kbd{position:absolute;top:6px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.1);color:#16213F;border-color:rgba(0,0,0,.2)}.rh-key.lit{background:#35E6DF;transform:translateY(2px)}
+@media (max-width:420px){.rh-key b{font-size:.68rem}.rh-kb{padding:.5rem;gap:4px}}
 .cb{max-width:560px;gap:.9rem}
 .cb-board{display:flex;flex-direction:column;gap:.4rem;width:100%;max-width:440px;max-height:clamp(190px,40vh,330px);overflow-y:auto;overscroll-behavior:contain;padding:2px}
 .cb-row{display:flex;align-items:center;gap:.6rem;padding:.3rem .55rem;border-radius:14px;border:1px solid var(--line-2);background:rgba(var(--ov),.03)}
@@ -1507,7 +1515,7 @@ const KEY='neuroverse-ai.v1',VERSION=1;
 let S=null,storageOK=true;
 function defaults(){return{app:'neuroverse-ai',version:VERSION,createdAt:Date.now(),
  profile:{name:'',goal:'balanced',dailyMinutes:15,startLevel:1,onboarded:false,tourDone:false},
- settings:{sound:true,volume:.55,motion:'auto',textScale:1,contrast:false,colorAssist:false,noSpeed:false,haptics:true,theme:'night',focus:false},
+ settings:{sound:true,volume:.55,sfxVol:.8,gameVol:1,musicOn:false,musicVol:.35,inst:'piano',motion:'auto',textScale:1,contrast:false,colorAssist:false,noSpeed:false,haptics:true,theme:'night',focus:false},
  xp:0,skillXp:Object.fromEntries(SKILLS.map(s=>[s.id,0])),
  games:{},results:[],sessions:[],days:{},achievements:{},missions:{},adaptLog:[],
  srs:{it:{},fr:{},en:{}},recent:{words:[],patterns:[],anagrams:[],logic:[]},
@@ -1788,13 +1796,53 @@ const Theme={
  }
 };
 
-/* ---------- Sonido (Web Audio API) ---------- */
+/* ---------- Sonido (Web Audio API) ----------
+   Motor 2.0: instrumentos sintetizados (piano, marimba, sintetizador, flauta, campanas), percusión y música ambiental opcional.
+   Tres canales de volumen independientes (interfaz, juegos, música) bajo el volumen general. Los constructores de sonido (AUD) programan
+   nodos en CUALQUIER contexto —en vivo o fuera de línea—, de modo que se puede renderizar y analizar el audio sin altavoces. */
 const NOTES=[261.63,293.66,329.63,392,440,523.25,587.33,659.25,783.99,880,1046.5,1174.66,1318.5];
-const Sound={ctx:null,master:null,
- init(){if(this.ctx)return true;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return false;try{this.ctx=new AC();this.master=this.ctx.createGain();this.master.connect(this.ctx.destination);this.setVol();return true}catch(e){return false}},
- setVol(){if(this.master)this.master.gain.value=S?S.settings.volume:.5},
+const SCALE=[261.63,293.66,329.63,349.23,392,440,493.88,523.25],SCALE_N=['Do','Re','Mi','Fa','Sol','La','Si','Do'];
+const INST_N={piano:'Piano',marimba:'Marimba',synth:'Sintetizador',flute:'Flauta',bell:'Campanas'};
+const AUD={
+ noise(c){if(!c.__nz){const n=c.sampleRate,b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0);let s=12345;for(let i=0;i<n;i++){s=(s*1664525+1013904223)>>>0;d[i]=(s/4294967296)*2-1}c.__nz=b}return c.__nz},
+ inst:{
+  piano(c,out,t,f,d,v){const dur=d+.55,g=c.createGain(),lp=c.createBiquadFilter();lp.type='lowpass';lp.Q.value=.7;lp.frequency.setValueAtTime(Math.min(9000,f*8),t);lp.frequency.exponentialRampToValueAtTime(Math.max(700,f*2.2),t+dur);
+   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.006);g.gain.exponentialRampToValueAtTime(v*.38,t+Math.min(.45,dur*.4));g.gain.exponentialRampToValueAtTime(.0001,t+dur);lp.connect(g);g.connect(out);
+   [[1,1],[2,.55],[3,.32],[4,.18],[5,.1],[6,.05]].forEach(([m,a])=>{const o=c.createOscillator(),og=c.createGain();o.type='sine';o.frequency.value=f*m*(1+m*m*.00012);og.gain.value=a*.6;o.connect(og);og.connect(lp);o.start(t);o.stop(t+dur+.05)})},
+  marimba(c,out,t,f,d,v){const dur=Math.max(.35,Math.min(d,.6))+.2,g=c.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.003);g.gain.exponentialRampToValueAtTime(.0001,t+dur);g.connect(out);
+   [[1,1,dur],[4,.28,.12],[9.2,.08,.06]].forEach(([m,a,dd])=>{const o=c.createOscillator(),og=c.createGain();o.type='sine';o.frequency.value=f*m;og.gain.setValueAtTime(a,t);og.gain.exponentialRampToValueAtTime(.0001,t+dd);o.connect(og);og.connect(g);o.start(t);o.stop(t+dd+.05)})},
+  synth(c,out,t,f,d,v){const dd=Math.max(.06,d),dur=dd+.2,g=c.createGain(),lp=c.createBiquadFilter();lp.type='lowpass';lp.Q.value=3;lp.frequency.setValueAtTime(400,t);lp.frequency.exponentialRampToValueAtTime(2200,t+.05);lp.frequency.exponentialRampToValueAtTime(900,t+dur);
+   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v*.55,t+.02);g.gain.setValueAtTime(v*.55,t+dd);g.gain.exponentialRampToValueAtTime(.0001,t+dur);lp.connect(g);g.connect(out);
+   [-7,7].forEach(cents=>{const o=c.createOscillator();o.type='sawtooth';o.frequency.value=f;o.detune.value=cents;o.connect(lp);o.start(t);o.stop(t+dur+.05)})},
+  flute(c,out,t,f,d,v){const dd=Math.max(.1,d),dur=dd+.12,g=c.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v*.8,t+.06);g.gain.setValueAtTime(v*.8,t+dd);g.gain.exponentialRampToValueAtTime(.0001,t+dur);g.connect(out);
+   const lfo=c.createOscillator(),lg=c.createGain();lfo.frequency.value=5.2;lg.gain.value=7;lfo.connect(lg);lfo.start(t);lfo.stop(t+dur+.05);
+   [[1,1],[2,.14],[3,.05]].forEach(([m,a])=>{const o=c.createOscillator(),og=c.createGain();o.type='sine';o.frequency.value=f*m;og.gain.value=a;lg.connect(o.detune);o.connect(og);og.connect(g);o.start(t);o.stop(t+dur+.05)})},
+  bell(c,out,t,f,d,v){const dur=Math.max(d,.5)+1.1,g=c.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v*.8,t+.004);g.gain.exponentialRampToValueAtTime(.0001,t+dur);g.connect(out);
+   [[1,1,1],[2.76,.45,.55],[5.4,.22,.3],[8.93,.1,.18]].forEach(([m,a,dd])=>{const o=c.createOscillator(),og=c.createGain();o.type='sine';o.frequency.value=f*m;og.gain.setValueAtTime(a,t);og.gain.exponentialRampToValueAtTime(.0001,t+dur*dd);o.connect(og);og.connect(g);o.start(t);o.stop(t+dur+.05)})}
+ },
+ drum:{
+  kick(c,out,t,v){const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.setValueAtTime(160,t);o.frequency.exponentialRampToValueAtTime(48,t+.11);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.connect(g);g.connect(out);o.start(t);o.stop(t+.33)},
+  snare(c,out,t,v){const s=c.createBufferSource(),bp=c.createBiquadFilter(),g=c.createGain(),o=c.createOscillator(),og=c.createGain();s.buffer=AUD.noise(c);bp.type='bandpass';bp.frequency.value=1900;bp.Q.value=.9;g.gain.setValueAtTime(v*.8,t);g.gain.exponentialRampToValueAtTime(.0001,t+.16);s.connect(bp);bp.connect(g);g.connect(out);s.start(t);s.stop(t+.18);
+   o.type='triangle';o.frequency.setValueAtTime(190,t);og.gain.setValueAtTime(v*.5,t);og.gain.exponentialRampToValueAtTime(.0001,t+.1);o.connect(og);og.connect(out);o.start(t);o.stop(t+.12)},
+  hat(c,out,t,v){const s=c.createBufferSource(),hp=c.createBiquadFilter(),g=c.createGain();s.buffer=AUD.noise(c);hp.type='highpass';hp.frequency.value=7000;g.gain.setValueAtTime(v*.6,t);g.gain.exponentialRampToValueAtTime(.0001,t+.05);s.connect(hp);hp.connect(g);g.connect(out);s.start(t);s.stop(t+.07)},
+  click(c,out,t,v,accent){const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=accent?1600:1050;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.002);g.gain.exponentialRampToValueAtTime(.0001,t+.045);o.connect(g);g.connect(out);o.start(t);o.stop(t+.06)}
+ },
+ chords:[[110,164.81,220,261.63,329.63],[87.31,130.81,174.61,220,261.63],[130.81,196,261.63,329.63],[98,146.83,196,246.94]],
+ /* un acorde de fondo (≈8 s) con filtro de paso bajo modulado muy lentamente; devuelve las fuentes para poder pararlas */
+ ambientChord(c,out,t,idx,dur=12){const g=c.createGain(),lp=c.createBiquadFilter(),lfo=c.createOscillator(),lg=c.createGain(),srcs=[],ch=AUD.chords[idx%AUD.chords.length];
+  lp.type='lowpass';lp.frequency.value=700;lp.Q.value=.5;lfo.frequency.value=.11;lg.gain.value=220;lfo.connect(lg);lg.connect(lp.frequency);
+  /* fundidos lineales con solape de 5 s entre acordes consecutivos (cada 7 s): sin huecos de silencio */
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.5,t+4);g.gain.setValueAtTime(.5,t+dur-5);g.gain.linearRampToValueAtTime(0,t+dur);lp.connect(g);g.connect(out);lfo.start(t);lfo.stop(t+dur+.1);srcs.push(lfo);
+  ch.forEach((f,i)=>{const o=c.createOscillator(),og=c.createGain();o.type=i%2?'triangle':'sine';o.frequency.value=f;o.detune.value=(i-2)*3;og.gain.value=.16/Math.sqrt(ch.length);o.connect(og);og.connect(lp);o.start(t);o.stop(t+dur+.1);srcs.push(o)});return srcs}
+};
+const Sound={ctx:null,master:null,ch:null,
+ init(){if(this.ctx)return true;const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return false;try{this.ctx=new AC();this.master=this.ctx.createGain();this.master.connect(this.ctx.destination);this.ch={};['sfx','game','music'].forEach(k=>{const g=this.ctx.createGain();g.connect(this.master);this.ch[k]=g});this.setVol();return true}catch(e){return false}},
+ setVol(){if(!this.master)return;const s=S?S.settings:{};this.master.gain.value=S?s.volume:.5;this.ch.sfx.gain.value=s.sfxVol??.8;this.ch.game.gain.value=s.gameVol??1;this.ch.music.gain.value=s.musicVol??.35},
  on(){return !!S&&S.settings.sound&&S.settings.volume>0},
- tone(f,d=.15,type='sine',vol=.25,when=0,slide=null,force=false){if(!force&&!this.on())return;if(!this.init())return;const c=this.ctx;if(c.state==='suspended')c.resume();const t=c.currentTime+when+.005,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(slide,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(this.master);o.start(t);o.stop(t+d+.03)},
+ tone(f,d=.15,type='sine',vol=.25,when=0,slide=null,force=false,chn='sfx'){if(!force&&!this.on())return;if(!this.init())return;const c=this.ctx;if(c.state==='suspended')c.resume();const t=c.currentTime+when+.005,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(slide,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(this.ch[chn]||this.ch.sfx);o.start(t);o.stop(t+d+.03)},
+ /* instrumento en el canal de juegos; name ∈ AUD.inst */
+ inst(name,f,d=.4,vol=.3,when=0,force=false){if(!force&&!this.on())return;if(!this.init())return;const c=this.ctx;if(c.state==='suspended')c.resume();(AUD.inst[name]||AUD.inst.piano)(c,this.ch.game,c.currentTime+when+.005,f,d,vol)},
+ drum(kind,when=0,vol=.5,accent=false,force=false){if(!force&&!this.on())return;if(!this.init())return;const c=this.ctx;if(c.state==='suspended')c.resume();(AUD.drum[kind]||AUD.drum.click)(c,this.ch.game,c.currentTime+when+.005,vol,accent)},
  ok(){this.tone(660,.11,'sine',.18);this.tone(990,.16,'sine',.13,.06)},
  bad(){this.tone(230,.22,'triangle',.18,0,150)},
  soft(){this.tone(420,.06,'sine',.08)},
@@ -1805,6 +1853,13 @@ const Sound={ctx:null,master:null,
  ach(){[784,988,1175,1568].forEach((f,i)=>this.tone(f,.35,'triangle',.12,i*.07))},
  done(){[392,523,659,784,1046].forEach((f,i)=>this.tone(f,.4,'sine',.14,i*.1))},
  note(i,d=.3){this.tone(NOTES[i%NOTES.length],d,'triangle',.26)}
+};
+/* música ambiental opcional: acordes suaves generados en el dispositivo, sólo durante las partidas y sólo si se activa en Ajustes */
+const Ambient={on:false,timer:null,nextT:0,idx:0,src:[],
+ start(force=false){if(this.on)return;if(!force&&!(S&&S.settings.musicOn))return;if(!Sound.on()||!Sound.init())return;const c=Sound.ctx;if(c.state==='suspended')c.resume();Sound.setVol();this.on=true;this.nextT=c.currentTime+.1;this.idx=0;this.tick();this.timer=setInterval(()=>this.tick(),3000)},
+ tick(){const c=Sound.ctx;if(!this.on||!c)return;while(this.nextT<c.currentTime+7){{const s=AUD.ambientChord(c,Sound.ch.music,this.nextT,this.idx++,12);s.forEach(o=>{o.onended=()=>{o.__end=true}});this.src.push(...s)}this.nextT+=7}this.src=this.src.filter(o=>!o.__end);},
+ stop(){if(!this.on)return;this.on=false;clearInterval(this.timer);this.timer=null;const c=Sound.ctx;if(!c)return;const t=c.currentTime;this.src.forEach(o=>{try{o.stop(t+.5)}catch(e){}});this.src=[];const g=Sound.ch.music;g.gain.cancelScheduledValues(t);g.gain.setTargetAtTime(0,t,.15);setTimeout(()=>{if(!Ambient.on)Sound.setVol()},900)},
+ test(){this.start(true);setTimeout(()=>this.stop(),8000)}
 };
 addEventListener('pointerdown',()=>{if(Sound.on())Sound.init()},{once:true});
 const haptic=ms=>{if(!S.settings.haptics||!navigator.vibrate||(navigator.userActivation&&!navigator.userActivation.hasBeenActive))return;try{navigator.vibrate(ms)}catch(e){}};
@@ -2844,7 +2899,13 @@ SCREENS.settings={title:'Configuración',
    </div>
    <div class="card pad-lg"><h3>Sonido</h3>
     ${sw('st-sound',s.sound,'Efectos de sonido','Sonidos de acierto, error y recompensas. Los juegos de ritmo ofrecen modo visual.')}
-    <div class="field" style="padding:.7rem 0"><label for="st-vol">Volumen</label><input type="range" id="st-vol" min="0" max="1" step=".05" value="${s.volume}"></div>
+    <div class="field" style="padding:.7rem 0 .3rem"><label for="st-vol">Volumen general</label><input type="range" id="st-vol" min="0" max="1" step=".05" value="${s.volume}"></div>
+    <div class="field" style="padding:.3rem 0"><label for="st-sfx">Efectos de la interfaz</label><input type="range" id="st-sfx" min="0" max="1" step=".05" value="${s.sfxVol??.8}"></div>
+    <div class="field" style="padding:.3rem 0"><label for="st-game">Sonido de los juegos (instrumentos y ritmo)</label><input type="range" id="st-game" min="0" max="1" step=".05" value="${s.gameVol??1}"></div>
+    <div class="field" style="padding:.3rem 0 .6rem"><label for="st-inst">Instrumento de «Ritmo y secuencia»</label><select class="input" id="st-inst">${Object.entries(INST_N).map(([k,n])=>`<option value="${k}" ${(s.inst||'piano')===k?'selected':''}>${n}</option>`).join('')}</select></div>
+    ${sw('st-music',!!s.musicOn,'Música ambiental durante las partidas','Un fondo suave generado en tu dispositivo (acordes lentos). Está desactivada por defecto y no se le atribuye ningún efecto cognitivo: es solo ambiente.')}
+    <div class="field" style="padding:.5rem 0"><label for="st-musv">Volumen de la música</label><input type="range" id="st-musv" min="0" max="1" step=".05" value="${s.musicVol??.35}"></div>
+    <div class="row" style="margin:.2rem 0 .8rem"><button class="btn btn-sm" id="st-try" type="button">Probar instrumento</button><button class="btn btn-sm" id="st-trym" type="button">Probar música (8 s)</button></div>
     ${sw('st-hap',s.haptics,'Vibración en móviles','Una vibración breve al fallar, si el dispositivo lo permite.')}
    </div>
   </div>
@@ -2884,7 +2945,14 @@ SCREENS.settings={title:'Configuración',
   $('#st-lvl').onchange=e=>{p.startLevel=+e.target.value;upd()};
   $('#st-nospeed').onchange=e=>{s.noSpeed=e.target.checked;upd()};
   $('#st-sound').onchange=e=>{s.sound=e.target.checked;upd();if(s.sound)Sound.ok()};
-  $('#st-vol').onchange=e=>{s.volume=+e.target.value;upd();Sound.ok()};
+  $('#st-vol').onchange=e=>{s.volume=+e.target.value;upd();Sound.setVol();Sound.ok()};
+  $('#st-sfx').onchange=e=>{s.sfxVol=+e.target.value;upd();Sound.setVol();Sound.ok()};
+  $('#st-game').onchange=e=>{s.gameVol=+e.target.value;upd();Sound.setVol();Sound.inst(s.inst||'piano',SCALE[4],.4,.3)};
+  $('#st-inst').onchange=e=>{s.inst=e.target.value;upd();[0,2,4,7].forEach((k,i)=>Sound.inst(s.inst,SCALE[k],.28,.3,i*.22))};
+  $('#st-music').onchange=e=>{s.musicOn=e.target.checked;upd();if(!s.musicOn)Ambient.stop()};
+  $('#st-musv').onchange=e=>{s.musicVol=+e.target.value;upd();Sound.setVol()};
+  $('#st-try').onclick=()=>{[0,2,4,7].forEach((k,i)=>Sound.inst(s.inst||'piano',SCALE[k],.28,.3,i*.22));if(!Sound.on())toast('El sonido está desactivado: actívalo arriba para oír el instrumento.',{icon:'info'})};
+  $('#st-trym').onclick=()=>{if(!Sound.on()){toast('El sonido está desactivado: actívalo arriba para probar la música.',{icon:'info'});return}Ambient.test()};
   $('#st-hap').onchange=e=>{s.haptics=e.target.checked;upd()};
   $('#st-mot').onchange=e=>{s.motion=e.target.value;upd()};
   $('#st-fs').oninput=e=>{$('#st-fsv').textContent=Math.round(e.target.value*100)+' %';s.textScale=+e.target.value;applySettings()};$('#st-fs').onchange=upd;
@@ -3082,7 +3150,7 @@ const Play={cur:null,hudT:null,
   if(!document.activeElement||document.activeElement===document.body||!st.contains(document.activeElement))$('#in-go',st).focus({preventScroll:true});
  },
  start(){
-  const c=this.cur;if(!c)return;c.phase='count';Sound.init();
+  const c=this.cur;if(!c)return;c.phase='count';Sound.init();Ambient.start();
   const st=$('#stage');st.className='stage';
   const go=()=>{if(this.cur===c&&c.phase==='count')this.begin()};
   if(RM()){st.innerHTML=`<div class="cd-ov"><div class="cd-num" style="font-size:52px">¡Ya!</div></div>`;setTimeout(go,550);return}
@@ -3128,8 +3196,8 @@ const Play={cur:null,hudT:null,
   $('#pl-hud').innerHTML=`<div class="hud-item ${warn?'warn':''}"><small>${lab}</small><b>${val}</b></div>${c.score!=null?`<div class="hud-item"><small>${c.scoreLabel||'Puntos'}</small><b>${c.score}</b></div>`:''}${c.extraHud?`<div class="hud-item"><small>${c.extraHud.label}</small><b>${c.extraHud.v}</b></div>`:''}${ghost}`;
   Daily.stripTick();
  },
- pause(){const c=this.cur;if(!c||c.phase!=='play'||c.clock.paused)return;c.clock.pause();try{c.inst?.onPause?.()}catch(e){}document.activeElement?.blur?.();$('#pl-pauseov').hidden=false;$('#po-restart').hidden=!!c.o.daily;$('#po-quit').textContent=c.o.daily?'Salir y guardar progreso':'Salir sin guardar';setTimeout(()=>$('#po-resume').focus(),20);this.hud();Daily.stripTick()},
- resume(){const c=this.cur;if(!c||!c.clock?.paused)return;$('#pl-pauseov').hidden=true;c.clock.resume();try{c.inst?.onResume?.()}catch(e){}Daily.stripTick()},
+ pause(){const c=this.cur;if(!c||c.phase!=='play'||c.clock.paused)return;c.clock.pause();Ambient.stop();try{c.inst?.onPause?.()}catch(e){}document.activeElement?.blur?.();$('#pl-pauseov').hidden=false;$('#po-restart').hidden=!!c.o.daily;$('#po-quit').textContent=c.o.daily?'Salir y guardar progreso':'Salir sin guardar';setTimeout(()=>$('#po-resume').focus(),20);this.hud();Daily.stripTick()},
+ resume(){const c=this.cur;if(!c||!c.clock?.paused)return;$('#pl-pauseov').hidden=true;c.clock.resume();Ambient.start();try{c.inst?.onResume?.()}catch(e){}Daily.stripTick()},
  quit(){
   if(Daily.run)return Daily.exit();
   const c=this.cur;
@@ -3137,13 +3205,13 @@ const Play={cur:null,hudT:null,
   else this.close();
  },
  teardown(){
-  clearInterval(this.hudT);const c=this.cur;
+  clearInterval(this.hudT);const c=this.cur;Ambient.stop();
   if(c){if(c.clock)c.clock.destroy();(c.L||[]).forEach(([el,ev,fn,opt])=>el.removeEventListener(ev,fn,opt));c.L=[];try{c.inst?.destroy?.()}catch(e){}c.phase='closed'}
   this.cur=null;$('#pl-pauseov').hidden=true;try{speechSynthesis.cancel()}catch(e){}
  },
  close(noRefresh){this.teardown();Daily.run=null;$('#stage').innerHTML='';$('#pl-daily').hidden=true;this.show(false);if(!noRefresh)UI.refresh()},
  finish(reason){
-  const c=this.cur;if(!c||c.phase!=='play')return;c.phase='done';
+  const c=this.cur;if(!c||c.phase!=='play')return;c.phase='done';Ambient.stop();
   let r=null;try{r=c.inst?.summary?.(reason)}catch(e){console.error(e)}
   const durSec=(c.clock.now()-c.t0)/1000;
   clearInterval(this.hudT);c.clock.destroy();c.L.forEach(([el,ev,fn,opt])=>el.removeEventListener(ev,fn,opt));c.L=[];try{c.inst?.destroy?.()}catch(e){}
@@ -3157,7 +3225,7 @@ const Play={cur:null,hudT:null,
 };
 $('#pl-quit').onclick=()=>Play.quit();
 $('#pl-pause').onclick=()=>{const c=Play.cur;if(!c)return;c.clock?.paused?Play.resume():Play.pause()};
-$('#pl-sound').onclick=()=>{S.settings.sound=!S.settings.sound;save();Play.soundBtn();if(S.settings.sound)Sound.ok()};
+$('#pl-sound').onclick=()=>{S.settings.sound=!S.settings.sound;save();Play.soundBtn();if(S.settings.sound){Sound.ok();if(Play.cur?.phase==='play'&&!Play.cur.clock?.paused)Ambient.start()}else Ambient.stop()};
 $('#po-resume').onclick=()=>Play.resume();
 $('#po-restart').onclick=()=>{const c=Play.cur;if(!c)return;Play.open(c.id,{mode:c.mode,level:c.level,opts:c.opts,anomaly:c.o.anomaly})};
 $('#po-quit').onclick=()=>{const c=Play.cur;if(!c)return;if(Daily.run){$('#pl-pauseov').hidden=true;c.clock?.resume();Daily.exit()}else Play.close()};
@@ -5948,17 +6016,139 @@ reg({id:'lang',skill:'learning',name:'Aprende un miniidioma',icon:'lang',tagline
  }});
 
 const PADS=[{c:'#35E6DF',s:'●',n:0},{c:'#FF65C7',s:'■',n:2},{c:'#FFB547',s:'▲',n:3},{c:'#538CFF',s:'◆',n:5}];
+/* ---------- RITMO Y SECUENCIA 2.0: modos con audio real ----------
+   Tonos (umbral de discriminación de altura, escalera 2-abajo/1-arriba), ¿Igual o distinta? (melodías), Pulso estable (sincronización y
+   continuación) y Dictado musical (teclado de 8 notas). Los modos con altura (Tonos, ¿Igual o distinta?) necesitan sonido. */
+const RH2=['pitch','samediff','pulse','dictation'];
+const rhInst=()=>S.settings.inst||'piano',rhNote=(k,d,when=0,vol=.3,force=false)=>Sound.inst(rhInst(),SCALE[k],d,vol,when,force);
+/* escalera adaptativa 2-abajo/1-arriba: converge hacia ≈ 70,7 % de aciertos. update(ok) devuelve el nuevo Δ */
+function rhStair(d0){return {d:d0,streak:0,lastDir:0,revs:[],
+ update(ok){let step=0;if(ok){if(++this.streak>=2){this.streak=0;step=-1}}else{this.streak=0;step=1}
+  if(step!==0){if(this.lastDir!==0&&step!==this.lastDir)this.revs.push(this.d);this.lastDir=step;this.d=clamp(this.d*(step<0?.8:1.25),.05,12)}return this.d},
+ thr(){const r=this.revs.slice(-6);return r.length>=4?avg(r):null}}}
+const rhD0=L=>[4,3,2.5,2,1.6,1.3,1,.8,.65,.5,.4,.33,.28,.24,.2][clamp(L,1,15)-1];
+const rhBpm=L=>80+4*(clamp(L,1,15)-1);
+const rhHead=(ctx,t)=>{const e=$('#rhp');if(e)e.innerHTML=t};
+function rhPitch(ctx,inst){
+ const L=ctx.level,N=ctx.budget?Infinity:30,stair=rhStair(rhD0(L)),T=[];let cur=null,phase='idle',timeUp=false,done=false;
+ ctx.stage.innerHTML=`<div class="g-wrap rh2"><div class="g-prompt" id="rhp" aria-live="polite"></div><div class="rh-lamps"><span id="rhl1" class="rh-lamp">1</span><span id="rhl2" class="rh-lamp">2</span></div><div class="opts" id="rho" style="max-width:480px"><button class="opt" data-d="1"><span class="kbd">↑</span>El 2.º es más AGUDO</button><button class="opt" data-d="-1"><span class="kbd">↓</span>El 2.º es más GRAVE</button></div><div class="small dim" id="rhh" style="text-align:center;min-height:1.4em" aria-live="polite"></div></div>`;
+ const lamp=k=>{const e=$('#rhl'+k);e.classList.add('on');ctx.clock.after(420,()=>e.classList.remove('on'))};
+ function trial(){if(done)return;if(T.length>=N||timeUp){done=true;return ctx.end()}const f1=ri(262,523),dir=Math.random()<.5?1:-1,f2=f1*Math.pow(2,dir*stair.d/12);cur={f1,f2,dir,delta:stair.d};phase='play';$$('#rho .opt').forEach(b=>b.disabled=true);
+  rhHead(ctx,`Escucha dos tonos · <b>${T.length+1}</b>`);$('#rhh').textContent='';
+  Sound.tone(f1,.4,'sine',.3,0,null,true,'game');lamp(1);ctx.clock.after(650,()=>{Sound.tone(f2,.4,'sine',.3,0,null,true,'game');lamp(2)});
+  ctx.clock.after(1250,()=>{if(done)return;phase='in';$$('#rho .opt').forEach(b=>b.disabled=false);rhHead(ctx,`¿El segundo tono fue más <b>agudo</b> o más <b>grave</b>? · ${T.length+1}`)})}
+ function answer(d){if(phase!=='in'||done||ctx.clock.paused)return;phase='fb';const ok=d===cur.dir;T.push({delta:cur.delta,ok,dir:cur.dir});stair.update(ok);
+  ctx.feedback(ok);ctx.score(T.filter(x=>x.ok).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length);$$('#rho .opt').forEach(b=>b.disabled=true);
+  $('#rhh').textContent=`${ok?'Correcto':'Era '+(cur.dir>0?'más agudo':'más grave')} · diferencia ${(cur.delta*100).toFixed(0)} centésimas de semitono`;ctx.clock.after(ok?550:1000,trial)}
+ $('#rho').onclick=e=>{const b=e.target.closest('.opt');if(b)answer(+b.dataset.d)};
+ ctx.key(e=>{if(e.key==='ArrowUp'){e.preventDefault();answer(1)}else if(e.key==='ArrowDown'){e.preventDefault();answer(-1)}});
+ ctx.clock.after(600,trial);
+ Object.assign(inst,{peek:()=>({T,stair,cur,phase}),onTimeUp(){timeUp=true;if(phase==='idle'){done=true;ctx.end()}else if(phase==='in'||phase==='play')ctx.clock.after(20000,()=>{if(!done){done=true;ctx.end()}})},summary(){
+  const n=T.length;if(!n)return null;const okN=T.filter(x=>x.ok).length,thr=stair.thr();
+  const metrics=[{label:'Aciertos',value:`${okN}/${n}`},{label:'Umbral estimado de altura',value:thr!=null?`${(thr*100).toFixed(0)} centésimas de semitono (${thr.toFixed(2)} semitonos)`:'— (pocos cambios de dirección)'},{label:'Cambios de dirección',value:stair.revs.length},{label:'Diferencia final',value:(stair.d*100).toFixed(0)+' centésimas'}];
+  const details=`<h4>¿Qué mide esta tarea?</h4><p>Es una medida clásica de discriminación de altura. La diferencia entre los dos tonos baja tras dos aciertos seguidos y sube tras un fallo, de modo que se acerca al punto en que aciertas alrededor del 71 %. El umbral estimado es la media de los últimos cambios de dirección. Es una estimación orientativa que depende de tu dispositivo de sonido (auriculares, volumen, ruido); no es una prueba auditiva ni un diagnóstico.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+  return {correct:okN,wrong:n-okN,total:n,acc:okN/n,score:okN,rt:null,metrics,details,extra:{mode:'pitch',threshold:thr,reversals:stair.revs.length,omRate:0,faRate:0}}}})}
+function rhSame(ctx,inst){
+ const L=ctx.level,n=3+Math.floor((L-1)/3),step=L<=5?3:L<=10?2:1,N=ctx.budget?Infinity:12,noteMs=Math.max(300,520-L*15),T=[];let bag=[],cur=null,phase='idle',timeUp=false,done=false;
+ ctx.stage.innerHTML=`<div class="g-wrap rh2"><div class="g-prompt" id="rhp" aria-live="polite"></div><div class="rh-lamps"><span id="rhl1" class="rh-lamp">A</span><span id="rhl2" class="rh-lamp">B</span></div><div class="opts" id="rho" style="max-width:480px"><button class="opt" data-y="1"><span class="kbd">I</span>Iguales</button><button class="opt" data-y="0"><span class="kbd">D</span>Distintas</button></div><div class="small dim" id="rhh" style="text-align:center;min-height:1.4em" aria-live="polite"></div></div>`;
+ const lamp=(k,ms)=>{const e=$('#rhl'+k);e.classList.add('on');ctx.clock.after(ms,()=>e.classList.remove('on'))};
+ function make(){const a=[];for(let i=0;i<n;i++){let v;do v=ri(0,7);while(i&&v===a[i-1]);a.push(v)}let b=a.slice(),pos=-1;
+  if(!cur_same){pos=ri(0,n-1);const opts=[];for(let s=1;s<=step;s++){if(a[pos]+s<=7)opts.push(a[pos]+s);if(a[pos]-s>=0)opts.push(a[pos]-s)}let nv=pick(opts);
+   // el cambio no debe crear dos notas iguales seguidas de forma trivial (se permite: es parte del dictado), pero debe ser distinto
+   b[pos]=nv}
+  return {a,b,pos}}
+ let cur_same=true;
+ function trial(){if(done)return;if(T.length>=N||timeUp){done=true;return ctx.end()}if(!bag.length)bag=shuffle([true,true,true,false,false,false]);cur_same=bag.pop();cur={...make(),same:cur_same};phase='play';$$('#rho .opt').forEach(b=>b.disabled=true);$('#rhh').textContent='';
+  rhHead(ctx,`Escucha dos melodías · <b>${T.length+1}</b>`);
+  cur.a.forEach((k,i)=>{ctx.clock.after(i*noteMs,()=>{rhNote(k,noteMs/1000*.9,0,.3,true);lamp(1,noteMs*.8)})});
+  const gap=n*noteMs+700;cur.b.forEach((k,i)=>{ctx.clock.after(gap+i*noteMs,()=>{rhNote(k,noteMs/1000*.9,0,.3,true);lamp(2,noteMs*.8)})});
+  ctx.clock.after(gap+n*noteMs+250,()=>{if(done)return;phase='in';$$('#rho .opt').forEach(b=>b.disabled=false);rhHead(ctx,`¿Las dos melodías son <b>iguales</b> o <b>distintas</b>? · ${T.length+1}`)})}
+ function answer(same){if(phase!=='in'||done||ctx.clock.paused)return;phase='fb';const ok=same===cur.same;T.push({same:cur.same,said:same,ok});ctx.feedback(ok);ctx.score(T.filter(x=>x.ok).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length);$$('#rho .opt').forEach(b=>b.disabled=true);
+  $('#rhh').innerHTML=ok?'Correcto':cur.same?'Eran iguales':`Eran distintas: cambió la nota ${cur.pos+1} (${SCALE_N[cur.a[cur.pos]]} → ${SCALE_N[cur.b[cur.pos]]})`;ctx.clock.after(ok?600:1500,trial)}
+ $('#rho').onclick=e=>{const b=e.target.closest('.opt');if(b)answer(b.dataset.y==='1')};
+ ctx.key(e=>{if(/^[iI]$/.test(e.key)){e.preventDefault();answer(true)}else if(/^[dD]$/.test(e.key)){e.preventDefault();answer(false)}});
+ ctx.clock.after(600,trial);
+ Object.assign(inst,{peek:()=>({T,cur,phase,n,step}),onTimeUp(){timeUp=true;if(phase==='idle'){done=true;ctx.end()}else if(phase==='in'||phase==='play')ctx.clock.after(20000,()=>{if(!done){done=true;ctx.end()}})},summary(){
+  const k=T.length;if(!k)return null;const okN=T.filter(x=>x.ok).length,dif=T.filter(x=>!x.same),sm=T.filter(x=>x.same),hit=dif.filter(x=>x.said===false).length,fa=sm.filter(x=>x.said===false).length;
+  const metrics=[{label:'Aciertos',value:`${okN}/${k}`},{label:'Cambios detectados (distintas)',value:dif.length?`${hit}/${dif.length}`:'—'},{label:'Falsas alarmas (iguales dadas por distintas)',value:sm.length?`${fa}/${sm.length}`:'—'},{label:'Melodías',value:`${n} notas · cambio de hasta ${step} grados`}];
+  const details=`<h4>¿Qué mide esta tarea?</h4><p>Es discriminación melódica con memoria auditiva de trabajo: hay que retener la primera melodía y compararla con la segunda. Con melodías más largas y cambios más pequeños la tarea se hace más difícil. El resultado depende de tu dispositivo de sonido.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+  return {correct:okN,wrong:k-okN,total:k,acc:okN/k,score:okN,rt:null,metrics,details,extra:{mode:'samediff',omRate:0,faRate:sm.length?fa/sm.length:0}}}})}
+function rhPulse(ctx,inst){
+ const L=ctx.level,bpm=rhBpm(L),P=60000/bpm,N=ctx.budget?Infinity:3,R=[],audio=Sound.on();let phase='idle',taps=[],clicks=[],t0=0,timeUp=false,done=false,tm=null,cur=null;
+ ctx.stage.innerHTML=`<div class="g-wrap rh2"><div class="g-prompt" id="rhp" aria-live="polite"></div><div class="rh-lamps"><span id="rhl1" class="rh-lamp big">♩</span></div><div class="pads" style="grid-template-columns:1fr;width:min(100%,320px)"><button class="pad-b single" id="rhpad" style="--k:#35E6DF" aria-label="Pad de pulso"><span class="kbd">Espacio</span>●</button></div><div class="beat-row" id="rhb"></div><div class="small dim" id="rhh" style="text-align:center;min-height:1.4em" aria-live="polite"></div>${audio?'':'<div class="banner-warn" style="margin:0">El sonido está desactivado: sigue la luz.</div>'}</div>`;
+ const lamp=()=>{const e=$('#rhl1');e.classList.add('on');ctx.clock.after(120,()=>e.classList.remove('on'))},beats=(n,on)=>{$('#rhb').innerHTML=Array.from({length:n},(_,i)=>`<i class="${i<on?'on':''}"></i>`).join('')};
+ function trial(){if(done)return;if(R.length>=N||timeUp){done=true;return ctx.end()}taps=[];clicks=[];phase='count';cur={};beats(8,0);rhHead(ctx,`Ronda ${R.length+1}${N<Infinity?' de '+N:''} · <b>${bpm} pulsaciones por minuto</b> · escucha 4 pulsos`);$('#rhh').textContent='';
+  t0=ctx.clock.now()+700;
+  /* la sincronización empieza media pulsación ANTES del 5.º pulso: un toque algo anticipado también cuenta */
+  ctx.clock.after(700+4*P-P/2,()=>{if(done)return;phase='sync';rhHead(ctx,'<b>Toca con el pulso</b> (8 pulsos)')});
+  for(let i=0;i<12;i++){ctx.clock.after(700+i*P,()=>{if(done)return;clicks.push(ctx.clock.now());if(audio)Sound.drum('click',0,.5,i%4===0,true);lamp()})}
+  // continuación: el metrónomo se calla; el jugador sigue solo hasta 8 toques
+  ctx.clock.after(700+11*P+P/2,()=>{if(done)return;phase='cont';rhHead(ctx,'<b>Sigue tú solo</b> al mismo ritmo (8 toques)');beats(8,0);tm=ctx.clock.after(P*12,finish)})}
+ function tap(){if(ctx.clock.paused||done)return;const now=ctx.clock.now();if(audio)Sound.drum('hat',0,.35,false,true);
+  if(phase==='sync'||phase==='cont'){taps.push({t:now,ph:phase});if(phase==='cont'){const c=taps.filter(x=>x.ph==='cont').length;beats(8,c);if(c>=8){ctx.clock.cancel(tm);finish()}}}}
+ function finish(){if(phase==='fb'||done)return;phase='fb';ctx.clock.cancel(tm);
+  const sync=taps.filter(x=>x.ph==='sync').map(x=>x.t),cont=taps.filter(x=>x.ph==='cont').map(x=>x.t),sc=clicks.slice(4,12);
+  const asy=sync.map(t=>{let b=null;for(const c of sc){const d=t-c;if(b==null||Math.abs(d)<Math.abs(b))b=d}return b}).filter(d=>d!=null&&Math.abs(d)<P/2);
+  const isi=cont.slice(1).map((t,i)=>t-cont[i]),mean=isi.length?avg(isi):null,sd=isi.length>1?Math.sqrt(avg(isi.map(v=>(v-mean)**2))):null,cv=mean?sd/mean:null,drift=mean?(mean-P)/P:null,asyM=asy.length?avg(asy):null,asySd=asy.length>1?Math.sqrt(avg(asy.map(v=>(v-asyM)**2))):null;
+  const ok=cont.length>=6&&sync.length>=5&&cv!=null&&cv<=.08&&Math.abs(drift)<=.08;R.push({ok,cv,drift,asyM,asySd,nCont:cont.length,nSync:sync.length});
+  ctx.feedback(ok,{msg:ok?'Pulso estable':'Pulso irregular'});ctx.score(R.filter(x=>x.ok).length,'Estables');ctx.hits(R.filter(x=>x.ok).length);
+  $('#rhh').innerHTML=cont.length<2?'No se detectó la continuación.':`Asincronía media ${asyM!=null?Math.round(asyM)+' ms':'—'} · variación entre toques ${cv!=null?(cv*100).toFixed(1)+' %':'—'} · deriva del tempo ${drift!=null?(drift>=0?'+':'')+(drift*100).toFixed(1)+' %':'—'}`;
+  ctx.clock.after(2200,trial)}
+ const pad=$('#rhpad');pad.addEventListener('pointerdown',e=>{e.preventDefault();tap()});
+ ctx.key(e=>{if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();tap()}});
+ ctx.clock.after(600,trial);
+ Object.assign(inst,{peek:()=>({R,taps,clicks,phase,P,bpm}),onTimeUp(){timeUp=true;if(phase==='idle'){done=true;ctx.end()}else if(phase==='count'||phase==='sync'||phase==='cont')ctx.clock.after(P*16,()=>{if(!done){done=true;ctx.end()}})},summary(){
+  const n=R.length;if(!n)return null;const okN=R.filter(x=>x.ok).length,cvs=R.map(x=>x.cv).filter(v=>v!=null),drs=R.map(x=>x.drift).filter(v=>v!=null),as=R.map(x=>x.asyM).filter(v=>v!=null);
+  const metrics=[{label:'Rondas con pulso estable',value:`${okN}/${n}`},{label:'Variación entre toques (media)',value:cvs.length?(avg(cvs)*100).toFixed(1)+' %':'—'},{label:'Deriva del tempo (media)',value:drs.length?(avg(drs)>=0?'+':'')+(avg(drs)*100).toFixed(1)+' %':'—'},{label:'Asincronía con el metrónomo',value:as.length?Math.round(avg(as))+' ms ('+(avg(as)<0?'te adelantas':'vas detrás')+')':'—'},{label:'Tempo',value:bpm+' pulsaciones por minuto'}];
+  const details=`<h4>¿Qué mide esta tarea?</h4><p>Es una tarea de sincronización y continuación: primero se toca junto a un metrónomo y después se mantiene el tempo sin él. La variación entre toques (coeficiente de variación) y la deriva del tempo describen cuán regular es tu pulso interno; una ronda cuenta como estable con ≤ 8 % en ambas. Los tiempos se miden en el navegador y dependen de la latencia de tu pantalla y de tu sonido, así que la asincronía es solo orientativa.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+  return {correct:okN,wrong:n-okN,total:n,acc:okN/n,score:okN,rt:null,metrics,details,extra:{mode:'pulse',cv:cvs.length?avg(cvs):null,drift:drs.length?avg(drs):null,async:as.length?avg(as):null,bpm,omRate:0,faRate:0}}}})}
+function rhDict(ctx,inst){
+ const L=ctx.level,n=Math.min(10,3+Math.floor((L-1)/2)),noteMs=Math.max(320,540-L*14),N=ctx.budget?Infinity:6,audio=Sound.on(),R=[];let seq=[],inp=[],phase='idle',replays=0,timeUp=false,done=false;
+ ctx.stage.innerHTML=`<div class="g-wrap rh2"><div class="g-prompt" id="rhp" aria-live="polite"></div><div class="rh-dots" id="rhd"></div><div class="rh-kb" data-stim id="rhk">${SCALE_N.map((nm,i)=>`<button class="rh-key" data-k="${i}" aria-label="${nm}"><span class="kbd">${i+1}</span><b>${nm}${i===7?'’':''}</b></button>`).join('')}</div><div class="cb-act"><button class="btn btn-ghost" id="rhre">Escuchar otra vez</button></div><div class="small dim" id="rhh" style="text-align:center;min-height:1.4em" aria-live="polite"></div>${audio?'':'<div class="banner-warn" style="margin:0">El sonido está desactivado: se resaltan las teclas y sus nombres.</div>'}</div>`;
+ const keys=$$('.rh-key',ctx.stage),dots=()=>{$('#rhd').innerHTML=Array.from({length:n},(_,i)=>`<i class="${i<inp.length?'on':''}"></i>`).join('')};
+ const lit=(k,ms)=>{keys[k].classList.add('lit');ctx.clock.after(ms,()=>keys[k].classList.remove('lit'))};
+ function playSeq(){phase='play';$('#rhre').disabled=true;rhHead(ctx,`Escucha la melodía · <b>${n} notas</b>`);seq.forEach((k,i)=>ctx.clock.after(500+i*noteMs,()=>{if(audio)rhNote(k,noteMs/1000*.9,0,.3,true);lit(k,noteMs*.75);if(!audio)$('#rhh').textContent=SCALE_N[k]}));
+  ctx.clock.after(500+n*noteMs+200,()=>{if(done)return;phase='in';inp=[];dots();$('#rhh').textContent='';rhHead(ctx,`<b>Tu turno:</b> reproduce la melodía en el teclado`);$('#rhre').disabled=replays>=1})}
+ function trial(){if(done)return;if(R.length>=N||timeUp){done=true;return ctx.end()}seq=[];for(let i=0;i<n;i++){let v;do v=ri(0,7);while(i&&Math.abs(v-seq[i-1])>3||v===seq[i-1]);seq.push(v)}replays=0;inp=[];dots();playSeq()}
+ function press(k){if(phase!=='in'||ctx.clock.paused||done)return;if(audio)rhNote(k,.3,0,.3,true);lit(k,200);inp.push(k);dots();if(inp.length>=n)evaluate()}
+ function evaluate(){phase='fb';$('#rhre').disabled=true;const m=seq.filter((k,i)=>inp[i]===k).length,sc=m/n,ok=m===n;R.push({ok,sc,replays,n});
+  ctx.feedback(ok,{msg:ok?'¡Dictado perfecto!':`${m} de ${n} notas`});ctx.score(R.filter(x=>x.ok).length,'Perfectos');ctx.hits(R.filter(x=>x.ok).length);
+  $('#rhh').innerHTML=ok?'¡Perfecto!':`Era: ${seq.map(k=>SCALE_N[k]).join(' · ')}`;ctx.clock.after(ok?1000:2200,trial)}
+ $('#rhk').addEventListener('pointerdown',e=>{const b=e.target.closest('.rh-key');if(b){e.preventDefault();press(+b.dataset.k)}});
+ $('#rhre').onclick=()=>{if(phase==='in'&&replays<1&&!ctx.clock.paused){replays++;inp=[];dots();playSeq()}};
+ ctx.key(e=>{if(/^[1-8]$/.test(e.key)){e.preventDefault();press(+e.key-1)}});
+ ctx.clock.after(500,trial);
+ Object.assign(inst,{peek:()=>({R,seq,inp,phase,n,replays}),onTimeUp(){timeUp=true;if(phase==='idle'){done=true;ctx.end()}else if(phase==='in'||phase==='play')ctx.clock.after(20000,()=>{if(!done){done=true;ctx.end()}})},summary(){
+  const k=R.length;if(!k)return null;const okN=R.filter(x=>x.ok).length;
+  const metrics=[{label:'Dictados perfectos',value:`${okN}/${k}`},{label:'Notas acertadas (media)',value:pct(avg(R.map(x=>x.sc)))},{label:'Longitud de la melodía',value:n+' notas'},{label:'Veces que pediste repetirla',value:sum(R.map(x=>x.replays))}];
+  const details=`<h4>¿Qué mide esta tarea?</h4><p>Es dictado melódico: se retiene una secuencia de notas y se reproduce en un teclado. Mezcla memoria auditiva de trabajo con la relación entre alturas. Puedes escucharla otra vez una sola vez por ronda.${audio?'':' Con el sonido desactivado, la tarea se hace con las luces y los nombres de las notas.'}</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+  return {correct:okN,wrong:k-okN,total:k,acc:avg(R.map(x=>x.sc)),score:okN,rt:null,metrics,details,extra:{mode:'dictation',replays:sum(R.map(x=>x.replays)),omRate:0,faRate:0}}}})}
+function rhStart2(ctx){
+ const inst={peek:()=>({}),onTimeUp(){},summary:()=>null},mode=ctx.mode,need=mode==='pitch'||mode==='samediff';
+ const run=()=>({pitch:rhPitch,samediff:rhSame,pulse:rhPulse,dictation:rhDict})[mode](ctx,inst);
+ if(need&&!Sound.on()){ctx.stage.innerHTML=`<div class="g-wrap"><div class="card pad-lg" style="max-width:520px;text-align:center;display:grid;gap:.8rem"><h3>Este modo necesita sonido</h3><p class="small">Compara alturas de sonidos, así que no tiene versión silenciosa. Si lo prefieres, usa el modo «Visual» o «Pulso estable» (con luz).</p><button class="btn btn-primary" id="rhon">Activar sonido y empezar</button></div></div>`;
+  $('#rhon').onclick=()=>{S.settings.sound=true;if(S.settings.volume<=0)S.settings.volume=.55;save();Play.soundBtn();Sound.init();Sound.setVol();ctx.stage.innerHTML='';run()};return inst}
+ run();return inst}
 reg({id:'rhythm',skill:'learning',name:'Ritmo y secuencia',icon:'rhythm',tagline:'Escucha, observa y repite melodías y ritmos.',
- howTo:['Melodía: escucha y mira qué botones se iluminan, y repítelos en el mismo orden (teclas 1–4).','Ritmo: reproduce el patrón de pulsaciones con el mismo tempo (tecla Espacio o tocando el pad).','Modo visual: la misma melodía sin sonido, solo con luces.'],
- modes:[{id:'melody',name:'Melodía',desc:'Orden de notas'},{id:'rhythm',name:'Ritmo',desc:'Tiempo entre toques'},{id:'visual',name:'Visual',desc:'Sin sonido'}],
- maxLevel:10,metric:{label:'Secuencias logradas',better:'high'},daily:{mode:'melody',min:60,max:150},
- levelInfo:(L,m)=>m==='rhythm'?`Patrones de ${3+Math.floor(L/2)} pulsaciones${L>=7?' con 4 duraciones distintas':L>=4?' con 3 duraciones':''}`:`Melodías de ${3+Math.floor((L-1)*.7)} notas${L>=4?' con ritmo variable':''}`,
+ howTo:m=>({
+  melody:['Eco melódico: escucha y mira qué botones se iluminan, y repítelos en el mismo orden (teclas 1–4). Puedes elegir el instrumento en Ajustes.','Cada nota suena con un instrumento sintetizado (piano, marimba, sintetizador, flauta o campanas).','Si el sonido está desactivado, sigue las luces.'],
+  rhythm:['Ritmo: reproduce el patrón de pulsaciones con el mismo tempo (tecla Espacio o tocando el pad).','El patrón suena con una caja; se compara el tiempo entre tus toques con el del patrón, permitiendo un tempo algo más rápido o lento.','Si el sonido está desactivado, sigue las luces.'],
+  visual:['Modo visual: la misma melodía sin sonido, solo con luces.','Repite las luces en el mismo orden (teclas 1–4).','Útil si prefieres entrenar en silencio.'],
+  pitch:['Oirás dos tonos puros seguidos. Decide si el <b>segundo</b> es más agudo o más grave que el primero (teclas ↑ y ↓).','La diferencia entre los tonos baja tras dos aciertos seguidos y sube tras un fallo: se estima tu umbral de discriminación de altura.','Necesita sonido. El resultado depende de tus auriculares o altavoces; es una estimación orientativa, no una prueba auditiva.'],
+  samediff:['Oirás dos melodías cortas. Decide si son <b>iguales</b> o <b>distintas</b> (en una nota cambiada). Teclas I y D.','Hay que retener la primera melodía mientras suena la segunda.','Necesita sonido. Con el nivel suben la longitud y se reduce el tamaño del cambio.'],
+  pulse:['Primero suena un metrónomo: escucha 4 pulsos y toca con los 8 siguientes (pad o tecla Espacio).','Después el metrónomo se calla y debes <b>seguir tú solo</b> con el mismo ritmo durante 8 toques.','Se mide la regularidad de tus toques y si el tempo se acelera o se frena. Si el sonido está desactivado, sigue la luz.'],
+  dictation:['Oirás una melodía de notas de la escala de Do. Reprodúcela en el teclado (teclas 1–8).','Puedes escucharla otra vez una sola vez por ronda.','Si el sonido está desactivado, se resaltan las teclas con su nombre.']
+ }[m]||[]),
+ modes:[{id:'melody',name:'Eco melódico',desc:'Repite la melodía de 4 notas'},{id:'rhythm',name:'Ritmo',desc:'Tiempo entre toques'},{id:'pitch',name:'Tonos',desc:'¿Más agudo o más grave?'},{id:'samediff',name:'¿Igual o distinta?',desc:'Compara dos melodías'},{id:'pulse',name:'Pulso estable',desc:'Mantén el tempo sin metrónomo'},{id:'dictation',name:'Dictado musical',desc:'Repite en un teclado'},{id:'visual',name:'Visual',desc:'Sin sonido'}],
+ maxLevel:15,metric:{label:'Secuencias logradas',better:'high'},daily:{mode:'melody',min:60,max:150},
+ levelInfo:(L,m)=>m==='pitch'?`Diferencia inicial de ${rhD0(L)} semitonos (baja tras aciertos seguidos)`:m==='samediff'?`Melodías de ${3+Math.floor((L-1)/3)} notas · cambios de hasta ${L<=5?3:L<=10?2:1} grados`:m==='pulse'?`Tempo de ${rhBpm(L)} pulsaciones por minuto · 4 + 8 pulsos con metrónomo y 8 en solitario`:m==='dictation'?`Melodías de ${Math.min(10,3+Math.floor((L-1)/2))} notas en la escala de Do`:m==='rhythm'?`Patrones de ${3+Math.floor(L/2)} pulsaciones${L>=7?' con 4 duraciones distintas':L>=4?' con 3 duraciones':''}`:`Melodías de ${3+Math.floor((L-1)*.7)} notas${L>=4?' con ritmo variable':''}`,
  start(ctx){
+  if(RH2.includes(ctx.mode))return rhStart2(ctx);
   const L=ctx.level,mode=ctx.mode,rh=mode==='rhythm',audio=mode!=='visual'&&S.settings.sound,N=ctx.budget?Infinity:6,st={sc:[],ok:0};let seq=[],k=0,accept=false,busy=false,timeUp=false,taps=[],tapT=null;
   ctx.stage.innerHTML=`<div class="g-wrap"><div class="seq-status" id="rs" aria-live="polite"></div>${!audio&&mode!=='visual'?'<div class="banner-warn" style="margin:0">El sonido está desactivado: sigue las luces.</div>':''}<div class="beat-row" id="rb"></div><div class="pads locked" id="rpads">${rh?`<button class="pad-b single" data-i="0" style="--k:${PADS[0].c}" aria-label="Pad de ritmo"><span class="kbd">Espacio</span>${PADS[0].s}</button>`:PADS.map((p,i)=>`<button class="pad-b" data-i="${i}" style="--k:${p.c}" aria-label="Pad ${i+1}"><span class="kbd">${i+1}</span>${p.s}</button>`).join('')}</div><p class="hint" style="margin:0" id="rhn"></p></div>`;
   const pads=$$('.pad-b',ctx.stage),box=$('#rpads'),status=$('#rs');
   const flash=(i,ms)=>{pads[i].classList.add('lit');ctx.clock.after(ms,()=>pads[i].classList.remove('lit'))};
-  const play=(i,ms)=>{flash(i,Math.max(140,ms*.8));if(audio)Sound.tone(NOTES[PADS[i].n],Math.min(.5,ms/1000),'triangle',.3,0,null,true)};
+  const play=(i,ms)=>{flash(i,Math.max(140,ms*.8));if(audio){if(rh)Sound.drum('snare',0,.55,false,true);else Sound.inst(rhInst(),NOTES[PADS[i].n],Math.min(.5,ms/1000),.3,0,true)}};
   const beats=(n,on)=>{$('#rb').innerHTML=Array.from({length:n},(_,i)=>`<i class="${i<on?'on':''}"></i>`).join('')};
   function trial(){if(st.sc.length>=N||timeUp)return ctx.end();busy=true;accept=false;box.classList.add('locked');taps=[];k=0;
     if(rh){const n=3+Math.floor(L/2),D=L<=3?[300,600]:L<=6?[300,450,600]:[250,375,500,750];seq=[0];for(let i=1;i<n;i++)seq.push(seq[i-1]+pick(D));beats(n,0);status.innerHTML=`Escucha el ritmo… <span class="dim">${n} pulsaciones</span>`;
