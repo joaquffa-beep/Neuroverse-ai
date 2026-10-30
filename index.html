@@ -821,6 +821,27 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .dd-pal{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;align-items:center;min-height:48px;max-width:640px}
 .dd-pv{position:relative;min-height:44px;padding:.4rem .9rem;border-radius:12px;border:1px solid var(--line-2);background:rgba(var(--ov),.06);color:inherit;font:700 .9rem var(--font);cursor:pointer;display:flex;gap:.45rem;align-items:center}
 .dd-pv .kbd{opacity:.6}.dd-pv.on{border-color:var(--teal);background:rgba(53,230,223,.14)}.dd-pv.used{opacity:.55}.dd-pv.clr{border-style:dashed;color:var(--muted)}
+.fk{gap:1rem}
+.fk-arena{position:relative;width:100%;max-width:520px;height:220px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);display:grid;place-items:center;color:#F2F6FF;overflow:hidden}
+.fk-fix{position:absolute;font:700 1.6rem var(--display);color:#9CC2FF;transition:opacity .1s;user-select:none}
+.fk-tgt{display:flex;gap:6px;align-items:center;justify-content:center}.fk-tgt.at-up,.fk-tgt.at-down{position:absolute;left:50%;transform:translateX(-50%)}.fk-tgt.at-up{top:20px}.fk-tgt.at-down{bottom:20px}
+.fk-a{width:clamp(28px,8.5vw,46px);height:clamp(28px,8.5vw,46px)}.fk-l{transform:scaleX(-1)}
+.fk-cue{position:absolute;inset:0;pointer-events:none;font:700 2.2rem var(--display);color:#FFC24B}.fk-cue b{position:absolute;left:50%;transform:translateX(-50%);line-height:1}.fk-cue .u{top:26px}.fk-cue .d{bottom:18px}
+.fk-btns{display:flex;gap:1rem;justify-content:center;width:100%}.fk-b{flex:1;max-width:230px;min-height:64px;display:flex;gap:.6rem;align-items:center;justify-content:center;font-weight:700}.fk-b svg{width:30px;height:30px}
+.vs{gap:.9rem}.vs-arena{position:relative;width:100%;max-width:560px;aspect-ratio:1/1;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);overflow:hidden;--is:40px}
+.vs-i{position:absolute;transform:translate(-50%,-50%);width:min(var(--is),9.5vw);height:min(var(--is),9.5vw);padding:0;border:0;background:transparent;cursor:pointer;border-radius:50%;transition:transform var(--d1)}
+.vs-i svg{width:100%;height:100%;display:block}.vs-i:hover:not(:disabled){transform:translate(-50%,-50%) scale(1.12)}.vs-i:focus-visible{outline:2px solid #35E6DF;outline-offset:2px}
+.vs-hit{outline:3px solid #3DDC84;outline-offset:3px}.vs-bad{outline:3px solid #FF5470;outline-offset:3px}
+.vs-tg{display:inline-grid;place-items:center;vertical-align:middle;width:34px;height:34px;border-radius:9px;background:var(--stim);padding:3px}.vs-tg svg{width:100%;height:100%}
+.mot{gap:.9rem}.mot-arena{width:100%;max-width:560px;aspect-ratio:4/3;border-radius:22px;overflow:hidden;background:var(--stim);border:1px solid var(--line-2)}
+.mot-arena canvas{width:100%;height:100%;display:block;touch-action:none;cursor:pointer}
+.ab{gap:.9rem}.ab-stage{width:100%;max-width:420px;height:200px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);display:grid;place-items:center;user-select:none}
+.ab-ch{font:800 5rem var(--display);color:#F2F6FF;line-height:1}.ab-ch.t1{color:#FFC24B}.ab-ch.fix{color:#9CC2FF;font-size:2.4rem}
+.ab-keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;max-width:420px;margin:0 auto}.ab-k{min-height:58px;font:700 1.4rem var(--display);position:relative}.ab-k .kbd{position:absolute;top:4px;left:5px;font-size:.6rem}
+.ab-seq{margin-top:.5rem;font:600 .95rem var(--font);letter-spacing:.14em;color:var(--muted);word-break:break-word}.ab-t1{color:var(--t-warn)}.ab-t2{color:var(--t-teal)}
+.cp{gap:.9rem}.cp-stage{width:100%;max-width:420px;height:200px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);display:grid;place-items:center;user-select:none}
+.cp-ch{font:800 5rem var(--display);color:#F2F6FF;line-height:1}.cp-ch.cue{color:#FFC24B}.cp-ch.probe{color:#35E6DF}.cp-ch.fix{color:#9CC2FF;font-size:2.4rem}.cp-ch.fb{color:#9CC2FF;opacity:.45}
+.cp-btns{display:flex;gap:1rem;justify-content:center;width:100%}.cp-b{flex:1;max-width:230px;min-height:64px;font-weight:700;position:relative}.cp-b .kbd{margin-right:.5rem}
 /* Recuerdo diferido */
 .dl{max-width:640px}
 .dl-top{text-align:center;color:var(--muted);font-weight:700;letter-spacing:.06em}
@@ -1393,6 +1414,11 @@ rotation:'<rect x="5" y="10" width="9" height="9" rx="1.6" transform="rotate(-15
 circuit:'<circle cx="4.5" cy="7" r="1.6"/><circle cx="4.5" cy="17" r="1.6"/><path d="M6 7h4M6 17h4M10 4.5h5a4 4 0 010 5h-5zM10 14.5h5a4 4 0 010 5h-5zM19 7h2.5M19 17h2.5"/>',
 strategy:'<path d="M5 20V5M12 20V9M19 20V13M3 20h18"/><rect x="2.5" y="12" width="5" height="3" rx="1"/><rect x="9.5" y="6" width="5" height="3" rx="1" fill="currentColor"/>',
 deduction:'<circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L20 20M7.5 10l2 2 3.5-4"/>',
+flanker:'M2 12h6M5 9l-3 3 3 3M11 12h6M14 9l3 3-3 3M19 12h3',
+vsearch:'<circle cx="6" cy="6" r="1.8"/><circle cx="12" cy="6" r="1.8"/><circle cx="18" cy="6" r="1.8"/><circle cx="6" cy="12" r="1.8"/><circle cx="12" cy="12" r="2.6" fill="currentColor"/><circle cx="18" cy="12" r="1.8"/><circle cx="6" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/><circle cx="18" cy="18" r="1.8"/>',
+mot:'<circle cx="6" cy="8" r="2.4" fill="currentColor"/><circle cx="16" cy="6" r="2.4"/><circle cx="10" cy="17" r="2.4"/><circle cx="19" cy="15" r="2.4" fill="currentColor"/><path d="M8.5 9l3 1.5M16 8.5l-1.5 3" stroke-dasharray="2 2"/>',
+blink:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 100 6 3 3 0 000-6z',
+cpt:'M3 12h3l2-6 3 12 3-9 2 3h5',
 cloud:'M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 10a4 4 0 010 8z',
 calendar:'<rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
 medal:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/>',
@@ -1440,7 +1466,7 @@ function animateIn(root=document){const go=()=>{$$('.rv[data-off]',root).forEach
 
 /* ---------- Habilidades y mundos ---------- */
 const SKILLS=[
- {id:'attention',name:'Atención y concentración',short:'Atención',world:'FOCUS LAB',color:'#538CFF',c2:'#35E6DF',icon:'focus',desc:'Atención selectiva, concentración y control inhibitorio.',blurb:'Laboratorio de luz y precisión: filtra lo irrelevante y mantén el foco.',games:['stroop','hunt']},
+ {id:'attention',name:'Atención y concentración',short:'Atención',world:'FOCUS LAB',color:'#538CFF',c2:'#35E6DF',icon:'focus',desc:'Atención selectiva, concentración y control inhibitorio.',blurb:'Laboratorio de luz y precisión: filtra lo irrelevante y mantén el foco.',games:['stroop','hunt','flanker','vsearch','mot','blink','cpt']},
  {id:'memory',name:'Memoria',short:'Memoria',world:'MEMORY MATRIX',color:'#9B6DFF',c2:'#FF65C7',icon:'memory',desc:'Memoria visual, verbal y memoria de trabajo.',blurb:'Una red de recuerdos luminosos: palabras, secuencias y parejas.',games:['words','sequence','pairs','nback','updater','backward','changed','delayed']},
  {id:'logic',name:'Razonamiento lógico',short:'Lógica',world:'LOGIC UNIVERSE',color:'#35E6DF',c2:'#538CFF',icon:'logic',desc:'Deducción, patrones y resolución de problemas.',blurb:'Geometría y estructuras: descubre la regla escondida en cada patrón.',games:['sudoku','pattern','logicrush','matrix','code','rotation','circuit','strategy','deduction']},
  {id:'math',name:'Agilidad matemática',short:'Cálculo',world:'MATH SPEED',color:'#FFB547',c2:'#FF65C7',icon:'math',desc:'Cálculo mental y memoria de trabajo numérica.',blurb:'Números en movimiento: calcula con velocidad y cabeza fría.',games:['flash','countdown','truefalse']},
@@ -5055,6 +5081,283 @@ reg({id:'deduction',skill:'logic',name:'Deducción maestra',icon:'deduction',tag
     const metrics=[{label:'Puzles resueltos',value:`${st.c}/${n}`},{label:'Resueltos a la primera comprobación',value:`${st.first}/${n}`},{label:'Tiempo mediano (resueltos)',value:st.rts.length?(median(st.rts)/1000).toFixed(0)+' s':'—'}];
     const details=`<h4>¿Qué mide esta tarea?</h4><p>Es una tarea de deducción con restricciones: hay que combinar pistas para descartar posibilidades hasta que sólo quede una. Cada puzle está comprobado por un solucionador: tiene una única solución y ninguna pista es redundante.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
     return {correct:st.c,wrong:st.w,total:n,acc:st.c/n,score:st.c,rt:st.rts.length?avg(st.rts):null,metrics,details,extra:{first:st.first,omRate:0,faRate:0}}}}
+ }});
+/* ---------- FLANKER (tarea de Eriksen) y REDES ATENCIONALES (ANT simplificada) ----------
+   Hay que responder a la dirección de la flecha CENTRAL ignorando las laterales (congruentes, incongruentes o neutras).
+   En el modo «redes» se añade una señal previa (ninguna, doble o espacial) y el objetivo sale arriba o abajo del punto de fijación:
+   alerta = RT sin señal − RT señal doble · orientación = RT señal doble − RT señal espacial · conflicto = RT incongruente − RT congruente. */
+const fkDead=L=>Math.max(650,1700-(L-1)*75),fkSide=L=>L<=7?2:3;
+const fkArrow=(d,c='')=>`<svg class="fk-a ${d==='L'?'fk-l':''} ${c}" viewBox="0 0 40 40" aria-hidden="true"><path d="${d==='N'?'M6 20h28':'M6 20h25M21 9l12 11-12 11'}" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+function fkRow(dir,cond,side){const o=dir==='L'?'R':'L',f=cond==='incongruent'?o:cond==='neutral'?'N':dir;return [...Array(side).fill(f),dir,...Array(side).fill(f)]}
+reg({id:'flanker',skill:'attention',name:'Flanker',icon:'flanker',tagline:'Responde a la flecha central e ignora las de los lados.',
+ howTo:m=>({
+  arrows:['Verás una fila de flechas. Responde a la dirección de la flecha <b>central</b>: izquierda o derecha.','Las flechas de los lados a veces apuntan en la misma dirección (congruentes), a veces en la contraria (incongruentes) y a veces son simples rayas (neutras).','Ignorar las laterales cuesta algo de tiempo: se mide ese «efecto de conflicto». Teclas ← y →.'],
+  ant:['Mira el punto central. A veces aparece una señal (asteriscos) justo antes de que salga la fila de flechas, que aparece arriba o abajo del punto.','Responde a la dirección de la flecha <b>central</b> (← o →). La señal puede avisar de que algo va a ocurrir (alerta) o de dónde va a ocurrir (orientación).','Al final verás tres efectos calculados con tus tiempos: alerta, orientación y conflicto.']
+ }[m]||[]),
+ example:m=>`<div class="ex-stim" data-stim style="gap:.5rem;color:#F2F6FF">${['R','R','R','R','R'].map((d,i)=>fkArrow(i===2?'R':'L').replace('<svg ','<svg style="width:30px;height:30px" ')).join('')}</div><p class="small" style="margin-top:.5rem">La flecha central apunta a la derecha aunque las laterales apunten a la izquierda: responde <b>derecha</b>.</p>`,
+ modes:[{id:'arrows',name:'Clásico',desc:'Congruentes, incongruentes y neutras'},{id:'ant',name:'Redes atencionales',desc:'Con señal previa'}],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{mode:'arrows',min:75,max:160},speed:true,
+ levelInfo:(L,m)=>`${2*fkSide(L)+1} flechas · tiempo máximo de respuesta ${(fkDead(L)/1000).toFixed(2)} s${m==='ant'?' · con señal previa':L<=7?' · con ensayos neutros':''}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode||'arrows',ant=mode==='ant',side=fkSide(L),dead=fkDead(L),N=ctx.budget?Infinity:(ant?36:30),rm=RM();
+  const T=[];let bag=[],bagId=0,cur=null,phase='idle',timeUp=false,done=false,t0=0,tm=null;
+  const refill=()=>{const cs=ant?['congruent','incongruent']:L<=7?['congruent','congruent','incongruent','incongruent','neutral']:['congruent','incongruent'];bagId++;
+   const cells=[];if(ant){for(const cue of ['none','double','spatial'])for(const loc of ['up','down'])for(const c of cs)cells.push({cond:c,cue,loc,bag:bagId})}else cs.forEach(c=>cells.push({cond:c,bag:bagId}));bag=shuffle(cells)};
+  ctx.stage.innerHTML=`<div class="g-wrap fk"><div class="fk-arena" data-stim id="fka" aria-live="off"><div class="fk-fix" id="fkf">+</div><div class="fk-cue" id="fkc"></div><div class="fk-tgt" id="fkt"></div></div><div class="fk-btns"><button class="btn fk-b" data-d="L" aria-label="Izquierda">${fkArrow('L')}<span>Izquierda</span></button><button class="btn fk-b" data-d="R" aria-label="Derecha">${fkArrow('R')}<span>Derecha</span></button></div><div class="small dim" id="fkh" style="text-align:center;min-height:1.4em"></div></div>`;
+  const fix=$('#fkf'),cue=$('#fkc'),tgt=$('#fkt');
+  function trial(){if(done)return;if(!bag.length)refill();const c=bag.pop();cur={...c,dir:Math.random()<.5?'L':'R',loc:c.loc||'mid'};phase='iti';tgt.innerHTML='';cue.innerHTML='';tgt.className='fk-tgt';cue.className='fk-cue';fix.style.opacity=1;
+   const iti=ri(450,1000);
+   if(!ant)ctx.clock.after(iti,showTarget);
+   else{ctx.clock.after(iti,()=>{if(done)return;if(cur.cue!=='none'){cue.className='fk-cue show '+(cur.cue==='double'?'dbl':'sp-'+cur.loc);cue.innerHTML=cur.cue==='double'?'<b class="u">*</b><b class="d">*</b>':'<b class="'+(cur.loc==='up'?'u':'d')+'">*</b>'}
+     ctx.clock.after(100,()=>{cue.innerHTML=''});ctx.clock.after(500,showTarget)})}}
+  function showTarget(){if(done)return;phase='resp';tgt.className='fk-tgt '+(ant?'at-'+cur.loc:'');tgt.innerHTML=fkRow(cur.dir,cur.cond,side).map(d=>fkArrow(d)).join('');cur.t=ctx.clock.now();t0=cur.t;
+   tm=ctx.clock.after(dead,()=>respond(null))}
+  function respond(d){if(phase!=='resp'||done)return;phase='fb';ctx.clock.cancel(tm);const rt=ctx.clock.now()-t0,om=d==null,ok=!om&&d===cur.dir;
+   T.push({cond:cur.cond,cue:cur.cue||null,loc:cur.loc,bag:cur.bag,ok,om,rt:om?null:rt});
+   ctx.feedback(ok,{msg:om?'Muy lento':undefined});ctx.score(T.filter(x=>x.ok).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length);
+   $('#fkh').textContent=om?'Sin respuesta a tiempo':ok?'':'Era '+(cur.dir==='L'?'izquierda':'derecha');
+   fix.style.opacity=.4;
+   ctx.clock.after(om||!ok?650:260,()=>{$('#fkh').textContent='';if(T.length>=N||timeUp){done=true;return ctx.end()}trial()})}
+  $$('.fk-b').forEach(b=>b.onclick=()=>{if(!ctx.clock.paused)respond(b.dataset.d)});
+  ctx.key(e=>{if(e.key==='ArrowLeft'){e.preventDefault();respond('L')}else if(e.key==='ArrowRight'){e.preventDefault();respond('R')}});
+  ctx.clock.after(500,trial);
+  return {peek:()=>({cur,phase,T,side}),onTimeUp(){timeUp=true;if(phase!=='resp'&&phase!=='fb'){done=true;ctx.end()}},summary(){
+   const n=T.length;if(!n)return null;const okN=T.filter(x=>x.ok).length,omN=T.filter(x=>x.om).length,med=(a)=>a.length?median(a):null;
+   /* en «redes» los efectos sólo se calculan con ciclos completos de 12 ensayos (3 señales × 2 posiciones × 2 congruencias): diseño equilibrado */
+   const full=new Set([...new Set(T.map(x=>x.bag))].filter(b=>T.filter(x=>x.bag===b).length===12)),TB=ant?T.filter(x=>full.has(x.bag)):T;
+   const rts=(c,A=T)=>A.filter(x=>x.ok&&x.cond===c).map(x=>x.rt),acc=c=>{const a=T.filter(x=>x.cond===c);return a.length?a.filter(x=>x.ok).length/a.length:null};
+   const mc=med(rts('congruent')),mi=med(rts('incongruent')),mn=med(rts('neutral')),cB=rts('congruent',TB),iB=rts('incongruent',TB);
+   /* estimador equilibrado en «redes»: mediana de cada celda (señal × congruencia) y media entre congruencias, así una omisión o un error no sesgan el efecto */
+   const cellMed=(cue,cond)=>{const a=TB.filter(x=>x.ok&&x.cue===cue&&x.cond===cond).map(x=>x.rt);return a.length>=2?median(a):null},cues=['none','double','spatial'],cellsOk=ant&&cues.every(q=>cellMed(q,'congruent')!=null&&cellMed(q,'incongruent')!=null);
+   const conflict=ant?(cellsOk?avg(cues.map(q=>cellMed(q,'incongruent')-cellMed(q,'congruent'))):null):(cB.length>=3&&iB.length>=3?med(iB)-med(cB):null);
+   const metrics=[{label:'Aciertos',value:`${okN}/${n}`},{label:'Mediana congruentes',value:mc!=null?Math.round(mc)+' ms':'—'},{label:'Mediana incongruentes',value:mi!=null?Math.round(mi)+' ms':'—'},{label:'Efecto de conflicto',value:conflict!=null?`${conflict>=0?'+':''}${Math.round(conflict)} ms`:'—'},...(mn!=null?[{label:'Mediana neutras',value:Math.round(mn)+' ms'}]:[]),{label:'Sin respuesta a tiempo',value:omN}];
+   let ex={};
+   if(ant){const cueRT=q=>(cellMed(q,'congruent')+cellMed(q,'incongruent'))/2;
+    const alert=cellsOk?cueRT('none')-cueRT('double'):null,orient=cellsOk?cueRT('double')-cueRT('spatial'):null;ex={alerting:alert,orienting:orient};
+    metrics.push({label:'Efecto de alerta (sin señal − señal doble)',value:alert!=null?`${alert>=0?'+':''}${Math.round(alert)} ms`:'—'},{label:'Efecto de orientación (doble − espacial)',value:orient!=null?`${orient>=0?'+':''}${Math.round(orient)} ms`:'—'})}
+   const details=`<h4>¿Qué mide el Flanker?</h4><p>Es una tarea clásica de control de la interferencia: las flechas laterales incongruentes compiten con la central y suelen enlentecer la respuesta (efecto de conflicto, p. ej. ${conflict!=null?Math.round(conflict)+' ms en esta partida':'se calcula con suficientes ensayos'}).${ant?' En el modo de redes atencionales, además, se comparan los tiempos según la señal previa: alerta (estar preparado), orientación (saber dónde) y conflicto. Los efectos se calculan sólo con ciclos completos de 12 ensayos (diseño equilibrado) y con pocos ciclos son muy variables: tómalos como una orientación, no como una medida precisa.':''}</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:okN,wrong:n-okN,total:n,acc:okN/n,score:okN,rt:avg(T.filter(x=>x.ok).map(x=>x.rt)),metrics,details,extra:{mode,conflict,omRate:omN/n,faRate:0,acc:{c:acc('congruent'),i:acc('incongruent')},...ex}}}}
+ }});
+/* ---------- BÚSQUEDA VISUAL PRO ----------
+   Rasgo único (el elemento «salta a la vista»), conjunción (color + forma: hay que mirar uno a uno) y presente/ausente.
+   Métrica propia: pendiente de búsqueda = ms extra por cada elemento añadido (regresión del tiempo medio frente al tamaño del conjunto). */
+const VS_SH=['circle','square','triangle','diamond','star','hex'],VS_COL=['#FF4D5E','#538CFF','#3DDC84','#FFD23F'],VS_CN=['rojo','azul','verde','amarillo'],VS_SN=['círculo','cuadrado','triángulo','rombo','estrella','hexágono'];
+const vsSizes=L=>L<=3?[6,9,12]:L<=7?[9,16,25]:L<=11?[16,25,36]:[25,36,49];
+const vsSVG=(s,c)=>shapeSVG(VS_SH[s],VS_COL[c]);
+function vsMake(L,mode,n){
+ const absent=mode==='absent'&&Math.random()<.5,s=sample([0,1,2,3,4,5],2),c=sample([0,1,2,3],2);let items,target=-1,kind,tgt=null;
+ if(mode==='feature'){kind=Math.random()<.5?'color':'shape';const base={s:s[0],c:c[0]},odd=kind==='color'?{s:s[0],c:c[1]}:{s:s[1],c:c[0]};items=Array(n).fill(base);target=ri(0,n-1);items[target]=odd;tgt=odd}
+ else{kind='conj';tgt={s:s[0],c:c[0]};const d1={s:s[0],c:c[1]},d2={s:s[1],c:c[0]},arr=shuffle(Array.from({length:absent?n:n-1},(_,i)=>i%2?d1:d2));
+  if(absent)items=arr;else{target=ri(0,n-1);items=[...arr.slice(0,target),tgt,...arr.slice(target)]}}
+ return {n,items,target,absent,kind,tgt}}
+/* cuadrícula con desplazamiento aleatorio: sin solapes y sin patrón regular */
+function vsLayout(n){const cols=Math.ceil(Math.sqrt(n*1.1)),rows=Math.ceil(n/cols),cells=shuffle(Array.from({length:cols*rows},(_,i)=>i)).slice(0,n);
+ return cells.map(k=>{const cx=(k%cols+.5)/cols*100,cy=(Math.floor(k/cols)+.5)/rows*100,jx=(Math.random()-.5)*(100/cols)*.3,jy=(Math.random()-.5)*(100/rows)*.3;return [cx+jx,cy+jy]})}
+reg({id:'vsearch',skill:'attention',name:'Búsqueda visual',icon:'vsearch',tagline:'Encuentra el objetivo entre muchos distractores.',
+ howTo:m=>({
+  feature:['Entre muchos elementos iguales hay <b>uno distinto</b> (en color o en forma). Tócalo lo más rápido que puedas.','Cuando el objetivo se distingue por un solo rasgo, suele «saltar a la vista» y el número de elementos casi no importa.','Se necesita pantalla táctil o ratón.'],
+  conj:['Arriba verás el objetivo (forma + color). Búscalo entre los demás y tócalo.','Los distractores comparten el color o la forma con el objetivo: hay que combinar ambos rasgos, así que más elementos suelen significar más tiempo.','Se necesita pantalla táctil o ratón.'],
+  absent:['Arriba verás el objetivo (forma + color). A veces <b>está</b> entre los elementos y a veces <b>no está</b>.','Si lo ves, tócalo. Si estás seguro de que no está, pulsa «No está» (tecla N).','Equivocarse al decir «no está» cuenta como fallo.']
+ }[m]||[]),
+ example:m=>`<div class="ex-stim" data-stim style="gap:.4rem;flex-wrap:wrap;max-width:200px;margin:auto">${[[0,0],[2,1],[0,1],[2,0],[2,1],[0,0],[0,1],[2,0]].map(([s,c])=>`<span style="width:30px;height:30px">${vsSVG(s,c)}</span>`).join('')}</div><p class="small" style="margin-top:.5rem">${m==='feature'?'Un elemento se distingue por su forma o su color: tócalo.':'Busca el objetivo que combina la forma y el color indicados.'}</p>`,
+ modes:[{id:'feature',name:'Rasgo único',desc:'El diferente'},{id:'conj',name:'Conjunción',desc:'Forma + color'},{id:'absent',name:'Presente / ausente',desc:'¿Está o no está?'}],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{mode:'conj',min:75,max:170},speed:true,
+ levelInfo:(L,m)=>`${vsSizes(L).join(' · ')} elementos por pantalla${m==='absent'?' · el objetivo puede no estar':''}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode||'conj',sizes=vsSizes(L),N=ctx.budget?Infinity:12,T=[];
+  let bag=[],cur=null,phase='idle',timeUp=false,done=false,t0=0;
+  ctx.stage.innerHTML=`<div class="g-wrap vs"><div class="g-prompt" id="vsp"></div><div class="vs-arena" data-stim id="vsa"></div>${mode==='absent'?`<div class="cb-act"><button class="btn btn-primary" id="vsn"><span class="kbd">N</span> No está</button></div>`:''}<div class="small dim" id="vsh" style="text-align:center;min-height:1.4em" aria-live="polite"></div></div>`;
+  function next(){if(done)return;if(T.length>=N||timeUp){done=true;return ctx.end()}if(!bag.length)bag=shuffle(sizes.flatMap(n=>[n,n]));
+   const n=bag.pop();cur=vsMake(L,mode,n);const pos=vsLayout(n);phase='in';
+   $('#vsp').innerHTML=`Pantalla ${T.length+1}${N<Infinity?' de '+N:''} · `+(cur.kind==='conj'?`<b>Encuentra:</b> <span class="vs-tg" data-stim data-s="${cur.tgt.s}" data-c="${cur.tgt.c}" role="img" aria-label="${VS_SN[cur.tgt.s]} ${VS_CN[cur.tgt.c]}">${vsSVG(cur.tgt.s,cur.tgt.c)}</span> <span class="dim">(${VS_SN[cur.tgt.s]} ${VS_CN[cur.tgt.c]})</span>${mode==='absent'?' <span class="dim">· o «No está»</span>':''}`:`<b>Toca el elemento diferente</b>`);
+   $('#vsa').innerHTML=cur.items.map((it,i)=>`<button class="vs-i" data-i="${i}" data-s="${it.s}" data-c="${it.c}" style="left:${pos[i][0].toFixed(2)}%;top:${pos[i][1].toFixed(2)}%" aria-label="${VS_SN[it.s]} ${VS_CN[it.c]}">${vsSVG(it.s,it.c)}</button>`).join('');
+   $('#vsa').style.setProperty('--is',(cur.n<=12?50:cur.n<=25?40:cur.n<=36?34:30)+'px');$('#vsh').textContent='';t0=ctx.clock.now()}
+  function resolve(kind,i){if(phase!=='in'||done)return;phase='fb';const rt=ctx.clock.now()-t0;let ok,why;
+   if(kind==='absent-click'){ok=cur.absent;why=ok?'ok':'miss'}else{ok=!cur.absent&&i===cur.target;why=ok?'ok':cur.absent?'fa':'wrong'}
+   T.push({n:cur.n,kind:cur.kind,absent:cur.absent,ok,rt,why});
+   ctx.feedback(ok);ctx.score(T.filter(x=>x.ok).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length);
+   const tEl=cur.target>=0?$(`#vsa .vs-i[data-i="${cur.target}"]`):null;if(tEl)tEl.classList.add('vs-hit');if(!ok&&kind==='item'){const e=$(`#vsa .vs-i[data-i="${i}"]`);e&&e.classList.add('vs-bad')}
+   $('#vsh').textContent=ok?'':why==='miss'?'Sí estaba: lo marco en verde':cur.absent?'No estaba el objetivo':'Ese no era';
+   $$('#vsa .vs-i').forEach(b=>b.disabled=true);
+   ctx.clock.after(ok?320:1100,()=>{if(T.length>=N||timeUp){done=true;return ctx.end()}next()})}
+  $('#vsa').onclick=e=>{const b=e.target.closest('.vs-i');if(b&&!ctx.clock.paused)resolve('item',+b.dataset.i)};
+  if(mode==='absent'){$('#vsn').onclick=()=>{if(!ctx.clock.paused)resolve('absent-click',-1)}}
+  ctx.key(e=>{if(mode==='absent'&&(e.key==='n'||e.key==='N')&&!ctx.clock.paused){e.preventDefault();resolve('absent-click',-1)}});
+  ctx.clock.after(500,next);
+  return {peek:()=>({cur,phase,T}),onTimeUp(){timeUp=true;if(phase!=='in'&&phase!=='fb'){done=true;ctx.end()}},summary(){
+   const n=T.length;if(!n)return null;const okN=T.filter(x=>x.ok).length,hits=T.filter(x=>x.ok&&!x.absent);
+   const byN={};hits.forEach(x=>(byN[x.n]=byN[x.n]||[]).push(x.rt));const ns=Object.keys(byN).map(Number).filter(k=>byN[k].length>=2).sort((a,b)=>a-b);
+   let slope=null;if(ns.length>=2){const xs=ns,ys=ns.map(k=>avg(byN[k])),mx=avg(xs),my=avg(ys);const den=sum(xs.map(x=>(x-mx)**2));slope=den?sum(xs.map((x,i)=>(x-mx)*(ys[i]-my)))/den:null}
+   const abs=T.filter(x=>x.absent),absOk=abs.filter(x=>x.ok).length,pres=T.filter(x=>!x.absent);
+   const metrics=[{label:'Aciertos',value:`${okN}/${n}`},{label:'Tiempo mediano (aciertos)',value:hits.length?(median(hits.map(x=>x.rt))/1000).toFixed(2)+' s':'—'},{label:'Pendiente de búsqueda',value:slope!=null?`${Math.round(slope)} ms por elemento`:'—'},...(mode==='absent'?[{label:'«No está» correctos',value:`${absOk}/${abs.length}`},{label:'Objetivo presente acertado',value:`${pres.filter(x=>x.ok).length}/${pres.length}`}]:[])];
+   const eff=slope==null?'':slope<12?'búsqueda muy eficiente (el objetivo «salta a la vista»)':slope<30?'búsqueda intermedia':'búsqueda serial: cada elemento añadido cuesta tiempo';
+   const details=`<h4>¿Qué es la pendiente de búsqueda?</h4><p>Es cuántos milisegundos más tardas por cada elemento adicional en pantalla. Con un rasgo único suele ser casi plana (el objetivo salta a la vista); con conjunciones de rasgos sube porque se examinan los elementos de uno en uno.${slope!=null?` En esta partida: ${Math.round(slope)} ms/elemento (${eff}).`:' Se necesitan al menos dos tamaños de pantalla con 2 aciertos cada uno para calcularla.'} Con pocas pantallas es una estimación muy aproximada.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:okN,wrong:n-okN,total:n,acc:okN/n,score:okN,rt:hits.length?avg(hits.map(x=>x.rt)):null,metrics,details,extra:{mode,slope,omRate:0,faRate:abs.length?(abs.length-absOk)/abs.length:0}}}}
+ }});
+/* ---------- SIGUE LOS PUNTOS (seguimiento de múltiples objetos, MOT) ----------
+   Se marcan unos puntos objetivo, todos se vuelven iguales y se mueven con rebotes; al parar hay que señalar los objetivos.
+   Puntuación por objetivo: cada objetivo señalado correctamente cuenta como acierto. La precisión se desglosa por nº de objetivos. */
+const MOTW=560,MOTH=420,MOTR=15;
+const motCfg=L=>L<=3?{n:8,k:[2,3],v:90+L*8,T:4}:L<=7?{n:10,k:[3,4],v:110+(L-4)*14,T:5}:L<=11?{n:12,k:[3,4,5],v:150+(L-8)*16,T:6}:{n:14+(L>13?1:0),k:[4,5,6],v:200+(L-12)*20,T:7+(L>13?1:0)};
+function motInit(n,v){
+ const dots=[];let guard=0;
+ while(dots.length<n&&guard++<4000){const x=ri(MOTR+4,MOTW-MOTR-4),y=ri(MOTR+4,MOTH-MOTR-4);if(dots.every(d=>Math.hypot(d.x-x,d.y-y)>MOTR*2.6)){const a=Math.random()*Math.PI*2;dots.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,turn:ri(500,1300)/1000,t:false})}}
+ return dots}
+function motStep(dots,dt,v){
+ for(const d of dots){d.turn-=dt;if(d.turn<=0){const a=(Math.random()-.5)*1.4,c=Math.cos(a),s=Math.sin(a),vx=d.vx*c-d.vy*s,vy=d.vx*s+d.vy*c;d.vx=vx;d.vy=vy;d.turn=ri(500,1300)/1000}
+  d.x+=d.vx*dt;d.y+=d.vy*dt;
+  if(d.x<MOTR){d.x=MOTR;d.vx=Math.abs(d.vx)}else if(d.x>MOTW-MOTR){d.x=MOTW-MOTR;d.vx=-Math.abs(d.vx)}
+  if(d.y<MOTR){d.y=MOTR;d.vy=Math.abs(d.vy)}else if(d.y>MOTH-MOTR){d.y=MOTH-MOTR;d.vy=-Math.abs(d.vy)}}
+ for(let pass=0;pass<2;pass++){
+  for(let i=0;i<dots.length;i++)for(let j=i+1;j<dots.length;j++){const a=dots[i],b=dots[j];let dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy);
+   if(dist<MOTR*2&&dist>0){const nx=dx/dist,ny=dy/dist,ov=MOTR*2-dist;a.x-=nx*ov/2;a.y-=ny*ov/2;b.x+=nx*ov/2;b.y+=ny*ov/2;
+    const va=a.vx*nx+a.vy*ny,vb=b.vx*nx+b.vy*ny;if(va-vb>0){a.vx+=(vb-va)*nx;a.vy+=(vb-va)*ny;b.vx+=(va-vb)*nx;b.vy+=(va-vb)*ny}}}
+  for(const d of dots){d.x=clamp(d.x,MOTR,MOTW-MOTR);d.y=clamp(d.y,MOTR,MOTH-MOTR)}}
+ for(const d of dots){const s=Math.hypot(d.vx,d.vy)||1;d.vx*=v/s;d.vy*=v/s}}
+reg({id:'mot',skill:'attention',name:'Sigue los puntos',icon:'mot',tagline:'Sigue varios objetos a la vez mientras se mueven.',
+ howTo:['Al empezar, unos puntos aparecen marcados en ámbar con un anillo: son tus <b>objetivos</b>.','Después todos se vuelven iguales y se mueven rebotando. Síguelos con la vista sin perder a los objetivos.','Cuando se paren, toca los puntos que creas que eran los objetivos y pulsa «Confirmar» (o Enter). Se necesita pantalla táctil o ratón.'],
+ example:()=>`<div class="ex-stim" data-stim style="gap:.8rem"><svg viewBox="0 0 120 50" style="width:210px;height:90px"><circle cx="20" cy="25" r="9" fill="#FFC24B"/><circle cx="20" cy="25" r="13" fill="none" stroke="#FFC24B" stroke-width="2"/><circle cx="52" cy="15" r="9" fill="#538CFF"/><circle cx="84" cy="30" r="9" fill="#FFC24B"/><circle cx="84" cy="30" r="13" fill="none" stroke="#FFC24B" stroke-width="2"/><circle cx="104" cy="14" r="9" fill="#538CFF"/></svg></div><p class="small" style="margin-top:.5rem">Los puntos ámbar con anillo son los objetivos; después todos se vuelven azules.</p>`,
+ maxLevel:15,metric:{label:'Objetivos seguidos',better:'high'},daily:{min:100,max:220},
+ levelInfo:L=>{const c=motCfg(L);return `${c.n} puntos · ${c.k[0]}-${c.k[c.k.length-1]} objetivos · seguimiento de ${c.T} s · velocidad ${Math.round(c.v)}`},
+ start(ctx){
+  const L=ctx.level,cfg=motCfg(L),N=ctx.budget?Infinity:5,rm=RM(),dpr=Math.min(2,window.devicePixelRatio||1);
+  const st={c:0,w:0,tot:0,perfect:0,n:0,byK:{}};
+  let dots=[],k=0,phase='idle',sel=new Set(),timeUp=false,done=false,last=0,reveal=null,limitTm=null;
+  ctx.stage.innerHTML=`<div class="g-wrap mot"><div class="g-prompt" id="mtp" aria-live="polite"></div><div class="mot-arena" data-stim><canvas id="mtc" width="${MOTW*dpr}" height="${MOTH*dpr}" role="img" aria-label="Zona de seguimiento de puntos"></canvas></div><div class="cb-act"><button class="btn btn-primary" id="mtok" disabled>Confirmar</button></div><div id="mte" style="width:100%;max-width:640px"></div></div>`;
+  const cv=$('#mtc'),g=cv.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);
+  const C={base:'#538CFF',tgt:'#FFC24B',sel:'#35E6DF',ok:'#3DDC84',bad:'#FF5470',bg:'#0F1730'};
+  function draw(){g.fillStyle=C.bg;g.fillRect(0,0,MOTW,MOTH);
+   dots.forEach((d,i)=>{let col=C.base,ring=null,mark='';
+    if(phase==='cue'&&d.t){col=C.tgt;ring=C.tgt}
+    else if(phase==='select'){if(sel.has(i)){col=C.base;ring=C.sel}}
+    else if(phase==='reveal'){const picked=sel.has(i);if(d.t&&picked){col=C.ok;ring=C.ok;mark='✓'}else if(d.t){col=C.tgt;ring=C.tgt;mark='•'}else if(picked){col=C.bad;ring=C.bad;mark='✗'}}
+    g.beginPath();g.arc(d.x,d.y,MOTR,0,Math.PI*2);g.fillStyle=col;g.fill();
+    if(ring){g.beginPath();g.arc(d.x,d.y,MOTR+5,0,Math.PI*2);g.strokeStyle=ring;g.lineWidth=2.5;g.stroke()}
+    if(mark){g.fillStyle='#06121B';g.font='700 16px system-ui,sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(mark,d.x,d.y+1)}})}
+  ctx.clock.loop(()=>{const now=ctx.clock.now();if(!last){last=now;return}const dt=Math.min(.05,(now-last)/1000);last=now;if(ctx.clock.paused)return;
+   if(phase==='track')motStep(dots,dt,cfg.v);if(phase!=='idle')draw()});
+  function newTrial(){if(done)return;if(st.n>=N||timeUp){done=true;return ctx.end()}
+   k=pick(cfg.k);dots=motInit(cfg.n,cfg.v);sample(dots.map((_,i)=>i),k).forEach(i=>dots[i].t=true);sel=new Set();reveal=null;phase='cue';last=0;$('#mte').innerHTML='';$('#mtok').disabled=true;
+   $('#mtp').innerHTML=`Ronda ${st.n+1}${N<Infinity?' de '+N:''} · <b>Memoriza los ${k} puntos ámbar</b>`;ctx.say(`Memoriza ${k} puntos`);draw();
+   ctx.clock.after(2000,()=>{if(done)return;phase='track';$('#mtp').innerHTML=`Ronda ${st.n+1}${N<Infinity?' de '+N:''} · <b>Sigue a los ${k} objetivos…</b>`;
+    ctx.clock.after(cfg.T*1000,()=>{if(done)return;phase='select';draw();$('#mtp').innerHTML=`Ronda ${st.n+1}${N<Infinity?' de '+N:''} · <b>Toca los ${k} puntos que seguías</b> <span class="dim">(${sel.size}/${k})</span>`;
+     if(timeUp){limitTm=ctx.clock.after(20000,()=>{if(!done&&phase==='select'){done=true;ctx.end()}})}})})}
+  function pointAt(e){const r=cv.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*MOTW,y=(e.clientY-r.top)/r.height*MOTH;let best=-1,bd=1e9;dots.forEach((d,i)=>{const dd=Math.hypot(d.x-x,d.y-y);if(dd<bd){bd=dd;best=i}});return bd<=MOTR*2.2?best:-1}
+  cv.addEventListener('pointerdown',e=>{if(phase!=='select'||ctx.clock.paused)return;e.preventDefault();const i=pointAt(e);if(i<0)return;if(sel.has(i))sel.delete(i);else if(sel.size<k)sel.add(i);
+   $('#mtp').innerHTML=`Ronda ${st.n+1}${N<Infinity?' de '+N:''} · <b>Toca los ${k} puntos que seguías</b> <span class="dim">(${sel.size}/${k})</span>`;$('#mtok').disabled=sel.size!==k;draw()});
+  function confirm(){if(phase!=='select'||sel.size!==k||ctx.clock.paused)return;phase='reveal';ctx.clock.cancel(limitTm);
+   const c=[...sel].filter(i=>dots[i].t).length;st.c+=c;st.w+=k-c;st.tot+=k;st.n++;if(c===k)st.perfect++;const b=st.byK[k]||(st.byK[k]={c:0,n:0});b.c+=c;b.n+=k;
+   ctx.feedback(c===k,{msg:c===k?'¡Todos!':`${c} de ${k}`});ctx.score(st.c,'Objetivos');ctx.hits(st.c);draw();$('#mtok').disabled=true;
+   $('#mte').innerHTML=`<div class="explain-box ${c===k?'':'bad'}"><b>${c===k?'¡Perfecto!':`${c} de ${k} objetivos`}</b> ✓ acertado · ✗ fallo · • objetivo no señalado.</div>`;
+   ctx.clock.after(1700,()=>{if(done)return;if(st.n>=N||timeUp){done=true;ctx.end()}else newTrial()})}
+  $('#mtok').onclick=confirm;ctx.key(e=>{if(e.key==='Enter'&&phase==='select'){e.preventDefault();confirm()}});
+  ctx.clock.after(400,newTrial);
+  return {peek:()=>({dots,phase,sel:[...sel],k,cfg,W:MOTW,H:MOTH}),onTimeUp(){timeUp=true;/* la ronda en curso termina; si espera la respuesta, se concede un margen de 20 s */if(phase==='select')limitTm=ctx.clock.after(20000,()=>{if(!done&&phase==='select'){done=true;ctx.end()}})},summary(){
+   if(!st.tot)return null;const ks=Object.keys(st.byK).map(Number).sort((a,b)=>a-b);
+   const metrics=[{label:'Objetivos seguidos',value:`${st.c}/${st.tot}`},{label:'Rondas perfectas',value:`${st.perfect}/${st.n}`},...(ks.length?[{label:'Precisión según nº de objetivos',value:ks.map(q=>`${q}: ${pct(st.byK[q].c/st.byK[q].n)}`).join(' · ')}]:[]),{label:'Configuración',value:`${cfg.n} puntos · velocidad ${Math.round(cfg.v)} · ${cfg.T} s`}];
+   const details=`<h4>¿Qué mide el seguimiento de múltiples objetos?</h4><p>Es una tarea clásica de atención dividida: hay que mantener la atención sobre varios objetos móviles a la vez. La precisión suele bajar al aumentar el número de objetivos, la velocidad o el tiempo de seguimiento. Si no puedes seguir tantos objetos, el nivel adaptativo lo ajustará.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:st.c,wrong:st.w,total:st.tot,acc:st.c/st.tot,score:st.c,rt:null,metrics,details,extra:{perfect:st.perfect,rounds:st.n,omRate:0,faRate:0}}}}
+ }});
+/* ---------- PARPADEO ATENCIONAL (RSVP) ----------
+   Flujo rápido de letras con un número (T1, en ámbar) y, a veces, una X (T2) a 1-8 posiciones detrás. Al final: ¿qué número era? ¿hubo una X?
+   La precisión de T2 cuando T1 se identificó bien suele caer a distancias cortas (2-3 posiciones): el «parpadeo». Se mide la fluctuación real del temporizador. */
+const abSoa=L=>[170,160,150,140,130,125,120,115,110,105,100,95,90,90,90][clamp(L,1,15)-1];
+const abLags=L=>L<=3?[2,4,8]:L<=8?[1,2,3,5,8]:[1,2,3,4,6,8];
+const AB_LET='BCDFGHJKLMNPQRSTVWYZ'.split('');
+function abMake(lag,present){
+ const pre=ri(5,9),post=ri(4,6),t1=pick([2,3,4,5,6,7,8,9]),len=pre+1+lag+1+post,items=[];let prev='';
+ for(let i=0;i<len;i++){let c;do c=pick(AB_LET);while(c===prev);prev=c;items.push({ch:c,role:'d'})}
+ items[pre]={ch:String(t1),role:'t1'};const p2=pre+lag;if(present)items[p2]={ch:'X',role:'t2'};
+ return {items,t1,present,lag,pre,p2}}
+reg({id:'blink',skill:'attention',name:'Parpadeo atencional',icon:'blink',tagline:'Detecta dos objetivos en un flujo rapidísimo de letras.',
+ howTo:['Mira el centro: pasará una sucesión rápida de letras. Entre ellas habrá un <b>número</b> (en ámbar) y, a veces, una <b>X</b> poco después.','Al terminar, responde dos preguntas: qué número era y si apareció una X.','Tras detectar un objetivo, el siguiente suele costar más si llega enseguida (el «parpadeo atencional»). Teclas: cifras 2–9, y S / N para «hubo X» / «no hubo X».'],
+ example:()=>`<div class="ex-stim" data-stim style="gap:.6rem;font-family:var(--display);font-weight:800;font-size:1.5rem;color:#F2F6FF"><span>K</span><span>M</span><span style="color:#FFC24B">7</span><span>T</span><span style="color:#35E6DF">X</span><span>B</span></div><p class="small" style="margin-top:.5rem">Aquí el número era 7 y sí hubo una X, dos posiciones después.</p>`,
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{min:90,max:200},speed:true,
+ levelInfo:L=>`Una letra cada ${abSoa(L)} ms · distancias T1→T2 de ${abLags(L).join(', ')} posiciones`,
+ start(ctx){
+  const L=ctx.level,soa=abSoa(L),dur=Math.round(soa*.7),lags=abLags(L),N=ctx.budget?Infinity:12,T=[],jit=[];
+  let bag=[],cur=null,phase='idle',timeUp=false,done=false,ans1=null,ans2=null,onsets=[];
+  ctx.stage.innerHTML=`<div class="g-wrap ab"><div class="g-prompt" id="abp" aria-live="polite"></div><div class="ab-stage" data-stim id="abs" aria-hidden="true"><span id="abc"></span></div><div id="abq" style="width:100%;max-width:560px"></div><div id="abe" style="width:100%;max-width:640px"></div></div>`;
+  const ch=$('#abc'),st=$('#abs');
+  const refill=()=>{const cells=lags.flatMap(l=>[true,true,true,false]).map((p,i)=>({lag:lags[Math.floor(i/4)],present:p}));bag=shuffle(cells)};
+  function show(i){const it=cur.items[i];if(ctx.clock.paused)cur.dist=true;onsets[i]=performance.now();ch.textContent=it.ch;ch.className='ab-ch '+(it.role==='t1'?'t1':'')}
+  function hide(){ch.textContent='';ch.className='ab-ch'}
+  function next(){if(done)return;if(T.length>=N||timeUp){done=true;return ctx.end()}if(!bag.length)refill();const c=bag.pop();cur=abMake(c.lag,c.present);ans1=null;ans2=null;onsets=[];phase='fix';$('#abq').innerHTML='';$('#abe').innerHTML='';
+   $('#abp').innerHTML=`Ronda ${T.length+1}${N<Infinity?' de '+N:''} · <b>Mira al centro</b>`;ch.textContent='+';ch.className='ab-ch fix';
+   ctx.clock.after(900,()=>{if(done)return;hide();phase='rsvp';$('#abp').innerHTML=`Ronda ${T.length+1}${N<Infinity?' de '+N:''} · <b>Fíjate en el número (ámbar) y en una posible X</b>`;
+    cur.items.forEach((_,i)=>{ctx.clock.after(i*soa,()=>show(i));ctx.clock.after(i*soa+dur,hide)});
+    ctx.clock.after(cur.items.length*soa+120,askQ1)})}
+  function askQ1(){if(done)return;phase='q1';jit.push(...onsets.map((t,i)=>Math.abs(t-onsets[0]-i*soa)));$('#abp').innerHTML=`Ronda ${T.length+1}${N<Infinity?' de '+N:''} · <b>¿Qué número apareció?</b>`;
+   $('#abq').innerHTML=`<div class="ab-keys" id="abk">${[2,3,4,5,6,7,8,9].map(d=>`<button class="btn ab-k" data-d="${d}"><span class="kbd">${d}</span>${d}</button>`).join('')}</div>`;$('#abk').onclick=e=>{const b=e.target.closest('.ab-k');if(b)a1(+b.dataset.d)}}
+  function a1(d){if(phase!=='q1'||ctx.clock.paused)return;ans1=d;phase='q2';$('#abp').innerHTML=`Ronda ${T.length+1}${N<Infinity?' de '+N:''} · <b>¿Apareció una X?</b>`;
+   $('#abq').innerHTML=`<div class="opts" id="abyn" style="max-width:420px"><button class="opt" data-y="1"><span class="kbd">S</span>Sí, hubo una X</button><button class="opt" data-y="0"><span class="kbd">N</span>No hubo X</button></div>`;$('#abyn').onclick=e=>{const b=e.target.closest('.opt');if(b)a2(b.dataset.y==='1')}}
+  function a2(y){if(phase!=='q2'||ctx.clock.paused)return;ans2=y;phase='fb';
+   if(cur.dist){$('#abq').innerHTML='';$('#abe').innerHTML=`<div class="explain-box"><b>Ronda interrumpida</b> por una pausa durante el flujo de letras: no cuenta.</div><div style="text-align:center;margin-top:12px"><button class="btn btn-primary" id="abn">${timeUp?'Terminar':'Siguiente'} ${ic('arrowR')}</button></div>`;$('#abn').onclick=next;$('#abn').focus({preventScroll:true});if(timeUp)ctx.clock.after(1500,()=>ctx.end());return}
+   const ok1=ans1===cur.t1,ok2=y===cur.present,ok=ok1&&ok2;
+   T.push({lag:cur.lag,present:cur.present,ok1,ok2,ok});ctx.feedback(ok,{msg:ok?undefined:'Revisa la solución'});ctx.score(T.filter(x=>x.ok).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length);
+   $('#abq').innerHTML='';const seq=cur.items.map(it=>it.role==='t1'?`<b class="ab-t1">${it.ch}</b>`:it.role==='t2'?`<b class="ab-t2">${it.ch}</b>`:it.ch).join(' ');
+   $('#abe').innerHTML=`<div class="explain-box ${ok?'':'bad'}"><b>${ok?'¡Correcto!':'Hubo fallos.'}</b> Número: <b>${cur.t1}</b>${ok1?' ✓':' ✗ (dijiste '+ans1+')'} · ${cur.present?`Sí hubo X, ${cur.lag} ${cur.lag>1?'posiciones':'posición'} después`:'No hubo X'}${ok2?' ✓':' ✗'}.<div class="ab-seq">${seq}</div></div><div style="text-align:center;margin-top:12px"><button class="btn btn-primary" id="abn">${(timeUp||T.length>=N)?'Terminar':'Siguiente'} ${ic('arrowR')}</button></div>`;
+   $('#abn').onclick=next;$('#abn').focus({preventScroll:true});$('#abe').scrollIntoView({block:'nearest',behavior:RM()?'auto':'smooth'});if(timeUp)ctx.clock.after(2500,()=>ctx.end())}
+  ctx.key(e=>{if(e.target.closest&&e.target.closest('button')&&e.key==='Enter')return;
+   if(phase==='q1'&&/^[2-9]$/.test(e.key)){e.preventDefault();a1(+e.key)}
+   else if(phase==='q2'&&/^[sSnN]$/.test(e.key)){e.preventDefault();a2(/[sS]/.test(e.key))}
+   else if(phase==='fb'&&e.key==='Enter'){e.preventDefault();next()}});
+  ctx.clock.after(500,next);
+  return {peek:()=>({cur,phase,T,soa,onsets,jit}),onTimeUp(){timeUp=true;if(phase==='idle'||phase==='fix'){done=true;ctx.end()}},summary(){
+   const n=T.length;if(!n)return null;const okN=T.filter(x=>x.ok).length,t1ok=T.filter(x=>x.ok1).length,pres=T.filter(x=>x.present&&x.ok1),abs=T.filter(x=>!x.present),fa=abs.filter(x=>!x.ok2).length;
+   const sh=pres.filter(x=>x.lag<=3),lg=pres.filter(x=>x.lag>=5),r=a=>a.length?a.filter(x=>x.ok2).length/a.length:null;
+   const blink=sh.length>=3&&lg.length>=3?r(lg)-r(sh):null,maxJ=jit.length?Math.max(...jit):0;
+   const metrics=[{label:'Rondas totalmente correctas',value:`${okN}/${n}`},{label:'Número (T1) identificado',value:`${t1ok}/${n}`},{label:'X detectada tras T1 acertado: cerca (≤3) / lejos (≥5)',value:`${sh.length?pct(r(sh)):'—'} / ${lg.length?pct(r(lg)):'—'}`},{label:'Falsas alarmas (X inexistente)',value:abs.length?`${fa}/${abs.length}`:'—'},{label:'Fluctuación del temporizador',value:`${Math.round(maxJ)} ms máx.`}];
+   const details=`<h4>¿Qué es el parpadeo atencional?</h4><p>Tras detectar un objetivo, durante unos 200-500 ms es más difícil detectar un segundo si llega enseguida. Por eso se compara la detección de la X cerca (≤3 posiciones) y lejos (≥5) del número, solo en rondas donde acertaste el número${blink!=null?`. En esta partida la diferencia fue de ${Math.round(blink*100)} puntos porcentuales`:' (se necesitan al menos 3 rondas en cada grupo)'}. Con pocas rondas el resultado es muy variable. Los navegadores no son instrumentos de laboratorio: aquí el temporizador se desvió como máximo ${Math.round(maxJ)} ms de lo programado.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:okN,wrong:n-okN,total:n,acc:okN/n,score:okN,rt:null,metrics,details,extra:{t1:t1ok/n,blink,jitter:maxJ,faRate:abs.length?fa/abs.length:0,omRate:0}}}}
+ }});
+/* ---------- AX-CPT (tarea de ejecución continua con contexto) ----------
+   Se ve una letra-señal y, tras una pausa, una letra-sonda. Hay que responder «Sí» sólo si es A seguida de X (objetivo).
+   Los errores en BX (señal distinta + X) reflejan fallos de mantenimiento del contexto; los de AY, tendencia a anticipar el objetivo.
+   Índice d′-contexto = z(aciertos AX) − z(falsas alarmas BX), con corrección de proporciones extremas. */
+const cpZ=p=>{const a=[-39.69683028665376,220.9460984245205,-275.9285104469687,138.357751867269,-30.66479806614716,2.506628277459239],b=[-54.47609879822406,161.5858368580409,-155.6989798598866,66.80131188771972,-13.28068155288572],c=[-0.007784894002430293,-0.3223964580411365,-2.400758277161838,-2.549732539343734,4.374664141464968,2.938163982698783],d=[0.007784695709041462,0.3224671290700398,2.445134137142996,3.754408661907416],pl=.02425;let q,r;
+ if(p<pl){q=Math.sqrt(-2*Math.log(p));return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+ if(p>1-pl){q=Math.sqrt(-2*Math.log(1-p));return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+ q=p-.5;r=q*q;return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1)};
+const cpDelay=L=>L<=5?800:L<=10?1500:2500,cpDead=L=>Math.max(900,1600-(L-1)*50),CP_B=['E','F','G','H','K','M'],CP_Y=['B','D','L','P','R','S'];
+function cpPlan(mode,n){const mix=mode==='lure'?{AX:4,AY:2,BX:2,BY:2}:{AX:7,AY:1,BX:1,BY:1},out=[];while(out.length<n)out.push(...shuffle(Object.entries(mix).flatMap(([k,v])=>Array(v).fill(k))));return out.slice(0,n)}
+reg({id:'cpt',skill:'attention',name:'Atención sostenida AX',icon:'cpt',tagline:'Mantén en mente la letra-señal hasta que llegue la sonda.',
+ howTo:m=>({
+  ax:['Verás dos letras seguidas: primero una <b>señal</b> (ámbar) y, tras una pausa, una <b>sonda</b> (turquesa).','Responde <b>Sí</b> sólo cuando la señal sea A y la sonda sea X. En cualquier otro caso, responde <b>No</b>.','La mayoría de las parejas son A→X, así que la tentación es decir Sí a la X o tras una A: hay que recordar cuál fue la señal. Teclas S (Sí) y N (No).'],
+  lure:['Igual que el modo clásico, pero con muchas más parejas «trampa» (A→letra distinta y otra señal→X).','Responde <b>Sí</b> sólo con A→X; en cualquier otro caso, <b>No</b>.','Exige mantener bien la señal en mente y no dejarse llevar por el hábito. Teclas S y N.']
+ }[m]||[]),
+ example:()=>`<div class="ex-stim" data-stim style="gap:.8rem;font-family:var(--display);font-weight:800;font-size:1.8rem"><span style="color:#FFC24B">A</span><span style="color:#9CC2FF">…</span><span style="color:#35E6DF">X</span><span style="color:#9CC2FF">⇒</span><span style="color:#3DDC84;font-size:1rem">SÍ</span></div><p class="small" style="margin-top:.5rem">Sólo A seguida de X es Sí. B→X, A→Y o B→Y son No.</p>`,
+ modes:[{id:'ax',name:'Clásico',desc:'70 % A→X'},{id:'lure',name:'Con trampas',desc:'Más conflicto'}],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{mode:'ax',min:80,max:180},speed:true,
+ levelInfo:(L,m)=>`Pausa de ${(cpDelay(L)/1000).toFixed(1)} s entre señal y sonda · ${(cpDead(L)/1000).toFixed(2)} s para responder${m==='lure'?' · 40 % A→X':' · 70 % A→X'}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode||'ax',delay=cpDelay(L),dead=cpDead(L),N=ctx.budget?Infinity:40,T=[];
+  let plan=[],cur=null,phase='idle',timeUp=false,done=false,t0=0,tm=null,early=0;
+  ctx.stage.innerHTML=`<div class="g-wrap cp"><div class="g-prompt" id="cpp" aria-live="polite"></div><div class="cp-stage" data-stim id="cps" aria-hidden="true"><span id="cpc" class="cp-ch"></span></div><div class="cp-btns"><button class="btn btn-primary cp-b" data-y="1"><span class="kbd">S</span>Sí (A→X)</button><button class="btn cp-b" data-y="0"><span class="kbd">N</span>No</button></div><div class="small dim" id="cph" style="text-align:center;min-height:1.4em" aria-live="polite"></div></div>`;
+  const ch=$('#cpc');
+  function trial(){if(done)return;if(T.length>=N||timeUp){done=true;return ctx.end()}if(!plan.length)plan=cpPlan(mode,20);const type=plan.shift();
+   cur={type,cue:type[0]==='A'?'A':pick(CP_B),probe:type[1]==='X'?'X':pick(CP_Y)};phase='iti';ch.textContent='+';ch.className='cp-ch fix';$('#cph').textContent='';
+   $('#cpp').innerHTML=`Ensayo ${T.length+1}${N<Infinity?' de '+N:''} · <b>Señal → sonda</b>`;
+   ctx.clock.after(ri(550,850),()=>{if(done)return;phase='cue';ch.textContent=cur.cue;ch.className='cp-ch cue';
+    ctx.clock.after(500,()=>{ch.textContent='';ch.className='cp-ch';phase='delay';
+     ctx.clock.after(delay,()=>{if(done)return;phase='resp';ch.textContent=cur.probe;ch.className='cp-ch probe';t0=ctx.clock.now();tm=ctx.clock.after(dead,()=>answer(null))})})})}
+  function answer(y){if(done)return;
+   if(phase!=='resp'){if(y!=null&&(phase==='cue'||phase==='delay')){early++;$('#cph').textContent='Espera a la segunda letra'}return}
+   phase='fb';ctx.clock.cancel(tm);const rt=ctx.clock.now()-t0,om=y==null,target=cur.type==='AX',ok=!om&&y===target;
+   T.push({type:cur.type,ok,om,rt:om?null:rt,yes:om?null:y});ctx.feedback(ok,{msg:om?'Muy lento':undefined});ctx.score(T.filter(x=>x.ok).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length);
+   $('#cph').textContent=om?'Sin respuesta a tiempo':ok?'':target?'Era A→X: Sí':'No era A→X';ch.className='cp-ch fb';
+   ctx.clock.after(om||!ok?700:250,()=>{if(T.length>=N||timeUp){done=true;return ctx.end()}trial()})}
+  $$('.cp-b').forEach(b=>b.onclick=()=>{if(!ctx.clock.paused)answer(b.dataset.y==='1')});
+  ctx.key(e=>{if(/^[sS]$/.test(e.key)){e.preventDefault();answer(true)}else if(/^[nN]$/.test(e.key)){e.preventDefault();answer(false)}});
+  ctx.clock.after(500,trial);
+  return {peek:()=>({cur,phase,T,early}),onTimeUp(){timeUp=true;if(phase==='idle'||phase==='iti'||phase==='cue'||phase==='delay'){done=true;ctx.end()}},summary(){
+   const n=T.length;if(!n)return null;const okN=T.filter(x=>x.ok).length,omN=T.filter(x=>x.om).length,by=t=>T.filter(x=>x.type===t),err=t=>{const a=by(t);return a.length?a.filter(x=>!x.ok).length/a.length:null};
+   const ax=by('AX'),bx=by('BX'),rts=ax.filter(x=>x.ok).map(x=>x.rt);
+   let dctx=null;if(ax.length>=3&&bx.length>=2){const h=(ax.filter(x=>x.yes===true).length+.5)/(ax.length+1),f=(bx.filter(x=>x.yes===true).length+.5)/(bx.length+1);dctx=cpZ(h)-cpZ(f)}
+   const nonT=T.filter(x=>x.type!=='AX'),fa=nonT.filter(x=>x.yes===true).length;
+   const metrics=[{label:'Aciertos',value:`${okN}/${n}`},{label:'A→X acertadas',value:ax.length?`${ax.filter(x=>x.ok).length}/${ax.length}`:'—'},{label:'Error en B→X (contexto)',value:bx.length?pct(err('BX')):'—'},{label:'Error en A→Y (anticipación)',value:by('AY').length?pct(err('AY')):'—'},{label:'Error en B→Y',value:by('BY').length?pct(err('BY')):'—'},{label:'Índice d′-contexto',value:dctx!=null?dctx.toFixed(2):'—'},{label:'Tiempo mediano en A→X',value:rts.length?Math.round(median(rts))+' ms':'—'},{label:'Respuestas antes de la sonda',value:early}];
+   const details=`<h4>¿Qué mide el AX-CPT?</h4><p>Es una tarea de atención sostenida con control del contexto: la letra-señal determina cómo hay que responder a la sonda. Fallar en B→X indica que la señal no se mantuvo en mente cuando llegó la X; fallar en A→Y indica que la señal A empujó a decir «Sí» por anticipación. El índice d′-contexto compara tus aciertos en A→X con tus «Sí» erróneos en B→X (0 = no distingue; más alto = distingue mejor). Con pocos ensayos B→X es muy poco fiable.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:okN,wrong:n-okN,total:n,acc:okN/n,score:okN,rt:rts.length?avg(rts):null,metrics,details,extra:{mode,dctx,early,faRate:nonT.length?fa/nonT.length:0,omRate:omN/n,errBX:err('BX'),errAY:err('AY')}}}}
  }});
 /* =====================================================================
    MUNDO 4 — MATH SPEED
