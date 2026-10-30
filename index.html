@@ -762,6 +762,17 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .rh-key{position:relative;flex:1;min-width:0;min-height:140px;padding:0 0 .6rem;border-radius:0 0 12px 12px;border:1px solid #9CC2FF;background:#F2F6FF;color:#16213F;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;font-weight:700;transition:background .08s,transform .08s}
 .rh-key b{font-size:.8rem}.rh-key .kbd{position:absolute;top:6px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.1);color:#16213F;border-color:rgba(0,0,0,.2)}.rh-key.lit{background:#35E6DF;transform:translateY(2px)}
 @media (max-width:420px){.rh-key b{font-size:.68rem}.rh-kb{padding:.5rem;gap:4px}}
+.circ-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.6rem}
+.circ{display:flex;flex-direction:column;gap:.3rem;text-align:left;padding:.8rem .9rem;border-radius:16px;border:1px solid var(--line-2);background:rgba(var(--ov),.04);color:inherit;cursor:pointer;font:inherit;transition:border-color .15s,background .15s}
+.circ b{display:flex;align-items:center;gap:.45rem}.circ small{color:var(--muted);line-height:1.35}.circ-ic{display:inline-grid;width:22px;height:22px;color:var(--c)}.circ-ic svg{width:100%;height:100%}
+.circ:hover{border-color:var(--c)}.circ.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent)}.circ:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.coach-list{display:grid;gap:.7rem}
+.ins-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.8rem}
+.ins-m{padding:.9rem 1rem;border-radius:16px;border:1px solid var(--line-2);background:rgba(var(--ov),.04);display:flex;flex-direction:column;gap:.3rem}
+.ins-m.up{border-color:rgba(61,220,132,.4)}.ins-m.down{border-color:rgba(255,84,112,.35)}.ins-mh{display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.ins-mv{font:800 1.7rem var(--display);font-variant-numeric:tabular-nums}.ins-ms{display:flex;flex-wrap:wrap;gap:.3rem .8rem;font-size:var(--t-sm)}
+.ins-k{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;text-align:center}.ins-k b{display:block;font:800 1.5rem var(--display)}.ins-k small{color:var(--muted)}
+.ins-wk{display:flex;gap:.4rem;align-items:flex-end;height:72px;margin-top:.8rem}.ins-wk div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}.ins-wk i{width:100%;min-height:3px;border-radius:5px;background:var(--teal);display:block}.ins-wk small{font-size:.65rem;color:var(--muted)}
 .cb{max-width:560px;gap:.9rem}
 .cb-board{display:flex;flex-direction:column;gap:.4rem;width:100%;max-width:440px;max-height:clamp(190px,40vh,330px);overflow-y:auto;overscroll-behavior:contain;padding:2px}
 .cb-row{display:flex;align-items:center;gap:.6rem;padding:.3rem .55rem;border-radius:14px;border:1px solid var(--line-2);background:rgba(var(--ov),.03)}
@@ -1515,7 +1526,7 @@ const KEY='neuroverse-ai.v1',VERSION=1;
 let S=null,storageOK=true;
 function defaults(){return{app:'neuroverse-ai',version:VERSION,createdAt:Date.now(),
  profile:{name:'',goal:'balanced',dailyMinutes:15,startLevel:1,onboarded:false,tourDone:false},
- settings:{sound:true,volume:.55,sfxVol:.8,gameVol:1,musicOn:false,musicVol:.35,inst:'piano',motion:'auto',textScale:1,contrast:false,colorAssist:false,noSpeed:false,haptics:true,theme:'night',focus:false},
+ baselines:[],settings:{sound:true,volume:.55,sfxVol:.8,gameVol:1,musicOn:false,musicVol:.35,inst:'piano',motion:'auto',textScale:1,contrast:false,colorAssist:false,noSpeed:false,haptics:true,theme:'night',focus:false},
  xp:0,skillXp:Object.fromEntries(SKILLS.map(s=>[s.id,0])),
  games:{},results:[],sessions:[],days:{},achievements:{},missions:{},adaptLog:[],
  srs:{it:{},fr:{},en:{}},recent:{words:[],patterns:[],anagrams:[],logic:[]},
@@ -1949,6 +1960,37 @@ const ACH=[
  {id:'early',name:'Mente madrugadora',desc:'Completa una actividad antes de las 9:00.',icon:'sun',c:'#FFB547',test:r=>!!(r&&new Date(r.ts).getHours()<9)}
 ];
 function checkAch(res){const out=[];for(const a of ACH){if(S.achievements[a.id])continue;let ok=false;try{ok=a.test(res)}catch(e){}if(ok){S.achievements[a.id]=Date.now();out.push(a)}}return out}
+/* ---------- Logros 3.0: nuevos juegos, mundos completos, jefes y referencia ---------- */
+const worldDone=sid=>SK[sid].games.every(g=>(S.games[g]?.plays||0)>0);
+ACH.push(
+ {id:'matrix6',name:'Ojo para las reglas',desc:'Resuelve 6 matrices lógicas en una partida.',icon:'matrix',c:'#35E6DF',test:r=>!!(r&&r.game==='matrix'&&r.correct>=6)},
+ {id:'matrixerr',name:'Cazador de errores',desc:'Encuentra la figura que rompe las reglas con ≥ 90 % en al menos 6 matrices.',icon:'matrix',c:'#FFB547',test:r=>!!(r&&r.game==='matrix'&&r.mode==='error'&&r.acc>=.9&&r.total>=6)},
+ {id:'code4',name:'Descifrador',desc:'Descifra un código en 4 intentos o menos de media.',icon:'code',c:'#FF65C7',test:r=>!!(r&&r.game==='code'&&r.mode!=='deduce'&&r.correct>=1&&(r.extra.avgAttempts||99)<=4)},
+ {id:'deduce3',name:'Detective',desc:'Resuelve 3 rejillas de Deducción maestra a la primera comprobación.',icon:'deduction',c:'#9B6DFF',test:r=>!!(r&&r.game==='deduction'&&(r.extra.first||0)>=3)},
+ {id:'rot90',name:'Giro perfecto',desc:'Acierta ≥ 90 % en Rotación mental con al menos 8 figuras.',icon:'rotation',c:'#538CFF',test:r=>!!(r&&r.game==='rotation'&&r.acc>=.9&&r.total>=8)},
+ {id:'circ6',name:'Ingeniero lógico',desc:'Acierta ≥ 90 % en Circuitos lógicos con al menos 6 circuitos.',icon:'circuit',c:'#FFB547',test:r=>!!(r&&r.game==='circuit'&&r.acc>=.9&&r.total>=6)},
+ {id:'strat95',name:'Estratega',desc:'Resuelve 3 puzles con una eficiencia de planificación ≥ 95 %.',icon:'strategy',c:'#3DDC84',test:r=>!!(r&&r.game==='strategy'&&(r.extra.eff||0)>=.95&&r.correct>=3)},
+ {id:'flanker60',name:'Filtro fino',desc:'Efecto de conflicto inferior a 60 ms en un Flanker de al menos 20 ensayos.',icon:'flanker',c:'#35E6DF',test:r=>!!(r&&r.game==='flanker'&&r.extra.conflict!=null&&r.extra.conflict<60&&r.total>=20)},
+ {id:'vsearch90',name:'Ojo de halcón',desc:'Acierta ≥ 90 % en Búsqueda visual con al menos 10 pantallas.',icon:'vsearch',c:'#FFB547',test:r=>!!(r&&r.game==='vsearch'&&r.acc>=.9&&r.total>=10)},
+ {id:'mot3',name:'Rastreador',desc:'Logra 3 rondas perfectas de Sigue los puntos en una partida.',icon:'mot',c:'#FF65C7',test:r=>!!(r&&r.game==='mot'&&(r.extra.perfect||0)>=3)},
+ {id:'blink70',name:'Atención sin parpadeo',desc:'Acierta ≥ 70 % de las rondas del Parpadeo atencional (mín. 8 rondas).',icon:'blink',c:'#9B6DFF',test:r=>!!(r&&r.game==='blink'&&r.acc>=.7&&r.total>=8)},
+ {id:'cpt2',name:'Contexto firme',desc:'Consigue un d′-contexto ≥ 2 en el AX-CPT.',icon:'cpt',c:'#35E6DF',test:r=>!!(r&&r.game==='cpt'&&r.extra.dctx!=null&&r.extra.dctx>=2)},
+ {id:'rule3',name:'Inductor',desc:'Descubre las 3 reglas de una partida de Descubre la regla.',icon:'rulefind',c:'#C58BFF',test:r=>!!(r&&r.game==='rulefind'&&r.correct>=3&&r.total>=3)},
+ {id:'rev2',name:'Adaptable',desc:'Máximo 2 errores perseverativos en una partida de Aprendizaje inverso (mín. 30 elecciones).',icon:'reversal',c:'#3DDC84',test:r=>!!(r&&r.game==='reversal'&&r.extra.persev!=null&&r.extra.persev<=2&&r.total>=30)},
+ {id:'agl1',name:'Oído gramatical',desc:'Consigue d′ ≥ 1 en el Lenguaje alienígena.',icon:'agl',c:'#FF65C7',test:r=>!!(r&&r.game==='agl'&&r.extra.dprime!=null&&r.extra.dprime>=1)},
+ {id:'pitch05',name:'Oído fino',desc:'Umbral de altura estimado inferior a 0,5 semitonos en los Tonos.',icon:'rhythm',c:'#538CFF',test:r=>!!(r&&r.game==='rhythm'&&r.mode==='pitch'&&r.extra.threshold!=null&&r.extra.threshold<.5)},
+ {id:'pulse5',name:'Metrónomo humano',desc:'Mantén el pulso con una variación inferior al 5 % en una ronda estable.',icon:'rhythm',c:'#FFB547',test:r=>!!(r&&r.game==='rhythm'&&r.mode==='pulse'&&r.extra.cv!=null&&r.extra.cv<.05&&r.correct>=1)},
+ {id:'dict4',name:'Dictado de concierto',desc:'Reproduce sin fallos 4 dictados musicales en una partida.',icon:'rhythm',c:'#9B6DFF',test:r=>!!(r&&r.game==='rhythm'&&r.mode==='dictation'&&r.correct>=4)},
+ {id:'audiophile',name:'Siete modos, un ritmo',desc:'Prueba los 7 modos de Ritmo y secuencia.',icon:'rhythm',c:'#35E6DF',test:()=>new Set(S.results.filter(x=>x.game==='rhythm').map(x=>x.mode)).size>=7,prog:()=>[new Set(S.results.filter(x=>x.game==='rhythm').map(x=>x.mode)).size,7]},
+ {id:'wlogic',name:'Mundo lógico completo',desc:'Prueba todos los juegos de Razonamiento lógico.',icon:'logic',c:'#35E6DF',test:()=>worldDone('logic'),prog:()=>[SK.logic.games.filter(g=>S.games[g]?.plays>0).length,SK.logic.games.length]},
+ {id:'wattn',name:'Mundo de atención completo',desc:'Prueba todos los juegos de Atención y control.',icon:'hunt',c:'#FF65C7',test:()=>worldDone('attention'),prog:()=>[SK.attention.games.filter(g=>S.games[g]?.plays>0).length,SK.attention.games.length]},
+ {id:'wmem',name:'Mundo de memoria completo',desc:'Prueba todos los juegos de Memoria.',icon:'memory',c:'#9B6DFF',test:()=>worldDone('memory'),prog:()=>[SK.memory.games.filter(g=>S.games[g]?.plays>0).length,SK.memory.games.length]},
+ {id:'wlearn',name:'Mundo de aprendizaje completo',desc:'Prueba todos los juegos de Aprendizaje y flexibilidad.',icon:'learning',c:'#C58BFF',test:()=>worldDone('learning'),prog:()=>[SK.learning.games.filter(g=>S.games[g]?.plays>0).length,SK.learning.games.length]},
+ {id:'boss',name:'Cazador de jefes',desc:'Supera un Jefe cognitivo con ≥ 60 % en sus 4 desafíos.',icon:'crown',c:'#FF5470',test:()=>S.sessions.some(s=>s.boss)},
+ {id:'circuits5',name:'Todos los circuitos',desc:'Completa 5 circuitos diarios distintos.',icon:'brain',c:'#538CFF',test:()=>new Set(S.sessions.filter(s=>s.completed).map(s=>s.circuit).filter(Boolean)).size>=5,prog:()=>[new Set(S.sessions.filter(s=>s.completed).map(s=>s.circuit).filter(Boolean)).size,5]},
+ {id:'base1',name:'Punto de partida',desc:'Completa la evaluación de referencia.',icon:'flag',c:'#35E6DF',test:()=>(S.baselines||[]).length>=1},
+ {id:'base2',name:'Antes y después',desc:'Repite la evaluación de referencia para comparar tu evolución.',icon:'trend',c:'#3DDC84',test:()=>(S.baselines||[]).length>=2}
+);
 
 /* ---------- Misiones diarias ---------- */
 const MISSIONS=[
@@ -1965,6 +2007,14 @@ const MISSIONS=[
  {id:'logic3',text:'Completa 3 actividades de lógica',target:3,prog:t=>t.filter(r=>r.skill==='logic').length},
  {id:'flex2',text:'Juega 2 partidas de Stroop o Cambio de reglas',target:2,prog:t=>t.filter(r=>r.game==='stroop'||r.game==='switch').length}
 ];
+MISSIONS.push(
+ {id:'matrix6',text:'Resuelve 6 matrices lógicas',target:6,prog:t=>sum(t.filter(r=>r.game==='matrix').map(r=>r.correct))},
+ {id:'att4',text:'Completa 4 actividades de atención',target:4,prog:t=>t.filter(r=>r.skill==='attention').length},
+ {id:'learn2',text:'Juega 2 desafíos de aprendizaje y flexibilidad',target:2,prog:t=>t.filter(r=>r.skill==='learning').length},
+ {id:'rule1',text:'Descubre una regla en «Descubre la regla»',target:1,prog:t=>t.some(r=>r.game==='rulefind'&&r.correct>=1)?1:0},
+ {id:'plan2',text:'Resuelve 2 puzles de planificación (Estrategia)',target:2,prog:t=>sum(t.filter(r=>r.game==='strategy').map(r=>r.correct))},
+ {id:'music2',text:'Juega 2 partidas de Ritmo y secuencia',target:2,prog:t=>t.filter(r=>r.game==='rhythm').length}
+);
 function missionToday(){const d=today();let m=S.missions[d];if(!m){const r=seeded('mision'+d),def=MISSIONS[Math.floor(r()*MISSIONS.length)];m=S.missions[d]={id:def.id,done:false,...(def.init?def.init():{})};save()}return m}
 function missionInfo(){const m=missionToday(),def=MISSIONS.find(x=>x.id===m.id)||MISSIONS[0],t=S.results.filter(r=>r.date===today());const p=m.done?def.target:Math.min(def.target,def.prog(t,m));return {m,def,prog:p,target:def.target,text:typeof def.text==='function'?def.text(m):def.text,done:m.done}}
 function checkMission(){const i=missionInfo();if(i.m.done)return null;if(i.prog>=i.target){i.m.done=true;i.m.ts=Date.now();S.xp+=40;return i}return null}
@@ -2672,26 +2722,30 @@ function gameCard(gid){const d=GAMES[gid],s=SK[d.skill],g=S.games[gid],lv=gs(gid
    <button class="btn btn-primary" data-play="${gid}">${ic('play')} Jugar</button></article>`}
 
 /* ---------- MISIÓN DE HOY (briefing) ---------- */
-function todayPlan(minutes,skills){
+function todayPlan(minutes,skills,circuit){
   if(S.today.date!==today())S.today={date:today(),variant:0,minutes:0,plan:null,key:''};
-  const key=`${today()}|${minutes}|${S.today.variant}|${(skills||[]).join(',')}|${S.settings.noSpeed?1:0}|${S.profile.goal}`;
-  if(S.today.key!==key||!S.today.plan){S.today.key=key;S.today.minutes=minutes;S.today.plan=Daily.buildPlan(minutes,{skills,variant:S.today.variant});save()}
+  const circ=circuit&&circuit!=='balanced'?circuit:'',key=`${today()}|${minutes}|${S.today.variant}|${(skills||[]).join(',')}|${S.settings.noSpeed?1:0}|${S.profile.goal}|${circ}`;
+  if(S.today.key!==key||!S.today.plan){S.today.key=key;S.today.minutes=minutes;S.today.plan=circ?Daily.buildCircuit(circ,minutes,S.today.variant):Daily.buildPlan(minutes,{skills,variant:S.today.variant});save()}
   return S.today.plan
 }
 SCREENS.daily={title:'Misión de hoy',
  html(p){
   const st=UI.dstate||(UI.dstate={});
   if(p.minutes){st.minutes=p.minutes;st.custom=false;p.minutes=0}
-  st.minutes=st.minutes||S.profile.dailyMinutes||15;st.skills=st.skills||SKILLS.map(s=>s.id);
+  st.minutes=st.minutes||S.profile.dailyMinutes||15;st.skills=st.skills||SKILLS.map(s=>s.id);st.circuit=st.circuit||'balanced';
   const presets=[[5,'Express','5 min · 3 actividades'],[15,'Estándar','15 min · 7 actividades'],[25,'Intensivo','25 min · 9 actividades']];
   const isCustom=st.custom||!presets.some(x=>x[0]===st.minutes);
-  const plan=todayPlan(st.minutes,isCustom?st.skills:null),mi=missionInfo(),an=anomalyToday();
+  const plan=todayPlan(st.minutes,isCustom?st.skills:null,st.circuit),mi=missionInfo(),an=anomalyToday();
   const ts=S.sessions.filter(s=>s.date===today()),tmin=Math.round(sum(ts.map(s=>s.actualSec))/60),total=sum(plan.map(p=>p.budget));
   const route=plan.map((p,i)=>{const g=GAMES[p.game],s=SK[g.skill];return `<div class="rt-step" style="--c:${s.color}"><div class="rt-n">${ic(g.icon)}</div><div class="rt-t"><b>${i+1}. ${esc(g.name)}</b><small>${s.short} · nivel ${gs(p.game).level}${p.why?' · '+p.why:''}</small></div><div class="pi-d">${fmtClock(p.budget*1000)}</div></div>`}).join('');
   return `<div class="sec-h"><div><div class="eyebrow">${fmtDate(today())} · Mi misión cerebral de hoy</div><h1 class="codename" style="margin-top:.35rem">Operación ${esc(missionName())}</h1><p>Un entrenamiento organizado automáticamente que combina habilidades distintas.</p></div></div>
   ${ts.length?`<div class="banner-warn" style="background:rgba(61,220,132,.1);border-color:rgba(61,220,132,.4);color:#c4f7d9">Hoy llevas ${ts.length} ${ts.length===1?'sesión':'sesiones'} (${tmin} min reales${ts.some(s=>s.completed)?', misión completada ✓':''}). Puedes volver a entrenar: los resultados se suman.</div>`:''}
   <div class="g-main">
    <div class="stack">
+    <div class="card pad-lg">
+      <h3>Circuito de hoy</h3><p class="small" style="margin:.3rem 0 .7rem">Elige cómo componer tu misión. Con «Jefe cognitivo» la duración es fija (unos 10 min) y se ignora la de abajo.</p>
+      <div class="circ-grid" id="d-circ">${CIRCUITS.map(c=>`<button type="button" class="circ ${st.circuit===c.id?'on':''}" data-c="${c.id}" style="--c:${c.c}" aria-pressed="${st.circuit===c.id}"><b><span class="circ-ic">${ic(c.icon)}</span>${c.name}</b><small>${c.desc}</small></button>`).join('')}</div>
+    </div>
     <div class="card pad-lg">
       <h3>1 · Duración</h3>
       <div class="seg" style="margin-top:.7rem" id="d-presets">${presets.map(([m,n,d])=>`<button data-m="${m}" class="${!isCustom&&st.minutes===m?'on':''}">${n}<small>${d}</small></button>`).join('')}<button data-m="custom" class="${isCustom?'on':''}">Personalizado<small>Tú eliges</small></button></div>
@@ -2729,12 +2783,13 @@ SCREENS.daily={title:'Misión de hoy',
   </div>`},
  mount(m){
   const st=UI.dstate;
+  $$('#d-circ button',m).forEach(b=>b.onclick=()=>{st.circuit=b.dataset.c;S.today.variant=0;UI.render()});
   $$('#d-presets button',m).forEach(b=>b.onclick=()=>{if(b.dataset.m==='custom'){st.custom=true}else{st.custom=false;st.minutes=+b.dataset.m}UI.render()});
   const r=$('#d-min',m);if(r){r.oninput=()=>{$('#d-minv').textContent=r.value+' min'};r.onchange=()=>{st.minutes=+r.value;st.custom=true;UI.render()}}
   $$('#d-skills .chip',m).forEach(b=>b.onclick=()=>{const id=b.dataset.s;st.skills=st.skills.includes(id)?st.skills.filter(x=>x!==id):[...st.skills,id];if(!st.skills.length)st.skills=[id];st.custom=true;UI.render()});
   $$('#d-energy button',m).forEach(b=>b.onclick=()=>{st.energy=st.energy===b.dataset.e?null:b.dataset.e;$$('#d-energy button',m).forEach(x=>x.classList.toggle('on',x.dataset.e===st.energy))});
   $('#d-vary',m).onclick=()=>{S.today.variant=(S.today.variant||0)+1;UI.render()};
-  $('#d-start',m).onclick=e=>{const presets=[5,15,25],isCustom=st.custom||!presets.includes(st.minutes),[x,y]=origin(e,e.currentTarget),plan=todayPlan(st.minutes,isCustom?st.skills:null),meta={type:isCustom?'custom':'daily',minutes:st.minutes,energy:st.energy?+st.energy:null};Transition.iris('#6B6BFF',x,y,()=>Daily.begin(plan,meta))};
+  $('#d-start',m).onclick=e=>{const presets=[5,15,25],isCustom=st.custom||!presets.includes(st.minutes),[x,y]=origin(e,e.currentTarget),plan=todayPlan(st.minutes,isCustom?st.skills:null,st.circuit),cr=CIRCUITS.find(c=>c.id===st.circuit),meta={type:isCustom?'custom':'daily',minutes:st.minutes,energy:st.energy?+st.energy:null,circuit:st.circuit==='balanced'?null:st.circuit,name:st.circuit==='balanced'?undefined:cr.name};Transition.iris('#6B6BFF',x,y,()=>Daily.begin(plan,meta))};
  }};
 
 /* ---------- ESTADÍSTICAS · CENTRO DE INTELIGENCIA ---------- */
@@ -2811,7 +2866,7 @@ SCREENS.stats={title:'Mi evolución',
   const bestR=arr.filter(r=>r.score!=null).reduce((b,r)=>!b||betterFn(r,b)?r:b,null)||arr.reduce((b,r)=>!b||r.acc>b.acc?r:b,null);
   const trend=arr.length>=4?avg(arr.slice(-3).map(r=>r.acc))-avg(arr.slice(-6,-3).map(r=>r.acc)):null;
   const cmpCell=(lbl,r)=>`<div class="cmp"><small>${lbl}</small><b>${r?pct(r.acc):'—'}</b><span>${r?`${def.metric.label}: ${fmtScore(cg,r.score)} · ${fmtDate(r.date)}`:''}</span></div>`;
-  return `<div class="sec-h"><div><div class="eyebrow">Centro de inteligencia</div><h1>MI EVOLUCIÓN COGNITIVA</h1><p>Rendimiento dentro de los juegos. No es una medición clínica ni científica de tus capacidades.</p></div></div>
+  return `<div class="sec-h"><div><div class="eyebrow">Centro de inteligencia</div><h1>MI EVOLUCIÓN COGNITIVA</h1><p>Rendimiento dentro de los juegos. No es una medición clínica ni científica de tus capacidades.</p></div><button class="btn btn-primary" data-go="insights">${ic('brain')} Cognitive Insights</button></div>
   <div class="kpis stagger">${kpi('history','#35E6DF',cnt(Math.round(S.stats.totalSec/60))+'<small>min</small>','Tiempo total')}${kpi('daily','#538CFF',cnt(S.stats.activities),'Actividades')}${kpi('check','#9B6DFF',last30.length?cnt(Math.round(avg(last30.map(r=>r.acc))*100))+'<small>%</small>':'—','Precisión media (30 d)')}${kpi('calendar','#FF65C7',cnt(st.total),'Días entrenados',`Racha ${st.current} · mejor ${st.best}`)}</div>
   <section class="section card pad-lg"><div class="sec-h"><div><div class="eyebrow">Radar de habilidades</div><h2>Tu perfil de rendimiento</h2><p>Toca o pasa el ratón por cada eje para ver su significado.</p></div></div>
    <div class="radar-wrap"><div>${radarSVG()}</div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Habilidad</th><th class="n">Índice</th><th class="n">Nivel</th><th class="n">Actividades</th></tr></thead><tbody>${SKILLS.map(s=>{const v=skillPerf(s.id);return `<tr><td><span style="color:${s.color}">●</span> ${s.short}</td><td class="n">${v??'<span class="dim">sin datos</span>'}</td><td class="n">${skillLvl(s.id).level}</td><td class="n">${R.filter(r=>r.skill===s.id).length}</td></tr>`}).join('')}</tbody></table><p class="note" style="margin-top:.7rem">Índice (0–100) = precisión media de tus 15 últimas actividades del área × 70 + nivel medio × 3. Las áreas sin datos se marcan con un círculo punteado.</p></div></div></section>
@@ -2860,6 +2915,77 @@ function astroSVG(){const pt=innerWidth<640,VW=pt?520:900,VH=pt?520:450;
     o+=`<g class="astro-star" tabindex="0" role="button" data-ach="${a.id}" aria-label="${esc(a.name)}: ${on?'desbloqueado':'bloqueado'}">${on?`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="26" fill="url(#ag-${a.id})"/><path class="tw" style="animation-delay:${(i%7)*.5}s" d="M${x.toFixed(1)} ${(y-11).toFixed(1)}L${(x+3).toFixed(1)} ${(y-3).toFixed(1)}L${(x+11).toFixed(1)} ${y.toFixed(1)}L${(x+3).toFixed(1)} ${(y+3).toFixed(1)}L${x.toFixed(1)} ${(y+11).toFixed(1)}L${(x-3).toFixed(1)} ${(y+3).toFixed(1)}L${(x-11).toFixed(1)} ${y.toFixed(1)}L${(x-3).toFixed(1)} ${(y-3).toFixed(1)}Z" fill="${a.c}" stroke="#fff" stroke-width=".8"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.6" fill="#fff"/>`:`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="none" stroke="rgba(150,170,220,.5)" stroke-width="1.2"/>`}<circle class="fr" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${pt?34:22}" fill="transparent" stroke="none"/></g>`});
   return o+'</svg>'
 }
+/* ---------- COGNITIVE INSIGHTS ----------
+   Lectura de tus resultados reales: métricas específicas de las tareas nuevas, constancia, recomendaciones por reglas explicables y comparación con
+   la evaluación de referencia. Todo describe tu rendimiento en las tareas; no es un diagnóstico ni una medida clínica. */
+const INS_SPECS=[
+ {id:'conflict',g:'flanker',k:'conflict',label:'Efecto de conflicto',game:'Flanker',unit:' ms',better:'low',hint:'Cuánto más lentas son tus respuestas con flechas incongruentes.'},
+ {id:'slope',g:'vsearch',k:'slope',label:'Pendiente de búsqueda',game:'Búsqueda visual',unit:' ms/elem.',better:'low',hint:'Tiempo extra por cada elemento añadido a la pantalla.'},
+ {id:'dctx',g:'cpt',k:'dctx',label:'d′-contexto',game:'AX-CPT',unit:'',better:'high',dec:2,hint:'Cuánto distingues A→X de B→X: mantenimiento del contexto.'},
+ {id:'thr',g:'rhythm',m:'pitch',k:'threshold',label:'Umbral de altura',game:'Ritmo · Tonos',unit:' semitonos',better:'low',dec:2,hint:'Diferencia mínima de tono que distingues (depende de tu dispositivo).'},
+ {id:'cvp',g:'rhythm',m:'pulse',k:'cv',label:'Variación del pulso',game:'Ritmo · Pulso',unit:' %',better:'low',scale:100,dec:1,hint:'Regularidad de tus toques al mantener el tempo sin metrónomo.'},
+ {id:'persev',g:'reversal',k:'persev',label:'Errores perseverativos',game:'Aprendizaje inverso',unit:'',better:'low',dec:1,hint:'Veces que insistes en lo que ya no funciona tras una inversión.'},
+ {id:'eff',g:'strategy',k:'eff',label:'Eficiencia de planificación',game:'Laboratorio de estrategia',unit:' %',better:'high',scale:100,dec:0,hint:'Movimientos óptimos ÷ movimientos usados.'},
+ {id:'agld',g:'agl',k:'dprime',label:'Sensibilidad d′',game:'Lenguaje alienígena',unit:'',better:'high',dec:2,hint:'Distinguir palabras válidas de no válidas (0 = azar).'},
+ {id:'cons',g:'code',k:'consRate',label:'Intentos coherentes',game:'Descifra el código',unit:' %',better:'high',scale:100,dec:0,hint:'Intentos compatibles con todas las pistas anteriores.'},
+ {id:'rule',g:'rulefind',k:'avgTrials',label:'Cartas hasta la racha',game:'Descubre la regla',unit:'',better:'low',dec:1,hint:'Cuántas cartas necesitas para deducir la regla.'},
+ {id:'ceff',g:'circuit',m:'set',k:'eff',label:'Eficiencia de cambios',game:'Circuitos · Ajusta',unit:' %',better:'high',scale:100,dec:0,hint:'Cambios mínimos ÷ cambios realizados.'}
+];
+const insVals=sp=>S.results.filter(r=>r.game===sp.g&&(!sp.m||r.mode===sp.m)&&r.extra&&!r.extra.partial&&r.extra[sp.k]!=null&&isFinite(r.extra[sp.k])).map(r=>r.extra[sp.k]*(sp.scale||1));
+const insFmt=(sp,v)=>v==null?'—':(+v).toFixed(sp.dec??0)+(sp.unit||'');
+function insMetric(sp){const v=insVals(sp);if(!v.length)return {sp,n:0};const med=median(v.slice(-5)),tr=v.length>=6?avg(v.slice(-3))-avg(v.slice(-6,-3)):null;
+ const best=sp.better==='low'?Math.min(...v):Math.max(...v),mag=Math.max(Math.abs(med),1e-9);
+ const dir=tr==null||Math.abs(tr)<.04*mag?0:((tr<0)===(sp.better==='low')?1:-1); // 1 = mejora, -1 = empeora
+ return {sp,n:v.length,last:v.at(-1),med,best,tr,dir}}
+const insM=id=>insMetric(INS_SPECS.find(s=>s.id===id));
+function insightRecs(){
+ const recs=[],R=S.results,add=r=>recs.push(r);
+ SKILLS.forEach(s=>{if(!R.some(r=>r.skill===s.id)){const g=s.games.find(x=>GAMES[x]&&GAMES[x].daily);add({p:9,icon:s.icon,title:`Explora ${s.world}`,why:'Todavía no tienes datos de esta habilidad: completar tu mapa cognitivo afina todas las recomendaciones.',game:g,label:'Probar'})}});
+ SKILLS.forEach(s=>{const lp=lastPlayed(s.id);if(lp){const d=daysBetween(dkey(new Date(lp)),today());if(d>=6){const g=s.games.filter(x=>GAMES[x]&&GAMES[x].daily).sort((a,b)=>(S.games[a]?.last||0)-(S.games[b]?.last||0))[0];add({p:5+Math.min(d,14)/10,icon:s.icon,title:`Retoma ${s.short.toLowerCase()}`,why:`Llevas ${d} días sin practicar esta habilidad.`,game:g,label:'Jugar'})}}});
+ const c=insM('conflict');if(c.n>=2&&c.med>=110)add({p:7,icon:'hunt',title:'Entrena el control de la interferencia',why:`Tu efecto de conflicto reciente ronda ${Math.round(c.med)} ms (mediana de ${Math.min(c.n,5)} partidas). Las tareas de interferencia como el Flanker o el Stroop lo trabajan.`,game:'flanker',mode:'arrows',label:'Flanker'});
+ const d=insM('dctx');if(d.n>=2&&d.med<1)add({p:7,icon:'cpt',title:'Practica el mantenimiento del contexto',why:`Tu d′-contexto reciente es ${d.med.toFixed(2)}: te cuesta distinguir A→X de B→X. El AX-CPT entrena justo eso.`,game:'cpt',mode:'ax',label:'AX-CPT'});
+ const p=insM('persev');if(p.n>=2&&p.med>=4)add({p:7,icon:'reversal',title:'Trabaja la readaptación',why:`Tras cada inversión insistes en promedio ${p.med.toFixed(1)} veces en el símbolo anterior. El aprendizaje inverso practica soltar lo que ya no funciona.`,game:'reversal',label:'Aprendizaje inverso'});
+ const t=insM('thr');if(t.n>=2&&t.med>=1.5)add({p:5,icon:'rhythm',title:'Afina la discriminación de altura',why:`Tu umbral de altura reciente es de ${t.med.toFixed(2)} semitonos. Prueba los Tonos con auriculares y un volumen cómodo.`,game:'rhythm',mode:'pitch',label:'Tonos'});
+ const pc=insM('cvp');if(pc.n>=2&&pc.med>=8)add({p:5,icon:'rhythm',title:'Estabiliza tu pulso',why:`La variación entre tus toques es del ${pc.med.toFixed(1)} % (una ronda estable necesita ≤ 8 %).`,game:'rhythm',mode:'pulse',label:'Pulso estable'});
+ const cs=insM('cons');if(cs.n>=2&&cs.med<60)add({p:6,icon:'code',title:'Aprovecha mejor las pistas',why:`Solo el ${Math.round(cs.med)} % de tus intentos son compatibles con las pistas anteriores. Antes de cada intento, comprueba que podría ser el código.`,game:'code',mode:'colors',label:'Descifra el código'});
+ const ef=insM('eff');if(ef.n>=2&&ef.med<70)add({p:6,icon:'strategy',title:'Planifica antes de mover',why:`Tu eficiencia de planificación reciente es del ${Math.round(ef.med)} %. Dedica unos segundos a trazar la ruta completa antes del primer movimiento.`,game:'strategy',label:'Estrategia'});
+ const ag=insM('agld');if(ag.n>=2&&ag.med<.3)add({p:4,icon:'agl',title:'Aprende la gramática con feedback',why:`Tu d′ en el Lenguaje alienígena es ${ag.med.toFixed(2)} (≈ azar). El modo con feedback ayuda a inducir la estructura.`,game:'agl',mode:'feedback',label:'Con feedback'});
+ const rf=insM('rule');if(rf.n>=2&&rf.med>=20)add({p:4,icon:'rulefind',title:'Formula hipótesis más rápido',why:`Necesitas unas ${Math.round(rf.med)} cartas para deducir la regla. Usa los ejemplos recientes para descartar hipótesis.`,game:'rulefind',label:'Descubre la regla'});
+ return recs.sort((a,b)=>b.p-a.p).slice(0,5)}
+function insBaselineHTML(){
+ const B=S.baselines||[],last=B.at(-1),prev=B.at(-2);
+ const btn=`<button class="btn ${last?'':'btn-primary'}" id="ins-base">${ic('flag')} ${last?'Repetir la evaluación':'Hacer la evaluación de referencia'}</button>`;
+ if(!last)return `<p class="small">Seis tareas cortas a <b>nivel fijo (${BASELINE_LEVEL})</b> y sin adaptación, para que puedas comparar tu rendimiento a lo largo del tiempo en condiciones idénticas. Dura unos 6-7 minutos. No es un test de inteligencia ni una prueba clínica.</p><div style="margin-top:.8rem">${btn}</div>`;
+ const age=daysBetween(last.date,today());
+ const rows=last.items.map(it=>{const p=prev&&prev.items.find(x=>x.game===it.game),d=p?it.acc-p.acc:null;return `<tr><td>${esc(GAMES[it.game]?.name||it.game)}</td><td class="n">${pct(it.acc)}</td><td class="n">${p?pct(p.acc):'<span class="dim">—</span>'}</td><td class="n ${d==null?'':d>.02?'up':d<-.02?'down':''}">${d==null?'—':(d>=0?'+':'')+Math.round(d*100)+' pts'}</td></tr>`}).join('');
+ return `<p class="small">Última evaluación: <b>${fmtDate(last.date)}</b> (hace ${age} día${age===1?'':'s'}) · nivel fijo ${BASELINE_LEVEL}. ${prev?`Comparada con la del ${fmtDate(prev.date)}.`:'Repítela en 30 días o más para ver tu evolución en condiciones idénticas.'}</p>
+  <div class="tbl-wrap" style="margin-top:.6rem"><table class="tbl"><thead><tr><th>Tarea</th><th class="n">Ahora</th><th class="n">Antes</th><th class="n">Cambio</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="note" style="margin-top:.5rem">${age>=30?'Han pasado más de 30 días: es un buen momento para repetirla.':'Recomendamos repetirla cuando hayan pasado al menos 30 días.'} Los cambios pequeños pueden deberse al azar o a tu estado ese día.</p><div style="margin-top:.8rem">${btn}</div>`}
+SCREENS.insights={title:'Cognitive Insights',
+ html(p){
+  const R=S.results;
+  if(!R.length)return `<div class="sec-h"><div><div class="eyebrow">Neuro AI · análisis</div><h1>COGNITIVE INSIGHTS</h1></div></div><div class="empty" style="padding:3rem 1.2rem">${ic('brain')}<h3>Aquí aparecerán tus patrones</h3><p>Cuando completes algunas actividades verás métricas específicas de cada tarea, tu constancia y recomendaciones basadas en tus datos reales. Mientras tanto puedes hacer la evaluación de referencia.</p><button class="btn btn-primary btn-lg" id="ins-base">${ic('flag')} Hacer la evaluación de referencia</button></div>`;
+  const recs=insightRecs(),mets=INS_SPECS.map(insMetric),withData=mets.filter(m=>m.n>0),without=mets.filter(m=>!m.n);
+  const days30=Object.keys(S.days||{}).filter(d=>(S.days[d].sec||0)>0&&daysBetween(d,today())<30),sess30=S.sessions.filter(s=>daysBetween(s.date,today())<30),st=streak();
+  const minAct=days30.length?Math.round(sum(days30.map(d=>S.days[d].sec))/60/days30.length):0;
+  const wk=[0,0,0,0,0,0,0];days30.forEach(d=>{wk[(new Date(d+'T12:00:00').getDay()+6)%7]++});const WD=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'],wmax=Math.max(1,...wk);
+  const metCard=m=>`<div class="ins-m ${m.dir>0?'up':m.dir<0?'down':''}"><div class="ins-mh"><b>${m.sp.label}</b><span class="tag" style="--c:#9CC2FF">${m.sp.game}</span></div><div class="ins-mv">${insFmt(m.sp,m.med)}</div><div class="small muted">${m.sp.hint}</div><div class="ins-ms"><span>Última: <b>${insFmt(m.sp,m.last)}</b></span><span>Mejor: <b>${insFmt(m.sp,m.best)}</b></span><span>${m.n} partida${m.n>1?'s':''}</span>${m.tr==null?'<span class="dim">tendencia: necesita 6+</span>':`<span class="${m.dir>0?'up':m.dir<0?'down':'dim'}">${m.dir>0?'▲ mejora':m.dir<0?'▼ empeora':'= estable'}</span>`}</div></div>`;
+  return `<div class="sec-h"><div><button class="btn btn-ghost btn-sm" data-go="stats" style="margin-bottom:.5rem">${ic('chevL')} Mi evolución</button><div class="eyebrow">Neuro AI · análisis</div><h1>COGNITIVE INSIGHTS</h1><p>Lo que dicen tus resultados recientes sobre cada tarea. Describe tu rendimiento en estos juegos: no es un diagnóstico ni una medida clínica.</p></div></div>
+  <section class="section card pad-lg"><div class="sec-h"><div><div class="eyebrow">Neuro AI · recomendaciones</div><h2>Qué te conviene ahora</h2><p>Reglas sencillas y explicables sobre tus últimas partidas; tú decides.</p></div></div>
+   ${recs.length?`<div class="coach-list">${recs.map(r=>`<div class="coach-tip" style="--c:#35E6DF"><div class="ct-ic">${ic(r.icon)}</div><div><p><b>${esc(r.title)}</b><br>${esc(r.why)}</p><button class="btn btn-sm" data-rec="${r.game}|${r.mode||''}">${esc(r.label)} ${ic('chevR')}</button></div></div>`).join('')}</div>`:'<p class="small">No hay nada que corregir por ahora: tus métricas recientes no activan ninguna regla. Sigue con tu rutina.</p>'}</section>
+  <section class="section card pad-lg"><div class="sec-h"><div><div class="eyebrow">Métricas específicas</div><h2>Lo que miden las tareas nuevas</h2><p>Mediana de tus últimas 5 partidas con datos suficientes, mejor marca y tendencia (3 últimas frente a 3 anteriores).</p></div></div>
+   ${withData.length?`<div class="ins-grid">${withData.map(metCard).join('')}</div>`:'<p class="small">Todavía no hay partidas con estas métricas. Juega Flanker, Búsqueda visual, AX-CPT, Tonos, Pulso estable, Estrategia o Aprendizaje inverso para verlas aquí.</p>'}
+   ${without.length&&withData.length?`<p class="note" style="margin-top:.8rem">Sin datos todavía: ${without.map(m=>esc(m.sp.game+' ('+m.sp.label.toLowerCase()+')')).join(' · ')}.</p>`:''}</section>
+  <section class="section grid2">
+   <div class="card pad-lg"><div class="eyebrow">Habilidades</div><h3 style="margin:.2rem 0 .8rem">Resumen por área</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Habilidad</th><th class="n">Índice</th><th class="n">Nivel</th><th class="n">Tendencia</th></tr></thead><tbody>${SKILLS.map(s=>{const v=skillPerf(s.id),t=skillTrend(s.id),d=t?t.a-t.b:null;return `<tr><td><span style="color:${s.color}">●</span> ${s.short}</td><td class="n">${v??'<span class="dim">—</span>'}</td><td class="n">${skillLvl(s.id).level}</td><td class="n ${d==null||Math.abs(d)<.03?'dim':d>0?'up':'down'}">${d==null?'—':Math.abs(d)<.03?'= estable':(d>0?'▲ +':'▼ ')+Math.round(d*100)+' pts'}</td></tr>`}).join('')}</tbody></table></div></div>
+   <div class="card pad-lg"><div class="eyebrow">Constancia</div><h3 style="margin:.2rem 0 .8rem">Últimos 30 días</h3>
+    <div class="ins-k"><div><b>${days30.length}</b><small>días entrenados</small></div><div><b>${sess30.length}</b><small>sesiones</small></div><div><b>${minAct}</b><small>min por día activo</small></div><div><b>${st.best}</b><small>mejor racha</small></div></div>
+    <div class="ins-wk" role="img" aria-label="Días entrenados por día de la semana">${wk.map((n,i)=>`<div><i style="height:${Math.round(n/wmax*100)}%"></i><small>${WD[i]}</small></div>`).join('')}</div><p class="note">Barras: cuántos de tus días entrenados cayeron en cada día de la semana.</p></div>
+  </section>
+  <section class="section card pad-lg"><div class="sec-h"><div><div class="eyebrow">Condiciones idénticas</div><h2>Evaluación de referencia</h2></div></div>${insBaselineHTML()}</section>`},
+ mount(m){
+  const base=$('#ins-base',m);if(base)base.onclick=e=>{const [x,y]=origin(e,e.currentTarget);Transition.iris('#6B6BFF',x,y,()=>Daily.startBaseline())};
+  $$('[data-rec]',m).forEach(b=>b.onclick=()=>{const [g,mode]=b.dataset.rec.split('|');if(GAMES[g])Play.open(g,{mode:mode||undefined})})}};
 SCREENS.achievements={title:'Logros',
  html(){const n=Object.keys(S.achievements).length;return `<div class="sec-h"><div><div class="eyebrow">Constelación de logros</div><h1>Logros</h1><p>${n} de ${ACH.length} estrellas encendidas. Cada logro tiene una regla verificable.</p></div><div style="width:min(260px,100%)">${bar(n/ACH.length,'var(--orange)')}</div></div>
  <div class="astro-wrap">${astroSVG()}<div class="astro-info" id="astro-info" aria-live="polite"><b>${n?'Tu constelación':'Una constelación por encender'}</b><span class="muted">${n?'Pasa el ratón o toca una estrella para ver su logro. Las líneas unen tus logros en el orden en que los conseguiste.':'Cada logro que consigas encenderá una estrella. Toca cualquier estrella para ver cómo conseguirla.'}</span></div></div>
@@ -3261,7 +3387,7 @@ const Daily={run:null,
  explorePlan(){return [{game:'stroop',budget:75,why:'atención'},{game:'sequence',budget:100,why:'memoria'},{game:'pattern',budget:110,why:'lógica'}]},
  begin(plan,meta={}){
   if(!plan||!plan.length)return;
-  this.run={id:uid(),ts:Date.now(),date:today(),plan:plan.map(p=>({...p})),idx:0,st:[],done:[],skipped:[],outs:[],type:meta.type||'daily',minutes:meta.minutes||Math.round(sum(plan.map(p=>p.budget))/60),energy:meta.energy||null,hits:0,exited:false,name:meta.name||missionName(),xp0:S.xp};
+  this.run={id:uid(),ts:Date.now(),date:today(),plan:plan.map(p=>({...p})),idx:0,st:[],done:[],skipped:[],outs:[],circuit:meta.circuit||null,type:meta.type||'daily',minutes:meta.minutes||Math.round(sum(plan.map(p=>p.budget))/60),energy:meta.energy||null,hits:0,exited:false,name:meta.name||missionName(),xp0:S.xp};
   Play.showShell();this.showStep(null);
  },
  activityDone(out,info){
@@ -3286,9 +3412,11 @@ const Daily={run:null,
   const st=$('#stage');st.className='stage';st.scrollTop=0;
   if(!r.done.length){st.innerHTML=`<div class="card intro" style="text-align:center;align-items:center"><div class="intro-ic">${ic('info')}</div><h2>Sesión sin actividades</h2><p>No completaste ninguna actividad, así que la sesión no se registró. ¡Vuelve cuando quieras!</p><button class="btn btn-primary" id="sm-home">Volver al centro de control</button></div>`;$('#sm-home').onclick=()=>{Play.close(true);UI.go('home')};return}
   const completed=!r.exited&&!r.skipped.length&&r.done.length===r.plan.length&&!r.done.some(d=>d.partial);
-  const before=globalLvl().level,actualSec=sum(r.done.map(d=>d.dur)),bonus=completed?50:0;S.xp+=bonus;
-  const sess={id:r.id,ts:r.ts,date:r.date,type:r.type,minutes:r.minutes,planned:r.plan.map(p=>({game:p.game,budget:p.budget})),actualSec,activities:r.done.map(d=>({game:d.game,acc:d.res.acc,xp:d.xp,dur:d.dur,res:d.res.id,partial:d.partial||undefined})),skipped:r.skipped.length,completed,xp:sum(r.done.map(d=>d.xp))+bonus,bonus,energy:r.energy,name:r.name};
+  const bossWin=r.circuit==='boss'&&completed&&r.done.every(d=>d.res.acc>=.6);
+  const before=globalLvl().level,actualSec=sum(r.done.map(d=>d.dur)),bonus=(completed?50:0)+(bossWin?40:0);S.xp+=bonus;
+  const sess={id:r.id,ts:r.ts,date:r.date,type:r.type,minutes:r.minutes,planned:r.plan.map(p=>({game:p.game,budget:p.budget})),actualSec,activities:r.done.map(d=>({game:d.game,acc:d.res.acc,xp:d.xp,dur:d.dur,res:d.res.id,partial:d.partial||undefined})),skipped:r.skipped.length,completed,xp:sum(r.done.map(d=>d.xp))+bonus,bonus,energy:r.energy,name:r.name,circuit:r.circuit||undefined,boss:bossWin||undefined};
   S.sessions.push(sess);if(S.sessions.length>1500)S.sessions.shift();
+  if(r.type==='baseline'&&r.done.length)(S.baselines||(S.baselines=[])).push({ts:Date.now(),date:r.date,items:r.done.map(d=>({game:d.game,acc:d.res.acc,rt:d.res.rt||null,level:d.res.level||BASELINE_LEVEL,partial:!!d.partial}))});
   const mission=checkMission(),newAch=checkAch(null),after=globalLvl().level;logLevels(before,after,null,0,0);save(true);
   const prevS=[...S.sessions].reverse().find(x=>x.id!==sess.id&&x.type===sess.type&&x.minutes===sess.minutes&&x.activities.length);
   this.summary(sess,r,{mission,newAch,levelUp:after>before?after:null,prevS,bonus});
@@ -3396,13 +3524,45 @@ Daily.showStep=function(prev){
    <div class="row between"><div class="eyebrow">Actividad ${r.idx+1} de ${total}${it.why?' · '+esc(it.why):''}</div><span class="tag" style="--c:#35E6DF">${xpSoFar} XP acumulados</span></div>
    <div class="intro-head"><div class="intro-ic">${ic(g.icon)}</div><div><h2>${esc(g.name)}</h2><p>${s.world} · ${s.short} · ${fmtClock(it.budget*1000)} de actividad</p></div></div>
    <ol class="howto">${howToOf(g,it.mode??(typeof g.daily?.mode==='function'?g.daily.mode():g.daily?.mode)??g.modes?.[0]?.id).map(h=>`<li><span>${h}</span></li>`).join('')}</ol>
-   <div class="small muted">Nivel ${gs(it.game).level} recomendado por Neuro AI${it.mode?` · modo ${esc(modeName(it.game,it.mode))}`:''}</div>
+   <div class="small muted">${it.level?`Nivel ${it.level}${it.boost?` (jefe: +${it.boost} sobre tu nivel)`:' fijo para esta evaluación'}`:`Nivel ${gs(it.game).level} recomendado por Neuro AI`}${it.mode?` · modo ${esc(modeName(it.game,it.mode))}`:''}</div>
    <div class="row intro-cta"><button class="btn btn-primary btn-lg" id="ds-go">${ic('play')} Comenzar</button><button class="btn btn-ghost" id="ds-skip">${ic('skip')} Saltar actividad</button></div></div>`;
-  $('#ds-go').onclick=()=>Play.open(it.game,{daily:{budget:it.budget,sessionId:r.id},mode:it.mode,autostart:true});
+  $('#ds-go').onclick=()=>Play.open(it.game,{daily:{budget:it.budget,sessionId:r.id},mode:it.mode,level:it.level,autostart:true});
   $('#ds-skip').onclick=()=>{r.skipped.push({game:it.game,budget:it.budget,reason:'saltada'});r.st[r.idx]='skip';r.idx++;this.showStep(null)};
   $('#ds-go').focus({preventScroll:true});
 };
 
+/* ---------- CIRCUITOS DIARIOS y EVALUACIÓN DE REFERENCIA ----------
+   Un circuito es una forma de componer la misión de hoy. «Jefe cognitivo» propone 4 desafíos difíciles (nivel +2) y da un bonus si se
+   superan con ≥ 60 %. La evaluación de referencia repite 6 tareas a nivel fijo (3) para poder comparar con el tiempo, sin adaptación. */
+const CIRCUITS=[
+ {id:'balanced',name:'Circuito cognitivo',desc:'Un poco de todo, según tu práctica reciente.',icon:'brain',c:'#538CFF'},
+ {id:'focus',name:'Foco profundo',desc:'Solo atención: interferencia, búsqueda, seguimiento y vigilancia.',icon:'hunt',c:'#35E6DF',skills:['attention']},
+ {id:'memory',name:'Maestro de memoria',desc:'Memoria de trabajo, secuencias y recuerdo diferido.',icon:'memory',c:'#9B6DFF',skills:['memory']},
+ {id:'logic',name:'Experto en lógica',desc:'Matrices, deducción, planificación y razonamiento.',icon:'logic',c:'#FFB547',skills:['logic']},
+ {id:'flex',name:'Impulso de flexibilidad',desc:'Cambiar de regla, inducir reglas y readaptarte.',icon:'switch',c:'#C58BFF',games:['switch','reversal','rulefind','agl','stroop','hunt','lang']},
+ {id:'boss',name:'Jefe cognitivo',desc:'4 desafíos difíciles (nivel +2). ≥ 60 % en todos = bonus de +40 XP.',icon:'crown',c:'#FF5470',boss:true}
+];
+const BOSS_POOL={attention:['mot','blink','cpt','flanker','vsearch','stroop'],memory:['nback','updater','delayed','changed','backward'],logic:['matrix','code','deduction','strategy','circuit','rotation'],learning:['rulefind','reversal','agl','switch']};
+const BASELINE_GAMES=['stroop','words','pattern','flash','anagram','switch'],BASELINE_LEVEL=3;
+Daily.buildCircuit=function(id,minutes,variant=0){
+ const c=CIRCUITS.find(x=>x.id===id)||CIRCUITS[0],rng=seeded(`circ|${today()}|${id}|${minutes}|${variant}`),noSpeed=S.settings.noSpeed;
+ const allowed=g=>GAMES[g]&&GAMES[g].daily&&!(noSpeed&&GAMES[g].speed&&!GAMES[g].daily.slowMode);
+ const tie={};Object.keys(GAMES).forEach(g=>tie[g]=rng());
+ const byLast=a=>a.slice().sort((x,y)=>((S.games[x]?.last||0)-(S.games[y]?.last||0))||(tie[x]-tie[y]));
+ let items=[];
+ if(c.boss){
+  items=Object.entries(BOSS_POOL).map(([sk,pool])=>{const g=byLast(pool.filter(allowed))[0];return g&&{game:g,why:`jefe · ${SK[sk].short}`,level:Math.min(GAMES[g].maxLevel,gs(g).level+2),boost:2}}).filter(Boolean);
+  items.forEach(it=>{const dd=GAMES[it.game].daily;it.budget=Math.round(clamp(150,dd.min||60,(dd.max||240)*1.25)/5)*5});
+  return items}
+ const pool=(c.games?c.games.filter(allowed):SKILLS.filter(s=>!c.skills||c.skills.includes(s.id)).flatMap(s=>s.games).filter(allowed));
+ if(!pool.length)return Daily.buildPlan(minutes,{variant});
+ const n=Math.min(pool.length,clamp(Math.round(minutes/2.5),3,8));
+ items=byLast(pool).slice(0,n).map(g=>{const it={game:g,why:c.name.toLowerCase()};if(noSpeed&&GAMES[g].speed)it.mode=GAMES[g].daily.slowMode;return it});
+ const total=minutes*60,base=items.map(it=>clamp(total/items.length,GAMES[it.game].daily.min||60,GAMES[it.game].daily.max||240)),k=total/sum(base);
+ items.forEach((it,i)=>{const dd=GAMES[it.game].daily;it.budget=Math.round(clamp(base[i]*k,dd.min||60,(dd.max||240)*1.25)/5)*5});
+ return items};
+Daily.baselinePlan=()=>BASELINE_GAMES.filter(g=>GAMES[g]).map(g=>({game:g,level:BASELINE_LEVEL,budget:60,why:`referencia · nivel ${BASELINE_LEVEL} fijo`}));
+Daily.startBaseline=()=>Daily.begin(Daily.baselinePlan(),{type:'baseline',name:'Evaluación de referencia'});
 Daily.strip=function(){
   const el=$('#pl-daily'),r=this.run;if(!r){el.hidden=true;return}el.hidden=false;
   const cur=r.plan[r.idx],next=r.plan[r.idx+1];
