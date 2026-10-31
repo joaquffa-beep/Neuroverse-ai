@@ -104,7 +104,34 @@ html[data-theme="day"] .sw-pile:not(.right):not(.wrong){border-color:rgba(24,37,
 html[data-theme="day"] .sw-card{box-shadow:0 18px 36px -14px rgba(24,37,60,.45),0 0 0 1px rgba(24,37,60,.2)}
 /* superposiciones oscuras con texto claro en cualquier tema */
 .lvlup{--text:#F2F6FF;--muted:#A8B6CE;--dim:#8493AF;color:#F2F6FF}
-/* alto contraste en Día */
+/* ---------- TEMA CYBER — NEURAL CYBER (neón experimental, oscuro) ----------
+   Solo cambia el «marco» de la interfaz. Los estímulos (colores del Stroop, figuras, notas…) son colores fijos dentro de [data-stim]
+   y no dependen del tema. */
+html[data-theme="cyber"]{
+  --void:#05020F;--deep:#0C0720;--deep-2:#170B33;
+  --blue:#2BD9FF;--violet:#B96BFF;--teal:#19FFD1;--pink:#FF3D9A;--ice:#EFFBFF;
+  --orange:#FFB020;--green:#4DFF8E;--cosmic:#D08CFF;--cosmic-2:#6E8BFF;
+  --ok:#3DFF9A;--bad:#FF4D7D;--warn:#FFC93D;
+  --muted:#BDB0E0;--dim:#9A8DC4;
+  --line:rgba(120,90,255,.28);--line-2:rgba(80,220,255,.34);--line-3:rgba(80,220,255,.58);
+  --panel:rgba(14,7,34,.84);--panel-2:rgba(30,12,64,.66);
+  --grad-brand:linear-gradient(120deg,#19D8FF,#B96BFF 55%,#FF3D9A);--grad-cool:linear-gradient(120deg,#19D8FF,#19FFD1);
+  --bg-top:#0A0420;--bg-bot:#04010C;--base:#0b0620;--modal:#120830;--stim:#05020F;
+  --title-grad:linear-gradient(100deg,#fff 5%,#7be9ff 38%,#e0a8ff 68%,#ff7ac0);
+  --sh-1:0 0 0 1px rgba(80,220,255,.12),0 6px 18px -8px rgba(185,107,255,.55);--sh-2:0 0 0 1px rgba(80,220,255,.18),0 22px 50px -22px rgba(185,107,255,.7);
+}
+html[data-theme="cyber"] body::before{background:
+  radial-gradient(1000px 640px at 88% -12%,rgba(255,61,154,.2),transparent 62%),
+  radial-gradient(900px 600px at -10% 26%,rgba(25,216,255,.17),transparent 60%),
+  radial-gradient(800px 520px at 55% 116%,rgba(185,107,255,.18),transparent 60%),
+  linear-gradient(180deg,var(--bg-top),var(--void))}
+html[data-theme="cyber"] body::after{background-image:linear-gradient(rgba(25,216,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,61,154,.05) 1px,transparent 1px);background-size:44px 44px}
+html[data-theme="cyber"] ::selection{background:rgba(255,61,154,.38)}
+html[data-theme="cyber"] .card{box-shadow:var(--sh-1)}
+html[data-theme="cyber"] .logo{filter:drop-shadow(0 0 8px rgba(25,216,255,.6))}
+html[data-theme="cyber"] .hero-title,html[data-theme="cyber"] h1{text-shadow:0 0 18px rgba(25,216,255,.32)}
+html[data-theme="cyber"] .eyebrow{color:var(--teal)}
+html[data-theme="cyber"].focus body::after,html[data-theme="cyber"].focus .card{box-shadow:none}/* alto contraste en Día */
 html[data-theme="day"].hc{--line:rgba(24,37,60,.55);--line-2:rgba(24,37,60,.75);--line-3:#18253C;--muted:#2A3A52;--dim:#3B4C66;--panel:#FFFFFF;--card-bg:linear-gradient(#FFFFFF,#FFFFFF)}
 html[data-theme="day"].hc p{color:#18253C}
 html[data-theme="day"].hc .card{border:1px solid #18253C}
@@ -1914,7 +1941,7 @@ const DAYMAP={'#35e6df':'#007D78','#538cff':'#285ED5','#6499ff':'#285ED5','#9b6d
 const Theme={
  skip:'.arena,.stroop-box,.stroop-btns,.reflex-arena,.hero-brain,.map-wrap,.astro-wrap,.portal,.sw-card,.sw-pile,.sw-rule,canvas,[data-stim]',
  pref(){return (S&&S.settings.theme)||'night'},
- eff(){const p=this.pref();return p==='day'?'day':p==='auto'?(mqDark.matches?'night':'day'):'night'},
+ eff(){const p=this.pref();return p==='day'?'day':p==='cyber'?'cyber':p==='auto'?(mqDark.matches?'night':'day'):'night'},
  isDay(){return document.documentElement.dataset.theme==='day'},
  col(h){return this.isDay()&&typeof h==='string'?(DAYMAP[h.toLowerCase()]||h):h},
  mapStr(s){return s.replace(/#[0-9a-fA-F]{6}\b/g,m=>DAYMAP[m.toLowerCase()]||m)},
@@ -1922,7 +1949,7 @@ const Theme={
  apply(){
   const de=document.documentElement,t=this.eff(),was=de.dataset.theme;
   de.dataset.theme=t;
-  const m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='day'?'#F5F7FC':'#080D1B';
+  const m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='day'?'#F5F7FC':t==='cyber'?'#05020F':'#080D1B';
   const f=!!(S&&S.settings.focus);de.classList.toggle('focus',f);
   if(was===t)return false;
   if(was&&typeof UI!=='undefined'&&UI.cur&&typeof Play!=='undefined'&&!Play.isOpen()&&!$('#onb')){UI.render()}
@@ -3399,7 +3426,7 @@ SCREENS.settings={title:'Configuración',
   </div>
   <div class="stack">
    <div class="card pad-lg"><h3>Apariencia</h3><p class="small" style="margin:.4rem 0 .8rem">Dos identidades visuales completas. El cambio es inmediato y se recuerda en este dispositivo.</p>
-    <div class="seg" id="st-theme" role="group" aria-label="Tema visual">${[['night','Noche','Neural Night · laboratorio oscuro'],['day','Día','Neural Day · laboratorio luminoso'],['auto','Automático','Sigue el tema del sistema']].map(([id,n,d])=>`<button type="button" data-t="${id}" class="${(s.theme||'night')===id?'on':''}" aria-pressed="${(s.theme||'night')===id}">${n}<small>${d}</small></button>`).join('')}</div>
+    <div class="seg" id="st-theme" role="group" aria-label="Tema visual">${[['night','Noche','Neural Night · laboratorio oscuro'],['day','Día','Neural Day · laboratorio luminoso'],['cyber','Cyber','Neural Cyber · neón experimental'],['auto','Automático','Sigue el tema del sistema']].map(([id,n,d])=>`<button type="button" data-t="${id}" class="${(s.theme||'night')===id?'on':''}" aria-pressed="${(s.theme||'night')===id}">${n}<small>${d}</small></button>`).join('')}</div>
     ${sw('st-focus',s.focus,'Modo Focus','Interfaz sobria: sin fondo animado, sin efectos y con bordes marcados para concentrarte durante el entrenamiento.')}
     <p class="note" style="margin-top:.4rem">Las tareas que dependen del color (Stroop, Caza de estímulos, Cambio de reglas) usan siempre los mismos colores estándar, en cualquier tema.</p>
    </div>
