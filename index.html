@@ -907,7 +907,70 @@ details.explain ul{padding-left:1.1rem;color:var(--muted);font-size:var(--t-sm);
 .dl-got,.dl-res{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%}
 .dl-chip{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .75rem;border-radius:99px;border:1px solid var(--line-2);background:rgba(var(--ov),.05);font-weight:600}.dl-chip button{border:0;background:none;color:var(--muted);font-size:1.1rem;cursor:pointer}
 .dl-chip.ok{border-color:var(--ok);color:var(--t-ok)}.dl-chip.no{border-color:var(--bad);color:var(--t-bad)}
-.dl-ctl{display:flex;justify-content:center;width:100%}
+.dl-ctl{display:flex;justify-content:center;width:100%}.rt{gap:.8rem}.rt-st{min-height:1.7rem;text-align:center;font-weight:600}.rt-st .dim{color:var(--muted)}
+.rt-board{position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);gap:0;width:min(100%,420px);aspect-ratio:1;padding:10px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2)}
+.rt-board.lock{pointer-events:none}
+.rt-c{position:relative;display:grid;place-items:center;margin:3px;padding:0;border-radius:12px;background:rgba(255,255,255,.08);border:2px solid transparent;cursor:pointer;color:#F2F6FF;min-width:0;min-height:0}
+.rt-c i{position:absolute;top:1px;right:4px;font-style:normal;font-weight:800;font-size:.68rem;color:#9DB4D6}
+.rt-ic{display:grid;place-items:center;width:62%;height:62%;opacity:.9}.rt-ic svg{width:100%;height:100%}
+.rt-c.tap{border-color:#6499FF;background:rgba(100,153,255,.24)}.rt-c.ok{border-color:#3DDC84;background:rgba(61,220,132,.22)}.rt-c.no{border-color:#FF5470;background:rgba(255,84,112,.24)}
+.rt-ov{position:absolute;left:10px;top:10px;width:calc(100% - 20px);height:calc(100% - 20px);pointer-events:none}
+.rt-bar{width:100%;min-height:8px}.rt-bar .hp-bar{background:rgba(var(--ov),.12);max-width:none}.rt-ctl{display:flex;justify-content:center;min-height:44px}
+.ep-top{text-align:center;color:var(--muted);font-weight:700;letter-spacing:.05em}
+.ep-main{width:100%;display:flex;flex-direction:column;align-items:center;gap:.9rem;min-height:280px}
+.ep-card{width:100%;padding:1.1rem 1.2rem;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);color:#F2F6FF}
+.ep-title{display:block;margin-bottom:.6rem;color:#46D8CC;font-family:var(--display);letter-spacing:.06em}
+.ep-list{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;font-size:1.05rem;line-height:1.4;font-weight:600}
+.ep-mask{font-family:var(--display);font-size:3rem;color:var(--muted);padding:2rem}
+.ep-q{font-family:var(--display);font-weight:700;font-size:1.3rem;text-align:center;line-height:1.35}.ep-q small{display:block;font-size:.8rem;color:var(--teal);letter-spacing:.06em;margin-bottom:.3rem}
+.ep-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;width:100%}.ep-opts.two{grid-template-columns:repeat(2,1fr)}
+.ep-o{min-height:56px;white-space:normal;text-transform:none}.ep-o.ok{border-color:var(--ok);background:rgba(61,220,132,.2)}.ep-o.no{border-color:var(--bad);background:rgba(255,84,112,.18)}
+.ep-dist{display:flex;flex-direction:column;align-items:center;gap:.8rem;width:100%}
+@media (max-width:420px){.ep-opts{grid-template-columns:1fr}.ep-opts.two{grid-template-columns:1fr 1fr}}
+.bd{gap:.8rem}.bd-q{min-height:3.3rem;display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.35}
+.bd-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:8px;width:min(100%,460px);aspect-ratio:4/3;padding:12px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2)}
+.bd-grid[hidden]{display:none}
+.bd-c{display:grid;place-items:center;padding:4px;border-radius:14px;background:rgba(255,255,255,.06);border:2px solid transparent;color:#F2F6FF;min-width:0;min-height:0}
+.bd-c svg{width:100%;height:100%;max-width:68px;max-height:68px}button.bd-c{cursor:pointer}
+.bd-c.ok{border-color:#3DDC84;background:rgba(61,220,132,.22)}.bd-c.no{border-color:#FF5470;background:rgba(255,84,112,.22)}
+.bd-resp{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;width:100%;min-height:56px}
+.bd-op{display:inline-flex;align-items:center;gap:.55rem;min-width:84px;min-height:54px;justify-content:center;font-weight:700}
+.bd-chip{display:inline-grid;place-items:center;min-width:38px;height:38px;padding:0 6px;border-radius:10px;background:var(--stim);color:#F2F6FF;font-family:var(--display);font-size:1.15rem}.bd-chip svg{width:26px;height:26px}
+.bd-sw{display:block;width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.45)}
+.bd-op.ok{border-color:var(--ok);background:rgba(61,220,132,.2)}.bd-op.no{border-color:var(--bad);background:rgba(255,84,112,.18)}
+.bd-bar{width:100%;min-height:8px}.bd-bar .hp-bar{background:rgba(var(--ov),.12);max-width:none}
+.od{gap:.8rem}.od-st{min-height:1.7rem;text-align:center;font-weight:600}.od-st .dim{color:var(--muted)}
+.od-stim{width:100%;min-height:140px;display:grid;place-items:center;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);color:#F2F6FF}.od-stim[hidden]{display:none}
+.od-stim svg{width:86px;height:86px}.od-stim .od-w{font-family:var(--display);font-weight:800;font-size:2.2rem;letter-spacing:.03em}
+.od-n{display:inline-grid;place-items:center;min-width:46px;height:42px;padding:0 .5rem;border-radius:12px;font-family:var(--display);font-weight:800;color:#F2F6FF;background:color-mix(in srgb,var(--k,#538CFF) 38%,#0B1020);border:2px solid var(--k,#538CFF)}.od-n.big{min-width:96px;height:80px;font-size:2rem}
+.od-slots,.od-solrow{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%}
+.od-slot{position:relative;display:grid;place-items:center;width:62px;height:62px;padding:6px;border-radius:14px;background:var(--stim);border:2px dashed var(--line-2);color:#F2F6FF;cursor:pointer}
+.od-slot i{position:absolute;top:1px;left:5px;font-style:normal;font-weight:800;font-size:.68rem;color:#9DB4D6}
+.od-slot.f{border-style:solid;border-color:#6499FF}.od-slot svg{width:100%;height:100%}.od-slot .od-w{font-size:.78rem;font-weight:700;line-height:1.05;text-align:center;overflow-wrap:anywhere}.od-slot .od-n{min-width:0;width:100%;height:100%;font-size:.95rem}
+div.od-slot{cursor:default}.od-slot.ok{border-color:#3DDC84;background:rgba(61,220,132,.2)}.od-slot.no{border-color:#FF5470;background:rgba(255,84,112,.22)}
+.od-pool{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%;min-height:64px}
+.od-it{width:68px;height:60px;padding:6px;background:var(--stim);border-color:var(--line-2);color:#F2F6FF}.od-it svg{width:100%;height:100%}.od-it .od-w{font-size:.82rem;font-weight:700;line-height:1.05;overflow-wrap:anywhere}.od-it .od-n{min-width:0;width:100%;height:100%}
+.od-it.used{opacity:.25;pointer-events:none}.od-sol{margin:0;color:var(--muted);font-weight:700;width:100%;text-align:center}
+.od-ctl{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;min-height:48px}
+.pd-top{text-align:center;color:var(--muted);font-weight:700;letter-spacing:.05em}
+.pd-map{display:grid;grid-template-columns:repeat(var(--c),minmax(0,1fr));gap:8px;width:100%;padding:12px;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);color:#F2F6FF}
+.pd-room{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;min-height:62px;padding:.5rem .3rem;border-radius:14px;background:rgba(255,255,255,.07);border:2px solid transparent;text-align:center;min-width:0}
+.pd-room i{position:absolute;top:1px;left:6px;font-style:normal;font-weight:800;font-size:.68rem;color:#9DB4D6}.pd-room b{font-size:.78rem;font-weight:700;color:#C7D4EC;overflow-wrap:anywhere}.pd-room span{font-family:var(--display);font-weight:800;font-size:.8rem;color:#46D8CC;overflow-wrap:anywhere}
+.pd-room.cur{border-color:#6499FF;background:rgba(100,153,255,.22)}.pd-room.ok{border-color:#3DDC84;background:rgba(61,220,132,.2)}.pd-room.no{border-color:#FF5470;background:rgba(255,84,112,.2)}
+.pd-main{width:100%;display:flex;flex-direction:column;align-items:center;gap:.9rem;min-height:170px}
+.pd-card{width:100%;display:grid;place-items:center;gap:.2rem;padding:1.2rem;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);color:#F2F6FF}.pd-card small{color:#46D8CC;letter-spacing:.08em;text-transform:uppercase;font-weight:700}.pd-card b{font-family:var(--display);font-weight:800;font-size:2.2rem}
+.pd-dist{display:flex;flex-direction:column;align-items:center;gap:.8rem;width:100%}.pd-q{font-family:var(--display);font-size:2.2rem;font-weight:800}.pd-opts{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;width:100%}.pd-o{min-width:96px}
+.pd-q2{font-family:var(--display);font-weight:700;font-size:1.2rem;text-align:center}.pd-q2 .dim{color:var(--muted);font-size:.85rem}
+.pd-form{display:flex;gap:.6rem;width:100%}.pd-form .input{flex:1}
+.pd-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%}.pd-ch.used{opacity:.3;pointer-events:none}
+.pd-fb{font-family:var(--display);font-weight:700;font-size:1.2rem;text-align:center}.pd-fb.ok{color:var(--t-ok)}.pd-fb.no{color:var(--t-bad)}
+.pd-ctl{display:flex;justify-content:center;min-height:44px}
+@media (max-width:420px){.pd-map{gap:6px;padding:8px}.pd-room b{font-size:.68rem}.pd-room span{font-size:.7rem}}
+
+
+
+
+
 .dl .hp-bar{background:rgba(var(--ov),.12);max-width:340px;width:100%}
 /* Cambio de reglas 3.0 */
 .swl{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;width:100%;min-height:1.6rem}
@@ -1472,6 +1535,11 @@ rulefind:'M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1
 reversal:'M7 17V5M3.5 8.5L7 5l3.5 3.5M17 7v12M13.5 15.5L17 19l3.5-3.5',
 agl:'M4 5h16v11H11l-4 4v-4H4zM8 9h8M8 12h5',
 fusion:'<circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/>',
+route:'<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h5a3 3 0 000-6h-2a3 3 0 010-6h5"/>',
+episode:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M8 5v4M16 5v4M7 14h6"/>',
+binding:'<circle cx="7" cy="7" r="3.2"/><rect x="13" y="13" width="7.5" height="7.5" rx="1.6"/><path d="M9.5 9.5l4 4"/>',
+order:'M3 7h4l10 10h4M3 17h4l3-3M14 10l3-3h4M18 4l3 3-3 3M18 14l3 3-3 3',
+palace:'M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6',
 cloud:'M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 10a4 4 0 010 8z',
 calendar:'<rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
 medal:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/>',
@@ -1520,7 +1588,7 @@ function animateIn(root=document){const go=()=>{$$('.rv[data-off]',root).forEach
 /* ---------- Habilidades y mundos ---------- */
 const SKILLS=[
  {id:'attention',name:'Atención y concentración',short:'Atención',world:'FOCUS LAB',color:'#538CFF',c2:'#35E6DF',icon:'focus',desc:'Atención selectiva, concentración y control inhibitorio.',blurb:'Laboratorio de luz y precisión: filtra lo irrelevante y mantén el foco.',games:['stroop','hunt','flanker','vsearch','mot','blink','cpt','fusion']},
- {id:'memory',name:'Memoria',short:'Memoria',world:'MEMORY MATRIX',color:'#9B6DFF',c2:'#FF65C7',icon:'memory',desc:'Memoria visual, verbal y memoria de trabajo.',blurb:'Una red de recuerdos luminosos: palabras, secuencias y parejas.',games:['words','sequence','pairs','nback','updater','backward','changed','delayed']},
+ {id:'memory',name:'Memoria',short:'Memoria',world:'MEMORY MATRIX',color:'#9B6DFF',c2:'#FF65C7',icon:'memory',desc:'Memoria visual, verbal y memoria de trabajo.',blurb:'Una red de recuerdos luminosos: palabras, secuencias y parejas.',games:['words','sequence','pairs','nback','updater','backward','changed','delayed','route','episode','binding','order','palace']},
  {id:'logic',name:'Razonamiento lógico',short:'Lógica',world:'LOGIC UNIVERSE',color:'#35E6DF',c2:'#538CFF',icon:'logic',desc:'Deducción, patrones y resolución de problemas.',blurb:'Geometría y estructuras: descubre la regla escondida en cada patrón.',games:['sudoku','pattern','logicrush','matrix','code','rotation','circuit','strategy','deduction']},
  {id:'math',name:'Agilidad matemática',short:'Cálculo',world:'MATH SPEED',color:'#FFB547',c2:'#FF65C7',icon:'math',desc:'Cálculo mental y memoria de trabajo numérica.',blurb:'Números en movimiento: calcula con velocidad y cabeza fría.',games:['flash','countdown','truefalse']},
  {id:'language',name:'Lenguaje y fluidez verbal',short:'Lenguaje',world:'WORD POWER',color:'#FF65C7',c2:'#9B6DFF',icon:'language',desc:'Vocabulario, acceso léxico y fluidez verbal.',blurb:'Partículas de letras: encuentra, encadena y reordena palabras.',games:['categories','chain','anagram']},
@@ -2005,7 +2073,13 @@ ACH.push(
  {id:'boss',name:'Cazador de jefes',desc:'Supera un Jefe cognitivo con ≥ 60 % en sus 4 desafíos.',icon:'crown',c:'#FF5470',test:()=>S.sessions.some(s=>s.boss)},
  {id:'circuits5',name:'Todos los circuitos',desc:'Completa 5 circuitos diarios distintos.',icon:'brain',c:'#538CFF',test:()=>new Set(S.sessions.filter(s=>s.completed).map(s=>s.circuit).filter(Boolean)).size>=5,prog:()=>[new Set(S.sessions.filter(s=>s.completed).map(s=>s.circuit).filter(Boolean)).size,5]},
  {id:'base1',name:'Punto de partida',desc:'Completa la evaluación de referencia.',icon:'flag',c:'#35E6DF',test:()=>(S.baselines||[]).length>=1},
- {id:'base2',name:'Antes y después',desc:'Repite la evaluación de referencia para comparar tu evolución.',icon:'trend',c:'#3DDC84',test:()=>(S.baselines||[]).length>=2}
+ {id:'base2',name:'Antes y después',desc:'Repite la evaluación de referencia para comparar tu evolución.',icon:'trend',c:'#3DDC84',test:()=>(S.baselines||[]).length>=2},
+ {id:'route8',name:'Cartógrafo',desc:'Reproduce una ruta de 8 casillas sin errores en Memoria de rutas.',icon:'route',c:'#35E6DF',test:r=>!!(r&&r.game==='route'&&(r.extra.maxSpan||0)>=8)},
+ {id:'routerot',name:'Orientación a prueba',desc:'Acierta 3 rutas en una partida de Mapa girado.',icon:'route',c:'#FFB547',test:r=>!!(r&&r.game==='route'&&r.mode==='rotated'&&r.correct>=3)},
+ {id:'ep80',name:'Buen narrador',desc:'Acierta ≥ 80 % en Memoria episódica con al menos 10 preguntas.',icon:'episode',c:'#FF65C7',test:r=>!!(r&&r.game==='episode'&&r.acc>=.8&&r.total>=10)},
+ {id:'bind2',name:'Ligador de rasgos',desc:'Consigue d′ ≥ 2 en Object Binding «¿Estaba así?».',icon:'binding',c:'#9B6DFF',test:r=>!!(r&&r.game==='binding'&&r.mode==='probe'&&r.extra.dprime!=null&&r.extra.dprime>=2)},
+ {id:'order8',name:'Orden de élite',desc:'Reconstruye sin errores una secuencia de 8 elementos en Memoria de orden.',icon:'order',c:'#538CFF',test:r=>!!(r&&r.game==='order'&&(r.extra.maxSpan||0)>=8)},
+ {id:'palace6',name:'Arquitecto de la memoria',desc:'Recuerda 6 o más palabras en un Memory Palace con método.',icon:'palace',c:'#3DDC84',test:r=>!!(r&&r.game==='palace'&&r.mode!=='list'&&r.correct>=6)}
 );
 
 /* ---------- Misiones diarias ---------- */
@@ -2029,7 +2103,9 @@ MISSIONS.push(
  {id:'learn2',text:'Juega 2 desafíos de aprendizaje y flexibilidad',target:2,prog:t=>t.filter(r=>r.skill==='learning').length},
  {id:'rule1',text:'Descubre una regla en «Descubre la regla»',target:1,prog:t=>t.some(r=>r.game==='rulefind'&&r.correct>=1)?1:0},
  {id:'plan2',text:'Resuelve 2 puzles de planificación (Estrategia)',target:2,prog:t=>sum(t.filter(r=>r.game==='strategy').map(r=>r.correct))},
- {id:'music2',text:'Juega 2 partidas de Ritmo y secuencia',target:2,prog:t=>t.filter(r=>r.game==='rhythm').length}
+ {id:'music2',text:'Juega 2 partidas de Ritmo y secuencia',target:2,prog:t=>t.filter(r=>r.game==='rhythm').length},
+ {id:'bind1',text:'Completa una partida de Object Binding',target:1,prog:t=>t.some(r=>r.game==='binding')?1:0},
+ {id:'order5',text:'Reconstruye un orden de 5 elementos en Memoria de orden',target:1,prog:t=>t.some(r=>r.game==='order'&&(r.extra.maxSpan||0)>=5)?1:0}
 );
 function missionToday(){const d=today();let m=S.missions[d];if(!m){const r=seeded('mision'+d),def=MISSIONS[Math.floor(r()*MISSIONS.length)];m=S.missions[d]={id:def.id,done:false,...(def.init?def.init():{})};save()}return m}
 function missionInfo(){const m=missionToday(),def=MISSIONS.find(x=>x.id===m.id)||MISSIONS[0],t=S.results.filter(r=>r.date===today());const p=m.done?def.target:Math.min(def.target,def.prog(t,m));return {m,def,prog:p,target:def.target,text:typeof def.text==='function'?def.text(m):def.text,done:m.done}}
@@ -2946,7 +3022,10 @@ const INS_SPECS=[
  {id:'agld',g:'agl',k:'dprime',label:'Sensibilidad d′',game:'Lenguaje alienígena',unit:'',better:'high',dec:2,hint:'Distinguir palabras válidas de no válidas (0 = azar).'},
  {id:'cons',g:'code',k:'consRate',label:'Intentos coherentes',game:'Descifra el código',unit:' %',better:'high',scale:100,dec:0,hint:'Intentos compatibles con todas las pistas anteriores.'},
  {id:'rule',g:'rulefind',k:'avgTrials',label:'Cartas hasta la racha',game:'Descubre la regla',unit:'',better:'low',dec:1,hint:'Cuántas cartas necesitas para deducir la regla.'},
- {id:'ceff',g:'circuit',m:'set',k:'eff',label:'Eficiencia de cambios',game:'Circuitos · Ajusta',unit:' %',better:'high',scale:100,dec:0,hint:'Cambios mínimos ÷ cambios realizados.'}
+ {id:'ceff',g:'circuit',m:'set',k:'eff',label:'Eficiencia de cambios',game:'Circuitos · Ajusta',unit:' %',better:'high',scale:100,dec:0,hint:'Cambios mínimos ÷ cambios realizados.'},
+ {id:'rtspan',g:'route',k:'maxSpan',label:'Ruta más larga',game:'Memoria de rutas',unit:' casillas',better:'high',dec:0,hint:'Mayor ruta reproducida en el orden exacto.'},
+ {id:'odspan',g:'order',k:'maxSpan',label:'Secuencia ordenada más larga',game:'Memoria de orden',unit:' elementos',better:'high',dec:0,hint:'Mayor secuencia reconstruida sin errores de posición.'},
+ {id:'bdd',g:'binding',m:'probe',k:'dprime',label:'d′ de ligadura',game:'Object Binding · ¿Estaba así?',unit:'',better:'high',dec:2,hint:'Distinguir combinaciones vistas de señuelos (0 = azar).'}
 ];
 const insVals=sp=>S.results.filter(r=>r.game===sp.g&&(!sp.m||r.mode===sp.m)&&r.extra&&!r.extra.partial&&r.extra[sp.k]!=null&&isFinite(r.extra[sp.k])).map(r=>r.extra[sp.k]*(sp.scale||1));
 const insFmt=(sp,v)=>v==null?'—':(+v).toFixed(sp.dec??0)+(sp.unit||'');
@@ -3652,7 +3731,7 @@ const CIRCUITS=[
  {id:'flex',name:'Impulso de flexibilidad',desc:'Cambiar de regla, inducir reglas y readaptarte.',icon:'switch',c:'#C58BFF',games:['switch','reversal','rulefind','agl','stroop','hunt','lang']},
  {id:'boss',name:'Jefe cognitivo',desc:'4 desafíos difíciles (nivel +2). ≥ 60 % en todos = bonus de +40 XP.',icon:'crown',c:'#FF5470',boss:true}
 ];
-const BOSS_POOL={attention:['mot','blink','cpt','flanker','vsearch','stroop'],memory:['nback','updater','delayed','changed','backward'],logic:['matrix','code','deduction','strategy','circuit','rotation'],learning:['rulefind','reversal','agl','switch']};
+const BOSS_POOL={attention:['mot','blink','cpt','flanker','vsearch','stroop'],memory:['nback','updater','delayed','changed','backward','route','order','binding'],logic:['matrix','code','deduction','strategy','circuit','rotation'],learning:['rulefind','reversal','agl','switch']};
 const BASELINE_GAMES=['stroop','words','pattern','flash','anagram','switch'],BASELINE_LEVEL=3;
 Daily.buildCircuit=function(id,minutes,variant=0){
  const c=CIRCUITS.find(x=>x.id===id)||CIRCUITS[0],rng=seeded(`circ|${today()}|${id}|${minutes}|${variant}`),noSpeed=S.settings.noSpeed;
@@ -4642,6 +4721,449 @@ reg({id:'delayed',skill:'memory',name:'Recuerdo diferido',icon:'delayed',tagline
    const metrics=[{label:'Recordados',value:`${res.hits}/${res.total}`},{label:'Intrusiones',value:res.intr},{label:'Intervalo real',value:interval+' s'},{label:'Tiempo de recuperación',value:res.rt+' s'},{label:'Minijuego de cálculo',value:`${dist.a.ok}/${dist.a.n}`},{label:'Minijuego de comparación',value:`${dist.b.ok}/${dist.b.n}`}];
    const details=`<h4>Recuerdo tras una demora</h4><p>Entre el estudio y la recuperación pasaron <b>${interval} s</b> reales (${intervalActive} s de tiempo activo) con dos minijuegos distractores. Las <b>intrusiones</b> son respuestas que no estaban en el material.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no son una evaluación clínica de la memoria.</p>`;
    return {correct:res.hits,wrong:(res.total-res.hits)+res.intr,total:res.total,acc,score:res.hits,rt:null,metrics,details,extra:{mode,n:res.total,hits:res.hits,intr:res.intr,interval,intervalActive,dist,omRate:res.total?(res.total-res.hits)/res.total:0,faRate:0}}}}}
+ });
+
+/* ---- MEMORIA DE RUTAS: recorridos dibujados sobre una cuadrícula ----
+   Se muestra una ruta (flechas entre casillas contiguas), se oculta y hay que reproducirla tocando las casillas en orden.
+   Modos: ruta simple (sin repetir casillas), con cruces (puede pasar dos veces por una casilla, sin repetir tramos),
+   al revés, mapa girado (el mapa se gira 90/180/270° con 3 puntos de referencia) y mapa con objetos (cada casilla tiene un icono). */
+const RT_COL=['#FF4D5E','#538CFF','#3DDC84','#FFD23F','#B36DFF','#FF8A2B'],RT_SH=['circle','square','triangle','star','diamond','cross','arrow','flag','hex'];
+const RT_LM=[['flag','#FFD23F'],['hex','#46D8CC'],['star','#FF65C7']];
+const rtN=L=>L<=2?3:L<=6?4:L<=11?5:6;
+const rtStart=L=>3+Math.floor((L-1)/2);
+const rtMax=n=>Math.min(n*n-1,12);
+const rtShow=L=>Math.max(380,900-L*35);
+const rtMinTurns=(L,len)=>Math.floor((len-2)*Math.min(.75,.3+L*.035));
+const rtNb=(n,i)=>{const r=Math.floor(i/n),c=i%n,o=[];if(r>0)o.push(i-n);if(c<n-1)o.push(i+1);if(r<n-1)o.push(i+n);if(c>0)o.push(i-1);return o};
+const rtTurns=p=>{let t=0;for(let i=2;i<p.length;i++)if(p[i]-p[i-1]!==p[i-1]-p[i-2])t++;return t};
+const rtEdge=(a,b)=>Math.min(a,b)+'_'+Math.max(a,b);
+function rtSelf(n,len){const left={k:4000},used=new Set(),path=[];
+ const dfs=i=>{if(left.k--<=0)return false;path.push(i);used.add(i);if(path.length===len)return true;for(const j of shuffle(rtNb(n,i)))if(!used.has(j)&&dfs(j))return true;path.pop();used.delete(i);return false};
+ return dfs(ri(0,n*n-1))?path.slice():null}
+function rtCross(n,len){for(let a=0;a<80;a++){let cur=ri(0,n*n-1),prev=-1,ok=true;const p=[cur],E=new Set();
+  while(p.length<len){const o=rtNb(n,cur).filter(j=>j!==prev&&!E.has(rtEdge(cur,j)));if(!o.length){ok=false;break}const j=pick(o);E.add(rtEdge(cur,j));prev=cur;cur=j;p.push(cur)}
+  if(ok)return p}return null}
+/* devuelve {p,len}: la ruta con más giros que cumpla el mínimo del nivel (o la mejor encontrada) */
+function rtMake(mode,n,len,L){
+ for(;len>=3;len--){const need=rtMinTurns(L,len);let best=null;
+  for(let a=0;a<60;a++){const p=mode==='cross'?rtCross(n,len):rtSelf(n,len);if(!p)continue;if(mode==='cross'&&len>=5&&new Set(p).size===p.length)continue;
+   const t=rtTurns(p);if(!best||t>best.t)best={p,t};if(t>=need)break}
+  if(best)return {p:best.p,len}}
+ return {p:[0,1,2],len:3}}
+/* giro del mapa: k cuartos de vuelta a la derecha; (fila,col) → (col, n-1-fila) */
+const rtRot=(n,i,k)=>{let r=Math.floor(i/n),c=i%n;for(let q=0;q<k;q++){const t=r;r=c;c=n-1-t}return r*n+c};
+const rtUnrot=(n,i,k)=>rtRot(n,i,(4-k)%4);
+const rtInner=(n,path,col,arrows=true,ends=true)=>{
+ const P=path.map(i=>[i%n+.5,Math.floor(i/n)+.5]);let s=`<path d="M${P.map(p=>p.join(' ')).join('L')}" fill="none" stroke="${col}" stroke-width=".11" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>`;
+ if(arrows)for(let i=0;i<P.length-1;i++){const [x1,y1]=P[i],[x2,y2]=P[i+1],mx=(x1+x2)/2,my=(y1+y2)/2,dx=x2-x1,dy=y2-y1,px=-dy,py=dx,f=v=>+v.toFixed(3);
+  s+=`<polygon class="rt-ar" points="${f(mx+dx*.17)},${f(my+dy*.17)} ${f(mx-dx*.09+px*.13)},${f(my-dy*.09+py*.13)} ${f(mx-dx*.09-px*.13)},${f(my-dy*.09-py*.13)}" fill="${col}"/>`}
+ if(ends)s+=`<circle class="rt-s" cx="${P[0][0]}" cy="${P[0][1]}" r=".2" fill="${col}"/><circle class="rt-e" cx="${P[P.length-1][0]}" cy="${P[P.length-1][1]}" r=".2" fill="none" stroke="${col}" stroke-width=".07"/>`;
+ return s};
+const rtOv=(n,path,col,arrows,ends)=>`<svg class="rt-ov" viewBox="0 0 ${n} ${n}" aria-hidden="true">${rtInner(n,path,col,arrows,ends)}</svg>`;
+const rtExample=(n,path,extra='')=>`<svg viewBox="0 0 ${n} ${n}" width="${n*40}" height="${n*40}" aria-hidden="true">${Array.from({length:n*n},(_,i)=>`<rect x="${i%n+.06}" y="${Math.floor(i/n)+.06}" width=".88" height=".88" rx=".14" fill="rgba(255,255,255,.1)"/>`).join('')}${extra}${rtInner(n,path,'#46D8CC')}</svg>`;
+reg({id:'route',skill:'memory',name:'Memoria de rutas',icon:'route',tagline:'Memoriza un recorrido sobre el mapa y repítelo.',
+ howTo:m=>({
+  follow:['Verás un recorrido dibujado con flechas sobre una cuadrícula: empieza en el círculo y acaba en el anillo.','Cuando se oculte, toca las casillas en el mismo orden, empezando por la primera.','Si aciertas el recorrido la próxima ruta es una casilla más larga; si fallas, una más corta. «Deshacer» quita el último toque.'],
+  cross:['La ruta puede pasar <b>dos veces por la misma casilla</b> (se cruza), pero nunca repite un tramo.','Memorízala siguiendo las flechas y repítela cuando se oculte: si pasa dos veces por una casilla, tócala dos veces.','La longitud sube con cada acierto y baja con cada fallo.'],
+  reverse:['Memoriza la ruta con sus flechas.','Cuando se oculte, recórrela <b>al revés</b>: empieza por la casilla final (el anillo) y acaba en la inicial.','La longitud se ajusta a tu rendimiento.'],
+  rotated:['El mapa tiene tres <b>puntos de referencia</b> (bandera, hexágono y estrella) y una ruta con flechas.','Al ocultarse, el mapa <b>gira</b> 90°, 180° o 270° a la derecha: la ruta sigue siendo la misma respecto a los puntos de referencia.','Reprodúcela sobre el mapa girado, empezando por la casilla inicial.'],
+  landmarks:['Cada casilla tiene un objeto distinto: sirven de puntos de referencia.','Sigue las flechas y memoriza la ruta; apóyate en los objetos (por ejemplo «estrella roja → círculo azul…»).','Cuando se oculte la ruta, toca las casillas en orden.']
+ }[m]||[]),
+ example:m=>({
+  follow:`<div class="ex-stim" data-stim>${rtExample(3,[0,1,4,5,8])}</div><p class="small" style="margin-top:.5rem">Ruta de 5 casillas: derecha, abajo, derecha, abajo. Toca esas casillas en ese orden.</p>`,
+  cross:`<div class="ex-stim" data-stim>${rtExample(3,[3,4,5,2,1,4,7])}</div><p class="small" style="margin-top:.5rem">Pasa dos veces por el centro: tócalo en el 2.º y en el 6.º paso.</p>`,
+  reverse:`<div class="ex-stim" data-stim>${rtExample(3,[0,1,4,5,8])}</div><p class="small" style="margin-top:.5rem">La ruta va de arriba-izquierda a abajo-derecha; tú la recorres desde abajo-derecha hasta arriba-izquierda.</p>`,
+  rotated:`<div class="ex-stim" data-stim>${rtExample(3,[0,1,4,5,8],`<circle cx="2.5" cy=".5" r=".22" fill="#FFD23F"/><circle cx=".5" cy="2.5" r=".22" fill="#46D8CC"/>`)}</div><p class="small" style="margin-top:.5rem">Si el mapa gira 90° a la derecha, la casilla de arriba-izquierda pasa a arriba-derecha. Guíate por los puntos de referencia.</p>`,
+  landmarks:`<div class="ex-stim" data-stim style="gap:.5rem">${['star','circle','triangle'].map((s,i)=>`<span class="ex-it" style="width:42px;height:42px">${shapeSVG(s,RT_COL[i])}</span>`).join('<b style="color:#F2F6FF">→</b>')}</div><p class="small" style="margin-top:.5rem">Cada casilla es un objeto: la ruta «estrella → círculo → triángulo» se repite tocando esos objetos en orden.</p>`
+ }[m]||''),
+ modes:[{id:'follow',name:'Ruta simple',desc:'Sin repetir casillas'},{id:'cross',name:'Con cruces',desc:'Pasa dos veces por una casilla'},{id:'reverse',name:'Al revés',desc:'Del final al principio'},{id:'rotated',name:'Mapa girado',desc:'Rotación + puntos de referencia'},{id:'landmarks',name:'Mapa con objetos',desc:'Una referencia por casilla'}],
+ maxLevel:15,metric:{label:'Ruta más larga',better:'high'},daily:{mode:'follow',min:75,max:150},
+ levelInfo:(L,m)=>`Cuadrícula ${rtN(L)}×${rtN(L)} · empieza con ${m==='cross'?Math.max(5,rtStart(L)):rtStart(L)} casillas (hasta ${rtMax(rtN(L))}) · ${(rtShow(L)/1000).toFixed(2)} s por casilla de ruta${L>=4?' · con más giros':''}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode,n=rtN(L),trials=ctx.budget?Infinity:6,showPer=rtShow(L),maxLen=rtMax(n),minLen=mode==='cross'?5:3;
+  const T=[];let len=Math.min(maxLen,Math.max(minLen,rtStart(L))),phase='idle',done=false,timeUp=false,cur=null,taps=[],maxSpan=0,lastRot=0;
+  ctx.stage.innerHTML=`<div class="g-wrap rt"><div class="rt-st" id="rts" aria-live="polite"></div><div class="rt-board" id="rtb" data-stim style="--n:${n}"></div><div class="rt-bar" id="rtp"></div><div class="rt-ctl" id="rtc"></div></div>`;
+  const st=$('#rts'),bd=$('#rtb'),bar=$('#rtp'),ctl=$('#rtc');
+  const icon=s=>cur&&cur.icons&&cur.icons[s]?`<span class="rt-ic">${shapeSVG(cur.icons[s][0],cur.icons[s][1])}</span>`:'';
+  /* tablero: el índice de pantalla d corresponde a la casilla original unrot(d) */
+  function draw(k,over){const nums={};taps.forEach((t,j)=>{(nums[t]=nums[t]||[]).push(j+1)});
+   bd.innerHTML=Array.from({length:n*n},(_,d)=>{const s=rtUnrot(n,d,k);return `<button class="rt-c${nums[d]?' tap':''}" data-d="${d}" aria-label="Fila ${Math.floor(d/n)+1}, columna ${d%n+1}">${icon(s)}${nums[d]?`<i>${nums[d].join(',')}</i>`:''}</button>`}).join('')+(over||'')}
+  function newTrial(){if(done)return;if(T.length>=trials){done=true;return ctx.end()}
+   const made=rtMake(mode,n,len,L),p=made.p;len=made.len;let icons=null;
+   if(mode==='landmarks'){const combos=shuffle(RT_SH.flatMap(sh=>RT_COL.map(c=>[sh,c])));icons={};for(let s=0;s<n*n;s++)icons[s]=combos[s]}
+   let rot=0;if(mode==='rotated'){do rot=ri(1,3);while(rot===lastRot&&Math.random()<.7);lastRot=rot;const cells=shuffle([...Array(n*n).keys()]);icons={};RT_LM.forEach((l,i)=>{icons[cells[i]]=l})}
+   cur={cells:p,exp:mode==='reverse'?p.slice().reverse():p,rot,icons,len:p.length};taps=[];phase='show';ctl.innerHTML='';
+   st.innerHTML=`Memoriza la ruta · <span class="dim">${p.length} casillas</span>`;bd.classList.add('lock');draw(0,rtOv(n,p,'#46D8CC'));
+   const ms=Math.round(p.length*showPer+600);bar.innerHTML=`<div class="hp-bar"><i style="transition:transform ${ms}ms linear"></i></div>`;
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{const i=$('.hp-bar i',bar);if(i&&!RM())i.style.transform='scaleX(0)'}));
+   ctx.clock.after(ms,()=>{if(done)return;phase='mask';bar.innerHTML='';draw(0,'');st.textContent='…';ctx.clock.after(600,recall)})}
+  function recall(){if(done)return;phase='in';taps=[];bd.classList.remove('lock');draw(cur.rot,'');prompt();
+   ctl.innerHTML=`<button class="btn" id="rt-undo">${ic('chevL')} Deshacer</button>`;$('#rt-undo').onclick=()=>{if(phase!=='in'||ctx.clock.paused||!taps.length)return;taps.pop();draw(cur.rot,traceSvg());prompt()}}
+  const prompt=()=>{const k=taps.length,tot=cur.exp.length;st.innerHTML=(mode==='reverse'?'<b>Al revés:</b> empieza por el final':mode==='rotated'?`<b>Mapa girado ${cur.rot*90}° a la derecha</b>`:'<b>Repite la ruta</b>')+` <span class="dim">${k}/${tot}</span>`};
+  const traceSvg=()=>taps.length>1?rtOv(n,taps,'#6499FF',false,false):'';
+  function tap(d){if(phase!=='in'||ctx.clock.paused||done)return;if(taps.length>=cur.exp.length)return;taps.push(d);Sound.soft();draw(cur.rot,traceSvg());prompt();if(taps.length===cur.exp.length)judge()}
+  function judge(){phase='fb';bd.classList.add('lock');ctl.innerHTML='';
+   const got=taps.map(d=>rtUnrot(n,d,cur.rot)),exp=cur.exp;let m=0,first=null;for(let i=0;i<exp.length;i++){if(got[i]===exp[i])m++;else if(first===null)first=i}
+   const ok=m===exp.length,fr=m/exp.length,setN=new Set(exp),setHit=new Set(got.filter(x=>setN.has(x))).size/setN.size;
+   T.push({len:exp.length,ok,fr,first,setHit,rot:cur.rot});if(ok){maxSpan=Math.max(maxSpan,exp.length)}
+   ctx.feedback(ok,{msg:ok?'Ruta correcta':'No era esa ruta'});ctx.score(maxSpan,'Ruta más larga');ctx.hits(T.filter(x=>x.ok).length);
+   const dispExp=exp.map(i=>rtRot(n,i,cur.rot)),dispPath=cur.cells.map(i=>rtRot(n,i,cur.rot));
+   draw(cur.rot,rtOv(n,dispPath,ok?'#3DDC84':'#46D8CC'));
+   $$('.rt-c',bd).forEach(b=>{const d=+b.dataset.d,idxs=[];taps.forEach((t,j)=>{if(t===d)idxs.push(j)});if(!idxs.length)return;b.classList.remove('tap');b.classList.add(idxs.every(j=>dispExp[j]===d)?'ok':'no')});
+   st.innerHTML=ok?'<b>¡Bien!</b>':`<b>Mira la ruta correcta</b>${mode==='reverse'?' (la recorrías al revés)':''}`;
+   len=ok?Math.min(maxLen,len+1):Math.max(minLen,len-1);
+   ctx.clock.after(ok?900:2000,()=>{if(timeUp){done=true;return ctx.end()}newTrial()})}
+  bd.addEventListener('click',e=>{const b=e.target.closest('.rt-c');if(b)tap(+b.dataset.d)});
+  ctx.score(0,'Ruta más larga');ctx.clock.after(500,newTrial);
+  return {peek:()=>({cur,phase,taps,n,len}),onTimeUp(){timeUp=true;if(phase!=='in'&&phase!=='fb')ctx.end()},summary(){
+   const nT=T.length;if(!nT)return null;const okN=T.filter(x=>x.ok).length,acc=avg(T.map(x=>x.fr)),fails=T.filter(x=>x.first!==null);
+   const metrics=[{label:'Rutas correctas',value:`${okN}/${nT}`},{label:'Ruta más larga',value:maxSpan||'—'},{label:'Casillas en su sitio',value:pct(acc)},{label:'Casillas de la ruta tocadas',value:pct(avg(T.map(x=>x.setHit)))},{label:'Cuadrícula',value:`${n}×${n}`}];
+   if(fails.length)metrics.push({label:'Primer fallo (paso medio)',value:Math.round(avg(fails.map(x=>x.first+1))*10)/10});
+   const details=`<h4>¿Qué mide?</h4><p>La <b>ruta más larga</b> es el mayor número de casillas que reprodujiste en el orden exacto (${maxSpan||0}). «Casillas en su sitio» cuenta cuántos pasos coinciden con la ruta; «casillas de la ruta tocadas» ignora el orden, así que si es alta y la anterior baja, recuerdas <i>dónde</i> pasó pero no <i>en qué orden</i>.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:okN,wrong:nT-okN,total:nT,acc,score:maxSpan||null,metrics,details,extra:{mode,grid:n,maxSpan,perfect:nT>=3&&okN===nT,omRate:0,faRate:0}}}}}
+ });
+
+/* ---- MEMORIA EPISÓDICA SIMULADA: escenas ficticias con personajes, objetos, lugares y orden ----
+   Cada escena cuenta 2-6 sucesos («Primero, Lucía dejó una llave roja en la biblioteca.»). Después se pregunta quién, qué, de qué color,
+   dónde, qué hizo y en qué orden. Cada suceso se pregunta una sola vez: unas preguntas son inmediatas y otras diferidas (tras otras escenas
+   o una pausa de cálculo). Los señuelos salen de la propia escena (errores de asociación) o de fuera (intrusiones).
+   Es una tarea de laboratorio con material inventado: no es una evaluación clínica de la memoria episódica. */
+const EP_NAMES=['Lucía','Mario','Elena','Pablo','Sofía','Andrés','Clara','Hugo','Marta','Tomás','Irene','Daniel','Carla','Álvaro','Nuria','Iván','Laura','Sergio','Paula','Rubén','Alba','Óscar','Julia','Raúl'];
+const EP_OBJ=[['llave','f'],['libro','m'],['paraguas','m'],['bufanda','f'],['mochila','f'],['sombrero','m'],['carta','f'],['reloj','m'],['cuaderno','m'],['gorra','f'],['linterna','f'],['cámara','f'],['botella','f'],['moneda','f'],['bolso','m'],['mapa','m'],['guante','m'],['taza','f'],['lámpara','f'],['caja','f'],['pelota','f'],['violín','m'],['sobre','m'],['tijera','f']];
+const EP_G=Object.fromEntries(EP_OBJ);
+const EP_COL=['rojo','azul','verde','amarillo','morado','naranja'],EP_COLF=['roja','azul','verde','amarilla','morada','naranja'];
+const EP_PLACE=['la biblioteca','el jardín','la cocina','el garaje','la estación','el museo','la panadería','el parque','la oficina','el gimnasio','el café','la playa'];
+const EP_VERB=['dejó','guardó','encontró','escondió','recogió','olvidó'];
+const EP_TITLES=['La tarde en la ciudad','Una mañana tranquila','El día del festival','La noche de la lluvia','El viaje en tren','La visita al museo'];
+const EP_MID=['Después','Luego','Más tarde','A continuación'];
+const epK=L=>Math.min(6,2+Math.floor(L/3));
+const epScenes=L=>L>=9?3:2;
+const epEnc=L=>Math.max(2400,6200-L*240);
+const epAns=L=>Math.max(9000,20000-L*600);
+const epArt=n=>EP_G[n]==='f'?'la':'el';
+const epText=e=>`${e.conn}, ${e.actor} ${e.verb} ${e.g==='f'?'una':'un'} ${e.obj} ${e.g==='f'?EP_COLF[e.col]:EP_COL[e.col]} en ${e.place}.`;
+function epOpts(ans,within,pool,lab,n=4){const seen=new Set([String(ans)]),o=[{k:ans,t:lab(ans),kind:'ans'}];
+ for(const v of shuffle(within)){if(o.length>=n)break;if(!seen.has(String(v))){seen.add(String(v));o.push({k:v,t:lab(v),kind:'bind'})}}
+ for(const v of shuffle(pool)){if(o.length>=n)break;if(!seen.has(String(v))){seen.add(String(v));o.push({k:v,t:lab(v),kind:'new'})}}
+ return shuffle(o)}
+const EP_FAC=['actobj','actcol','actplace','objactor','objplace','objcol','actverb'];
+function epQuestion(sc,facet,i){
+ const ev=sc.ev,e=ev[i],oth=ev.filter((_,j)=>j!==i),A=`${epArt(e.obj)} ${e.obj}`,id=x=>x,nameOf=x=>x;
+ let stem,ans,within,pool,lab=id;
+ if(facet==='actobj'){stem=`¿Con qué objeto actuó ${e.actor}?`;ans=e.obj;within=oth.map(o=>o.obj);pool=EP_OBJ.map(o=>o[0]);lab=n=>`${epArt(n)} ${n}`}
+ else if(facet==='actcol'){stem=`¿De qué color era el objeto de ${e.actor}?`;ans=e.col;within=oth.map(o=>o.col);pool=[0,1,2,3,4,5];lab=c=>EP_COL[c]}
+ else if(facet==='actplace'){stem=`¿Dónde estaba ${e.actor}?`;ans=e.place;within=oth.map(o=>o.place);pool=EP_PLACE}
+ else if(facet==='objactor'){stem=`¿Quién actuó con ${A}?`;ans=e.actor;within=oth.map(o=>o.actor);pool=EP_NAMES}
+ else if(facet==='objplace'){stem=`¿Dónde estaba ${A}?`;ans=e.place;within=oth.map(o=>o.place);pool=EP_PLACE}
+ else if(facet==='objcol'){stem=`¿De qué color era ${A}?`;ans=e.col;within=oth.map(o=>o.col);pool=[0,1,2,3,4,5];lab=c=>EP_COL[c]}
+ else{stem=`¿Qué hizo ${e.actor} con ${A}?`;ans=e.verb;within=oth.map(o=>o.verb);pool=EP_VERB;lab=v=>`${e.g==='f'?'La':'Lo'} ${v}`}
+ return {facet,stem,ans:String(ans),opts:epOpts(ans,within,pool,lab),ev:i}}
+function epOrderQ(sc){const ev=sc.ev,k=ev.length;
+ if(k>=3&&Math.random()<.5){const i=ri(0,k-2),e=ev[i],nx=ev[i+1];
+  return {facet:'next',stem:`¿Quién actuó justo después de ${e.actor}?`,ans:nx.actor,opts:epOpts(nx.actor,ev.filter((_,j)=>j!==i&&j!==i+1).map(o=>o.actor),EP_NAMES.filter(n=>n!==e.actor),x=>x),ev:i}}
+ let i=ri(0,k-2),j=ri(i+1,k-1);const A=ev[i].actor,B=ev[j].actor,sw=Math.random()<.5;
+ return {facet:'ord2',stem:`¿Quién actuó antes: ${sw?B:A} o ${sw?A:B}?`,ans:A,opts:(sw?[B,A]:[A,B]).map(x=>({k:x,t:x,kind:x===A?'ans':'bind'})),ev:i}}
+reg({id:'episode',skill:'memory',name:'Memoria episódica',icon:'episode',tagline:'Recuerda quién hizo qué, dónde y en qué orden.',
+ howTo:m=>['Lee con atención una escena inventada: varios sucesos en orden («Primero, Lucía dejó una llave roja en la biblioteca…»). Tienes unos segundos por suceso.','Después responderás preguntas de opción múltiple: <b>quién</b>, <b>con qué objeto</b>, <b>de qué color</b>, <b>dónde</b>, <b>qué hizo</b> y <b>en qué orden</b>.',m==='now'?'Todas las preguntas llegan justo después de cada escena.':m==='later'?'Primero verás todas las escenas, luego una pausa de cálculo y por último todas las preguntas (diferidas).':'Unas preguntas llegan justo después de la escena (inmediatas) y otras al final, tras otras escenas (diferidas).','Los señuelos suelen ser datos de la misma escena: cuidado con mezclar quién hizo qué.'],
+ example:m=>`<div class="ex-stim ep-ex" data-stim style="height:auto;padding:.8rem;font-size:.95rem;text-align:left;letter-spacing:0;font-weight:600">Primero, Lucía dejó una llave roja en la biblioteca.<br>Después, Mario guardó un libro azul en el jardín.</div><p class="small" style="margin-top:.5rem">Pregunta posible: «¿De qué color era la llave?» → <b>rojo</b>. Otra: «¿Quién actuó antes: Lucía o Mario?» → <b>Lucía</b>.</p>`,
+ modes:[{id:'mix',name:'Inmediata + diferida',desc:'Preguntas al momento y al final'},{id:'now',name:'Solo inmediata',desc:'Tras cada escena'},{id:'later',name:'Solo diferida',desc:'Con pausa de cálculo'}],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{mode:'mix',min:100,max:200},
+ levelInfo:(L,m)=>`${epScenes(L)} escenas de ${epK(L)} sucesos · ${(epEnc(L)/1000).toFixed(1)} s por suceso · ${(epAns(L)/1000).toFixed(0)} s por pregunta${L>=6?' · incluye «qué hizo»':''}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode,k=epK(L),encPer=epEnc(L),ansMs=epAns(L);
+  const per=k*encPer+(k+1)*7000+2500,nS=ctx.budget?clamp(Math.floor((ctx.budget-(mode==='later'?24000:0))/per),1,epScenes(L)):epScenes(L);
+  const names=shuffle(EP_NAMES),objs=shuffle(EP_OBJ),titles=shuffle(EP_TITLES),facets=EP_FAC.slice(0,L>=6?7:6);
+  let scenes=[],phase='idle',done=false,timeUp=false,queue=[],Q=null,tm=null,t0=0,asked=0,total=0;const R=[],dist={n:0,ok:0};
+  ctx.stage.innerHTML=`<div class="g-wrap ep"><div class="ep-top" id="ept"></div><div class="ep-main" id="epm"></div></div>`;
+  const top=$('#ept'),main=$('#epm');
+  const bar=ms=>`<div class="hp-bar"><i style="transition:transform ${ms}ms linear"></i></div>`,kick=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{const i=$('.hp-bar i',ctx.stage);if(i&&!RM())i.style.transform='scaleX(0)'}));
+  /* ---- escenas y preguntas ---- */
+  function makeScene(i){const ev=[];for(let j=0;j<k;j++){const [obj,g]=objs.pop();ev.push({actor:names.pop(),verb:pick(EP_VERB),obj,g,col:ri(0,5),place:pick(EP_PLACE),conn:j===0?'Primero':j===k-1?'Por último':EP_MID[j-1]})}
+   const sc={i,title:titles[i],ev,tEnd:0};const fs=shuffle(facets);
+   const qs=shuffle([...Array(k).keys()]).map((e,n)=>epQuestion(sc,fs[n%fs.length],e));qs.push(epOrderQ(sc));
+   const all=shuffle(qs);all.forEach((q,n)=>{q.sc=i;q.timing=mode==='now'?'imm':mode==='later'?'def':(n<Math.ceil(all.length/2)?'imm':'def')});
+   sc.qs=all;return sc}
+  /* ---- 1) estudio de una escena ---- */
+  function study(i){if(done)return;phase='study';const sc=scenes[i]=makeScene(i),ms=k*encPer;top.textContent=`Escena ${i+1} de ${nS} · «${sc.title}»`;
+   main.innerHTML=`<div class="ep-card" data-stim><b class="ep-title">${esc(sc.title)}</b><ul class="ep-list">${sc.ev.map(e=>`<li>${esc(epText(e))}</li>`).join('')}</ul></div>${bar(ms)}<p class="hint">Memoriza quién, qué objeto, de qué color, dónde y en qué orden</p>`;kick();Sound.alert();ctx.say('Lee la escena');
+   ctx.clock.after(ms,()=>{if(done)return;sc.tEnd=ctx.clock.now();phase='mask';main.innerHTML='<div class="ep-mask">…</div>';ctx.clock.after(600,()=>afterStudy(i))})}
+  function afterStudy(i){if(done)return;if(mode==='later'){if(i+1<nS)return study(i+1);return distract()}
+   queue=scenes[i].qs.filter(q=>q.timing==='imm');total=queue.length;asked=0;nextQ(()=>{if(i+1<nS)study(i+1);else if(mode==='mix')deferred();else finish()})}
+  /* ---- pausa de cálculo (solo en «solo diferida») ---- */
+  function distract(){phase='delay';top.textContent='Pausa · Cálculo mental';const ms=24000,end=ctx.clock.now()+ms;let cur=null,over=false;
+   ctx.clock.after(ms,()=>{if(done||over)return;over=true;cur=null;deferred()});
+   const draw=()=>{if(done||over||ctx.clock.now()>=end)return;const a=ri(6,39),b=ri(3,19),op=pick(['+','−']),ans=op==='+'?a+b:a-b,w=new Set();while(w.size<2){const x=ans+pick([-3,-2,-1,1,2,3,10,-10]);if(x!==ans)w.add(x)}cur={ans};
+    main.innerHTML=`<div class="ep-dist"><div class="ep-q">${a} ${op} ${b} = ?</div><div class="ep-opts">${shuffle([ans,...w]).map(o=>`<button class="btn btn-lg ep-o" data-v="${o}">${o}</button>`).join('')}</div></div>${bar(Math.max(500,end-ctx.clock.now()))}`;kick()};
+   main.onclick=e=>{const b=e.target.closest('.ep-o[data-v]');if(!b||ctx.clock.paused||phase!=='delay'||!cur)return;const ok=+b.dataset.v===cur.ans;dist.n++;if(ok)dist.ok++;ctx.feedback(ok,{msg:false,noFlash:true,quiet:true});cur=null;ctx.clock.after(ok?120:350,draw)};
+   draw()}
+  /* ---- 2) preguntas ---- */
+  function deferred(){if(done)return;queue=shuffle(scenes.flatMap(s=>s.qs.filter(q=>q.timing==='def')));total=queue.length;asked=0;if(!total)return finish();nextQ(finish)}
+  function nextQ(after){if(done)return;if(!queue.length)return after();Q=queue.shift();Q.after=after;phase='ask';asked++;
+   const def=Q.timing==='def',sc=scenes[Q.sc];top.textContent=def?`Pregunta diferida ${asked}/${total}`:`Pregunta inmediata ${asked}/${total}`;
+   main.innerHTML=`<div class="ep-q">${def?`<small>En «${esc(sc.title)}»</small>`:''}${esc(Q.stem)}</div><div class="ep-opts${Q.opts.length===2?' two':''}">${Q.opts.map(o=>`<button class="btn btn-lg ep-o" data-k="${esc(o.k)}">${esc(o.t)}</button>`).join('')}</div>${bar(ansMs)}`;kick();
+   t0=ctx.clock.now();tm=ctx.clock.after(ansMs,()=>answer(null))}
+  function answer(key){if(phase!=='ask'||done)return;phase='fb';ctx.clock.cancel(tm);const q=Q,to=key===null,rt=Math.round(ctx.clock.now()-t0),ok=!to&&String(key)===q.ans,ch=to?null:q.opts.find(o=>String(o.k)===String(key));
+   R.push({facet:q.facet,timing:q.timing,ok,rt,to,kind:ch?ch.kind:'to',gap:Math.round((ctx.clock.now()-scenes[q.sc].tEnd)/1000)});
+   ctx.feedback(ok,{msg:to?'Tiempo agotado':ok?'Correcto':'No era esa'});ctx.score(R.filter(x=>x.ok).length,'Aciertos');ctx.hits(R.filter(x=>x.ok).length);
+   $$('.ep-o',main).forEach(b=>{if(b.dataset.k===q.ans)b.classList.add('ok');else if(!to&&String(b.dataset.k)===String(key))b.classList.add('no')});
+   ctx.clock.after(ok?800:1600,()=>{if(timeUp){done=true;return ctx.end()}q.after&&nextQ(q.after)})}
+  function finish(){if(done)return;done=true;ctx.end()}
+  main.addEventListener('click',e=>{const b=e.target.closest('.ep-o[data-k]');if(!b||ctx.clock.paused||phase!=='ask')return;answer(b.dataset.k)});
+  ctx.score(0,'Aciertos');ctx.clock.after(600,()=>study(0));
+  return {peek:()=>({phase,Q,scenes,R,mode,nS}),onTimeUp(){timeUp=true;if(phase!=='ask'&&phase!=='fb'){done=true;ctx.end()}},summary(){
+   const n=R.length;if(!n)return null;const okN=R.filter(x=>x.ok).length,acc=okN/n,err=R.filter(x=>!x.ok),bind=err.filter(x=>x.kind==='bind').length,nw=err.filter(x=>x.kind==='new').length,to=R.filter(x=>x.to).length;
+   const part=t=>{const a=R.filter(x=>x.timing===t);return {n:a.length,ok:a.filter(x=>x.ok).length}},im=part('imm'),df=part('def');
+   const metrics=[{label:'Aciertos',value:`${okN}/${n}`}];
+   if(im.n)metrics.push({label:'Preguntas inmediatas',value:`${im.ok}/${im.n}`});if(df.n)metrics.push({label:'Preguntas diferidas',value:`${df.ok}/${df.n}`});
+   if(err.length)metrics.push({label:'Errores de asociación',value:`${bind}/${err.length}`});metrics.push({label:'Tiempo medio',value:Math.round(avg(R.filter(x=>!x.to).map(x=>x.rt))/100)/10+' s'});
+   const FN={actobj:'Persona → objeto',actcol:'Persona → color',actplace:'Persona → lugar',objactor:'Objeto → persona',objplace:'Objeto → lugar',objcol:'Objeto → color',actverb:'Qué hizo',ord2:'Quién actuó antes',next:'Qué vino después'};
+   const rows=Object.keys(FN).map(f=>[f,R.filter(x=>x.facet===f)]).filter(r=>r[1].length);
+   const details=`<h4>Por tipo de pregunta</h4><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Pregunta</th><th>Aciertos</th><th>Precisión</th></tr></thead><tbody>${rows.map(([f,a])=>`<tr><td>${FN[f]}</td><td>${a.filter(x=>x.ok).length}/${a.length}</td><td>${pct(a.filter(x=>x.ok).length/a.length)}</td></tr>`).join('')}</tbody></table></div><p>Un <b>error de asociación</b> es elegir un dato que sí estaba en la escena pero pertenecía a otro suceso; una <b>intrusión</b> es elegir algo que no estaba (${nw} en esta sesión). ${im.n&&df.n?`Las preguntas inmediatas y las diferidas se refieren a sucesos distintos, así que su diferencia (${pct(im.ok/im.n)} frente a ${pct(df.ok/df.n)}) es orientativa.`:''}</p><p class="note">Escenas inventadas en una tarea de laboratorio: estas cifras describen tu rendimiento aquí y no son una evaluación clínica de la memoria episódica.</p>`;
+   return {correct:okN,wrong:n-okN,total:n,acc,score:okN,rt:avg(R.filter(x=>!x.to).map(x=>x.rt)),metrics,details,extra:{mode,scenes:nS,events:k,imm:im,def:df,bind,intr:nw,dist,omRate:to/n,faRate:0}}}}}
+ });
+
+/* ---- OBJECT BINDING: recordar combinaciones de rasgos (dónde, forma, color, número) ----
+   Se memoriza una escena de objetos en una cuadrícula de 4×3. Dos formatos:
+   · Preguntas de asociación: «¿Qué figura estaba en la columna 2 y tenía el número 7?». Las opciones son los valores presentes en la escena,
+     así que un error significa que ataste un rasgo al objeto equivocado.
+   · ¿Estaba así?: se muestra un objeto suelto que puede ser idéntico a uno visto o un señuelo. Los señuelos de conjunción mezclan rasgos de
+     objetos vistos (error de ligadura); los señuelos nuevos usan un rasgo que no estaba (error de rasgo). */
+const BD_SH=['circle','square','triangle','star','diamond','cross'],BD_COL=['#FF4D5E','#538CFF','#3DDC84','#FFD23F','#B36DFF','#FF8A2B'],BD_CN=['rojo','azul','verde','amarillo','morado','naranja'],BD_SN=['círculo','cuadrado','triángulo','estrella','rombo','cruz'],BD_SA=['un círculo','un cuadrado','un triángulo','una estrella','un rombo','una cruz'];
+const BD_C=4,BD_CELLS=12;
+const bdN=L=>Math.min(9,2+Math.ceil(L/2));
+const bdEnc=(L,N)=>Math.round(N*Math.max(550,1300-L*45)+600);
+const bdAns=L=>Math.max(7000,14000-L*400);
+const bdCues=L=>L>=6?2:1;
+const BD_CUE={cell:o=>`estaba en la columna ${o.cell%BD_C+1}, fila ${Math.floor(o.cell/BD_C)+1}`,col:o=>`estaba en la columna ${o.cell%BD_C+1}`,row:o=>`estaba en la fila ${Math.floor(o.cell/BD_C)+1}`,shape:o=>`era ${BD_SA[o.sh]}`,color:o=>`era de color ${BD_CN[o.col]}`,num:o=>`tenía el número ${o.num}`};
+const BD_MATCH={cell:(a,b)=>a.cell===b.cell,col:(a,b)=>a.cell%BD_C===b.cell%BD_C,row:(a,b)=>Math.floor(a.cell/BD_C)===Math.floor(b.cell/BD_C),shape:(a,b)=>a.sh===b.sh,color:(a,b)=>a.col===b.col,num:(a,b)=>a.num===b.num};
+const bdObjSVG=(o,withNum)=>shapeSVG(BD_SH[o.sh],BD_COL[o.col],{extra:withNum&&o.num?`<text x="50" y="65" text-anchor="middle" font-family="Arial,sans-serif" font-size="46" font-weight="800" fill="#fff" stroke="#0B1020" stroke-width="6" paint-order="stroke">${o.num}</text>`:''});
+function bdScene(N,withNum){const cells=shuffle([...Array(BD_CELLS).keys()]).slice(0,N),nums=shuffle([1,2,3,4,5,6,7,8,9]),used=new Set();
+ return cells.map((cell,i)=>{let s,c,g=0;do{s=ri(0,5);c=ri(0,5)}while(used.has(s+'_'+c)&&g++<80);used.add(s+'_'+c);return {id:i,cell,sh:s,col:c,num:withNum?nums[i]:0}})}
+const bdCombos=(a,k)=>k===1?a.map(x=>[x]):a.flatMap((x,i)=>bdCombos(a.slice(i+1),k-1).map(r=>[x,...r]));
+/* conjunto de pistas que identifica a un único objeto, sin pistas redundantes; minCues = 2 pide dos pistas siempre que sea posible */
+function bdPickCues(scene,target,ask,withNum,minCues){
+ const types=['cell','col','row','shape','color',...(withNum?['num']:[])].filter(t=>t!==ask&&!(ask==='pos'&&['cell','col','row'].includes(t)));
+ const uniq=set=>scene.filter(o=>set.every(t=>BD_MATCH[t](o,target))).length===1;
+ for(const sz of minCues>=2?[2,3,1]:[1,2,3]){
+  const min=bdCombos(types,sz).filter(uniq).filter(s=>s.length===1||!s.some((_,i)=>uniq(s.filter((_,j)=>j!==i))));
+  if(min.length)return pick(min)}
+ for(const sz of [1,2,3]){const any=bdCombos(types,sz).filter(uniq);if(any.length)return pick(any)}
+ return null}
+function bdQuestion(scene,target,ask,withNum,minCues){
+ const set=bdPickCues(scene,target,ask,withNum,minCues);if(!set)return null;
+ const order=['cell','col','row','shape','color','num'],cl=set.slice().sort((a,b)=>order.indexOf(a)-order.indexOf(b)).map(t=>BD_CUE[t](target)).join(' y ');
+ const text=ask==='color'?`¿De qué color era la figura que ${cl}?`:ask==='shape'?`¿Qué figura ${cl}?`:ask==='num'?`¿Qué número tenía la figura que ${cl}?`:`¿Dónde estaba la figura que ${cl}?`;
+ const ansVal=ask==='color'?target.col:ask==='shape'?target.sh:ask==='num'?target.num:target.cell;
+ return {ask,set,text,target:target.id,ansVal:String(ansVal)}}
+function bdPlan(scene,withNum,L,nq){
+ const targets=shuffle(scene).slice(0,Math.min(nq,scene.length)),asks=shuffle(['color','shape','pos',...(withNum?['num']:[])]),out=[];
+ targets.forEach((t,i)=>{for(let a=0;a<asks.length;a++){const q=bdQuestion(scene,t,asks[(i+a)%asks.length],withNum,bdCues(L));if(q){out.push(q);break}}});
+ return out}
+/* sondas del formato «¿Estaba así?»: 3 idénticas, 2 señuelos de conjunción y 1 con un rasgo nuevo */
+function bdProbes(scene,withNum){
+ const old=shuffle(scene).slice(0,3).map(o=>({...o,old:true,type:'old'})),lures=[],feats=['color','shape',...(withNum?['num']:[]),'pos'];
+ const absent={color:()=>[0,1,2,3,4,5].filter(c=>!scene.some(o=>o.col===c)),shape:()=>[0,1,2,3,4,5].filter(s=>!scene.some(o=>o.sh===s)),num:()=>[1,2,3,4,5,6,7,8,9].filter(n=>!scene.some(o=>o.num===n)),pos:()=>[...Array(BD_CELLS).keys()].filter(c=>!scene.some(o=>o.cell===c))};
+ for(let tries=0;lures.length<3&&tries<120;tries++){
+  const conj=lures.length<2||tries>60,A=pick(scene),f=pick(feats);let P=null;
+  if(conj){const B=pick(scene.filter(o=>o.id!==A.id));if(!B)continue;P={...A,old:false,type:'conj-'+f};if(f==='color')P.col=B.col;else if(f==='shape')P.sh=B.sh;else if(f==='num')P.num=B.num;else P.cell=B.cell}
+  else{const ab=absent[f]();if(!ab.length)continue;P={...A,old:false,type:'new-'+f};const v=pick(ab);if(f==='color')P.col=v;else if(f==='shape')P.sh=v;else if(f==='num')P.num=v;else P.cell=v}
+  if(scene.some(o=>o.cell===P.cell&&o.sh===P.sh&&o.col===P.col&&o.num===P.num))continue;
+  if(lures.some(o=>o.cell===P.cell&&o.sh===P.sh&&o.col===P.col&&o.num===P.num))continue;
+  lures.push(P)}
+ return shuffle([...old,...lures])}
+reg({id:'binding',skill:'memory',name:'Object Binding',icon:'binding',tagline:'Une dónde, qué forma, qué color y qué número.',
+ howTo:m=>m==='probe'?['Memoriza una escena: varios objetos, cada uno con su <b>posición</b>, <b>forma</b>, <b>color</b> y <b>número</b>.','Después irá apareciendo un objeto suelto en una casilla. Responde si <b>estaba exactamente así</b> o no (teclas S / N).','Los señuelos mezclan rasgos de objetos que sí viste (por ejemplo, la forma de uno con el color de otro) o usan un rasgo que no estaba.']:['Memoriza una escena: varios objetos en una cuadrícula, cada uno con su forma y su color'+(m==='quad'?' y un número':'')+'.','Cuando se oculte, responde preguntas del tipo «¿Qué figura estaba en la columna 2 y tenía el número 7?».','Las opciones son valores que sí estaban en la escena: un fallo significa que uniste mal los rasgos. Al final de cada escena verás cómo era.'],
+ example:m=>`<div class="ex-stim" data-stim style="gap:1rem"><span class="ex-it" style="width:58px;height:58px">${bdObjSVG({sh:3,col:3,num:7},true)}</span><span class="ex-it" style="width:58px;height:58px">${bdObjSVG({sh:1,col:1,num:4},true)}</span><span class="ex-it" style="width:58px;height:58px">${bdObjSVG({sh:0,col:0,num:2},true)}</span></div><p class="small" style="margin-top:.5rem">${m==='probe'?'Si luego ves una estrella azul con el 7, es un señuelo: la estrella era amarilla.':'«¿Qué número tenía la estrella?» → 7. «¿De qué color era el cuadrado?» → azul.'}</p>`,
+ modes:[{id:'quad',name:'Con números',desc:'Posición, forma, color y número'},{id:'pair',name:'Posición, forma y color',desc:'Sin números'},{id:'probe',name:'¿Estaba así?',desc:'Objeto suelto: idéntico o señuelo'}],
+ maxLevel:15,metric:{label:'Aciertos',better:'high'},daily:{mode:'quad',min:75,max:150},
+ levelInfo:(L,m)=>`${bdN(L)} objetos en una cuadrícula de ${BD_C}×3 · ${(bdEnc(L,bdN(L))/1000).toFixed(1)} s para memorizar · ${m==='probe'?'6 sondas por escena (3 idénticas y 3 señuelos)':bdCues(L)===2?'preguntas con dos pistas siempre que sea posible':'preguntas con una pista'}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode,N=bdN(L),withNum=mode!=='pair',enc=bdEnc(L,N),ansMs=mode==='probe'?6000:bdAns(L),trials=ctx.budget?Infinity:4,probe=mode==='probe';
+  const T=[];let scene=null,phase='idle',done=false,timeUp=false,qs=[],qi=0,Qc=null,tm=null,t0=0,tr=0,errs=0;
+  ctx.stage.innerHTML=`<div class="g-wrap bd"><div class="bd-q" id="bdq" aria-live="polite"></div><div class="bd-grid" id="bdg" data-stim></div><div class="bd-resp" id="bdr"></div><div class="bd-bar" id="bdb"></div></div>`;
+  const qEl=$('#bdq'),grid=$('#bdg'),resp=$('#bdr'),bar=$('#bdb');
+  /* tablero: objs = objetos visibles; click = casillas pulsables (respuesta de posición) */
+  const draw=(objs,click)=>{grid.innerHTML=Array.from({length:BD_CELLS},(_,c)=>{const o=objs.find(x=>x.cell===c);return `<${click?'button':'div'} class="bd-c${o?' f':''}" data-c="${c}" ${click?`aria-label="Columna ${c%BD_C+1}, fila ${Math.floor(c/BD_C)+1}"`:''}>${o?bdObjSVG(o,withNum):''}</${click?'button':'div'}>`}).join('')};
+  const kick=ms=>{bar.innerHTML=`<div class="hp-bar"><i style="transition:transform ${ms}ms linear"></i></div>`;requestAnimationFrame(()=>requestAnimationFrame(()=>{const i=$('.hp-bar i',bar);if(i&&!RM())i.style.transform='scaleX(0)'}))};
+  function newTrial(){if(done)return;if(tr>=trials){done=true;return ctx.end()}tr++;errs=0;scene=bdScene(N,withNum);phase='enc';
+   qs=probe?bdProbes(scene,withNum):bdPlan(scene,withNum,L,3);qi=0;grid.hidden=false;resp.innerHTML='';qEl.textContent=`Memoriza la escena · ${N} objetos`;draw(scene);kick(enc);Sound.alert();
+   ctx.clock.after(enc,()=>{if(done)return;phase='mask';bar.innerHTML='';draw([]);qEl.textContent='…';ctx.clock.after(700,nextQ)})}
+  function nextQ(){if(done)return;if(qi>=qs.length)return reveal();Qc=qs[qi];phase='ask';t0=ctx.clock.now();
+   if(probe){draw([Qc]);grid.hidden=false;qEl.textContent=`¿Estaba así? · ${qi+1}/${qs.length}`;resp.innerHTML=`<button class="btn btn-lg bd-op" data-v="1">${ic('check')} Sí, estaba (S)</button><button class="btn btn-lg bd-op" data-v="0">No estaba (N)</button>`}
+   else{qEl.textContent=Qc.text;const a=Qc.ask;
+    if(a==='pos'){draw([],true);grid.hidden=false;resp.innerHTML=''}
+    else{grid.hidden=true;const vals=[...new Set(scene.map(o=>a==='color'?o.col:a==='shape'?o.sh:o.num))].sort((x,y)=>x-y);
+     resp.innerHTML=vals.map(v=>`<button class="btn bd-op" data-v="${v}" aria-label="${a==='color'?BD_CN[v]:a==='shape'?BD_SN[v]:v}"><span class="bd-chip" data-stim>${a==='color'?`<i class="bd-sw" style="background:${BD_COL[v]}"></i>`:a==='shape'?shapeSVG(BD_SH[v],'#DDE6F5'):`<b>${v}</b>`}</span>${a==='color'?`<span>${BD_CN[v]}</span>`:a==='shape'?`<span>${BD_SN[v]}</span>`:''}</button>`).join('')}}
+   tm=ctx.clock.after(ansMs,()=>answer(null))}
+  function answer(val){if(phase!=='ask'||done)return;phase='fb';ctx.clock.cancel(tm);const q=Qc,to=val===null,rt=Math.round(ctx.clock.now()-t0);let ok,rec;
+   if(probe){const said=to?null:val==='1';ok=!to&&said===q.old;rec={probe:true,type:q.type,old:q.old,said,ok,rt,to};
+    $$('.bd-op',resp).forEach(b=>{const yes=b.dataset.v==='1';if(yes===q.old)b.classList.add('ok');else if(!to&&yes===said)b.classList.add('no')});qEl.textContent=ok?'¡Bien!':to?'Tiempo agotado':q.old?'Sí estaba así':'No estaba así'}
+   else{ok=!to&&String(val)===q.ansVal;let kind=to?'to':ok?'ok':'bind';if(q.ask==='pos'&&!to&&!ok)kind=scene.some(o=>o.cell===+val)?'bind':'empty';rec={ask:q.ask,cues:q.set.length,ok,rt,to,kind};
+    if(q.ask==='pos'){$$('.bd-c',grid).forEach(b=>{if(b.dataset.c===q.ansVal)b.classList.add('ok');else if(!to&&b.dataset.c===String(val))b.classList.add('no')})}
+    else $$('.bd-op',resp).forEach(b=>{if(b.dataset.v===q.ansVal)b.classList.add('ok');else if(!to&&b.dataset.v===String(val))b.classList.add('no')});
+    qEl.textContent=to?'Tiempo agotado':ok?'¡Bien!':'No era esa'}
+   if(!ok)errs++;T.push(rec);ctx.feedback(ok,{msg:to?'Tiempo agotado':ok?'Correcto':'No era eso'});ctx.score(T.filter(x=>x.ok).length,'Aciertos');ctx.hits(T.filter(x=>x.ok).length);
+   qi++;ctx.clock.after(ok?700:1300,()=>{if(timeUp){done=true;return ctx.end()}nextQ()})}
+  /* al terminar la escena se muestra cómo era (corrección) */
+  function reveal(){phase='reveal';grid.hidden=false;resp.innerHTML='';qEl.textContent='Así era la escena';draw(scene);ctx.clock.after(errs?2400:1300,()=>{if(timeUp){done=true;return ctx.end()}newTrial()})}
+  resp.addEventListener('click',e=>{const b=e.target.closest('.bd-op');if(b&&!ctx.clock.paused)answer(b.dataset.v)});
+  grid.addEventListener('click',e=>{const b=e.target.closest('button.bd-c');if(b&&Qc&&Qc.ask==='pos'&&!ctx.clock.paused)answer(b.dataset.c)});
+  ctx.key(e=>{if(!probe||phase!=='ask')return;const k=e.key.toLowerCase();if(k==='s'||k==='y'){e.preventDefault();answer('1')}else if(k==='n'){e.preventDefault();answer('0')}});
+  ctx.score(0,'Aciertos');ctx.clock.after(600,newTrial);
+  return {peek:()=>({phase,scene,Qc,qs,qi,mode,N}),onTimeUp(){timeUp=true;if(phase!=='ask'&&phase!=='fb'){done=true;ctx.end()}},summary(){
+   const n=T.length;if(!n)return null;const okN=T.filter(x=>x.ok).length,acc=okN/n,to=T.filter(x=>x.to).length;let metrics,details,extra;
+   if(probe){const old=T.filter(x=>x.old),lu=T.filter(x=>!x.old),cj=lu.filter(x=>x.type.startsWith('conj')),nw=lu.filter(x=>x.type.startsWith('new'));
+    const hit=old.filter(x=>x.said===true).length,fa=lu.filter(x=>x.said===true).length,faC=cj.filter(x=>x.said===true).length,faN=nw.filter(x=>x.said===true).length;
+    const dp=old.length>=3&&lu.length>=3?cpZ((hit+.5)/(old.length+1))-cpZ((fa+.5)/(lu.length+1)):null,rate=(a,b)=>b?a/b:null;
+    metrics=[{label:'Aciertos',value:`${okN}/${n}`},{label:'Idénticas reconocidas',value:`${hit}/${old.length}`},{label:'Falsas alarmas (conjunción)',value:cj.length?`${faC}/${cj.length}`:'—'},{label:'Falsas alarmas (rasgo nuevo)',value:nw.length?`${faN}/${nw.length}`:'—'},{label:'d′',value:dp==null?'—':dp.toFixed(2)}];
+    details=`<h4>Ligar rasgos frente a recordar rasgos</h4><p>Un <b>señuelo de conjunción</b> combina rasgos que sí viste en objetos distintos; uno de <b>rasgo nuevo</b> usa un rasgo que no estaba. Si aceptas más señuelos de conjunción (${pct(rate(faC,cj.length))}) que de rasgo nuevo (${pct(rate(faN,nw.length))}), recuerdas los rasgos pero se te escapa con qué objeto iban. Con pocas sondas por sesión esta diferencia es solo orientativa.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+    extra={mode,N,dprime:dp,hit,fa,faC,faN,nOld:old.length,nLure:lu.length,omRate:to/n,faRate:lu.length?fa/lu.length:0}}
+   else{const by=a=>{const x=T.filter(r=>r.ask===a);return {n:x.length,ok:x.filter(r=>r.ok).length}},AN={color:'Color',shape:'Forma',num:'Número',pos:'Posición'},rows=['color','shape','num','pos'].map(a=>[a,by(a)]).filter(r=>r[1].n),bind=T.filter(x=>x.kind==='bind').length,empty=T.filter(x=>x.kind==='empty').length;
+    metrics=[{label:'Aciertos',value:`${okN}/${n}`},{label:'Objetos por escena',value:N},{label:'Tiempo de memorización',value:(enc/1000).toFixed(1)+' s'},{label:'Tiempo medio',value:Math.round(avg(T.filter(x=>!x.to).map(x=>x.rt))/100)/10+' s'},{label:'Errores de ligadura',value:`${bind}/${n-okN}`}];
+    details=`<h4>Por rasgo preguntado</h4><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Se preguntaba</th><th>Aciertos</th><th>Precisión</th></tr></thead><tbody>${rows.map(([a,x])=>`<tr><td>${AN[a]}</td><td>${x.ok}/${x.n}</td><td>${pct(x.ok/x.n)}</td></tr>`).join('')}</tbody></table></div><p>Un <b>error de ligadura</b> es elegir un valor que sí estaba en la escena pero pertenecía a otro objeto${empty?` (además, ${empty} respuestas de posición fueron a casillas vacías)`:''}. Las preguntas de una misma escena pueden darte pistas sobre las siguientes.</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+    extra={mode,N,by:Object.fromEntries(rows),bind,empty,omRate:to/n,faRate:0}}
+   return {correct:okN,wrong:n-okN,total:n,acc,score:okN,rt:avg(T.filter(x=>!x.to).map(x=>x.rt)),metrics,details,extra}}}}
+ });
+
+/* ---- MEMORIA DE ORDEN: reconstruir el orden en que aparecieron los elementos ----
+   Se presenta una secuencia de elementos únicos (figuras, palabras o notas), después se muestran mezclados y hay que colocarlos en su orden original.
+   Se mide la posición exacta de cada elemento y también el orden relativo de los pares (un fallo de una sola posición cuesta poco en esta segunda medida). */
+const OD_COL=['#FF4D5E','#538CFF','#3DDC84','#FFD23F','#B36DFF','#FF8A2B'],OD_SH=['circle','square','triangle','star','diamond','cross'];
+const odMax=m=>m==='audio'?8:10;
+const odStart=(L,m)=>Math.min(odMax(m)-1,3+Math.floor((L-1)/2));
+const odOn=(L,m)=>Math.max(520,1200-L*45)+(m==='words'?250:0);
+const odGap=L=>Math.max(150,350-L*12);
+const odNote=k=>k===7?'Do′':SCALE_N[k];
+/* exactitud posicional y de pares (tau de Kendall escalado a 0-1) de una respuesta frente a la secuencia original; ambas listas de claves */
+function odScore(seq,ans){const n=seq.length,pos=new Map(seq.map((k,i)=>[k,i]));let m=0,conc=0,tot=0,near=0,mis=0;
+ for(let i=0;i<n;i++){if(ans[i]===seq[i])m++;else{mis++;if(Math.abs(pos.get(ans[i])-i)===1)near++}}
+ for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){tot++;if(pos.get(ans[i])<pos.get(ans[j]))conc++}
+ return {n,m,fr:m/n,pair:tot?conc/tot:1,near,mis,ok:m===n}}
+reg({id:'order',skill:'memory',name:'Memoria de orden',icon:'order',tagline:'Reconstruye el orden en que aparecieron.',
+ howTo:m=>({
+  visual:['Verás una serie de figuras, una a una.','Después aparecen mezcladas: tócalas para colocarlas en las casillas numeradas en el <b>orden original</b>.','Toca una casilla ocupada para devolver la figura; pulsa «Comprobar» cuando estén todas.'],
+  words:['Verás una serie de palabras, una a una.','Luego aparecen mezcladas: colócalas en las casillas en el orden en que salieron.','Toca una casilla ocupada para devolver la palabra; pulsa «Comprobar» al terminar.'],
+  audio:['Sonará una serie de notas distintas (cada una se ilumina y suena).','Después verás las notas mezcladas: tócalas para colocarlas en el orden en que sonaron. Al tocar una, vuelve a sonar.','Si el sonido está desactivado, cada nota se muestra con su nombre en pantalla.']
+ }[m]||[]),
+ example:m=>({visual:`<div class="ex-stim" data-stim style="gap:.8rem">${['star','circle','triangle'].map((s,i)=>`<span class="ex-it" style="width:44px;height:44px">${shapeSVG(s,OD_COL[i])}</span>`).join('')}</div><p class="small" style="margin-top:.5rem">Si salen estrella, círculo y triángulo, los colocas en ese orden aunque te los muestren mezclados.</p>`,words:`<div class="ex-stim" data-stim style="font-size:1.1rem">luna · reloj · puente</div><p class="small" style="margin-top:.5rem">Después verás «puente, luna, reloj» mezcladas y las ordenarás: luna, reloj, puente.</p>`,audio:`<div class="ex-stim" data-stim style="font-size:1.2rem">Mi · Do · Sol</div><p class="small" style="margin-top:.5rem">Las notas aparecen mezcladas; las pones en el orden en que sonaron: Mi, Do, Sol.</p>`}[m]||''),
+ modes:[{id:'visual',name:'Figuras',desc:'Estímulos visuales'},{id:'words',name:'Palabras',desc:'Estímulos verbales'},{id:'audio',name:'Notas',desc:'Estímulos auditivos'}],
+ maxLevel:15,metric:{label:'Secuencia más larga',better:'high'},daily:{mode:'visual',min:75,max:150},
+ levelInfo:(L,m)=>`Empieza con ${odStart(L,m)} elementos (máx. ${odMax(m)}) · cada uno ${(odOn(L,m)/1000).toFixed(2)} s`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode,trials=ctx.budget?Infinity:6,on=odOn(L,mode),gap=odGap(L),mx=odMax(mode);
+  const T=[];let len=odStart(L,mode),seq=[],slots=[],phase='idle',done=false,timeUp=false,maxSpan=0,items={};
+  ctx.stage.innerHTML=`<div class="g-wrap od"><div class="od-st" id="ods" aria-live="polite"></div><div class="od-stim" id="odm" data-stim aria-hidden="true"></div><div class="od-slots" id="odl"></div><div class="od-pool" id="odp"></div><div class="od-ctl" id="odc"></div></div>`;
+  const st=$('#ods'),stim=$('#odm'),slotsEl=$('#odl'),pool=$('#odp'),ctl=$('#odc');
+  /* cada elemento es una clave; items[clave] describe cómo dibujarlo */
+  const body=(k,small)=>{const it=items[k];return mode==='visual'?shapeSVG(OD_SH[it.sh],OD_COL[it.col]):mode==='words'?`<span class="od-w">${esc(it.w)}</span>`:`<span class="od-n" style="--k:${PCOLS[it.k]}">${odNote(it.k)}</span>`};
+  const snd=k=>{if(mode==='audio')Sound.inst(S.settings.inst||'piano',SCALE[items[k].k],.45,.3)};
+  function makeSeq(n){seq=[];items={};
+   if(mode==='visual'){const combos=shuffle(OD_SH.flatMap((_,sh)=>OD_COL.map((_,col)=>[sh,col])));combos.slice(0,n).forEach(([sh,col],i)=>{items['v'+i]={sh,col};seq.push('v'+i)})}
+   else if(mode==='words')shuffle(DL_WORDS).slice(0,n).forEach((w,i)=>{items['w'+i]={w};seq.push('w'+i)});
+   else shuffle([...Array(8).keys()]).slice(0,n).forEach((k,i)=>{items['a'+i]={k};seq.push('a'+i)})}
+  function newTrial(){if(done)return;if(T.length>=trials){done=true;return ctx.end()}
+   makeSeq(len);slots=[];phase='show';slotsEl.innerHTML='';pool.innerHTML='';ctl.innerHTML='';stim.hidden=false;stim.innerHTML='';st.innerHTML=`Prepárate… <span class="dim">${len} elementos</span>`;ctx.clock.after(800,()=>present(0))}
+  function present(i){if(done)return;if(i>=seq.length){return startInput()}
+   const k=seq[i];st.innerHTML=`Observa… <span class="dim">${i+1}/${seq.length}</span>`;
+   stim.innerHTML=mode==='audio'?`<span class="od-n big" style="--k:${PCOLS[items[k].k]}">${Sound.on()?'♪':odNote(items[k].k)}</span>`:body(k);if(mode==='audio')snd(k);
+   ctx.clock.after(on,()=>{stim.innerHTML='';ctx.clock.after(gap,()=>present(i+1))})}
+  function startInput(){phase='in';slots=Array(seq.length).fill(null);stim.hidden=true;st.innerHTML=`<b>Ordénalos</b> como aparecieron <span class="dim">0/${seq.length}</span>`;ctx.say('Ahora ordénalos');
+   const mixed=shuffle(seq.slice());if(seq.length>2&&mixed.every((k,i)=>k===seq[i]))mixed.reverse();
+   pool.innerHTML=mixed.map(k=>`<button class="btn od-it" data-stim data-k="${k}" aria-label="${mode==='visual'?'Figura':mode==='words'?items[k].w:'Nota '+odNote(items[k].k)}">${body(k)}</button>`).join('');drawSlots();
+   ctl.innerHTML=`<button class="btn btn-primary btn-lg" id="od-ok" disabled>${ic('check')} Comprobar</button><button class="btn" id="od-clr">Borrar todo</button>`;
+   $('#od-ok').onclick=judge;$('#od-clr').onclick=()=>{if(phase!=='in'||ctx.clock.paused)return;slots=slots.map(()=>null);refresh()}}
+  function drawSlots(){slotsEl.innerHTML=slots.map((k,i)=>`<button class="od-slot${k?' f':''}" data-stim data-i="${i}" aria-label="Posición ${i+1}${k?': quitar':''}"><i>${i+1}</i>${k?body(k):''}</button>`).join('')}
+  function refresh(){drawSlots();const used=new Set(slots.filter(Boolean));$$('.od-it',pool).forEach(b=>b.classList.toggle('used',used.has(b.dataset.k)));const f=slots.filter(Boolean).length;
+   st.innerHTML=`<b>Ordénalos</b> como aparecieron <span class="dim">${f}/${seq.length}</span>`;const ok=$('#od-ok');if(ok)ok.disabled=f<seq.length}
+  function place(k){if(phase!=='in'||ctx.clock.paused||slots.includes(k))return;const i=slots.indexOf(null);if(i<0)return;slots[i]=k;snd(k);Sound.soft();refresh()}
+  function judge(){if(phase!=='in'||ctx.clock.paused||slots.some(x=>!x))return;phase='fb';ctl.innerHTML='';const r=odScore(seq,slots);
+   T.push({len:seq.length,...r});if(r.ok)maxSpan=Math.max(maxSpan,seq.length);
+   ctx.feedback(r.ok,{msg:r.ok?'Orden correcto':'No era ese orden'});ctx.score(maxSpan,'Secuencia más larga');ctx.hits(T.filter(x=>x.ok).length);
+   slotsEl.innerHTML=slots.map((k,i)=>`<div class="od-slot f ${k===seq[i]?'ok':'no'}" data-stim><i>${i+1}</i>${body(k)}</div>`).join('');
+   if(!r.ok)pool.innerHTML=`<p class="od-sol">Orden correcto:</p><div class="od-solrow">${seq.map((k,i)=>`<div class="od-slot f ok" data-stim><i>${i+1}</i>${body(k)}</div>`).join('')}</div>`;else pool.innerHTML='';
+   st.innerHTML=r.ok?'<b>¡Bien!</b>':`<b>${r.m} de ${r.n} en su sitio</b>`;
+   len=r.ok?Math.min(mx,len+1):Math.max(2,len-1);ctx.clock.after(r.ok?900:2300,()=>{if(timeUp){done=true;return ctx.end()}newTrial()})}
+  pool.addEventListener('click',e=>{const b=e.target.closest('.od-it');if(b&&!b.classList.contains('used'))place(b.dataset.k)});
+  slotsEl.addEventListener('click',e=>{const b=e.target.closest('.od-slot');if(!b||phase!=='in'||ctx.clock.paused)return;const i=+b.dataset.i;if(slots[i]){slots[i]=null;refresh()}});
+  ctx.score(0,'Secuencia más larga');ctx.clock.after(500,newTrial);
+  return {peek:()=>({seq,slots,phase,len,items,mode}),onTimeUp(){timeUp=true;if(phase!=='in'&&phase!=='fb'){done=true;ctx.end()}},summary(){
+   const n=T.length;if(!n)return null;const okN=T.filter(x=>x.ok).length,acc=avg(T.map(x=>x.fr)),pair=avg(T.map(x=>x.pair)),mis=sum(T.map(x=>x.mis)),near=sum(T.map(x=>x.near));
+   const metrics=[{label:'Secuencias correctas',value:`${okN}/${n}`},{label:'Secuencia más larga',value:maxSpan||'—'},{label:'Elementos en su sitio',value:pct(acc)},{label:'Orden relativo de pares',value:pct(pair)},{label:'Longitud inicial',value:odStart(L,mode)}];
+   if(mis)metrics.push({label:'Fallos a una posición',value:`${near}/${mis}`});
+   const details=`<h4>Dos formas de medir el orden</h4><p>«Elementos en su sitio» exige la posición exacta. «Orden relativo de pares» mira, para cada pareja de elementos, si los pusiste en el mismo orden relativo que el original: intercambiar dos vecinos casi no la afecta. ${mis?`${near} de tus ${mis} fallos fueron elementos colocados a una sola posición de la correcta.`:''}</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:okN,wrong:n-okN,total:n,acc,score:maxSpan||null,metrics,details,extra:{mode,maxSpan,pair,perfect:n>=3&&okN===n,omRate:0,faRate:0}}}}}
+ });
+
+/* ---- MEMORY PALACE: método de loci ----
+   Un recorrido fijo por las habitaciones de una casa. En cada habitación «dejas» mentalmente una palabra con una imagen vívida; tras una
+   pausa de cálculo recorres la casa de nuevo y recuperas lo que dejaste en cada sitio. Modos: palacio con método, lista sin método
+   (misma tarea con la clave «n.º de orden», para compararte contigo mismo) y recorrido libre (las habitaciones se preguntan en desorden).
+   El método de loci ayuda a recordar listas ordenadas; esta tarea no demuestra que mejore la memoria en general. */
+const PD_ROOMS=['Entrada','Sala','Cocina','Comedor','Dormitorio','Baño','Biblioteca','Terraza','Jardín','Garaje'];
+const PD_TIPS=['Hazlo grande, raro o en movimiento: lo llamativo se recuerda mejor.','Usa más de un sentido: ¿a qué huele, qué ruido hace, cómo se siente?','Haz que la cosa interactúe con algo de la habitación.','Colócala en un punto concreto de la habitación (la mesa, la ventana…).'];
+const pdN=L=>Math.min(10,3+Math.ceil(L/2));
+const pdEnc=L=>Math.max(3500,7000-L*220);
+const pdDelay=L=>(10+L*2)*1000;
+const pdMap=(rooms,{cur=-1,items=null,marks={}}={})=>`<div class="pd-map" data-stim style="--c:${Math.min(5,rooms.length)}">${rooms.map((r,i)=>{const row=Math.floor(i/5),col=row%2===0?i%5:4-i%5;return `<div class="pd-room${i===cur?' cur':''}${marks[i]?' '+marks[i]:''}" style="grid-column:${Math.min(5,rooms.length)>=5?col+1:i+1};grid-row:${row+1}"><i>${i+1}</i><b>${esc(r)}</b>${items&&items[i]?`<span>${esc(items[i])}</span>`:''}</div>`}).join('')}</div>`;
+reg({id:'palace',skill:'memory',name:'Memory Palace',icon:'palace',tagline:'Deja palabras en las habitaciones de una casa y recórrela para recordarlas.',
+ howTo:m=>({
+  loci:['<b>Método de loci:</b> (1) recorre siempre la casa en el mismo orden, (2) deja cada palabra en su habitación con una imagen vívida y exagerada, (3) para recordar, repite el recorrido mentalmente y mira qué hay en cada sitio.','El plano numera el recorrido. En cada habitación verás una palabra durante unos segundos: imagínala ahí.','Tras una pausa de cálculo, recorrerás la casa y tendrás que decir qué dejaste en cada habitación.','Esto entrena una técnica de memoria para listas ordenadas; no hay pruebas de que mejore la memoria en general.'],
+  list:['Es la misma tarea sin el palacio, para comparar contigo mismo: verás las palabras una a una con su número.','Memorízalas como prefieras (repetirlas, inventar una historia…).','Tras una pausa de cálculo, te preguntaré qué palabra era la n.º 1, la n.º 2, etc.'],
+  tour:['Igual que el palacio con método, pero al recuperar te preguntaré las habitaciones <b>en desorden</b>.','Así comprobarás si recuerdas cada lugar por sí mismo y no solo siguiendo el recorrido.','Imagina cada palabra bien anclada a su habitación.']
+ }[m]||[]),
+ example:m=>`<div class="ex-stim pd-ex" data-stim style="height:auto;padding:.8rem;gap:.9rem;font-size:.95rem;letter-spacing:0;font-weight:700;flex-wrap:wrap"><span>1 · Entrada → <b style="color:#46D8CC">paraguas</b></span><span>2 · Cocina → <b style="color:#46D8CC">violín</b></span></div><p class="small" style="margin-top:.5rem">Imagina un paraguas gigante abierto en la entrada y un violín sonando sobre la mesa de la cocina. Luego recorre la casa y recupera cada palabra.</p>`,
+ modes:[{id:'loci',name:'Palacio con método',desc:'Recorrido por habitaciones'},{id:'list',name:'Lista sin método',desc:'Para comparar contigo mismo'},{id:'tour',name:'Recorrido libre',desc:'Habitaciones en desorden'}],
+ maxLevel:15,metric:{label:'Recordadas',better:'high'},daily:{mode:'loci',min:100,max:200},
+ levelInfo:(L,m)=>`${pdN(L)} ${m==='list'?'palabras':'habitaciones'} · ${(pdEnc(L)/1000).toFixed(1)} s por palabra · ${Math.round(pdDelay(L)/1000)} s de pausa de cálculo · ${L>=8?'respuesta escrita':'respuesta eligiendo entre las palabras'}`,
+ start(ctx){
+  const L=ctx.level,mode=ctx.mode,n=pdN(L),enc=ctx.budget?Math.min(pdEnc(L),Math.round(ctx.budget*.35/n)):pdEnc(L),delay=ctx.budget?Math.min(pdDelay(L),Math.max(10000,Math.round(ctx.budget*.25))):pdDelay(L),fmt=L>=8?'type':'choose';
+  const rooms=PD_ROOMS.slice(0,n),words=shuffle(DL_WORDS).slice(0,n),order=mode==='tour'?shuffle([...Array(n).keys()]):[...Array(n).keys()];
+  let phase='idle',done=false,timeUp=false,qi=0,tq=0;const ans=Array(n).fill(null),marks={},dist={n:0,ok:0};let tStudyEnd={t:0,c:0},interval=0,tRecall=0;
+  ctx.stage.innerHTML=`<div class="g-wrap pd"><div class="pd-top" id="pdt"></div><div id="pdm"></div><div class="pd-main" id="pdb"></div><div class="pd-ctl" id="pdc"></div></div>`;
+  const top=$('#pdt'),mapEl=$('#pdm'),main=$('#pdb'),ctl=$('#pdc');
+  const bar=ms=>`<div class="hp-bar"><i style="transition:transform ${ms}ms linear"></i></div>`,kick=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{const i=$('.hp-bar i',ctx.stage);if(i&&!RM())i.style.transform='scaleX(0)'}));
+  /* ---- 1) colocar las palabras ---- */
+  function study(i){if(done)return;if(i>=n){tStudyEnd={t:performance.now(),c:ctx.clock.now()};return distract()}
+   phase='study';top.textContent=`Fase 1 de 3 · ${mode==='list'?'Memoriza la lista':'Coloca las palabras'} · ${i+1}/${n}`;
+   if(mode==='list'){mapEl.innerHTML='';main.innerHTML=`<div class="pd-card" data-stim><small>Palabra n.º ${i+1}</small><b>${esc(words[i])}</b></div>${bar(enc)}<p class="hint">Repítela y asóciala con la anterior (una historia ayuda).</p>`}
+   else{mapEl.innerHTML=pdMap(rooms,{cur:i,items:words.map((w,k)=>k<=i?w:null)});main.innerHTML=`<div class="pd-card" data-stim><small>${esc(rooms[i])}</small><b>${esc(words[i])}</b></div>${bar(enc)}<p class="hint">Imagina «${esc(words[i])}» en ${esc(rooms[i]).toLowerCase()}. ${PD_TIPS[i%PD_TIPS.length]}</p>`}
+   kick();if(i===0){Sound.alert();ctx.say('Empieza el recorrido')}
+   ctx.clock.after(enc,()=>study(i+1))}
+  /* ---- 2) pausa de cálculo ---- */
+  function distract(){if(done)return;phase='delay';top.textContent='Fase 2 de 3 · Pausa de cálculo';mapEl.innerHTML='';ctl.innerHTML='';const end=ctx.clock.now()+delay;let cur=null,over=false;
+   ctx.clock.after(delay,()=>{if(done||over)return;over=true;cur=null;recall()});
+   const draw=()=>{if(done||over||ctx.clock.now()>=end)return;const a=ri(6,39),b=ri(3,19),op=pick(['+','−']),ans=op==='+'?a+b:a-b,w=new Set();while(w.size<2){const x=ans+pick([-3,-2,-1,1,2,3,10,-10]);if(x!==ans)w.add(x)}cur={ans};
+    main.innerHTML=`<div class="pd-dist"><div class="pd-q">${a} ${op} ${b} = ?</div><div class="pd-opts">${shuffle([ans,...w]).map(o=>`<button class="btn btn-lg pd-o" data-v="${o}">${o}</button>`).join('')}</div></div>${bar(Math.max(500,end-ctx.clock.now()))}`;kick()};
+   main.onclick=e=>{const b=e.target.closest('.pd-o[data-v]');if(!b||ctx.clock.paused||phase!=='delay'||!cur)return;const ok=+b.dataset.v===cur.ans;dist.n++;if(ok)dist.ok++;ctx.feedback(ok,{msg:false,noFlash:true,quiet:true});cur=null;ctx.clock.after(ok?120:350,draw)};
+   draw()}
+  /* ---- 3) recorrer y recuperar ---- */
+  function recall(){if(done)return;phase='recall';interval=Math.round((performance.now()-tStudyEnd.t)/1000);tRecall=ctx.clock.now();main.onclick=null;top.textContent=`Fase 3 de 3 · ${mode==='tour'?'Recorrido libre':mode==='list'?'Recupera la lista':'Recorre la casa'}`;ask()}
+  function ask(){if(done)return;if(qi>=n)return finish();const k=order[qi];phase='recall';tq=ctx.clock.now();
+   if(mode!=='list')mapEl.innerHTML=pdMap(rooms,{cur:k,items:null,marks});else mapEl.innerHTML='';
+   const prompt=mode==='list'?`¿Qué palabra era la <b>n.º ${k+1}</b>?`:`¿Qué dejaste en <b>${esc(rooms[k])}</b>?`;
+   if(fmt==='type'){main.innerHTML=`<div class="pd-q2">${prompt} <span class="dim">${qi+1}/${n}</span></div><div class="pd-form"><input class="input" id="pd-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="escribe la palabra…" aria-label="Palabra recordada"><button class="btn btn-primary" id="pd-go">Responder</button></div>`;
+    $('#pd-go').onclick=()=>submit($('#pd-in').value);$('#pd-in').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();submit($('#pd-in').value)}};$('#pd-in').focus({preventScroll:true})}
+   else{const used=new Set(ans.filter(a=>a&&a.ok).map(a=>a.w));main.innerHTML=`<div class="pd-q2">${prompt} <span class="dim">${qi+1}/${n}</span></div><div class="pd-chips">${shuffle(words).map(w=>`<button class="btn pd-ch${used.has(w)?' used':''}" data-w="${esc(w)}">${esc(w)}</button>`).join('')}</div>`;
+    main.onclick=e=>{const b=e.target.closest('.pd-ch');if(b&&!b.classList.contains('used')&&!ctx.clock.paused)submit(b.dataset.w)}}
+   ctl.innerHTML=`<button class="btn" id="pd-skip">No lo recuerdo</button>`;$('#pd-skip').onclick=()=>submit('')}
+  function submit(raw){if(phase!=='recall'||ctx.clock.paused||done)return;const k=order[qi],txt=String(raw||'').trim(),nz=dlNorm(txt),truth=words[k];
+   const ok=!!txt&&(dlNorm(truth)===nz||(nz.length>=5&&lev(dlNorm(truth),nz)<=1)),intr=!!txt&&!ok&&!words.some(w=>dlNorm(w)===nz||(nz.length>=5&&lev(dlNorm(w),nz)<=1));
+   phase='fb';ans[k]={w:txt,ok,intr,rt:Math.round(ctx.clock.now()-tq),pos:k};marks[k]=ok?'ok':'no';ctx.feedback(ok,{msg:false,noFlash:true,quiet:true});
+   if(mode!=='list')mapEl.innerHTML=pdMap(rooms,{cur:k,items:Object.fromEntries(Object.keys(marks).map(i=>[i,words[i]])),marks});
+   main.innerHTML=`<div class="pd-fb ${ok?'ok':'no'}">${ok?'¡Bien!':txt?`No era «${esc(txt)}»`:'En blanco'}${ok?'':` — era <b>${esc(truth)}</b>`}</div>`;ctl.innerHTML='';
+   ctx.clock.after(ok?600:1500,()=>{qi++;ask()})}
+  function finish(){if(done)return;done=true;const hits=ans.filter(a=>a&&a.ok).length;ctx.feedback(hits===n,{msg:`Recordaste ${hits} de ${n}`});ctx.score(hits,'Recordadas');ctx.hits(hits);ctl.innerHTML='';
+   main.innerHTML=`<div class="mu-msg ${hits===n?'ok':''}">Recordaste ${hits} de ${n}</div><p class="note">Pausa real entre el final de la colocación y el inicio de la recuperación: ${interval} s</p>`;ctx.clock.after(1600,()=>ctx.end())}
+  ctx.score(0,'Recordadas');ctx.clock.after(700,()=>study(0));
+  return {peek:()=>({phase,words,rooms,ans,mode,fmt,qi,order}),onTimeUp(){timeUp=true;if(phase==='study'||phase==='delay'){done=true;ctx.end()}else if(phase==='recall'||phase==='fb'){done=true;ctx.end()}},summary(){
+   const got=ans.filter(Boolean);if(!got.length)return null;const hits=got.filter(a=>a.ok).length,intr=got.filter(a=>a.intr).length,asked=got.length,acc=Math.max(0,hits/n-(intr?.05*intr:0));
+   const third=(a,b)=>{const x=got.filter(r=>r.pos>=a&&r.pos<b);return x.length?`${x.filter(r=>r.ok).length}/${x.length}`:null};
+   const prev=m=>{const r=S.results.filter(x=>x.game==='palace'&&x.mode===m&&x.acc!=null).slice(-5);return r.length?avg(r.map(x=>x.acc)):null},other=mode==='list'?'loci':'list',pm=prev(mode),po=prev(other);
+   const metrics=[{label:'Recordadas',value:`${hits}/${n}`},{label:'Intrusiones',value:intr},{label:'Pausa real',value:interval+' s'},{label:'Minijuego de cálculo',value:`${dist.ok}/${dist.n}`},{label:'Respuesta',value:fmt==='type'?'escrita':'eligiendo'}];
+   if(n>=6){const s1=third(0,Math.ceil(n/3)),s3=third(n-Math.ceil(n/3),n);metrics.push({label:'Primer / último tercio',value:`${s1||'—'} / ${s3||'—'}`})}
+   const cmp=(mode!=='tour'&&pm!=null&&po!=null)?`<p>Tu precisión media en las últimas sesiones: <b>${pct(prev('loci')??0)}</b> con palacio y <b>${pct(prev('list')??0)}</b> sin método. Son sesiones con palabras y días distintos: sirve como orientación personal, no como prueba de que el método funcione.</p>`:'';
+   const details=`<h4>Método de loci</h4><p>Anclar cada palabra a un lugar y recorrer siempre el mismo camino es una técnica clásica para recordar listas ordenadas. Esta sesión: ${hits} de ${n}${asked<n?` (respondiste ${asked})`:''}.${fmt==='choose'?' Al elegir entre las palabras, las que ya acertaste se atenúan, lo que facilita un poco la tarea; desde el nivel 8 la respuesta es escrita.':''}</p>${cmp}<p class="note">Estas cifras describen tu rendimiento en esta tarea; no indican que tu memoria general mejore ni son una evaluación clínica.</p>`;
+   return {correct:hits,wrong:n-hits,total:n,acc,score:hits,rt:null,metrics,details,extra:{mode,n,hits,intr,interval,dist,fmt,omRate:(n-asked)/n,faRate:0}}}}}
  });
 
 
