@@ -992,6 +992,29 @@ div.od-slot{cursor:default}.od-slot.ok{border-color:#3DDC84;background:rgba(61,2
 .tr-rule{width:100%;padding:.6rem .8rem;border-radius:14px;background:var(--stim);color:#F2F6FF;text-align:center;font-weight:600;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap}.tr-rule .tr-t{width:34px;height:34px;font-size:1rem}
 .tr-card{width:100%;padding:1.2rem;border-radius:22px;background:var(--stim);border:1px solid var(--line-2);color:#F2F6FF;font-size:1.05rem;line-height:1.5;text-align:center}.tr-card p{margin:0}
 @media (max-width:420px){.tr-t{width:38px;height:38px}.tr-opts{gap:.4rem}}
+.rp-who{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-bottom:1rem}.rp-who label{display:flex;align-items:center;gap:.5rem;flex:1 1 200px;min-width:0}.rp-who label b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font-family:var(--display);color:#04210f}.rp-a b{background:#35E6DF}.rp-b b{background:#9B6DFF;color:#fff}.rp-who select{min-width:0;flex:1}
+.rp-rows{display:grid;gap:1rem}.rp-row{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:.9rem;align-items:center}
+.rp-lab{font-weight:700;line-height:1.25}.rp-lab small{display:block;font-weight:600;color:var(--muted);margin-top:.15rem}.rp-lab small.up{color:var(--t-ok)}.rp-lab small.down{color:var(--t-bad)}
+.rp-bars{display:grid;gap:.35rem;min-width:0}.rp-bar{display:grid;grid-template-columns:1fr auto;align-items:center;gap:.55rem;min-width:0}
+.rp-track{position:relative;height:18px;border-radius:9px;background:rgba(var(--ov),.08);overflow:hidden}.rp-bar.win .rp-track{outline:2px solid color-mix(in srgb,var(--ok) 70%,transparent)}
+.rp-bar i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:9px;transition:width .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0ms)}
+.rp-bar.a i{background:linear-gradient(90deg,rgba(53,230,223,.55),#35E6DF)}.rp-bar.b i{background:linear-gradient(90deg,rgba(155,109,255,.55),#9B6DFF)}
+.rp-wrap.go .rp-bar i{width:var(--w)}.rp-bar b{min-width:4.6rem;text-align:right;font-size:.85rem;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums}
+.rp-spark{display:block;width:100%;height:70px;color:var(--text);margin-top:.4rem}
+@media (max-width:560px){.rp-row{grid-template-columns:1fr;gap:.4rem}}
+@media (prefers-reduced-motion:reduce){.rp-bar i{transition:none}}
+html[data-theme="day"] .nav-badge{color:#00655F!important}
+.qq{border-top:3px solid var(--c)}.qq-prog{height:8px;border-radius:8px;background:rgba(var(--ov),.1);overflow:hidden;margin:.2rem 0 1rem}.qq-prog i{display:block;height:100%;border-radius:8px;background:var(--c);transition:width .5s var(--ease)}
+.qq-list{display:grid;gap:.7rem}
+.qq-ch{display:grid;grid-template-columns:44px 1fr auto;gap:.9rem;align-items:center;padding:.85rem .8rem;border-radius:16px;border:1px solid var(--line);background:rgba(var(--ov),.03)}
+.qq-ch.open{border-color:color-mix(in srgb,var(--c) 55%,transparent)}.qq-ch.locked{opacity:.6}
+.qq-node{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:2px solid var(--c);font-family:var(--display);font-weight:800;color:var(--c)}.qq-node .ic{width:18px;height:18px}
+.qq-ch.done .qq-node{background:color-mix(in srgb,var(--c) 20%,transparent)}
+.qq-body{min-width:0}.qq-body h3{margin:0 0 .15rem;font-size:1.05rem}.qq-body p{margin:.15rem 0;font-size:.9rem;line-height:1.4}
+.qq-st{margin-left:.3rem;color:var(--orange);letter-spacing:.08em;white-space:nowrap}.qq-story{color:var(--text)}.qq-sk,.qq-goal{color:var(--muted)}
+@media (max-width:560px){.qq-ch{grid-template-columns:40px 1fr}.qq-go{grid-column:1/-1}}
+
+
 
 
 @media (max-width:420px){.pd-map{gap:6px;padding:8px}.pd-room b{font-size:.68rem}.pd-room span{font-size:.7rem}}
@@ -1641,7 +1664,7 @@ const KEY='neuroverse-ai.v1',VERSION=1;
 let S=null,storageOK=true;
 function defaults(){return{app:'neuroverse-ai',version:VERSION,createdAt:Date.now(),
  profile:{name:'',goal:'balanced',dailyMinutes:15,startLevel:1,onboarded:false,tourDone:false},
- baselines:[],settings:{sound:true,volume:.55,sfxVol:.8,gameVol:1,musicOn:false,musicVol:.35,inst:'piano',motion:'auto',textScale:1,contrast:false,colorAssist:false,noSpeed:false,haptics:true,theme:'night',focus:false},
+ baselines:[],quest:{done:{},camps:{}},settings:{sound:true,volume:.55,sfxVol:.8,gameVol:1,musicOn:false,musicVol:.35,inst:'piano',motion:'auto',textScale:1,contrast:false,colorAssist:false,noSpeed:false,haptics:true,theme:'night',focus:false},
  xp:0,skillXp:Object.fromEntries(SKILLS.map(s=>[s.id,0])),
  games:{},results:[],sessions:[],days:{},achievements:{},missions:{},adaptLog:[],
  srs:{it:{},fr:{},en:{}},recent:{words:[],patterns:[],anagrams:[],logic:[]},
@@ -2198,6 +2221,7 @@ function recordResult(gid,r,info){
   S.stats.totalSec+=res.dur;S.stats.activities++;
   if(info.anomaly)S.anomalies[date]=res.id;
   const mission=checkMission();
+  Quest.check(res);
   const newAch=checkAch(res);
   const after=globalLvl().level,sAfter=skillLvl(d.skill).level;
   UI.pendingWave=d.skill;
@@ -2754,6 +2778,7 @@ SCREENS.home={title:'Centro de control',
         <button class="btn-mission" data-start><span class="bm-ic">${ic('play')}</span><span>INICIAR ENTRENAMIENTO<small>${doneToday?'Misión de hoy completada · repetir':`Misión de ${mins} min · ${plan.length} actividades`}</small></span></button>
         <button class="btn btn-lg" data-go="worlds">${ic('worlds')} Explorar mundos</button>
         <button class="btn btn-lg" data-go="lab">${ic('spark')} Laboratorio</button>
+        <button class="btn btn-lg" data-go="quest">${ic('flag')} Neuro Quest</button>
       </div>
     </div>
     <div class="hero-brain"><canvas class="brain-cv" id="brain-cv" role="img" aria-label="Cerebro holográfico animado que evoluciona con tu progreso. Arrástralo para girarlo y toca una región para ver su mundo."></canvas>
@@ -3135,7 +3160,9 @@ const LABS=[
  {id:'galaxy',name:'Neural Galaxy',desc:'Tus juegos como una constelación: brillan según cuánto y cuándo los practicas.',icon:'brain',c:'#9B6DFF'},
  {id:'map',name:'Mapa de desafíos',desc:'Mapa de calor de tu precisión por juego y nivel; toca una casilla para jugar ese nivel.',icon:'worlds',c:'#35E6DF'},
  {id:'vault',name:'Memory Vault',desc:'Tus mejores marcas y tus hitos, con fecha y nivel.',icon:'gem',c:'#FFB547'},
- {id:'studio',name:'Sound Studio',desc:'Toca con los instrumentos, usa el metrónomo y graba una melodía.',icon:'rhythm',c:'#FF65C7'}
+ {id:'studio',name:'Sound Studio',desc:'Toca con los instrumentos, usa el metrónomo y graba una melodía.',icon:'rhythm',c:'#FF65C7'},
+ {id:'replay',name:'Personal Best Replay',desc:'Compara dos sesiones equivalentes: tu mejor marca contra la última, la primera contra la última o las dos últimas.',icon:'trend',c:'#3DDC84'},
+ {id:'quest',name:'Neuro Quest',desc:'Tres campañas de cinco capítulos: cada capítulo es un reto con su objetivo y sus estrellas.',icon:'flag',c:'#FFB547'}
 ];
 SCREENS.lab={title:'Laboratorio',
  html(){return `<div class="sec-h"><div><div class="eyebrow">Laboratorio neuro</div><h1>LABORATORIO</h1><p>Herramientas para explorar tus datos y tus sonidos. Todo se calcula con tus resultados reales.</p></div></div>
@@ -3160,6 +3187,116 @@ SCREENS.vault={title:'Memory Vault',
    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Juego · modo</th><th class="n">Partidas</th><th class="n">Mejor marca</th><th class="n">Mejor precisión</th></tr></thead><tbody>${rows.map(v=>{const d=GAMES[v.g];return `<tr><td><span style="color:${SK[d.skill].color}">●</span> ${esc(d.name)}${d.modes?` · <span class="dim">${esc(modeName(v.g,v.m))}</span>`:''}</td><td class="n">${v.n}</td><td class="n">${v.bs?`<b>${fmtScore(v.g,v.bs.score)}</b> <small class="dim">${esc(d.metric?.label||'')} · nivel ${v.bs.level} · ${fmtDate(v.bs.date)}</small>`:'<span class="dim">—</span>'}</td><td class="n">${v.ba?`<b>${pct(v.ba.acc)}</b> <small class="dim">nivel ${v.ba.level} · ${fmtDate(v.ba.date)}</small>`:'<span class="dim">—</span>'}</td></tr>`}).join('')}</tbody></table></div></section>
   <section class="section card pad-lg"><div class="eyebrow">Hitos</div><h3 style="margin:.2rem 0 .8rem">Últimos logros</h3>${ach.length?`<ul class="vault-ach">${ach.map(x=>`<li><span class="va-ic" style="--c:${x.a.c}">${ic(x.a.icon)}</span><span><b>${esc(x.a.name)}</b><small>${esc(x.a.desc)}</small></span><time>${fmtDate(dkey(new Date(x.ts)))}</time></li>`).join('')}</ul>`:'<p class="small">Aún no has desbloqueado logros.</p>'}</section>`},
  mount(m){$$('#v-filter .chip',m).forEach(b=>b.onclick=()=>{UI.vaultF=b.dataset.f;UI.render()})}};
+
+/* ---- Personal Best Replay: comparación visual de dos sesiones equivalentes ----
+   Solo se comparan partidas con el mismo juego, modo y nivel. No se guardan las respuestas una a una, así que lo que se «reproduce» es
+   la animación de las cifras de resumen de cada sesión (precisión, métrica principal, tiempo de respuesta y las métricas propias del juego). */
+function rpGroups(){const out={};
+ for(const r of S.results){if(!GAMES[r.game]||(r.extra&&r.extra.partial))continue;const k=r.mode+'|'+r.level;((out[r.game]||(out[r.game]={}))[k]||(out[r.game][k]=[])).push(r)}
+ const res={};for(const g in out){const ks=Object.keys(out[g]).filter(k=>out[g][k].length>=2);if(ks.length)res[g]=Object.fromEntries(ks.map(k=>[k,out[g][k]]))}return res}
+function rpPick(g,arr,preset){const d=GAMES[g],better=d.metric?.better==='low'?(a,b)=>a<b:(a,b)=>a>b,last=arr.at(-1);
+ if(preset==='first-last')return [arr[0],last];
+ if(preset==='prev-last')return [arr.at(-2),last];
+ const pool=arr.slice(0,-1),sc=pool.filter(r=>r.score!=null);
+ const best=sc.length?sc.reduce((b,r)=>better(r.score,b.score)?r:b):pool.reduce((b,r)=>r.acc>b.acc?r:b);return [best,last]}
+function rpRows(g,A,B){const d=GAMES[g],rows=[{lab:'Precisión',a:A.acc*100,b:B.acc*100,fmt:v=>Math.round(v)+' %',better:'high',pts:true}];
+ if(A.score!=null&&B.score!=null)rows.push({lab:d.metric?.label||'Puntuación',a:A.score,b:B.score,fmt:v=>fmtScore(g,v),better:d.metric?.better||'high'});
+ if(A.rt&&B.rt)rows.push({lab:'Tiempo de respuesta',a:A.rt,b:B.rt,fmt:v=>Math.round(v)+' ms',better:'low'});
+ INS_SPECS.filter(sp=>sp.g===g&&(!sp.m||sp.m===A.mode)).forEach(sp=>{const va=A.extra&&A.extra[sp.k],vb=B.extra&&B.extra[sp.k];if(va!=null&&vb!=null&&isFinite(va)&&isFinite(vb)&&!(A.score!=null&&va===A.score&&vb===B.score))rows.push({lab:sp.label,a:va*(sp.scale||1),b:vb*(sp.scale||1),fmt:v=>(+v).toFixed(sp.dec??0)+(sp.unit||''),better:sp.better})});
+ return rows}
+const rpWho=(row)=>{const mx=Math.max(Math.abs(row.a),Math.abs(row.b),1e-9);if(Math.abs(row.a-row.b)<.01*mx)return 'eq';return (row.b>row.a)===(row.better==='high')?'b':'a'};
+function rpSpark(arr,A,B,W=520,H=70){const v=arr.map(r=>r.acc*100),mn=Math.min(...v,0),mx=Math.max(...v,100),px=i=>8+(arr.length>1?i/(arr.length-1):.5)*(W-16),py=y=>H-6-(y-mn)/(mx-mn||1)*(H-12);
+ const line=v.map((y,i)=>`${i?'L':'M'}${px(i).toFixed(1)} ${py(y).toFixed(1)}`).join(''),mark=(r,c)=>{const i=arr.indexOf(r);return i<0?'':`<circle cx="${px(i).toFixed(1)}" cy="${py(v[i]).toFixed(1)}" r="6" fill="${c}" stroke="var(--bg)" stroke-width="2"/>`};
+ return `<svg viewBox="0 0 ${W} ${H}" class="rp-spark" role="img" aria-label="Precisión de las ${arr.length} sesiones equivalentes, con las dos comparadas marcadas"><path d="${line}" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="2"/>${v.map((y,i)=>`<circle cx="${px(i).toFixed(1)}" cy="${py(y).toFixed(1)}" r="2.5" fill="currentColor" fill-opacity=".45"/>`).join('')}${mark(A,'#35E6DF')}${mark(B,'#9B6DFF')}</svg>`}
+SCREENS.replay={title:'Personal Best Replay',
+ html(){const G=rpGroups(),gs_=Object.keys(G);
+  const head=`<div class="sec-h"><div><div class="eyebrow">Laboratorio</div>${labBack}<h1>PERSONAL BEST REPLAY</h1><p>Compara dos sesiones equivalentes (mismo juego, modo y nivel): tu mejor marca contra la última, la primera contra la última, o las dos últimas.</p></div></div>`;
+  if(!gs_.length)return head+`<div class="empty" style="padding:3rem 1.2rem">${ic('trend')}<h3>Aún no hay dos sesiones equivalentes</h3><p>Juega el mismo juego, modo y nivel al menos dos veces y podrás comparar tus sesiones aquí. No inventamos datos.</p><button class="btn btn-primary btn-lg" data-start>${ic('play')} Comenzar misión de hoy</button></div>`;
+  const last=S.results.slice().reverse().find(r=>G[r.game]);const g=UI.rpGame&&G[UI.rpGame]?UI.rpGame:last.game,groups=G[g];
+  const gk=UI.rpGroup&&groups[UI.rpGroup]?UI.rpGroup:Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length)[0],arr=groups[gk],d=GAMES[g];
+  const pre=UI.rpPre||'best-last';let A,B;
+  if(pre==='custom'&&UI.rpA&&UI.rpB){A=arr.find(r=>r.id===UI.rpA);B=arr.find(r=>r.id===UI.rpB)}
+  if(!A||!B||A===B)[A,B]=rpPick(g,arr,pre==='custom'?'best-last':pre);
+  const rows=rpRows(g,A,B),sess=r=>`${fmtDate(r.date)} · ${pct(r.acc)}`;
+  const mxAbs=row=>Math.max(Math.abs(row.a),Math.abs(row.b),1e-9);
+  const label={A:'A',B:'B'};
+  return head+`<section class="section card pad-lg rp-wrap" id="rp-wrap">
+   <div class="row" style="margin-bottom:.9rem"><select class="input" id="rp-g" style="max-width:260px" aria-label="Juego">${gs_.map(x=>`<option value="${x}" ${x===g?'selected':''}>${esc(GAMES[x].name)}</option>`).join('')}</select><select class="input" id="rp-grp" style="max-width:260px" aria-label="Condiciones">${Object.keys(groups).map(k=>{const [m,l]=k.split('|');return `<option value="${k}" ${k===gk?'selected':''}>${esc(modeName(g,m))} · nivel ${l} (${groups[k].length})</option>`}).join('')}</select></div>
+   <div class="seg" id="rp-pre" style="margin-bottom:.9rem"><button data-p="best-last" class="${pre==='best-last'?'on':''}">Mejor ↔ última</button><button data-p="first-last" class="${pre==='first-last'?'on':''}">Primera ↔ última</button><button data-p="prev-last" class="${pre==='prev-last'?'on':''}">Dos últimas</button></div>
+   <div class="rp-who"><label class="rp-a"><b>A</b><select class="input" id="rp-a" aria-label="Sesión A">${arr.map(r=>`<option value="${r.id}" ${r===A?'selected':''}>${sess(r)}</option>`).join('')}</select></label><label class="rp-b"><b>B</b><select class="input" id="rp-b" aria-label="Sesión B">${arr.map(r=>`<option value="${r.id}" ${r===B?'selected':''}>${sess(r)}</option>`).join('')}</select></label><button class="btn" id="rp-play">${ic('play')} Reproducir</button></div>
+   <div class="rp-rows">${rows.map((row,i)=>{const w=rpWho(row),dl=row.b-row.a,sign=dl>0?'+':dl<0?'−':'',good=w==='b'?'up':w==='a'?'down':'';
+     const small=row.pts&&Math.abs(dl)<5?' · dentro de la variación normal':'';
+     return `<div class="rp-row"><div class="rp-lab">${esc(row.lab)}<small class="${good}">${w==='eq'?'sin cambio':`B frente a A: ${sign}${row.pts?Math.round(Math.abs(dl))+' pts':row.fmt(Math.abs(dl))}${small}`}</small></div>
+      <div class="rp-bars"><div class="rp-bar a ${w==='a'?'win':''}" style="--w:${Math.abs(row.a)/mxAbs(row)*100}%;--d:${i*90}ms"><span class="rp-track"><i></i></span><b>${row.fmt(row.a)}</b></div><div class="rp-bar b ${w==='b'?'win':''}" style="--w:${Math.abs(row.b)/mxAbs(row)*100}%;--d:${i*90+45}ms"><span class="rp-track"><i></i></span><b>${row.fmt(row.b)}</b></div></div></div>`}).join('')}</div>
+   <div style="margin-top:1rem"><div class="eyebrow">Precisión de las ${arr.length} sesiones equivalentes</div>${rpSpark(arr,A,B)}<div class="legend"><span><i style="background:#35E6DF"></i>A</span><span><i style="background:#9B6DFF"></i>B</span></div></div>
+   <p class="note" style="margin-top:.8rem">Se comparan cifras de resumen: no guardamos cada respuesta, así que no hay un vídeo de la partida. Las diferencias pequeñas entre dos sesiones pueden ser azar. ${esc(d.name)}: ${esc(d.metric?.label||'')} ${d.metric?.better==='low'?'(menos es mejor)':'(más es mejor)'}.</p></section>`},
+ mount(m){if(!$('#rp-wrap',m))return;const go=()=>{const w=$('#rp-wrap',m);if(!w)return;w.classList.remove('go');if(RM()){w.classList.add('go');return}void w.offsetWidth;setTimeout(()=>w.classList.add('go'),40)};go();
+  $('#rp-play',m).onclick=go;
+  $('#rp-g',m).onchange=e=>{UI.rpGame=e.target.value;UI.rpGroup=null;UI.rpPre='best-last';UI.render()};
+  $('#rp-grp',m).onchange=e=>{UI.rpGroup=e.target.value;UI.rpPre='best-last';UI.render()};
+  $$('#rp-pre button',m).forEach(b=>b.onclick=()=>{UI.rpPre=b.dataset.p;UI.render()});
+  const cust=()=>{UI.rpPre='custom';UI.rpA=+$('#rp-a',m).value||$('#rp-a',m).value;UI.rpB=+$('#rp-b',m).value||$('#rp-b',m).value;UI.render()};
+  $('#rp-a',m).onchange=cust;$('#rp-b',m).onchange=cust}};
+/* ---- NEURO QUEST: tres campañas de cinco capítulos ----
+   Cada capítulo es un reto concreto (juego, modo y nivel mínimo) que se supera con una precisión objetivo. Se desbloquean en orden.
+   Las estrellas dependen de la mejor precisión: 1 = objetivo, 2 = ≥ 85 % (o objetivo + 10 pts), 3 = ≥ 95 %.
+   Son retos dentro de la aplicación; no miden capacidades generales. */
+const CAMPAIGNS=[
+ {id:'qa',name:'Despertar neuronal',tag:'Un primer contacto con cinco habilidades distintas.',c:'#538CFF',icon:'brain',chapters:[
+  {id:'qa1',title:'Filtrar el ruido',game:'stroop',mode:'time',level:2,goal:.75,min:8,skill:'Atención selectiva: responder a lo importante e ignorar lo que distrae.',story:'La primera señal llega mezclada con interferencias. Responde al color de la tinta, no a lo que dice la palabra.'},
+  {id:'qa2',title:'Mantener y repetir',game:'sequence',mode:'normal',level:2,goal:.7,min:3,skill:'Memoria de trabajo: retener una secuencia durante unos segundos.',story:'Una cadena de destellos aparece y se apaga. Guárdala en tu cabeza y devuélvela en el mismo orden.'},
+  {id:'qa3',title:'Descubrir la regla',game:'pattern',level:2,goal:.7,min:3,skill:'Razonamiento: encontrar la regla que gobierna una serie.',story:'Las piezas siguen una norma oculta. Si la descubres, sabrás qué viene después.'},
+  {id:'qa4',title:'Calcular con soltura',game:'flash',mode:'time',level:2,goal:.75,min:5,skill:'Cálculo mental: resolver operaciones breves con precisión.',story:'Los números pasan rápido. No hace falta correr: hace falta acertar.'},
+  {id:'qa5',title:'Cambiar de regla',game:'switch',mode:'std',level:2,goal:.7,min:8,skill:'Flexibilidad: adaptarte cuando cambia lo que hay que hacer.',story:'A mitad del camino, la norma cambia. Detecta el cambio y ajústate.'}]},
+ {id:'qb',name:'Expedición a la memoria',tag:'Cinco formas distintas de recordar: rutas, orden, rasgos, escenas y lugares.',c:'#9B6DFF',icon:'memory',chapters:[
+  {id:'qb1',title:'Rutas y mapas',game:'route',mode:'follow',level:2,goal:.7,min:3,skill:'Memoria espacial: retener un recorrido y reproducirlo.',story:'El mapa muestra un camino con flechas durante un instante. Recórrelo de memoria.'},
+  {id:'qb2',title:'El orden importa',game:'order',mode:'visual',level:2,goal:.7,min:3,skill:'Memoria de orden: recordar qué vino antes y qué después.',story:'Las piezas se muestran mezcladas. Reconstruye el orden en que aparecieron.'},
+  {id:'qb3',title:'Unir rasgos',game:'binding',mode:'pair',level:2,goal:.7,min:6,skill:'Ligadura: recordar qué rasgos pertenecen al mismo objeto.',story:'Forma, color y lugar viajan juntos. Si se separan, te confundes de objeto.'},
+  {id:'qb4',title:'Escenas con personajes',game:'episode',mode:'now',level:2,goal:.7,min:6,skill:'Memoria de escenas inventadas: quién hizo qué, dónde y cuándo.',story:'Una escena breve, con personajes ficticios. Atiende a los detalles.'},
+  {id:'qb5',title:'El palacio de la memoria',game:'palace',mode:'loci',level:2,goal:.6,min:4,skill:'Método de loci: asociar cada elemento a un lugar de un recorrido.',story:'Deja cada palabra en una habitación, con una imagen vívida, y recorre la casa para recuperarla.'}]},
+ {id:'qc',name:'Laboratorio de razonamiento',tag:'Lógica, atención fina y aprendizaje de reglas nuevas.',c:'#35E6DF',icon:'logic',chapters:[
+  {id:'qc1',title:'Matrices lógicas',game:'matrix',mode:'classic',level:2,goal:.7,min:4,skill:'Razonamiento: completar una cuadrícula siguiendo reglas por fila y columna.',story:'Una figura falta. Las reglas de la cuadrícula te dicen cuál.'},
+  {id:'qc2',title:'Flechas que confunden',game:'flanker',mode:'arrows',level:2,goal:.75,min:10,skill:'Control de interferencia: atender a la flecha central.',story:'Las flechas de los lados tiran en otra dirección. Responde a la del centro.'},
+  {id:'qc3',title:'Inducir la regla',game:'rulefind',level:2,goal:.7,min:3,skill:'Inducción: deducir una regla a partir de ejemplos.',story:'Solo ves ejemplos que sí y que no cumplen una norma. Deduce la norma.'},
+  {id:'qc4',title:'Un código nuevo',game:'symbols',mode:'ops',level:2,goal:.6,min:8,skill:'Aprendizaje de un código y uso cada vez con menos ayuda.',story:'Cada símbolo es una operación. La clave irá desapareciendo.'},
+  {id:'qc5',title:'La misma estructura',game:'transfer',mode:'std',level:2,goal:.65,min:12,skill:'Reconocer una estructura aunque cambie su apariencia.',story:'Lo que aprendiste con figuras reaparece con otro disfraz.'}]}
+];
+const questStars=(acc,ch)=>acc>=.95?3:acc>=Math.max(ch.goal+.1,.85)?2:acc>=ch.goal?1:0;
+const Quest={
+ st(){return S.quest||(S.quest={done:{},camps:{}})},
+ unlocked(c,i){return i===0||!!this.st().done[c.chapters[i-1].id]},
+ /* se llama con cada resultado registrado; devuelve los capítulos superados o mejorados */
+ check(res){if(!res||(res.extra&&res.extra.partial))return [];const q=this.st(),out=[];
+  for(const c of CAMPAIGNS)c.chapters.forEach((ch,i)=>{
+   if(!this.unlocked(c,i)||ch.game!==res.game||(ch.mode&&res.mode!==ch.mode)||res.level<ch.level||res.total<(ch.min||4))return;
+   const st=questStars(res.acc,ch);if(!st)return;const d=q.done[ch.id];
+   if(!d){q.done[ch.id]={ts:Date.now(),acc:res.acc,stars:st};S.xp+=25;out.push({c,ch,st,first:true})}
+   else if(st>d.stars||res.acc>d.acc){const up=st>d.stars;d.stars=Math.max(d.stars,st);d.acc=Math.max(d.acc,res.acc);if(up)out.push({c,ch,st,first:false})}});
+  for(const c of CAMPAIGNS)if(!q.camps[c.id]&&c.chapters.every(ch=>q.done[ch.id])){q.camps[c.id]=Date.now();S.xp+=80;out.push({c,campaign:true})}
+  out.forEach(o=>{try{o.campaign?toast(`<b>¡Campaña completada!</b> «${esc(o.c.name)}» · +80 XP`,{icon:'crown',color:o.c.c}):toast(`<b>${o.first?'¡Capítulo superado!':'¡Más estrellas!'}</b> «${esc(o.ch.title)}» ${'★'.repeat(o.st)}${o.first?' · +25 XP':''}`,{icon:'trophy',color:o.c.c})}catch(e){}});
+  return out}
+};
+SCREENS.quest={title:'Neuro Quest',
+ html(){const q=Quest.st(),tot=CAMPAIGNS.reduce((s,c)=>s+c.chapters.length,0),done=Object.keys(q.done).length,stars=sum(Object.values(q.done).map(d=>d.stars));
+  return `<div class="sec-h"><div><div class="eyebrow">Laboratorio</div>${labBack}<h1>NEURO QUEST</h1><p>Tres campañas de cinco capítulos. Cada capítulo fija un juego, un modo y un nivel mínimo, y se supera con la precisión indicada. Se desbloquean en orden y puedes repetirlos para conseguir más estrellas.</p></div></div>
+  <div class="kpis stagger">${kpi('flag','#35E6DF',cnt(done)+'<small>/'+tot+'</small>','Capítulos superados')}${kpi('star','#FFB547',cnt(stars)+'<small>/'+tot*3+'</small>','Estrellas')}${kpi('crown','#9B6DFF',cnt(Object.keys(q.camps).length)+'<small>/'+CAMPAIGNS.length+'</small>','Campañas completas')}</div>
+  ${CAMPAIGNS.map(c=>{const nd=c.chapters.filter(ch=>q.done[ch.id]).length;
+   return `<section class="section card pad-lg qq" style="--c:${c.c}"><div class="sec-h"><div><div class="eyebrow">Campaña · ${nd}/${c.chapters.length}</div><h2 style="color:${c.c}">${esc(c.name)}</h2><p>${esc(c.tag)}</p></div></div>
+    <div class="qq-prog" role="progressbar" aria-valuemin="0" aria-valuemax="${c.chapters.length}" aria-valuenow="${nd}"><i style="width:${nd/c.chapters.length*100}%"></i></div>
+    <div class="qq-list">${c.chapters.map((ch,i)=>{const d=q.done[ch.id],open=Quest.unlocked(c,i),g=GAMES[ch.game];
+     return `<div class="qq-ch ${d?'done':open?'open':'locked'}"><span class="qq-node" aria-hidden="true">${d?'✓':open?i+1:ic('lock')}</span>
+      <div class="qq-body"><h3>${i+1}. ${esc(ch.title)} <span class="qq-st" aria-label="${d?d.stars+' de 3 estrellas':'sin estrellas'}">${[1,2,3].map(n=>d&&d.stars>=n?'★':'☆').join('')}</span></h3>
+       <p class="qq-story">${esc(ch.story)}</p><p class="qq-sk"><b>Habilidad:</b> ${esc(ch.skill)}</p>
+       <p class="qq-goal">Objetivo: ≥ ${Math.round(ch.goal*100)} % de precisión en ${esc(g.name)}${ch.mode?` · ${esc(modeName(ch.game,ch.mode))}`:''} · nivel ${ch.level} o más${d?` · tu mejor: ${pct(d.acc)}`:''}</p></div>
+      <button class="btn ${open&&!d?'btn-primary':''} qq-go" data-q="${c.id}|${i}" ${open?'':'disabled'}>${open?(d?'Repetir':'Jugar'):'Bloqueado'}</button></div>`}).join('')}</div></section>`}).join('')}
+  <p class="note" style="margin:1rem 0">Los capítulos son retos dentro de la aplicación: describen cómo te va en cada tarea, no miden capacidades generales ni dan diagnóstico.</p>`},
+ mount(m){$$('[data-q]',m).forEach(b=>b.onclick=()=>{const [cid,i]=b.dataset.q.split('|'),ch=CAMPAIGNS.find(c=>c.id===cid).chapters[+i];Play.open(ch.game,ch.mode?{mode:ch.mode,level:ch.level}:{level:ch.level})})}};
+ACH.push(
+ {id:'qa',name:'Despertar completo',desc:'Completa la campaña «Despertar neuronal» de Neuro Quest.',icon:'brain',c:'#538CFF',test:()=>!!(S.quest&&S.quest.camps&&S.quest.camps.qa)},
+ {id:'qb',name:'Expedición completa',desc:'Completa la campaña «Expedición a la memoria» de Neuro Quest.',icon:'memory',c:'#9B6DFF',test:()=>!!(S.quest&&S.quest.camps&&S.quest.camps.qb)},
+ {id:'qc',name:'Razonamiento de laboratorio',desc:'Completa la campaña «Laboratorio de razonamiento» de Neuro Quest.',icon:'logic',c:'#35E6DF',test:()=>!!(S.quest&&S.quest.camps&&S.quest.camps.qc)},
+ {id:'qstar',name:'Tres estrellas',desc:'Consigue 3 estrellas en un capítulo de Neuro Quest.',icon:'star',c:'#FFB547',test:()=>!!(S.quest&&Object.values(S.quest.done||{}).some(d=>d.stars>=3)),prog:()=>[Math.max(0,...Object.values((S.quest&&S.quest.done)||{}).map(d=>d.stars)),3]}
+);
 /* ---- Sound Studio ---- */
 SCREENS.studio={title:'Sound Studio',
  html(){const on=Sound.on(),s=S.settings;
