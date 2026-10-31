@@ -4482,7 +4482,7 @@ function huntStream(ctx){
 reg({id:'words',skill:'memory',name:'Memoria de palabras',icon:'words',tagline:'Memoriza una lista y escribe todas las que recuerdes.',
  howTo:['Memoriza la lista antes de que se oculte (puedes continuar antes con «Ya las memoricé»).','Escribe cada palabra que recuerdes y pulsa Enter o «Añadir». Toca una palabra escrita para borrarla.','En modo libre el orden no importa; en el secuencial, sí. Mayúsculas y tildes no cuentan.'],
  modes:[{id:'free',name:'Orden libre',desc:'En cualquier orden'},{id:'seq',name:'Secuencial',desc:'En el mismo orden'}],
- maxLevel:11,metric:{label:'Palabras',better:'high'},daily:{mode:'free',min:100,max:170},
+ maxLevel:15,metric:{label:'Palabras',better:'high'},daily:{mode:'free',min:100,max:170},
  levelInfo:L=>`${Math.min(15,4+L)} palabras · ${(2.6-(L-1)*.1).toFixed(1)} s por palabra para memorizar`,
  start(ctx){
   const L=ctx.level,n=Math.min(15,4+L),seq=ctx.mode==='seq',memoMs=Math.round(n*(2600-(L-1)*100));
@@ -4518,11 +4518,11 @@ reg({id:'words',skill:'memory',name:'Memoria de palabras',icon:'words',tagline:'
       <div class="legend" style="margin-top:8px"><span><i style="background:rgba(61,220,132,.6)"></i>Recordada</span><span><i style="background:rgba(53,232,219,.6)"></i>Aceptada con un error leve de escritura</span><span><i style="background:rgba(255,194,75,.6)"></i>Repetida</span><span><i style="background:rgba(255,84,112,.6)"></i>No estaba en la lista</span><span><i style="border:1px dashed #7581A8"></i>Omitida</span></div>${seq?`<p class="small" style="margin-top:8px">En modo secuencial cuenta la secuencia más larga recordada en el orden correcto: <b>${inOrder}</b> de ${n}.</p>`:''}`}}};
  }});
 
-const seqLen=L=>clamp(3+Math.floor((L-1)*.6),3,9);
+const seqLen=L=>clamp(3+Math.floor((L-1)*.6),3,11);
 reg({id:'sequence',skill:'memory',name:'Secuencia luminosa',icon:'sequence',tagline:'Observa qué casillas se iluminan y repítelas.',
  howTo:['Observa la secuencia de casillas que se iluminan.','Cuando aparezca «Tu turno», tócalas en el mismo orden (o al revés en modo inverso).','Si aciertas, la siguiente secuencia es un paso más larga; si fallas, una más corta.'],
  modes:[{id:'normal',name:'Normal',desc:'Mismo orden'},{id:'inverse',name:'Inversa',desc:'Orden contrario'},{id:'distract',name:'Con distracciones',desc:'Ignora los destellos ✕'}],
- maxLevel:10,metric:{label:'Span máximo',better:'high'},daily:{mode:'normal',min:75,max:160},
+ maxLevel:15,metric:{label:'Span máximo',better:'high'},daily:{mode:'normal',min:75,max:160},
  levelInfo:L=>{const g=L<=3?3:L<=7?4:5;return `Cuadrícula ${g}×${g} · secuencia inicial de ${seqLen(L)} · ${Math.max(380,700-L*30)} ms por destello`},
  start(ctx){
   const L=ctx.level,mode=ctx.mode,g=L<=3?3:L<=7?4:5,N=g*g,on=Math.max(380,700-L*30),gap=Math.max(160,300-L*12),trials=ctx.budget?Infinity:5;
@@ -4546,12 +4546,12 @@ reg({id:'sequence',skill:'memory',name:'Secuencia luminosa',icon:'sequence',tagl
  }});
 
 const GLY=['Ω','Δ','Σ','Ψ','λ','π','∞','Φ','θ','★','◆','●','▲','■','✚','♠','♣','♥','♦','✦','☾','⌘','#','@','&','§','√','∫','≈','¶'];
-const GLY_SIM=['↑','↓','←','→','↖','↗','↘','↙','θ','φ','ψ','ω','ε','ξ','ζ','ν','μ','η'];
+const GLY_SIM=['↑','↓','←','→','↖','↗','↘','↙','θ','φ','ψ','ω','ε','ξ','ζ','ν','μ','η','χ','τ','ρ','σ','γ','β'];
 const PCOLS=['#538CFF','#9B6DFF','#35E6DF','#FF65C7','#FFB547','#5CFF8F','#FF5470','#EDF5FF','#C58BFF'];
-const PAIRS_LV=[[6,4],[8,4],[8,4,1],[10,5],[10,5,1],[12,6],[12,6,1],[15,6],[18,6],[18,6,1]];
+const PAIRS_LV=[[6,4],[8,4],[8,4,1],[10,5],[10,5,1],[12,6],[12,6,1],[15,6],[18,6],[18,6,1],[20,6],[20,6,1],[22,6],[22,6,1],[24,6,1]];
 reg({id:'pairs',skill:'memory',name:'Parejas',icon:'pairs',tagline:'Encuentra todas las parejas con el menor número de intentos.',
  howTo:['Gira dos cartas por turno. Si son iguales, quedan descubiertas.','Si no lo son, se vuelven a ocultar: recuerda dónde estaba cada símbolo.','Tu eficiencia depende de cuántos intentos necesites.'],
- maxLevel:10,metric:{label:'Tiempo',better:'low',fmt:v=>fmtDur(v)},accLabel:'EFICIENCIA',daily:{min:60,max:150},adapt:{up:.8,down:.45},
+ maxLevel:15,metric:{label:'Tiempo',better:'low',fmt:v=>fmtDur(v)},accLabel:'EFICIENCIA',daily:{min:60,max:150},adapt:{up:.8,down:.45},
  levelInfo:L=>{const[p,,s]=PAIRS_LV[L-1];return `${p} parejas (${p*2} cartas)${s?' · símbolos muy parecidos y de un solo color':''}`},
  start(ctx){
   const[np,cols,sim]=PAIRS_LV[ctx.level-1],gl=sample(sim?GLY_SIM:GLY,np);
@@ -7002,7 +7002,7 @@ const sameWord=(a,b)=>{const A=wordVariants(loose(a)),B=wordVariants(loose(b));f
 reg({id:'categories',skill:'language',name:'Desafío de categorías',icon:'cat',tagline:'60 segundos para escribir todo lo que se te ocurra.',
  howTo:['Recibirás una categoría (por ejemplo, «Animales»).','Escribe tantos elementos como puedas en 60 segundos, pulsando Enter tras cada uno.','Los duplicados no cuentan. Si una palabra no está en el diccionario local, al final podrás revisarla tú: no se rechaza automáticamente.'],
  modes:[{id:'random',name:'Categoría aleatoria'},...CATS.map(c=>({id:c.id,name:c.name}))],
- maxLevel:10,metric:{label:'Palabras válidas',better:'high'},accLabel:'DEL OBJETIVO',daily:{mode:'random',min:75,max:100},
+ maxLevel:15,metric:{label:'Palabras válidas',better:'high'},accLabel:'DEL OBJETIVO',daily:{mode:'random',min:75,max:100},
  levelInfo:L=>`Objetivo: unas ${5+L*2} palabras válidas en 60 s (se ajusta a la dificultad de cada categoría)`,
  start(ctx){
   const L=ctx.level,cat=ctx.mode==='random'?pick(CATS):CATS.find(c=>c.id===ctx.mode)||CATS[0];let letter=null;
