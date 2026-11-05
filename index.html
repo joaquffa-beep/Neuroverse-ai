@@ -1033,6 +1033,14 @@ div.od-slot{cursor:default}.od-slot.ok{border-color:#3DDC84;background:rgba(61,2
 html[data-theme="day"] .nav-badge{color:#00655F!important}
 .qq{border-top:3px solid var(--c)}.qq-prog{height:8px;border-radius:8px;background:rgba(var(--ov),.1);overflow:hidden;margin:.2rem 0 1rem}.qq-prog i{display:block;height:100%;border-radius:8px;background:var(--c);transition:width .5s var(--ease)}
 .qq-list{display:grid;gap:.7rem}
+
+.wh{gap:.7rem}.wh-top{display:flex;justify-content:space-between;align-items:baseline;width:100%;max-width:440px;font-family:var(--display);font-weight:700;font-size:1.15rem}.wh-top b{color:var(--teal);font-size:1.6rem}.wh-top .dim{color:var(--muted);font-size:.95rem}
+.wh-prog{width:100%;max-width:440px;height:8px;border-radius:8px;background:rgba(var(--ov),.1);overflow:hidden}.wh-prog i{display:block;height:100%;width:0;border-radius:8px;background:var(--grad-cool);transition:width .2s}
+.wh-board{width:min(100%,440px);aspect-ratio:1;border-radius:50%;padding:4px;background:radial-gradient(circle at 50% 45%,rgba(100,153,255,.18),transparent 70%),var(--stim);border:1px solid var(--line-2);box-shadow:0 0 44px -12px rgba(100,153,255,.55);touch-action:manipulation}
+.wh-board svg{display:block;width:100%;height:100%;overflow:visible}
+.wh-c{cursor:pointer}.wh-c polygon{fill:rgba(255,255,255,.07);stroke:rgba(150,180,255,.5);stroke-width:.7;transition:fill .12s}
+.wh-c text{fill:#F2F6FF;font-family:var(--display);font-weight:800;font-size:8.6px;text-anchor:middle;dominant-baseline:central;pointer-events:none;-webkit-user-select:none;user-select:none}
+.wh-c.done polygon{fill:rgba(70,216,204,.3)}.wh-c.done text{fill:#7fe8df;opacity:.5}.wh-c.bad polygon{fill:rgba(255,84,112,.55)}
 .qq-ch{display:grid;grid-template-columns:44px 1fr auto;gap:.9rem;align-items:center;padding:.85rem .8rem;border-radius:16px;border:1px solid var(--line);background:rgba(var(--ov),.03)}
 .qq-ch.open{border-color:color-mix(in srgb,var(--c) 55%,transparent)}.qq-ch.locked{opacity:.6}
 .qq-node{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:2px solid var(--c);font-family:var(--display);font-weight:800;color:var(--c)}.qq-node .ic{width:18px;height:18px}
@@ -1620,7 +1628,8 @@ binding:'<circle cx="7" cy="7" r="3.2"/><rect x="13" y="13" width="7.5" height="
 order:'M3 7h4l10 10h4M3 17h4l3-3M14 10l3-3h4M18 4l3 3-3 3M18 14l3 3-3 3',
 palace:'M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6',
 symbols:'M7 7h12M16 4l3 3-3 3M17 17H5M8 14l-3 3 3 3',
-transfer:'<rect x="3" y="4" width="7" height="7" rx="1.5"/><circle cx="17" cy="17" r="3.5"/><path d="M11 7.5h3a3 3 0 013 3v3"/>',
+
+wheel:'<circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18"/>',transfer:'<rect x="3" y="4" width="7" height="7" rx="1.5"/><circle cx="17" cy="17" r="3.5"/><path d="M11 7.5h3a3 3 0 013 3v3"/>',
 cloud:'M7 18a4.5 4.5 0 01-.5-8.97A6 6 0 0118 10a4 4 0 010 8z',
 calendar:'<rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
 medal:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/>',
@@ -1668,7 +1677,7 @@ function animateIn(root=document){const go=()=>{$$('.rv[data-off]',root).forEach
 
 /* ---------- Habilidades y mundos ---------- */
 const SKILLS=[
- {id:'attention',name:'Atención y concentración',short:'Atención',world:'FOCUS LAB',color:'#538CFF',c2:'#35E6DF',icon:'focus',desc:'Atención selectiva, concentración y control inhibitorio.',blurb:'Laboratorio de luz y precisión: filtra lo irrelevante y mantén el foco.',games:['stroop','hunt','flanker','vsearch','mot','blink','cpt','fusion']},
+ {id:'attention',name:'Atención y concentración',short:'Atención',world:'FOCUS LAB',color:'#538CFF',c2:'#35E6DF',icon:'focus',desc:'Atención selectiva, concentración y control inhibitorio.',blurb:'Laboratorio de luz y precisión: filtra lo irrelevante y mantén el foco.',games:['stroop','hunt','flanker','vsearch','mot','blink','cpt','fusion','wheel']},
  {id:'memory',name:'Memoria',short:'Memoria',world:'MEMORY MATRIX',color:'#9B6DFF',c2:'#FF65C7',icon:'memory',desc:'Memoria visual, verbal y memoria de trabajo.',blurb:'Una red de recuerdos luminosos: palabras, secuencias y parejas.',games:['words','sequence','pairs','nback','updater','backward','changed','delayed','route','episode','binding','order','palace']},
  {id:'logic',name:'Razonamiento lógico',short:'Lógica',world:'LOGIC UNIVERSE',color:'#35E6DF',c2:'#538CFF',icon:'logic',desc:'Deducción, patrones y resolución de problemas.',blurb:'Geometría y estructuras: descubre la regla escondida en cada patrón.',games:['sudoku','pattern','logicrush','matrix','code','rotation','circuit','strategy','deduction']},
  {id:'math',name:'Agilidad matemática',short:'Cálculo',world:'MATH SPEED',color:'#FFB547',c2:'#FF65C7',icon:'math',desc:'Cálculo mental y memoria de trabajo numérica.',blurb:'Números en movimiento: calcula con velocidad y cabeza fría.',games:['flash','countdown','truefalse']},
@@ -2162,7 +2171,8 @@ ACH.push(
  {id:'order8',name:'Orden de élite',desc:'Reconstruye sin errores una secuencia de 8 elementos en Memoria de orden.',icon:'order',c:'#538CFF',test:r=>!!(r&&r.game==='order'&&(r.extra.maxSpan||0)>=8)},
  {id:'palace6',name:'Arquitecto de la memoria',desc:'Recuerda 6 o más palabras en un Memory Palace con método.',icon:'palace',c:'#3DDC84',test:r=>!!(r&&r.game==='palace'&&r.mode!=='list'&&r.correct>=6)},
  {id:'symnone',name:'Código en la cabeza',desc:'Acierta 4 intentos sin clave en el Traductor de símbolos.',icon:'symbols',c:'#C58BFF',test:r=>!!(r&&r.game==='symbols'&&r.mode==='ops'&&(r.extra.noneOk||0)>=4)},
- {id:'transf5',name:'Misma estructura, otro disfraz',desc:'Acierta 5 de 6 secuencias en el contexto nuevo de Aprende y transfiere.',icon:'transfer',c:'#35E6DF',test:r=>!!(r&&r.game==='transfer'&&r.extra.p2&&r.extra.p2.n>=6&&r.extra.p2.ok>=5)}
+ {id:'transf5',name:'Misma estructura, otro disfraz',desc:'Acierta 5 de 6 secuencias en el contexto nuevo de Aprende y transfiere.',icon:'transfer',c:'#35E6DF',test:r=>!!(r&&r.game==='transfer'&&r.extra.p2&&r.extra.p2.n>=6&&r.extra.p2.ok>=5)},
+ {id:'wheel50',name:'Del 1 al 50',desc:'Encuentra los 50 números de la Rueda de números antes de que acabe el tiempo.',icon:'wheel',c:'#46D8CC',test:r=>!!(r&&r.game==='wheel'&&r.extra.complete)}
 );
 
 /* ---------- Misiones diarias ---------- */
@@ -3113,7 +3123,8 @@ const INS_SPECS=[
  {id:'odspan',g:'order',k:'maxSpan',label:'Secuencia ordenada más larga',game:'Memoria de orden',unit:' elementos',better:'high',dec:0,hint:'Mayor secuencia reconstruida sin errores de posición.'},
  {id:'bdd',g:'binding',m:'probe',k:'dprime',label:'d′ de ligadura',game:'Object Binding · ¿Estaba así?',unit:'',better:'high',dec:2,hint:'Distinguir combinaciones vistas de señuelos (0 = azar).'},
  {id:'symnone',g:'symbols',m:'ops',k:'noneOk',label:'Aciertos sin clave',game:'Traductor de símbolos',unit:'',better:'high',dec:0,hint:'Intentos correctos cuando ya no hay clave a la vista.'},
- {id:'trfidx',g:'transfer',k:'idx',label:'Ventaja de la estructura conocida',game:'Aprende y transfiere',unit:' pts',better:'high',scale:100,dec:0,hint:'Precisión con estructuras ya vistas menos precisión con una estructura nueva (en el contexto nuevo).'}
+ {id:'trfidx',g:'transfer',k:'idx',label:'Ventaja de la estructura conocida',game:'Aprende y transfiere',unit:' pts',better:'high',scale:100,dec:0,hint:'Precisión con estructuras ya vistas menos precisión con una estructura nueva (en el contexto nuevo).'},
+ {id:'whtpn',g:'wheel',k:'tpn',label:'Tiempo por número',game:'Rueda de números',unit:' ms',better:'low',dec:0,hint:'Media entre un acierto y el siguiente, incluida la búsqueda.'}
 ];
 const insVals=sp=>S.results.filter(r=>r.game===sp.g&&(!sp.m||r.mode===sp.m)&&r.extra&&!r.extra.partial&&r.extra[sp.k]!=null&&isFinite(r.extra[sp.k])).map(r=>r.extra[sp.k]*(sp.scale||1));
 const insFmt=(sp,v)=>v==null?'—':(+v).toFixed(sp.dec??0)+(sp.unit||'');
@@ -3931,7 +3942,7 @@ const CIRCUITS=[
  {id:'flex',name:'Impulso de flexibilidad',desc:'Cambiar de regla, inducir reglas y readaptarte.',icon:'switch',c:'#C58BFF',games:['switch','reversal','rulefind','agl','symbols','transfer','stroop','hunt','lang']},
  {id:'boss',name:'Jefe cognitivo',desc:'4 desafíos difíciles (nivel +2). ≥ 60 % en todos = bonus de +40 XP.',icon:'crown',c:'#FF5470',boss:true}
 ];
-const BOSS_POOL={attention:['mot','blink','cpt','flanker','vsearch','stroop'],memory:['nback','updater','delayed','changed','backward','route','order','binding'],logic:['matrix','code','deduction','strategy','circuit','rotation'],learning:['rulefind','reversal','agl','switch','symbols']};
+const BOSS_POOL={attention:['mot','blink','cpt','flanker','vsearch','stroop','wheel'],memory:['nback','updater','delayed','changed','backward','route','order','binding'],logic:['matrix','code','deduction','strategy','circuit','rotation'],learning:['rulefind','reversal','agl','switch','symbols']};
 const BASELINE_GAMES=['stroop','words','pattern','flash','anagram','switch'],BASELINE_LEVEL=3;
 Daily.buildCircuit=function(id,minutes,variant=0){
  const c=CIRCUITS.find(x=>x.id===id)||CIRCUITS[0],rng=seeded(`circ|${today()}|${id}|${minutes}|${variant}`),noSpeed=S.settings.noSpeed;
@@ -5554,6 +5565,48 @@ reg({id:'transfer',skill:'learning',name:'Aprende y transfiere',icon:'transfer',
    if(idx!=null)metrics.push({label:'Ventaja de la estructura conocida',value:(idx>0?'+':'')+Math.round(idx*100)+' pts'});
    const details=`<h4>Cómo leer esta sesión</h4><p>Aprendiste ${train.map(k=>`<b>${trName(k)}</b>`).join(', ')} con figuras y las encontraste de nuevo con ${dom2.name}. La estructura nueva fue <b>${trName(fresh)}</b>. ${idx!=null?`La diferencia entre la fase 2 y la 3 (${pct(r2)} frente a ${pct(r3)}) indica si reconocer una estructura ya vista en otra apariencia te resultó más fácil que descubrir una nueva${idx<=0?'; esta vez no fue así':''}.`:''} Con tan pocas secuencias la cifra es orientativa.</p><p class="note">Es transferencia cercana dentro del juego; no se interpreta como mejora en habilidades de la vida real ni como diagnóstico.</p>`;
    return {correct:okN,wrong:n-okN,total:n,acc,score:p2.ok,rt:avg(T.filter(x=>!x.to).map(x=>x.rt)),metrics,details,extra:{mode:'std',dest,train,fresh,p1,p2,p3,idx,learnLate:l1,omRate:T.filter(x=>x.to).length/n,faRate:0}}}}}
+ });
+
+/* ---- RUEDA DE NÚMEROS: búsqueda visual ordenada con el tablero girando ----
+   50 números repartidos en celdas irregulares (diagrama de Voronoi) de una rueda que gira despacio. Hay que tocarlos de 1 a 50 en orden,
+   contra reloj. Un solo modo, sin distractores. Mide cuántos números se encuentran, los errores y el tiempo por número. */
+const WH_N=50,WH_R=100;
+const whSpeed=L=>RM()?0:4+L*.7;           /* grados por segundo */
+const whTime=L=>Math.max(60,80-L)*1000;   /* de 79 s a 65 s */
+function whCells(){
+ let pts=[];for(let i=0;i<WH_N;i++){let best=null,bd=-1;for(let k=0;k<24;k++){const a=Math.random()*6.2832,r=WH_R*Math.sqrt(Math.random()),p=[r*Math.cos(a),r*Math.sin(a)],d=pts.length?Math.min(...pts.map(q=>Math.hypot(q[0]-p[0],q[1]-p[1]))):1e9;if(d>bd){bd=d;best=p}}pts.push(best)}
+ const circle=Array.from({length:72},(_,i)=>[WH_R*Math.cos(i*Math.PI/36),WH_R*Math.sin(i*Math.PI/36)]);
+ const clip=(poly,p,q)=>{const mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,nx=q[0]-p[0],ny=q[1]-p[1],f=v=>(v[0]-mx)*nx+(v[1]-my)*ny,out=[];
+  for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],fa=f(a),fb=f(b);if(fa<=0)out.push(a);if((fa<0&&fb>0)||(fa>0&&fb<0)){const t=fa/(fa-fb);out.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t])}}return out};
+ const build=()=>pts.map((p,i)=>{let poly=circle;for(let j=0;j<WH_N&&poly.length;j++)if(j!==i)poly=clip(poly,p,pts[j]);return poly});
+ const cen=(poly,fb)=>{let A=0,cx=0,cy=0;for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],c=a[0]*b[1]-b[0]*a[1];A+=c;cx+=(a[0]+b[0])*c;cy+=(a[1]+b[1])*c}return Math.abs(A)<1e-6?fb:[cx/(3*A),cy/(3*A)]};
+ let cells=build();for(let it=0;it<3;it++){pts=cells.map((poly,i)=>cen(poly,pts[i]));cells=build()}
+ return cells.map((poly,i)=>({poly,c:cen(poly,pts[i])}))}
+const whArea=poly=>Math.abs(poly.reduce((s,a,i)=>{const b=poly[(i+1)%poly.length];return s+a[0]*b[1]-b[0]*a[1]},0))/2;
+reg({id:'wheel',skill:'attention',name:'Rueda de números',icon:'wheel',tagline:'Encuentra del 1 al 50 en orden mientras la rueda gira.',
+ howTo:['Verás una rueda con los números del 1 al 50 repartidos en celdas.','Toca los números <b>de menor a mayor</b>: primero el 1, luego el 2, y así hasta el 50.','La rueda gira despacio y hay tiempo limitado. Las celdas que ya encontraste se tiñen; si te equivocas, solo cuenta como error.','No se marca cuál es el siguiente: hay que buscarlo con la vista.'],
+ example:()=>`<div class="ex-stim" data-stim style="gap:.5rem;font-size:1.2rem">${[1,2,3].map(n=>`<span class="tr-t" style="display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)">${n}</span>`).join('<b>→</b>')}<b>…50</b></div><p class="small" style="margin-top:.5rem">Busca el 1, tócalo; busca el 2… sin perder de vista que la rueda se mueve.</p>`,
+ maxLevel:15,metric:{label:'Números encontrados',better:'high'},speed:true,daily:{min:60,max:90},
+ levelInfo:L=>`50 números · ${whTime(L)/1000} s · la rueda gira a ${RM()?'0 (movimiento reducido)':(4+L*.7).toFixed(1)}°/s`,
+ start(ctx){
+  const L=ctx.level,spd=whSpeed(L),limit=ctx.budget?Math.min(whTime(L),ctx.budget):whTime(L),cells=whCells(),nums=shuffle([...Array(WH_N).keys()].map(i=>i+1));
+  let next=1,errors=0,done=false,t0=0,tPrev=0;const times=[],dir=Math.random()<.5?1:-1;
+  ctx.stage.innerHTML=`<div class="g-wrap wh"><div class="wh-top"><span>Busca el <b id="whn">1</b></span><span class="dim" id="whc">0/${WH_N}</span></div><div class="wh-prog"><i id="whb"></i></div><div class="wh-board" data-stim><svg viewBox="-104 -104 208 208" role="group" aria-label="Rueda con los números del 1 al 50"><g id="whg">${cells.map((c,i)=>`<g class="wh-c" data-n="${nums[i]}" role="button" aria-label="Número ${nums[i]}"><polygon points="${c.poly.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}"/><text x="${c.c[0].toFixed(1)}" y="${c.c[1].toFixed(1)}">${nums[i]}</text></g>`).join('')}</g></svg></div></div>`;
+  const g=$('#whg'),svg=$('.wh-board svg',ctx.stage);
+  t0=ctx.clock.now();tPrev=t0;
+  const lp=ctx.clock.loop(()=>{g.setAttribute('transform',`rotate(${(dir*spd*(ctx.clock.now()-t0)/1000).toFixed(2)})`)});
+  const upd=()=>{$('#whn').textContent=Math.min(next,WH_N);$('#whc').textContent=`${next-1}/${WH_N}`;$('#whb').style.width=(next-1)/WH_N*100+'%'};
+  const finish=()=>{if(done)return;done=true;lp&&lp.cancel&&lp.cancel();ctx.end()};
+  svg.addEventListener('pointerdown',e=>{if(done||ctx.clock.paused)return;const c=e.target.closest('.wh-c');if(!c)return;const n=+c.dataset.n;
+   if(n===next){c.classList.add('done');const now=ctx.clock.now();times.push(now-tPrev);tPrev=now;Sound.soft();next++;ctx.score(next-1,'Números');ctx.hits(next-1);upd();if(next>WH_N){ctx.feedback(true,{msg:'¡Del 1 al 50!'});ctx.clock.after(500,finish)}}
+   else if(!c.classList.contains('done')){errors++;c.classList.add('bad');ctx.clock.after(260,()=>c.classList.remove('bad'));ctx.feedback(false,{msg:false,noFlash:true})}});
+  ctx.countdown(limit,finish);ctx.score(0,'Números');upd();
+  return {peek:()=>({next,errors,nums,cells,times,limit,spd}),onTimeUp(){finish()},summary(){
+   const f=next-1;if(!f&&!errors)return null;const total=f+errors,tpn=times.length?avg(times):null,complete=f>=WH_N,el=ctx.elapsed?ctx.elapsed()/1000:null;
+   const metrics=[{label:'Números encontrados',value:`${f}/${WH_N}`},{label:'Errores',value:errors},{label:'Tiempo por número',value:tpn?(tpn/1000).toFixed(1)+' s':'—'},{label:'Velocidad de giro',value:spd?spd.toFixed(1)+' °/s':'0'}];
+   if(complete)metrics.push({label:'Tiempo total',value:fmtDur(times.reduce((a,b)=>a+b,0)/1000)});
+   const details=`<h4>¿Qué mide?</h4><p>Es una búsqueda visual ordenada con el tablero en movimiento: hay que localizar cada número, retener cuál toca y seguirlo mientras la rueda gira. El <b>tiempo por número</b> es la media entre un acierto y el siguiente (incluye la búsqueda). ${errors?`Tuviste ${errors} toque${errors>1?'s':''} en un número equivocado.`:'No tocaste ningún número equivocado.'}</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
+   return {correct:f,wrong:errors,total,acc:f/WH_N,score:f,rt:tpn,metrics,details,extra:{found:f,errors,complete,tpn,spd,omRate:0,faRate:total?errors/total:0}}}}}
  });
 
 
