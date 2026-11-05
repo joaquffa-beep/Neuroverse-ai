@@ -2172,7 +2172,7 @@ ACH.push(
  {id:'palace6',name:'Arquitecto de la memoria',desc:'Recuerda 6 o más palabras en un Memory Palace con método.',icon:'palace',c:'#3DDC84',test:r=>!!(r&&r.game==='palace'&&r.mode!=='list'&&r.correct>=6)},
  {id:'symnone',name:'Código en la cabeza',desc:'Acierta 4 intentos sin clave en el Traductor de símbolos.',icon:'symbols',c:'#C58BFF',test:r=>!!(r&&r.game==='symbols'&&r.mode==='ops'&&(r.extra.noneOk||0)>=4)},
  {id:'transf5',name:'Misma estructura, otro disfraz',desc:'Acierta 5 de 6 secuencias en el contexto nuevo de Aprende y transfiere.',icon:'transfer',c:'#35E6DF',test:r=>!!(r&&r.game==='transfer'&&r.extra.p2&&r.extra.p2.n>=6&&r.extra.p2.ok>=5)},
- {id:'wheel50',name:'Del 1 al 50',desc:'Encuentra los 50 números de la Rueda de números antes de que acabe el tiempo.',icon:'wheel',c:'#46D8CC',test:r=>!!(r&&r.game==='wheel'&&r.extra.complete)}
+ {id:'wheel50',name:'Del 1 al 50',desc:'Encuentra los 50 números (o los 60) de la Rueda de números antes de que acabe el tiempo.',icon:'wheel',c:'#46D8CC',test:r=>!!(r&&r.game==='wheel'&&r.extra.complete&&r.extra.n>=50)}
 );
 
 /* ---------- Misiones diarias ---------- */
@@ -5570,7 +5570,8 @@ reg({id:'transfer',skill:'learning',name:'Aprende y transfiere',icon:'transfer',
 /* ---- RUEDA DE NÚMEROS: búsqueda visual ordenada con el tablero girando ----
    50 números repartidos en celdas irregulares (diagrama de Voronoi) de una rueda que gira despacio. Hay que tocarlos de 1 a 50 en orden,
    contra reloj. Un solo modo, sin distractores. Mide cuántos números se encuentran, los errores y el tiempo por número. */
-const WH_N=50,WH_R=100;
+let WH_N=50;const WH_R=100;
+const whN=L=>[30,40,50,60,60][tierIdx(L,15)];   /* Principiante 30 · Intermedio 40 · Avanzado 50 · Experto y Élite 60 */
 const whSpeed=L=>RM()?0:6+L*1.3;           /* grados por segundo */
 const whTime=L=>60000;   /* 60 s en todos los niveles */
 const whDisp=L=>({k:L<5?24:L<9?8:L<13?3:1,it:L<5?3:L<9?2:1});   /* más dispersión = celdas más desiguales */
@@ -5584,15 +5585,15 @@ function whCells(L=1){const D=whDisp(L);
  let cells=build();for(let it=0;it<D.it;it++){pts=cells.map((poly,i)=>cen(poly,pts[i]));cells=build()}
  return cells.map((poly,i)=>({poly,c:cen(poly,pts[i])}))}
 const whArea=poly=>Math.abs(poly.reduce((s,a,i)=>{const b=poly[(i+1)%poly.length];return s+a[0]*b[1]-b[0]*a[1]},0))/2;
-reg({id:'wheel',skill:'attention',name:'Rueda de números',icon:'wheel',tagline:'Encuentra del 1 al 50 en orden mientras la rueda gira.',
- howTo:['Verás una rueda con los números del 1 al 50 repartidos en celdas.','Toca los números <b>de menor a mayor</b>: primero el 1, luego el 2, y así hasta el 50.','La rueda gira despacio y hay tiempo limitado. Las celdas que ya encontraste se tiñen; si te equivocas, solo cuenta como error.','No se marca cuál es el siguiente: hay que buscarlo con la vista.'],
- example:()=>`<div class="ex-stim" data-stim style="gap:.5rem;font-size:1.2rem">${[1,2,3].map(n=>`<span class="tr-t" style="display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)">${n}</span>`).join('<b>→</b>')}<b>…50</b></div><p class="small" style="margin-top:.5rem">Busca el 1, tócalo; busca el 2… sin perder de vista que la rueda se mueve.</p>`,
+reg({id:'wheel',skill:'attention',name:'Rueda de números',icon:'wheel',tagline:'Encuentra los números en orden mientras la rueda gira.',
+ howTo:['Verás una rueda con los números del 1 al 30, 40, 50 o 60 (según la dificultad) repartidos en celdas.','Toca los números <b>de menor a mayor</b>: primero el 1, luego el 2, y así hasta el último.','La rueda gira despacio y hay tiempo limitado. Las celdas que ya encontraste se tiñen; si te equivocas, solo cuenta como error.','No se marca cuál es el siguiente: hay que buscarlo con la vista.'],
+ example:()=>`<div class="ex-stim" data-stim style="gap:.5rem;font-size:1.2rem">${[1,2,3].map(n=>`<span class="tr-t" style="display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)">${n}</span>`).join('<b>→</b>')}<b>…último</b></div><p class="small" style="margin-top:.5rem">Busca el 1, tócalo; busca el 2… sin perder de vista que la rueda se mueve.</p>`,
  maxLevel:15,metric:{label:'Números encontrados',better:'high'},speed:true,daily:{min:60,max:90},
- levelInfo:L=>`50 números · ${whTime(L)/1000} s · la rueda gira a ${RM()?'0 (movimiento reducido)':(6+L*1.3).toFixed(1)}°/s · ${L<5?'celdas regulares':L<9?'celdas algo irregulares':'celdas muy desiguales y números más dispersos'}`,
+ levelInfo:L=>`${whN(L)} números · ${whTime(L)/1000} s · la rueda gira a ${RM()?'0 (movimiento reducido)':(6+L*1.3).toFixed(1)}°/s · ${L<5?'celdas regulares':L<9?'celdas algo irregulares':'celdas muy desiguales y números más dispersos'}`,
  start(ctx){
-  const L=ctx.level,spd=whSpeed(L),limit=ctx.budget?Math.min(whTime(L),ctx.budget):whTime(L),cells=whCells(L),nums=shuffle([...Array(WH_N).keys()].map(i=>i+1));
+  const L=ctx.level,spd=(WH_N=whN(L),whSpeed(L)),limit=ctx.budget?Math.min(whTime(L),ctx.budget):whTime(L),cells=whCells(L),nums=shuffle([...Array(WH_N).keys()].map(i=>i+1));
   let next=1,errors=0,done=false,t0=0,tPrev=0;const times=[],dir=Math.random()<.5?1:-1;
-  ctx.stage.innerHTML=`<div class="g-wrap wh"><div class="wh-top"><span>Busca el <b id="whn">1</b></span><span class="dim" id="whc">0/${WH_N}</span></div><div class="wh-prog"><i id="whb"></i></div><div class="wh-board" data-stim><svg viewBox="-104 -104 208 208" role="group" aria-label="Rueda con los números del 1 al 50"><g id="whg">${cells.map((c,i)=>`<g class="wh-c" data-n="${nums[i]}" role="button" aria-label="Número ${nums[i]}"><polygon points="${c.poly.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}"/><text x="${c.c[0].toFixed(1)}" y="${c.c[1].toFixed(1)}">${nums[i]}</text></g>`).join('')}</g></svg></div></div>`;
+  ctx.stage.innerHTML=`<div class="g-wrap wh"><div class="wh-top"><span>Busca el <b id="whn">1</b></span><span class="dim" id="whc">0/${WH_N}</span></div><div class="wh-prog"><i id="whb"></i></div><div class="wh-board" data-stim><svg viewBox="-104 -104 208 208" role="group" aria-label="Rueda con los números del 1 al ${WH_N}"><g id="whg">${cells.map((c,i)=>`<g class="wh-c" data-n="${nums[i]}" role="button" aria-label="Número ${nums[i]}"><polygon points="${c.poly.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}"/><text x="${c.c[0].toFixed(1)}" y="${c.c[1].toFixed(1)}">${nums[i]}</text></g>`).join('')}</g></svg></div></div>`;
   const g=$('#whg'),svg=$('.wh-board svg',ctx.stage);
   t0=ctx.clock.now();tPrev=t0;
   /* la rueda gira, pero cada número se contragira sobre su propio centro y se mantiene siempre hacia arriba */
@@ -5601,7 +5602,7 @@ reg({id:'wheel',skill:'attention',name:'Rueda de números',icon:'wheel',tagline:
   const upd=()=>{$('#whn').textContent=Math.min(next,WH_N);$('#whc').textContent=`${next-1}/${WH_N}`;$('#whb').style.width=(next-1)/WH_N*100+'%'};
   const finish=()=>{if(done)return;done=true;lp&&lp.cancel&&lp.cancel();ctx.end()};
   svg.addEventListener('pointerdown',e=>{if(done||ctx.clock.paused)return;const c=e.target.closest('.wh-c');if(!c)return;const n=+c.dataset.n;
-   if(n===next){c.classList.add('done');const now=ctx.clock.now();times.push(now-tPrev);tPrev=now;Sound.soft();next++;ctx.score(next-1,'Números');ctx.hits(next-1);upd();if(next>WH_N){ctx.feedback(true,{msg:'¡Del 1 al 50!'});ctx.clock.after(500,finish)}}
+   if(n===next){c.classList.add('done');const now=ctx.clock.now();times.push(now-tPrev);tPrev=now;Sound.soft();next++;ctx.score(next-1,'Números');ctx.hits(next-1);upd();if(next>WH_N){ctx.feedback(true,{msg:'¡Del 1 al '+WH_N+'!'});ctx.clock.after(500,finish)}}
    else if(!c.classList.contains('done')){errors++;c.classList.add('bad');ctx.clock.after(260,()=>c.classList.remove('bad'));ctx.feedback(false,{msg:false,noFlash:true})}});
   ctx.countdown(limit,finish);ctx.score(0,'Números');upd();
   return {peek:()=>({next,errors,nums,cells,times,limit,spd}),onTimeUp(){finish()},summary(){
@@ -5609,7 +5610,7 @@ reg({id:'wheel',skill:'attention',name:'Rueda de números',icon:'wheel',tagline:
    const metrics=[{label:'Números encontrados',value:`${f}/${WH_N}`},{label:'Errores',value:errors},{label:'Tiempo por número',value:tpn?(tpn/1000).toFixed(1)+' s':'—'},{label:'Velocidad de giro',value:spd?spd.toFixed(1)+' °/s':'0'}];
    if(complete)metrics.push({label:'Tiempo total',value:fmtDur(times.reduce((a,b)=>a+b,0)/1000)});
    const details=`<h4>¿Qué mide?</h4><p>Es una búsqueda visual ordenada con el tablero en movimiento: hay que localizar cada número, retener cuál toca y seguirlo mientras la rueda gira. El <b>tiempo por número</b> es la media entre un acierto y el siguiente (incluye la búsqueda). ${errors?`Tuviste ${errors} toque${errors>1?'s':''} en un número equivocado.`:'No tocaste ningún número equivocado.'}</p><p class="note">Estas cifras describen tu rendimiento en esta tarea; no miden capacidades generales ni dan diagnóstico.</p>`;
-   return {correct:f,wrong:errors,total,acc:f/WH_N,score:f,rt:tpn,metrics,details,extra:{found:f,errors,complete,tpn,spd,omRate:0,faRate:total?errors/total:0}}}}}
+   return {correct:f,wrong:errors,total,acc:f/WH_N,score:f,rt:tpn,metrics,details,extra:{found:f,n:WH_N,errors,complete,tpn,spd,omRate:0,faRate:total?errors/total:0}}}}}
  });
 
 
