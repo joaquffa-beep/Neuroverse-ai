@@ -5594,7 +5594,9 @@ reg({id:'wheel',skill:'attention',name:'Rueda de números',icon:'wheel',tagline:
   ctx.stage.innerHTML=`<div class="g-wrap wh"><div class="wh-top"><span>Busca el <b id="whn">1</b></span><span class="dim" id="whc">0/${WH_N}</span></div><div class="wh-prog"><i id="whb"></i></div><div class="wh-board" data-stim><svg viewBox="-104 -104 208 208" role="group" aria-label="Rueda con los números del 1 al 50"><g id="whg">${cells.map((c,i)=>`<g class="wh-c" data-n="${nums[i]}" role="button" aria-label="Número ${nums[i]}"><polygon points="${c.poly.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}"/><text x="${c.c[0].toFixed(1)}" y="${c.c[1].toFixed(1)}">${nums[i]}</text></g>`).join('')}</g></svg></div></div>`;
   const g=$('#whg'),svg=$('.wh-board svg',ctx.stage);
   t0=ctx.clock.now();tPrev=t0;
-  const lp=ctx.clock.loop(()=>{g.setAttribute('transform',`rotate(${(dir*spd*(ctx.clock.now()-t0)/1000).toFixed(2)})`)});
+  /* la rueda gira, pero cada número se contragira sobre su propio centro y se mantiene siempre hacia arriba */
+  const txts=$$('.wh-c text',ctx.stage);
+  const lp=ctx.clock.loop(()=>{const a=(dir*spd*(ctx.clock.now()-t0)/1000).toFixed(2);g.setAttribute('transform',`rotate(${a})`);for(const t of txts)t.setAttribute('transform',`rotate(${-a} ${t.getAttribute('x')} ${t.getAttribute('y')})`)});
   const upd=()=>{$('#whn').textContent=Math.min(next,WH_N);$('#whc').textContent=`${next-1}/${WH_N}`;$('#whb').style.width=(next-1)/WH_N*100+'%'};
   const finish=()=>{if(done)return;done=true;lp&&lp.cancel&&lp.cancel();ctx.end()};
   svg.addEventListener('pointerdown',e=>{if(done||ctx.clock.paused)return;const c=e.target.closest('.wh-c');if(!c)return;const n=+c.dataset.n;
